@@ -12,6 +12,7 @@
 		193C64F519AD908C00710506 /* send_fail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 193C64F419AD908C00710506 /* send_fail@2x.png */; };
 		193ED7F3197F61D2000C5009 /* SqliteFieldAndTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 193ED7F2197F61D2000C5009 /* SqliteFieldAndTable.m */; };
 		193ED7F6197F8552000C5009 /* UserInfoDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 193ED7F5197F8552000C5009 /* UserInfoDB.m */; };
+		194EDB7C19D9D3D800A60E32 /* RecordsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 194EDB7B19D9D3D800A60E32 /* RecordsTableViewCell.m */; };
 		1956AC28196E4A230092A4CA /* speratechbgline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1956AC27196E4A220092A4CA /* speratechbgline@2x.png */; };
 		1956AC2E196E97730092A4CA /* AddGroupMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1956AC2D196E97730092A4CA /* AddGroupMemberViewController.m */; };
 		1956AC31196E9E3A0092A4CA /* AddGroupMemberTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1956AC30196E9E3A0092A4CA /* AddGroupMemberTableViewCell.m */; };
@@ -896,6 +897,8 @@
 		193ED7F2197F61D2000C5009 /* SqliteFieldAndTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SqliteFieldAndTable.m; sourceTree = "<group>"; };
 		193ED7F4197F8552000C5009 /* UserInfoDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoDB.h; sourceTree = "<group>"; };
 		193ED7F5197F8552000C5009 /* UserInfoDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoDB.m; sourceTree = "<group>"; };
+		194EDB7A19D9D3D800A60E32 /* RecordsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordsTableViewCell.h; sourceTree = "<group>"; };
+		194EDB7B19D9D3D800A60E32 /* RecordsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordsTableViewCell.m; sourceTree = "<group>"; };
 		1956AC27196E4A220092A4CA /* speratechbgline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "speratechbgline@2x.png"; sourceTree = "<group>"; };
 		1956AC2C196E97730092A4CA /* AddGroupMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddGroupMemberViewController.h; sourceTree = "<group>"; };
 		1956AC2D196E97730092A4CA /* AddGroupMemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddGroupMemberViewController.m; sourceTree = "<group>"; };
@@ -2085,8 +2088,34 @@
 		194EDB6D19D9B35000A60E32 /* zking */ = {
 			isa = PBXGroup;
 			children = (
+				194EDB7119D9C5D700A60E32 /* zkingModel */,
+				194EDB7219D9C5D700A60E32 /* zkingController */,
+				194EDB7319D9C5D700A60E32 /* zkingView */,
 			);
 			path = zking;
+			sourceTree = "<group>";
+		};
+		194EDB7119D9C5D700A60E32 /* zkingModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = zkingModel;
+			sourceTree = "<group>";
+		};
+		194EDB7219D9C5D700A60E32 /* zkingController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = zkingController;
+			sourceTree = "<group>";
+		};
+		194EDB7319D9C5D700A60E32 /* zkingView */ = {
+			isa = PBXGroup;
+			children = (
+				194EDB7A19D9D3D800A60E32 /* RecordsTableViewCell.h */,
+				194EDB7B19D9D3D800A60E32 /* RecordsTableViewCell.m */,
+			);
+			path = zkingView;
 			sourceTree = "<group>";
 		};
 		195C2FF51988859B0099B45F /* MyUncaughtExceptionHandler */ = {
@@ -4678,6 +4707,7 @@
 			files = (
 				19960D09196A80D6000121AA /* SBJsonWriter.m in Sources */,
 				19960D4F196A80D7000121AA /* ChatRecordVoiceView.m in Sources */,
+				194EDB7C19D9D3D800A60E32 /* RecordsTableViewCell.m in Sources */,
 				3E46C15619D2B8B600403A42 /* CreatNewInfoViewController.m in Sources */,
 				19A7C7AF19B4735B00E72497 /* AlertTableStruct.m in Sources */,
 				19960D11196A80D6000121AA /* SDWebImageManager.m in Sources */,
