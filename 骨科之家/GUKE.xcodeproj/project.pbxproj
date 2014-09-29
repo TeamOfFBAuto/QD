@@ -853,6 +853,10 @@
 		3EEE8C63196D8EB4008CBE1C /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EEE8C61196D8EB4008CBE1C /* libopencore-amrwb.a */; };
 		5295DB6E01E64A1C843C7A2C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA6440871D54FA4946A4F01 /* libPods.a */; };
 		5675CAE219D9C05100FB975F /* IndustryNewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5675CAE119D9C05100FB975F /* IndustryNewsController.m */; };
+		5675CAE519D9C7A600FB975F /* IndustryNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5675CAE419D9C7A600FB975F /* IndustryNewsModel.m */; };
+		5675CAE819D9CBF900FB975F /* IndustryNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5675CAE719D9CBF900FB975F /* IndustryNewsCell.m */; };
+		5675CAEA19D9CC0B00FB975F /* IndustryNewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5675CAE919D9CC0B00FB975F /* IndustryNewsCell.xib */; };
+		5675CAED19D9D35300FB975F /* SNTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 5675CAEC19D9D35300FB975F /* SNTools.m */; };
 		840BB21919D7AB30000A4725 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BB1FA19D7AB30000A4725 /* AFHTTPRequestOperation.m */; };
 		840BB21A19D7AB30000A4725 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BB1FC19D7AB30000A4725 /* AFHTTPRequestOperationManager.m */; };
 		840BB21B19D7AB30000A4725 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BB1FE19D7AB30000A4725 /* AFHTTPSessionManager.m */; };
@@ -1961,6 +1965,13 @@
 		4EA6440871D54FA4946A4F01 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5675CAE019D9C05100FB975F /* IndustryNewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndustryNewsController.h; sourceTree = "<group>"; };
 		5675CAE119D9C05100FB975F /* IndustryNewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndustryNewsController.m; sourceTree = "<group>"; };
+		5675CAE319D9C7A600FB975F /* IndustryNewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndustryNewsModel.h; sourceTree = "<group>"; };
+		5675CAE419D9C7A600FB975F /* IndustryNewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndustryNewsModel.m; sourceTree = "<group>"; };
+		5675CAE619D9CBF900FB975F /* IndustryNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndustryNewsCell.h; sourceTree = "<group>"; };
+		5675CAE719D9CBF900FB975F /* IndustryNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndustryNewsCell.m; sourceTree = "<group>"; };
+		5675CAE919D9CC0B00FB975F /* IndustryNewsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndustryNewsCell.xib; sourceTree = "<group>"; };
+		5675CAEB19D9D35300FB975F /* SNTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNTools.h; sourceTree = "<group>"; };
+		5675CAEC19D9D35300FB975F /* SNTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNTools.m; sourceTree = "<group>"; };
 		840BB1F919D7AB30000A4725 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		840BB1FA19D7AB30000A4725 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		840BB1FB19D7AB30000A4725 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -2062,6 +2073,8 @@
 		194EDB6C19D9B35000A60E32 /* soulnear */ = {
 			isa = PBXGroup;
 			children = (
+				5675CAEB19D9D35300FB975F /* SNTools.h */,
+				5675CAEC19D9D35300FB975F /* SNTools.m */,
 				5675CADD19D9C01D00FB975F /* SNControllers */,
 				5675CADE19D9C01D00FB975F /* SNModels */,
 				5675CADF19D9C01D00FB975F /* SNViews */,
@@ -3858,6 +3871,8 @@
 		5675CADE19D9C01D00FB975F /* SNModels */ = {
 			isa = PBXGroup;
 			children = (
+				5675CAE319D9C7A600FB975F /* IndustryNewsModel.h */,
+				5675CAE419D9C7A600FB975F /* IndustryNewsModel.m */,
 			);
 			path = SNModels;
 			sourceTree = "<group>";
@@ -3865,6 +3880,9 @@
 		5675CADF19D9C01D00FB975F /* SNViews */ = {
 			isa = PBXGroup;
 			children = (
+				5675CAE619D9CBF900FB975F /* IndustryNewsCell.h */,
+				5675CAE719D9CBF900FB975F /* IndustryNewsCell.m */,
+				5675CAE919D9CC0B00FB975F /* IndustryNewsCell.xib */,
 			);
 			path = SNViews;
 			sourceTree = "<group>";
@@ -4328,6 +4346,7 @@
 				3EEB7EF519A5EF3300ED4ABA /* friend_message_ico@2x.png in Resources */,
 				3E7BADD219D18F35002E28A1 /* guke_chatting_setmode_voice_btn_normal@2x.png in Resources */,
 				3E7BADAA19D18F35002E28A1 /* guke_back01@2x.png in Resources */,
+				5675CAEA19D9CC0B00FB975F /* IndustryNewsCell.xib in Resources */,
 				199C00BD195AAD1D00F74F7C /* group_editmemo@2x.png in Resources */,
 				3E7BADD319D18F35002E28A1 /* guke_chatto_bg_focused@2x.png in Resources */,
 				199C00E2195AAD1D00F74F7C /* loading_0@2x.png in Resources */,
@@ -4684,6 +4703,7 @@
 				3EC2DFF519B99BF300B42351 /* WindowCustom.m in Sources */,
 				19960D48196A80D6000121AA /* amrFileCodec.mm in Sources */,
 				19960D13196A80D6000121AA /* UIButton+WebCache.m in Sources */,
+				5675CAE819D9CBF900FB975F /* IndustryNewsCell.m in Sources */,
 				3E46C15319D2A31C00403A42 /* InformationViewController.m in Sources */,
 				199CFE15195AA53900F74F7C /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				19960CAA196A80D6000121AA /* ContactsListCell.m in Sources */,
@@ -4782,6 +4802,7 @@
 				3E46C16719D2E43E00403A42 /* InfoDetailViewController.m in Sources */,
 				19960D52196A80D7000121AA /* LLRecordVoiceViewController.m in Sources */,
 				199F1B5419BEAF4000750258 /* UserCenter.m in Sources */,
+				5675CAED19D9D35300FB975F /* SNTools.m in Sources */,
 				19960CAB196A80D6000121AA /* ContactsListViewController.m in Sources */,
 				199CFDFA195AA53900F74F7C /* UserIfo.m in Sources */,
 				3951C91819D11CC10040B07E /* FMResultSet.m in Sources */,
@@ -4847,6 +4868,7 @@
 				197ABFF41973EDC800FC6A24 /* UserArticleList.m in Sources */,
 				199C0178195AD8A500F74F7C /* FriendsTableViewCell.m in Sources */,
 				1999647F195D252F006C84CC /* FriendDetailViewController.m in Sources */,
+				5675CAE519D9C7A600FB975F /* IndustryNewsModel.m in Sources */,
 				3EB9973019B56A0D0032D37E /* FriendCircleDetailContentTableViewCell.m in Sources */,
 				193ED7F3197F61D2000C5009 /* SqliteFieldAndTable.m in Sources */,
 				3EB9972719B5683D0032D37E /* dateAndContent.m in Sources */,

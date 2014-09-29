@@ -10,6 +10,11 @@
  */
 #import <UIKit/UIKit.h>
 
-@interface IndustryNewsController : UIViewController
+@interface IndustryNewsController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+{
+    
+}
+
+@property(nonatomic,strong)UITableView * myTableView;
 
 @end

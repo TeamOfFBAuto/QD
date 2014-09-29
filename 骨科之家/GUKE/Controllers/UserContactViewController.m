@@ -1174,7 +1174,7 @@
         
     }else if (indexPath.row == 3) {
         VChatViewController *vc = [[VChatViewController alloc] init];
-        UserContact *model = (UserContact *)[UserContactArray objectAtIndex:indexPath.row-1];
+        UserContact *model = (UserContact *)[UserContactArray objectAtIndex:indexPath.row-4];
         // 未读数据清零
         model.lastMsgNum = @"0";
         // 个人聊天
@@ -1265,7 +1265,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
+    if (indexPath.row == 3) {
         return 65;
     }
     else{

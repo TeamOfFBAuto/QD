@@ -13,6 +13,9 @@
 #import "UserInfoDB.h"
 #import "AFRequestService.h"
 #import "UserDefaultsCatch.h"
+#import "UIImageView+WebCache.h"
+#import "SNTools.h"
+
 //#define IMAGE_BASE_URL @"http://thunisoa.931.com/upload/"// 图片的链接固定部分
 //
 //#define BASE_URL               @"http://thunisoa.931.com/webservices/" // 主机地址
