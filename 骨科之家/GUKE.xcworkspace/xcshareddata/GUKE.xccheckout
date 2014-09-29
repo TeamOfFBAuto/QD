@@ -5,38 +5,32 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>527CA203-F1D7-4971-9842-A6D5B8D0A7C8</string>
+	<string>19979050-1254-4308-915C-98BC82352058</string>
 	<key>IDESourceControlProjectName</key>
 	<string>GUKE</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>AAEA0E13-FB6E-4CB3-BC38-C6179F494C87</key>
-		<string>https://www.hugbear.net:8443/svn/website/new/122.net/%2525252525252525E7%2525252525252525B4%2525252525252525AB%2525252525252525E5%252525252525252585%252525252525252589oa/code/ios/UNIT365</string>
 		<key>FE79CC2813362B49B391355D05CD11056B7CAB6A</key>
 		<string>https://github.com/TeamOfFBAuto/QD.git</string>
 		<key>d43af370-9ee8-f94c-a908-a92522c62caf++6719</key>
-		<string>https://www.hugbear.net:8443/svn/website/new/122.net/%2525252525252525E9%2525252525252525AA%2525252525252525A8%2525252525252525E7%2525252525252525A7%252525252525252591/code/ios/%2525252525252525E9%2525252525252525AA%2525252525252525A8%2525252525252525E7%2525252525252525A7%252525252525252591%2525252525252525E4%2525252525252525B9%25252525252525258B%2525252525252525E5%2525252525252525AE%2525252525252525B6</string>
+		<string>https://www.hugbear.net:8443/svn/website/new/122.net/%25E9%25AA%25A8%25E7%25A7%2591/code/ios/%25E9%25AA%25A8%25E7%25A7%2591%25E4%25B9%258B%25E5%25AE%25B6</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>GUKE.xcodeproj</string>
+	<string>GUKE.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>AAEA0E13-FB6E-4CB3-BC38-C6179F494C87</key>
-		<string>../../../骨科</string>
 		<key>FE79CC2813362B49B391355D05CD11056B7CAB6A</key>
-		<string>../../..</string>
-		<key>d43af370-9ee8-f94c-a908-a92522c62caf++6719</key>
 		<string>../..</string>
+		<key>d43af370-9ee8-f94c-a908-a92522c62caf++6719</key>
+		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectRepositoryRootDictionary</key>
 	<dict>
-		<key>AAEA0E13-FB6E-4CB3-BC38-C6179F494C87</key>
-		<string>https://www.hugbear.net:8443/svn/website</string>
 		<key>d43af370-9ee8-f94c-a908-a92522c62caf++6719</key>
 		<string>https://www.hugbear.net:8443/svn/website</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://www.hugbear.net:8443/svn/website/new/122.net/%2525252525252525E9%2525252525252525AA%2525252525252525A8%2525252525252525E7%2525252525252525A7%252525252525252591/code/ios/%2525252525252525E9%2525252525252525AA%2525252525252525A8%2525252525252525E7%2525252525252525A7%252525252525252591%2525252525252525E4%2525252525252525B9%25252525252525258B%2525252525252525E5%2525252525252525AE%2525252525252525B6/GUKE.xcodeproj</string>
+	<string>https://www.hugbear.net:8443/svn/website/new/122.net/%25E9%25AA%25A8%25E7%25A7%2591/code/ios/%25E9%25AA%25A8%25E7%25A7%2591%25E4%25B9%258B%25E5%25AE%25B6/GUKE.xcworkspace</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
@@ -58,14 +52,6 @@
 			<string>d43af370-9ee8-f94c-a908-a92522c62caf++6719</string>
 			<key>IDESourceControlWCCName</key>
 			<string>%E9%AA%A8%E7%A7%91%E4%B9%8B%E5%AE%B6</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.subversion</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>AAEA0E13-FB6E-4CB3-BC38-C6179F494C87</string>
-			<key>IDESourceControlWCCName</key>
-			<string>骨科</string>
 		</dict>
 	</array>
 </dict>

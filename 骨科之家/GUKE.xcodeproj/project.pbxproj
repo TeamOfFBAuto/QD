@@ -851,6 +851,7 @@
 		3EEB7EF619A5EF3300ED4ABA /* friend_phone_ico@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EEB7EF319A5EF3300ED4ABA /* friend_phone_ico@2x.png */; };
 		3EEE8C62196D8EB4008CBE1C /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EEE8C60196D8EB4008CBE1C /* libopencore-amrnb.a */; };
 		3EEE8C63196D8EB4008CBE1C /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EEE8C61196D8EB4008CBE1C /* libopencore-amrwb.a */; };
+		5295DB6E01E64A1C843C7A2C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA6440871D54FA4946A4F01 /* libPods.a */; };
 		840BB21919D7AB30000A4725 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BB1FA19D7AB30000A4725 /* AFHTTPRequestOperation.m */; };
 		840BB21A19D7AB30000A4725 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BB1FC19D7AB30000A4725 /* AFHTTPRequestOperationManager.m */; };
 		840BB21B19D7AB30000A4725 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BB1FE19D7AB30000A4725 /* AFHTTPSessionManager.m */; };
@@ -1955,6 +1956,7 @@
 		3EEB7EF319A5EF3300ED4ABA /* friend_phone_ico@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "friend_phone_ico@2x.png"; sourceTree = "<group>"; };
 		3EEE8C60196D8EB4008CBE1C /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
 		3EEE8C61196D8EB4008CBE1C /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
+		4EA6440871D54FA4946A4F01 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		840BB1F919D7AB30000A4725 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		840BB1FA19D7AB30000A4725 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		840BB1FB19D7AB30000A4725 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -1990,6 +1992,7 @@
 		8458B80419D94EA50083B4AC /* VChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VChatViewController.m; sourceTree = "<group>"; };
 		8458B80819D953020083B4AC /* Toolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Toolbar.h; sourceTree = "<group>"; };
 		8458B80919D953020083B4AC /* Toolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Toolbar.m; sourceTree = "<group>"; };
+		CA67668589274E8DABA31016 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2013,6 +2016,7 @@
 				199CFD4F195AA48200F74F7C /* UIKit.framework in Frameworks */,
 				3EEE8C62196D8EB4008CBE1C /* libopencore-amrnb.a in Frameworks */,
 				199CFD4B195AA48200F74F7C /* Foundation.framework in Frameworks */,
+				5295DB6E01E64A1C843C7A2C /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2030,6 +2034,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		194EDB6A19D9B31000A60E32 /* fb */ = {
+			isa = PBXGroup;
+			children = (
+				194EDB6B19D9B35000A60E32 /* gm */,
+				194EDB6C19D9B35000A60E32 /* soulnear */,
+				194EDB6D19D9B35000A60E32 /* zking */,
+			);
+			path = fb;
+			sourceTree = "<group>";
+		};
+		194EDB6B19D9B35000A60E32 /* gm */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = gm;
+			sourceTree = "<group>";
+		};
+		194EDB6C19D9B35000A60E32 /* soulnear */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = soulnear;
+			sourceTree = "<group>";
+		};
+		194EDB6D19D9B35000A60E32 /* zking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = zking;
+			sourceTree = "<group>";
+		};
 		195C2FF51988859B0099B45F /* MyUncaughtExceptionHandler */ = {
 			isa = PBXGroup;
 			children = (
@@ -2839,10 +2874,12 @@
 		199CFD3E195AA48200F74F7C = {
 			isa = PBXGroup;
 			children = (
+				194EDB6A19D9B31000A60E32 /* fb */,
 				199CFD50195AA48200F74F7C /* GUKE */,
 				199CFD69195AA48300F74F7C /* GUKETests */,
 				199CFD49195AA48200F74F7C /* Frameworks */,
 				199CFD48195AA48200F74F7C /* Products */,
+				CA67668589274E8DABA31016 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2876,6 +2913,7 @@
 				199CFD4C195AA48200F74F7C /* CoreGraphics.framework */,
 				199CFD4E195AA48200F74F7C /* UIKit.framework */,
 				199CFD63195AA48300F74F7C /* XCTest.framework */,
+				4EA6440871D54FA4946A4F01 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -3846,9 +3884,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 199CFD73195AA48300F74F7C /* Build configuration list for PBXNativeTarget "GUKE" */;
 			buildPhases = (
+				4EEC06AFD02F4114AE4CEB41 /* Check Pods Manifest.lock */,
 				199CFD43195AA48200F74F7C /* Sources */,
 				199CFD44195AA48200F74F7C /* Frameworks */,
 				199CFD45195AA48200F74F7C /* Resources */,
+				527864207DB2410AA39B183F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -4545,6 +4585,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4EEC06AFD02F4114AE4CEB41 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		527864207DB2410AA39B183F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		199CFD43195AA48200F74F7C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -4894,6 +4967,7 @@
 		};
 		199CFD74195AA48300F74F7C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA67668589274E8DABA31016 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -4911,6 +4985,7 @@
 				PRODUCT_NAME = GUKE;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -4918,6 +4993,7 @@
 		};
 		199CFD75195AA48300F74F7C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA67668589274E8DABA31016 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -4935,6 +5011,7 @@
 				PRODUCT_NAME = GUKE;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
