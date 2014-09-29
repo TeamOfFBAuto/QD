@@ -13,7 +13,7 @@
 		<key>FE79CC2813362B49B391355D05CD11056B7CAB6A</key>
 		<string>https://github.com/TeamOfFBAuto/QD.git</string>
 		<key>d43af370-9ee8-f94c-a908-a92522c62caf++6719</key>
-		<string>https://www.hugbear.net:8443/svn/website/new/122.net/%25E9%25AA%25A8%25E7%25A7%2591/code/ios/%25E9%25AA%25A8%25E7%25A7%2591%25E4%25B9%258B%25E5%25AE%25B6</string>
+		<string>https://www.hugbear.net:8443/svn/website/new/122.net/%2525E9%2525AA%2525A8%2525E7%2525A7%252591/code/ios/%2525E9%2525AA%2525A8%2525E7%2525A7%252591%2525E4%2525B9%25258B%2525E5%2525AE%2525B6</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>GUKE.xcworkspace</string>
@@ -30,7 +30,7 @@
 		<string>https://www.hugbear.net:8443/svn/website</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://www.hugbear.net:8443/svn/website/new/122.net/%25E9%25AA%25A8%25E7%25A7%2591/code/ios/%25E9%25AA%25A8%25E7%25A7%2591%25E4%25B9%258B%25E5%25AE%25B6/GUKE.xcworkspace</string>
+	<string>https://www.hugbear.net:8443/svn/website/new/122.net/%2525E9%2525AA%2525A8%2525E7%2525A7%252591/code/ios/%2525E9%2525AA%2525A8%2525E7%2525A7%252591%2525E4%2525B9%25258B%2525E5%2525AE%2525B6/GUKE.xcworkspace</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
