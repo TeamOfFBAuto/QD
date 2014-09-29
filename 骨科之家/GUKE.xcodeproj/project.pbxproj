@@ -870,6 +870,7 @@
 		8458B80619D94EA50083B4AC /* BubbleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8458B80219D94EA50083B4AC /* BubbleCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8458B80719D94EA50083B4AC /* VChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8458B80419D94EA50083B4AC /* VChatViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8458B80A19D953020083B4AC /* Toolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8458B80919D953020083B4AC /* Toolbar.m */; };
+		E307699619D9C35300333B7E /* GcalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E307699519D9C35300333B7E /* GcalendarViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1996,6 +1997,8 @@
 		8458B80819D953020083B4AC /* Toolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Toolbar.h; sourceTree = "<group>"; };
 		8458B80919D953020083B4AC /* Toolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Toolbar.m; sourceTree = "<group>"; };
 		CA67668589274E8DABA31016 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		E307699419D9C35300333B7E /* GcalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GcalendarViewController.h; sourceTree = SOURCE_ROOT; };
+		E307699519D9C35300333B7E /* GcalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GcalendarViewController.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2050,6 +2053,8 @@
 		194EDB6B19D9B35000A60E32 /* gm */ = {
 			isa = PBXGroup;
 			children = (
+				E307699419D9C35300333B7E /* GcalendarViewController.h */,
+				E307699519D9C35300333B7E /* GcalendarViewController.m */,
 			);
 			path = gm;
 			sourceTree = "<group>";
@@ -4801,6 +4806,7 @@
 				19996490195D3E1A006C84CC /* SetUpViewController.m in Sources */,
 				840BB22219D7AB30000A4725 /* AFURLResponseSerialization.m in Sources */,
 				19960CA9196A80D6000121AA /* ContactsItem.m in Sources */,
+				E307699619D9C35300333B7E /* GcalendarViewController.m in Sources */,
 				19DAE965196D37CD00FE7187 /* GroupMemberList.m in Sources */,
 				19DAE968196D517F00FE7187 /* MyCollectionViewCell.m in Sources */,
 				1977B50919C84DB300D504A7 /* PrivatPoliceViewController.m in Sources */,
