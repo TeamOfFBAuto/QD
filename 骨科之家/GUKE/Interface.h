@@ -75,6 +75,11 @@
 
 
 #pragma mark - soulnear
+#pragma mark - 屏幕宽度
+#define DEVICE_WIDTH  [UIScreen mainScreen].bounds.size.width
+#pragma mark - 屏幕高度
+#define DEVICE_HEIGHT [UIScreen mainScreen].bounds.size.height
+
 #pragma mark - 业界动态接口
 #define INDUSTRY_NEWS_URL @"dongtailist.php"
 

@@ -34,6 +34,8 @@
 #import "MedicalViewController.h"
 #import "InformationViewController.h"
 #import "GcalendarViewController.h"
+#import "IndustryNewsController.h"
+
 
 #define TOP_CHAT_TAG 12345678
 #define CACLETOP_CHAT_TAG 123456789
@@ -1158,7 +1160,9 @@
 {
     if (indexPath.row==0)//业界动态
     {
-        
+        IndustryNewsController * vc = [[IndustryNewsController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        SSRCRelease(vc)
     }else if (indexPath.row == 1)//主题讨论
     {
         

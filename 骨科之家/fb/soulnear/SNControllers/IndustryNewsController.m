@@ -25,9 +25,11 @@
 #pragma mark - 请求数据方法
 -(void)getIndustryNewsData
 {
-    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID};
+    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"pageSize":@"20",@"page":@"1"};
     
     [AFRequestService responseData:INDUSTRY_NEWS_URL andparameters:parameters andResponseData:^(id responseData) {
+        
+        
         NSDictionary * dict = (NSDictionary *)responseData;
         
         NSLog(@"dic ----   %@",dict);
