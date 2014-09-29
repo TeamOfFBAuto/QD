@@ -858,6 +858,9 @@
 		5675CAE819D9CBF900FB975F /* IndustryNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5675CAE719D9CBF900FB975F /* IndustryNewsCell.m */; };
 		5675CAEA19D9CC0B00FB975F /* IndustryNewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5675CAE919D9CC0B00FB975F /* IndustryNewsCell.xib */; };
 		5675CAED19D9D35300FB975F /* SNTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 5675CAEC19D9D35300FB975F /* SNTools.m */; };
+		5675CAF019D9D71C00FB975F /* IndustryNewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5675CAEF19D9D71C00FB975F /* IndustryNewsDetailViewController.m */; };
+		5675CAF419D9EBE000FB975F /* NewsDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5675CAF219D9EBE000FB975F /* NewsDetailCell.m */; };
+		5675CAF519D9EBE000FB975F /* NewsDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5675CAF319D9EBE000FB975F /* NewsDetailCell.xib */; };
 		840BB21919D7AB30000A4725 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BB1FA19D7AB30000A4725 /* AFHTTPRequestOperation.m */; };
 		840BB21A19D7AB30000A4725 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BB1FC19D7AB30000A4725 /* AFHTTPRequestOperationManager.m */; };
 		840BB21B19D7AB30000A4725 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BB1FE19D7AB30000A4725 /* AFHTTPSessionManager.m */; };
@@ -1975,6 +1978,11 @@
 		5675CAE919D9CC0B00FB975F /* IndustryNewsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndustryNewsCell.xib; sourceTree = "<group>"; };
 		5675CAEB19D9D35300FB975F /* SNTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNTools.h; sourceTree = "<group>"; };
 		5675CAEC19D9D35300FB975F /* SNTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNTools.m; sourceTree = "<group>"; };
+		5675CAEE19D9D71C00FB975F /* IndustryNewsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndustryNewsDetailViewController.h; sourceTree = "<group>"; };
+		5675CAEF19D9D71C00FB975F /* IndustryNewsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndustryNewsDetailViewController.m; sourceTree = "<group>"; };
+		5675CAF119D9EBE000FB975F /* NewsDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDetailCell.h; sourceTree = "<group>"; };
+		5675CAF219D9EBE000FB975F /* NewsDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDetailCell.m; sourceTree = "<group>"; };
+		5675CAF319D9EBE000FB975F /* NewsDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsDetailCell.xib; sourceTree = "<group>"; };
 		840BB1F919D7AB30000A4725 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		840BB1FA19D7AB30000A4725 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		840BB1FB19D7AB30000A4725 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -3893,6 +3901,8 @@
 			children = (
 				5675CAE019D9C05100FB975F /* IndustryNewsController.h */,
 				5675CAE119D9C05100FB975F /* IndustryNewsController.m */,
+				5675CAEE19D9D71C00FB975F /* IndustryNewsDetailViewController.h */,
+				5675CAEF19D9D71C00FB975F /* IndustryNewsDetailViewController.m */,
 			);
 			path = SNControllers;
 			sourceTree = "<group>";
@@ -3912,6 +3922,9 @@
 				5675CAE619D9CBF900FB975F /* IndustryNewsCell.h */,
 				5675CAE719D9CBF900FB975F /* IndustryNewsCell.m */,
 				5675CAE919D9CC0B00FB975F /* IndustryNewsCell.xib */,
+				5675CAF119D9EBE000FB975F /* NewsDetailCell.h */,
+				5675CAF219D9EBE000FB975F /* NewsDetailCell.m */,
+				5675CAF319D9EBE000FB975F /* NewsDetailCell.xib */,
 			);
 			path = SNViews;
 			sourceTree = "<group>";
@@ -4286,6 +4299,7 @@
 				3E7BAE4819D18F35002E28A1 /* guke_set_icon@2x.png in Resources */,
 				3E7BAE6919D18F35002E28A1 /* guke_userarticle_chat@2x.png in Resources */,
 				3E7BADE019D18F35002E28A1 /* guke_dot_default_on@2x.png in Resources */,
+				5675CAF519D9EBE000FB975F /* NewsDetailCell.xib in Resources */,
 				19960CE4196A80D6000121AA /* type_btn_pick_photo2@2x.png in Resources */,
 				3E7BAE6319D18F35002E28A1 /* guke_type_btn_zhantie_default@2x.png in Resources */,
 				3E7BADFE19D18F35002E28A1 /* guke_ic_edit@2x.png in Resources */,
@@ -4752,11 +4766,13 @@
 				19960D2F196A80D6000121AA /* MBProgressHUD.m in Sources */,
 				3EE1043719A497E50029EC5C /* SetUpTableViewCellOne.m in Sources */,
 				199CFD9C195AA50200F74F7C /* RadioButton.m in Sources */,
+				5675CAF419D9EBE000FB975F /* NewsDetailCell.m in Sources */,
 				840BB22319D7AB30000A4725 /* AFURLSessionManager.m in Sources */,
 				199C0173195AD88600F74F7C /* CachatTableViewCell.m in Sources */,
 				19960CAE196A80D6000121AA /* HttpRequsetFactory.m in Sources */,
 				840BB21D19D7AB30000A4725 /* AFNetworkReachabilityManager.m in Sources */,
 				199CFE1B195AA53900F74F7C /* UIWebView+AFNetworking.m in Sources */,
+				5675CAF019D9D71C00FB975F /* IndustryNewsDetailViewController.m in Sources */,
 				198BBF1D19B83FD6000FBC75 /* LoadToLocal.m in Sources */,
 				3E6F1E42196CD52400796B17 /* BlockButton.m in Sources */,
 				3E46C15019D2A2F200403A42 /* MedicalViewController.m in Sources */,

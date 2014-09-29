@@ -256,7 +256,7 @@
 		CGFloat offset = MAX(scrollView.contentOffset.y * -1, 0);
 		offset = MIN(offset, PULL_AREA_HEIGTH);
         UIEdgeInsets currentInsets = scrollView.contentInset;
-        currentInsets.top = offset;
+//        currentInsets.top = offset;
         scrollView.contentInset = currentInsets;
 		
 	} else if (scrollView.isDragging) {
@@ -269,7 +269,7 @@
 		
 		if (scrollView.contentInset.top != 0) {
             UIEdgeInsets currentInsets = scrollView.contentInset;
-            currentInsets.top = 0;
+//            currentInsets.top = 0;
             scrollView.contentInset = currentInsets;
 		}
 		
@@ -284,7 +284,7 @@
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.25];
     UIEdgeInsets currentInsets = scrollView.contentInset;
-    currentInsets.top = PULL_AREA_HEIGTH;
+//    currentInsets.top = PULL_AREA_HEIGTH;
     scrollView.contentInset = currentInsets;
     if(scrollView.contentOffset.y <= 0){
         [scrollView setContentOffset:CGPointMake(scrollView.contentOffset.x, -PULL_AREA_HEIGTH) animated:YES];
@@ -314,7 +314,7 @@
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:.3];
     UIEdgeInsets currentInsets = scrollView.contentInset;
-    currentInsets.top = 0;
+//    currentInsets.top = 0;
     scrollView.contentInset = currentInsets;
 	[UIView commitAnimations];
 	

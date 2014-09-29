@@ -1174,7 +1174,7 @@
         
     }else if (indexPath.row == 3) {
         VChatViewController *vc = [[VChatViewController alloc] init];
-        UserContact *model = (UserContact *)[UserContactArray objectAtIndex:indexPath.row-4];
+        UserContact *model = (UserContact *)[UserContactArray objectAtIndex:indexPath.row-3];
         // 未读数据清零
         model.lastMsgNum = @"0";
         // 个人聊天
