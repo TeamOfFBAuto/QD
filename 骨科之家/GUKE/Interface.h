@@ -73,6 +73,12 @@
 #define SUB_USER_LIST_URL     @"subuserlist.php"               // 取得下级用户列表
 #define UPLOAD_TOCKEN_URL     @"uploadtoken.php"              //  75、上传用户deviceToken
 
+
+#pragma mark - soulnear
+#pragma mark - 业界动态接口
+#define INDUSTRY_NEWS_URL @"dongtailist.php"
+
+
 // 请求参数
 #define REQUEST_PATAMETER  @{@"userId": [NSString stringWithFormat:@"%d",((User_Model*)[[SingleInstance shareManager].objecAarray firstObject]).userId],@"sid": ((User_Model*)[[SingleInstance shareManager].objecAarray firstObject]).sid}
 //定义请求服务的返回参数

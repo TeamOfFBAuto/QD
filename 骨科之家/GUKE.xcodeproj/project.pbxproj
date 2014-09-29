@@ -852,6 +852,7 @@
 		3EEE8C62196D8EB4008CBE1C /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EEE8C60196D8EB4008CBE1C /* libopencore-amrnb.a */; };
 		3EEE8C63196D8EB4008CBE1C /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EEE8C61196D8EB4008CBE1C /* libopencore-amrwb.a */; };
 		5295DB6E01E64A1C843C7A2C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA6440871D54FA4946A4F01 /* libPods.a */; };
+		5675CAE219D9C05100FB975F /* IndustryNewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5675CAE119D9C05100FB975F /* IndustryNewsController.m */; };
 		840BB21919D7AB30000A4725 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BB1FA19D7AB30000A4725 /* AFHTTPRequestOperation.m */; };
 		840BB21A19D7AB30000A4725 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BB1FC19D7AB30000A4725 /* AFHTTPRequestOperationManager.m */; };
 		840BB21B19D7AB30000A4725 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BB1FE19D7AB30000A4725 /* AFHTTPSessionManager.m */; };
@@ -869,6 +870,7 @@
 		8458B80619D94EA50083B4AC /* BubbleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8458B80219D94EA50083B4AC /* BubbleCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8458B80719D94EA50083B4AC /* VChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8458B80419D94EA50083B4AC /* VChatViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8458B80A19D953020083B4AC /* Toolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8458B80919D953020083B4AC /* Toolbar.m */; };
+		E307699619D9C35300333B7E /* GcalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E307699519D9C35300333B7E /* GcalendarViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1957,6 +1959,8 @@
 		3EEE8C60196D8EB4008CBE1C /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
 		3EEE8C61196D8EB4008CBE1C /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
 		4EA6440871D54FA4946A4F01 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5675CAE019D9C05100FB975F /* IndustryNewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndustryNewsController.h; sourceTree = "<group>"; };
+		5675CAE119D9C05100FB975F /* IndustryNewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndustryNewsController.m; sourceTree = "<group>"; };
 		840BB1F919D7AB30000A4725 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		840BB1FA19D7AB30000A4725 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		840BB1FB19D7AB30000A4725 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -1993,6 +1997,8 @@
 		8458B80819D953020083B4AC /* Toolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Toolbar.h; sourceTree = "<group>"; };
 		8458B80919D953020083B4AC /* Toolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Toolbar.m; sourceTree = "<group>"; };
 		CA67668589274E8DABA31016 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		E307699419D9C35300333B7E /* GcalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GcalendarViewController.h; sourceTree = SOURCE_ROOT; };
+		E307699519D9C35300333B7E /* GcalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GcalendarViewController.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2047,6 +2053,8 @@
 		194EDB6B19D9B35000A60E32 /* gm */ = {
 			isa = PBXGroup;
 			children = (
+				E307699419D9C35300333B7E /* GcalendarViewController.h */,
+				E307699519D9C35300333B7E /* GcalendarViewController.m */,
 			);
 			path = gm;
 			sourceTree = "<group>";
@@ -2054,6 +2062,9 @@
 		194EDB6C19D9B35000A60E32 /* soulnear */ = {
 			isa = PBXGroup;
 			children = (
+				5675CADD19D9C01D00FB975F /* SNControllers */,
+				5675CADE19D9C01D00FB975F /* SNModels */,
+				5675CADF19D9C01D00FB975F /* SNViews */,
 			);
 			path = soulnear;
 			sourceTree = "<group>";
@@ -3835,6 +3846,29 @@
 			path = FriendDetailImage;
 			sourceTree = "<group>";
 		};
+		5675CADD19D9C01D00FB975F /* SNControllers */ = {
+			isa = PBXGroup;
+			children = (
+				5675CAE019D9C05100FB975F /* IndustryNewsController.h */,
+				5675CAE119D9C05100FB975F /* IndustryNewsController.m */,
+			);
+			path = SNControllers;
+			sourceTree = "<group>";
+		};
+		5675CADE19D9C01D00FB975F /* SNModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SNModels;
+			sourceTree = "<group>";
+		};
+		5675CADF19D9C01D00FB975F /* SNViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SNViews;
+			sourceTree = "<group>";
+		};
 		840BB1F819D7AB30000A4725 /* AFNetworking */ = {
 			isa = PBXGroup;
 			children = (
@@ -3927,7 +3961,7 @@
 				ORGANIZATIONNAME = qidi;
 				TargetAttributes = {
 					199CFD61195AA48300F74F7C = {
-						DevelopmentTeam = 5L288F3VRZ;
+						DevelopmentTeam = 96PFYKQ596;
 						TestTargetID = 199CFD46195AA48200F74F7C;
 					};
 				};
@@ -4645,6 +4679,7 @@
 				19DAE94F196CEC2400FE7187 /* GroupListViewController.m in Sources */,
 				19960D1C196A80D6000121AA /* MessageInterceptor.m in Sources */,
 				19BC02EF19AC7282008EBA22 /* addNewContact.m in Sources */,
+				5675CAE219D9C05100FB975F /* IndustryNewsController.m in Sources */,
 				199CFE17195AA53900F74F7C /* UIButton+AFNetworking.m in Sources */,
 				3EC2DFF519B99BF300B42351 /* WindowCustom.m in Sources */,
 				19960D48196A80D6000121AA /* amrFileCodec.mm in Sources */,
@@ -4771,6 +4806,7 @@
 				19996490195D3E1A006C84CC /* SetUpViewController.m in Sources */,
 				840BB22219D7AB30000A4725 /* AFURLResponseSerialization.m in Sources */,
 				19960CA9196A80D6000121AA /* ContactsItem.m in Sources */,
+				E307699619D9C35300333B7E /* GcalendarViewController.m in Sources */,
 				19DAE965196D37CD00FE7187 /* GroupMemberList.m in Sources */,
 				19DAE968196D517F00FE7187 /* MyCollectionViewCell.m in Sources */,
 				1977B50919C84DB300D504A7 /* PrivatPoliceViewController.m in Sources */,
@@ -4893,6 +4929,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = armv7;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -4905,8 +4942,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Qiyuan Yang (4Z47N2S58S)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qiyuan Yang (4Z47N2S58S)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -4924,7 +4961,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "69c75b80-02b2-4902-b665-fd5dcf6940d2";
+				PROVISIONING_PROFILE = "db5d35fa-89e9-42b3-ad18-97734e7f3484";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -4934,6 +4971,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = armv7;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -4946,8 +4984,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Qiyuan Yang (4Z47N2S58S)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qiyuan Yang (4Z47N2S58S)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -4958,7 +4996,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				PROVISIONING_PROFILE = "69c75b80-02b2-4902-b665-fd5dcf6940d2";
+				PROVISIONING_PROFILE = "db5d35fa-89e9-42b3-ad18-97734e7f3484";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -4969,10 +5007,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CA67668589274E8DABA31016 /* Pods.xcconfig */;
 			buildSettings = {
+				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Qiyuan Yang (4Z47N2S58S)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qiyuan Yang (4Z47N2S58S)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GUKE/GUKE-Prefix.pch";
 				INFOPLIST_FILE = "GUKE/GUKE-Info.plist";
@@ -4983,7 +5022,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = GUKE;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "db5d35fa-89e9-42b3-ad18-97734e7f3484";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				VALID_ARCHS = "armv7 armv7s";
@@ -4995,10 +5034,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CA67668589274E8DABA31016 /* Pods.xcconfig */;
 			buildSettings = {
+				ARCHS = armv7;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Qiyuan Yang (4Z47N2S58S)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Qiyuan Yang (4Z47N2S58S)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Bing Jin (KMZ2AD5LZY)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GUKE/GUKE-Prefix.pch";
 				INFOPLIST_FILE = "GUKE/GUKE-Info.plist";
@@ -5009,7 +5049,7 @@
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = GUKE;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "db5d35fa-89e9-42b3-ad18-97734e7f3484";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				VALID_ARCHS = "armv7 armv7s";

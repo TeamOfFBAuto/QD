@@ -33,6 +33,7 @@
 #import "Interface.h"
 #import "MedicalViewController.h"
 #import "InformationViewController.h"
+#import "GcalendarViewController.h"
 
 #define TOP_CHAT_TAG 12345678
 #define CACLETOP_CHAT_TAG 123456789
@@ -47,6 +48,7 @@
     UITextField *groupName;
     UITableView *_tableView;
     NSMutableArray *UserContactArray;
+    NSMutableArray * imageAndTitleArray;
     NSMutableArray *groupArray;
     NSMutableArray *groupToContactArray;
 }
@@ -388,6 +390,7 @@
 {
     
     UserContactArray = [[NSMutableArray alloc]init];
+    imageAndTitleArray = [NSMutableArray arrayWithObjects:[NSArray arrayWithObjects:@"guke_ic_dongtai",@"guke_ic_zhuti",@"guke_ic_yicheng",nil],[NSMutableArray arrayWithObjects:@"业界动态",@"主题讨论",@"会议日程",nil],nil];
     CGFloat height = head_bg.frame.size.height + head_bg.frame.origin.y;
 
     _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, height, viewSize.width, viewSize.height-height) style:UITableViewStylePlain];
@@ -1035,7 +1038,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [UserContactArray count];
+    return [UserContactArray count]+3;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -1045,7 +1048,7 @@
         cell = [[[NSBundle mainBundle]loadNibNamed:@"CachatTableViewCell" owner:self options:nil]lastObject];
     }
     UserContact *model = nil;
-    if (indexPath.row == 0) {
+    if (indexPath.row == 3) {
         model  = (UserContact *)[UserContactArray lastObject];
         cell.imgView.image = [UIImage imageNamed:@"group@2x.png"];
         cell.nameLabel.text = LOCALIZATION(@"chat_expressname");
@@ -1072,10 +1075,19 @@
             cell.timeLable.hidden = YES;
         }
         cell.connectLable.textColor = [UIColor colorWithRed:128/255.0 green:128/255.0 blue:128/255.0 alpha:0.8];
-    }
-    else{
+    }else if (indexPath.row < 3)
+    {
+        cell.imgView.image = [UIImage imageNamed:[[imageAndTitleArray objectAtIndex:0] objectAtIndex:indexPath.row]];
+        CGRect rect = cell.nameLabel.frame;
+        rect.origin.y = 21;
+        cell.nameLabel.frame = rect;
+        cell.nameLabel.text = [[imageAndTitleArray objectAtIndex:1] objectAtIndex:indexPath.row];
+        cell.timeLable.text = @"";
+        cell.connectLable.text = @"";
+        cell.typeLable.text = @"";
+    }else{
         cell.accessoryType =  UITableViewCellAccessoryNone;
-        model = (UserContact *)[UserContactArray objectAtIndex:indexPath.row-1];
+        model = (UserContact *)[UserContactArray objectAtIndex:indexPath.row-4];
         cell.nameLabel.text = model.contactName;
         cell.nameLabel.backgroundColor = [UIColor clearColor];
         cell.timeLable.text = [SingleInstance handleDate:model.creatDate];
@@ -1144,8 +1156,20 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    VChatViewController *vc = [[VChatViewController alloc] init];
-    if (indexPath.row) {
+    if (indexPath.row==0)//业界动态
+    {
+        
+    }else if (indexPath.row == 1)//主题讨论
+    {
+        
+    }else if (indexPath.row == 2)//会议日程
+    {
+        //跳转日历
+        [self.navigationController pushViewController:[[GcalendarViewController alloc]init] animated:YES];
+        
+        
+    }else if (indexPath.row == 3) {
+        VChatViewController *vc = [[VChatViewController alloc] init];
         UserContact *model = (UserContact *)[UserContactArray objectAtIndex:indexPath.row-1];
         // 未读数据清零
         model.lastMsgNum = @"0";
@@ -1178,16 +1202,21 @@
         else{
             
         }
-    }
-    // 聊天广场
-    else{
+        
+        [self.navigationController pushViewController:vc animated:YES];
+        SSRCRelease(vc)
+    }else// 聊天广场
+    {
+        VChatViewController *vc = [[VChatViewController alloc] init];
          UserContact *model = (UserContact *)[UserContactArray lastObject];
         vc.recvFirstName = LOCALIZATION(@"chat_expressname");
         vc.recvName = model.contactUsername;
         vc.type = VChatType_VC;
+        [self.navigationController pushViewController:vc animated:YES];
+        SSRCRelease(vc)
     }
-    [self.navigationController pushViewController:vc animated:YES];
-    SSRCRelease(vc)
+    
+    
     
 }
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
