@@ -33,6 +33,7 @@
 #import "Interface.h"
 #import "MedicalViewController.h"
 #import "InformationViewController.h"
+#import "GcalendarViewController.h"
 
 #define TOP_CHAT_TAG 12345678
 #define CACLETOP_CHAT_TAG 123456789
@@ -1163,6 +1164,9 @@
         
     }else if (indexPath.row == 2)//会议日程
     {
+        //跳转日历
+        [self.navigationController pushViewController:[[GcalendarViewController alloc]init] animated:YES];
+        
         
     }else if (indexPath.row == 3) {
         VChatViewController *vc = [[VChatViewController alloc] init];
