@@ -2072,8 +2072,32 @@
 		194EDB6D19D9B35000A60E32 /* zking */ = {
 			isa = PBXGroup;
 			children = (
+				194EDB7119D9C5D700A60E32 /* zkingModel */,
+				194EDB7219D9C5D700A60E32 /* zkingController */,
+				194EDB7319D9C5D700A60E32 /* zkingView */,
 			);
 			path = zking;
+			sourceTree = "<group>";
+		};
+		194EDB7119D9C5D700A60E32 /* zkingModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = zkingModel;
+			sourceTree = "<group>";
+		};
+		194EDB7219D9C5D700A60E32 /* zkingController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = zkingController;
+			sourceTree = "<group>";
+		};
+		194EDB7319D9C5D700A60E32 /* zkingView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = zkingView;
 			sourceTree = "<group>";
 		};
 		195C2FF51988859B0099B45F /* MyUncaughtExceptionHandler */ = {
