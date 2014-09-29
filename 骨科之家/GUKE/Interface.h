@@ -13,6 +13,11 @@
 #import "UserInfoDB.h"
 #import "AFRequestService.h"
 #import "UserDefaultsCatch.h"
+#import "UIImageView+WebCache.h"
+#import "SNTools.h"
+#import "PullTableView.h"
+#import "MBProgressHUD.h"
+
 //#define IMAGE_BASE_URL @"http://thunisoa.931.com/upload/"// 图片的链接固定部分
 //
 //#define BASE_URL               @"http://thunisoa.931.com/webservices/" // 主机地址
@@ -75,9 +80,15 @@
 
 
 #pragma mark - soulnear
+#pragma mark - 屏幕宽度
+#define DEVICE_WIDTH  [UIScreen mainScreen].bounds.size.width
+#pragma mark - 屏幕高度
+#define DEVICE_HEIGHT [UIScreen mainScreen].bounds.size.height
+
 #pragma mark - 业界动态接口
 #define INDUSTRY_NEWS_URL @"dongtailist.php"
-
+#pragma mark - 动态正文
+#define INDUSTRY_NEWS_DETAIL_URL @"dongtai.php"
 
 #pragma mark - gm
 #pragma mark - 日历活动

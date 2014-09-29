@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CreatMedicalViewController : UIViewController
+@interface CreatMedicalViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
+
+
+
+}
+
+@property(nonatomic,strong)UITableView *mainTableView;
 
 @end

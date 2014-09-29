@@ -34,6 +34,8 @@
 #import "MedicalViewController.h"
 #import "InformationViewController.h"
 #import "GcalendarViewController.h"
+#import "IndustryNewsController.h"
+
 
 #define TOP_CHAT_TAG 12345678
 #define CACLETOP_CHAT_TAG 123456789
@@ -1158,7 +1160,9 @@
 {
     if (indexPath.row==0)//业界动态
     {
-        
+        IndustryNewsController * vc = [[IndustryNewsController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        SSRCRelease(vc)
     }else if (indexPath.row == 1)//主题讨论
     {
         
@@ -1170,7 +1174,7 @@
         
     }else if (indexPath.row == 3) {
         VChatViewController *vc = [[VChatViewController alloc] init];
-        UserContact *model = (UserContact *)[UserContactArray objectAtIndex:indexPath.row-1];
+        UserContact *model = (UserContact *)[UserContactArray objectAtIndex:indexPath.row-3];
         // 未读数据清零
         model.lastMsgNum = @"0";
         // 个人聊天
@@ -1261,7 +1265,7 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
+    if (indexPath.row == 3) {
         return 65;
     }
     else{
