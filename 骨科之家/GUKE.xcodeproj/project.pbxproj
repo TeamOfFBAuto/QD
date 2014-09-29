@@ -4994,11 +4994,11 @@
 				3EC2DFF519B99BF300B42351 /* WindowCustom.m in Sources */,
 				19960D48196A80D6000121AA /* amrFileCodec.mm in Sources */,
 				19960D13196A80D6000121AA /* UIButton+WebCache.m in Sources */,
-<<<<<<< HEAD
+
 				E39E4D5019DA04DE00AEA2F6 /* ITTCalendarScrollView.m in Sources */,
-=======
+
 				5675CAE819D9CBF900FB975F /* IndustryNewsCell.m in Sources */,
->>>>>>> FETCH_HEAD
+
 				3E46C15319D2A31C00403A42 /* InformationViewController.m in Sources */,
 				199CFE15195AA53900F74F7C /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				19960CAA196A80D6000121AA /* ContactsListCell.m in Sources */,
