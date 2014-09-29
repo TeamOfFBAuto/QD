@@ -20,6 +20,7 @@
     #import "ConfigRefC.h"
     #import "NSString+_859ToUTF8.h"
     #import "HttpRequsetFactory.h"
+    #import "Interface.h"
 #endif
 //判断系统版本
 //#define  currentDev [[UIDevice currentDevice].systemVersion floatValue] > 7.0
