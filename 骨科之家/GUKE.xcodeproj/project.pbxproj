@@ -870,7 +870,54 @@
 		8458B80619D94EA50083B4AC /* BubbleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8458B80219D94EA50083B4AC /* BubbleCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8458B80719D94EA50083B4AC /* VChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8458B80419D94EA50083B4AC /* VChatViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8458B80A19D953020083B4AC /* Toolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8458B80919D953020083B4AC /* Toolbar.m */; };
-		E307699619D9C35300333B7E /* GcalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E307699519D9C35300333B7E /* GcalendarViewController.m */; };
+		E30769C419D9C5A200333B7E /* GcalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E30769C319D9C5A200333B7E /* GcalendarViewController.m */; };
+		E3076A4A19D9CC2000333B7E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E47C113196F9513003EE734 /* QuartzCore.framework */; };
+		E3076A4B19D9CC3100333B7E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 199CFD4C195AA48200F74F7C /* CoreGraphics.framework */; };
+		E3076A8419D9D4B400333B7E /* GcalendarDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3076A8319D9D4B400333B7E /* GcalendarDetailViewController.m */; };
+		E39E4D4F19DA04DE00AEA2F6 /* ITTCalendarGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D2D19DA04DE00AEA2F6 /* ITTCalendarGridView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E39E4D5019DA04DE00AEA2F6 /* ITTCalendarScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D2F19DA04DE00AEA2F6 /* ITTCalendarScrollView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E39E4D5119DA04DE00AEA2F6 /* ITTCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D3119DA04DE00AEA2F6 /* ITTCalendarView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E39E4D5219DA04DE00AEA2F6 /* ITTCalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D3219DA04DE00AEA2F6 /* ITTCalendarView.xib */; };
+		E39E4D5319DA04DE00AEA2F6 /* ITTCalendarViewFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D3619DA04DE00AEA2F6 /* ITTCalendarViewFooterView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E39E4D5419DA04DE00AEA2F6 /* ITTCalendarViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D3819DA04DE00AEA2F6 /* ITTCalendarViewHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E39E4D5519DA04DE00AEA2F6 /* ITTBaseCalendarDisableGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D3B19DA04DE00AEA2F6 /* ITTBaseCalendarDisableGridView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E39E4D5619DA04DE00AEA2F6 /* ITTBaseCalendarDisableGridView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D3C19DA04DE00AEA2F6 /* ITTBaseCalendarDisableGridView.xib */; };
+		E39E4D5719DA04DE00AEA2F6 /* ITTBaseCalendarGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D3E19DA04DE00AEA2F6 /* ITTBaseCalendarGridView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E39E4D5819DA04DE00AEA2F6 /* ITTBaseCalendarGridView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D3F19DA04DE00AEA2F6 /* ITTBaseCalendarGridView.xib */; };
+		E39E4D5919DA04DE00AEA2F6 /* ITTBaseCalendarViewFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D4119DA04DE00AEA2F6 /* ITTBaseCalendarViewFooterView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E39E4D5A19DA04DE00AEA2F6 /* ITTBaseCalendarViewFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D4219DA04DE00AEA2F6 /* ITTBaseCalendarViewFooterView.xib */; };
+		E39E4D5B19DA04DE00AEA2F6 /* ITTBaseCalendarViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D4419DA04DE00AEA2F6 /* ITTBaseCalendarViewHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E39E4D5C19DA04DE00AEA2F6 /* ITTBaseCalendarViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D4519DA04DE00AEA2F6 /* ITTBaseCalendarViewHeaderView.xib */; };
+		E39E4D5D19DA04DE00AEA2F6 /* ITTBaseDataSourceImp.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D4719DA04DE00AEA2F6 /* ITTBaseDataSourceImp.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E39E4D5E19DA04DE00AEA2F6 /* CalendarDateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D4A19DA04DE00AEA2F6 /* CalendarDateUtil.m */; };
+		E39E4D5F19DA04DE00AEA2F6 /* ITTCalDay.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D4C19DA04DE00AEA2F6 /* ITTCalDay.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E39E4D6019DA04DE00AEA2F6 /* ITTCalMonth.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D4E19DA04DE00AEA2F6 /* ITTCalMonth.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E39E4D7C19DA04F500AEA2F6 /* bg_calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D6219DA04F500AEA2F6 /* bg_calendar@2x.png */; };
+		E39E4D7D19DA04F500AEA2F6 /* bg_calendar_footer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D6319DA04F500AEA2F6 /* bg_calendar_footer@2x.png */; };
+		E39E4D7E19DA04F500AEA2F6 /* bg_calendar_header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D6419DA04F500AEA2F6 /* bg_calendar_header@2x.png */; };
+		E39E4D7F19DA04F500AEA2F6 /* bg_calendar_week_header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D6519DA04F500AEA2F6 /* bg_calendar_week_header@2x.png */; };
+		E39E4D8019DA04F500AEA2F6 /* bg_grid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D6619DA04F500AEA2F6 /* bg_grid@2x.png */; };
+		E39E4D8119DA04F500AEA2F6 /* btn_choose_date_left_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D6719DA04F500AEA2F6 /* btn_choose_date_left_arrow@2x.png */; };
+		E39E4D8219DA04F500AEA2F6 /* btn_choose_date_left_arrow_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D6819DA04F500AEA2F6 /* btn_choose_date_left_arrow_highlight@2x.png */; };
+		E39E4D8319DA04F500AEA2F6 /* btn_choose_date_right_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D6919DA04F500AEA2F6 /* btn_choose_date_right_arrow@2x.png */; };
+		E39E4D8419DA04F500AEA2F6 /* btn_choose_date_right_arrow_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D6A19DA04F500AEA2F6 /* btn_choose_date_right_arrow_highlight@2x.png */; };
+		E39E4D8519DA04F500AEA2F6 /* btn_choose_departure_date@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D6B19DA04F500AEA2F6 /* btn_choose_departure_date@2x.png */; };
+		E39E4D8619DA04F500AEA2F6 /* btn_chose_date@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D6C19DA04F500AEA2F6 /* btn_chose_date@2x.png */; };
+		E39E4D8719DA04F500AEA2F6 /* btn_chose_date_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D6D19DA04F500AEA2F6 /* btn_chose_date_highlight@2x.png */; };
+		E39E4D8819DA04F500AEA2F6 /* btn_close_date@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D6E19DA04F500AEA2F6 /* btn_close_date@2x.png */; };
+		E39E4D8919DA04F500AEA2F6 /* btn_close_date_hihglight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D6F19DA04F500AEA2F6 /* btn_close_date_hihglight@2x.png */; };
+		E39E4D8A19DA04F500AEA2F6 /* btn_grid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D7019DA04F500AEA2F6 /* btn_grid@2x.png */; };
+		E39E4D8B19DA04F500AEA2F6 /* btn_grid_cell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D7119DA04F500AEA2F6 /* btn_grid_cell@2x.png */; };
+		E39E4D8C19DA04F500AEA2F6 /* btn_grid_cell_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D7219DA04F500AEA2F6 /* btn_grid_cell_highlight@2x.png */; };
+		E39E4D8D19DA04F500AEA2F6 /* btn_grid_cell_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D7319DA04F500AEA2F6 /* btn_grid_cell_selected@2x.png */; };
+		E39E4D8E19DA04F500AEA2F6 /* btn_grid_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D7419DA04F500AEA2F6 /* btn_grid_highlight@2x.png */; };
+		E39E4D8F19DA04F500AEA2F6 /* btn_grid_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D7519DA04F500AEA2F6 /* btn_grid_selected@2x.png */; };
+		E39E4D9019DA04F500AEA2F6 /* btn_next_month@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D7619DA04F500AEA2F6 /* btn_next_month@2x.png */; };
+		E39E4D9119DA04F500AEA2F6 /* btn_next_month_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D7719DA04F500AEA2F6 /* btn_next_month_highlight@2x.png */; };
+		E39E4D9219DA04F500AEA2F6 /* btn_previous_month@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D7819DA04F500AEA2F6 /* btn_previous_month@2x.png */; };
+		E39E4D9319DA04F500AEA2F6 /* btn_previous_month_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D7919DA04F500AEA2F6 /* btn_previous_month_highlight@2x.png */; };
+		E39E4D9419DA04F500AEA2F6 /* btn_radio_check_box@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D7A19DA04F500AEA2F6 /* btn_radio_check_box@2x.png */; };
+		E39E4D9519DA04F500AEA2F6 /* btn_radio_check_box_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D7B19DA04F500AEA2F6 /* btn_radio_check_box_selected@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1997,8 +2044,71 @@
 		8458B80819D953020083B4AC /* Toolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Toolbar.h; sourceTree = "<group>"; };
 		8458B80919D953020083B4AC /* Toolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Toolbar.m; sourceTree = "<group>"; };
 		CA67668589274E8DABA31016 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		E307699419D9C35300333B7E /* GcalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GcalendarViewController.h; sourceTree = SOURCE_ROOT; };
-		E307699519D9C35300333B7E /* GcalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GcalendarViewController.m; sourceTree = SOURCE_ROOT; };
+		E30769C219D9C5A200333B7E /* GcalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GcalendarViewController.h; sourceTree = "<group>"; };
+		E30769C319D9C5A200333B7E /* GcalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GcalendarViewController.m; sourceTree = "<group>"; };
+		E3076A4C19D9CCE600333B7E /* ITTDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTDebug.h; sourceTree = "<group>"; };
+		E3076A8219D9D4B400333B7E /* GcalendarDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GcalendarDetailViewController.h; sourceTree = "<group>"; };
+		E3076A8319D9D4B400333B7E /* GcalendarDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GcalendarDetailViewController.m; sourceTree = "<group>"; };
+		E39E4D2B19DA04DE00AEA2F6 /* Enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enum.h; sourceTree = "<group>"; };
+		E39E4D2C19DA04DE00AEA2F6 /* ITTCalendarGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalendarGridView.h; sourceTree = "<group>"; };
+		E39E4D2D19DA04DE00AEA2F6 /* ITTCalendarGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTCalendarGridView.m; sourceTree = "<group>"; };
+		E39E4D2E19DA04DE00AEA2F6 /* ITTCalendarScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalendarScrollView.h; sourceTree = "<group>"; };
+		E39E4D2F19DA04DE00AEA2F6 /* ITTCalendarScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTCalendarScrollView.m; sourceTree = "<group>"; };
+		E39E4D3019DA04DE00AEA2F6 /* ITTCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalendarView.h; sourceTree = "<group>"; };
+		E39E4D3119DA04DE00AEA2F6 /* ITTCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTCalendarView.m; sourceTree = "<group>"; };
+		E39E4D3219DA04DE00AEA2F6 /* ITTCalendarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITTCalendarView.xib; sourceTree = "<group>"; };
+		E39E4D3319DA04DE00AEA2F6 /* ITTCalendarViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalendarViewDataSource.h; sourceTree = "<group>"; };
+		E39E4D3419DA04DE00AEA2F6 /* ITTCalendarViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalendarViewDelegate.h; sourceTree = "<group>"; };
+		E39E4D3519DA04DE00AEA2F6 /* ITTCalendarViewFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalendarViewFooterView.h; sourceTree = "<group>"; };
+		E39E4D3619DA04DE00AEA2F6 /* ITTCalendarViewFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTCalendarViewFooterView.m; sourceTree = "<group>"; };
+		E39E4D3719DA04DE00AEA2F6 /* ITTCalendarViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalendarViewHeaderView.h; sourceTree = "<group>"; };
+		E39E4D3819DA04DE00AEA2F6 /* ITTCalendarViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTCalendarViewHeaderView.m; sourceTree = "<group>"; };
+		E39E4D3A19DA04DE00AEA2F6 /* ITTBaseCalendarDisableGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTBaseCalendarDisableGridView.h; sourceTree = "<group>"; };
+		E39E4D3B19DA04DE00AEA2F6 /* ITTBaseCalendarDisableGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTBaseCalendarDisableGridView.m; sourceTree = "<group>"; };
+		E39E4D3C19DA04DE00AEA2F6 /* ITTBaseCalendarDisableGridView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITTBaseCalendarDisableGridView.xib; sourceTree = "<group>"; };
+		E39E4D3D19DA04DE00AEA2F6 /* ITTBaseCalendarGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTBaseCalendarGridView.h; sourceTree = "<group>"; };
+		E39E4D3E19DA04DE00AEA2F6 /* ITTBaseCalendarGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTBaseCalendarGridView.m; sourceTree = "<group>"; };
+		E39E4D3F19DA04DE00AEA2F6 /* ITTBaseCalendarGridView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITTBaseCalendarGridView.xib; sourceTree = "<group>"; };
+		E39E4D4019DA04DE00AEA2F6 /* ITTBaseCalendarViewFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTBaseCalendarViewFooterView.h; sourceTree = "<group>"; };
+		E39E4D4119DA04DE00AEA2F6 /* ITTBaseCalendarViewFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTBaseCalendarViewFooterView.m; sourceTree = "<group>"; };
+		E39E4D4219DA04DE00AEA2F6 /* ITTBaseCalendarViewFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITTBaseCalendarViewFooterView.xib; sourceTree = "<group>"; };
+		E39E4D4319DA04DE00AEA2F6 /* ITTBaseCalendarViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTBaseCalendarViewHeaderView.h; sourceTree = "<group>"; };
+		E39E4D4419DA04DE00AEA2F6 /* ITTBaseCalendarViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTBaseCalendarViewHeaderView.m; sourceTree = "<group>"; };
+		E39E4D4519DA04DE00AEA2F6 /* ITTBaseCalendarViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITTBaseCalendarViewHeaderView.xib; sourceTree = "<group>"; };
+		E39E4D4619DA04DE00AEA2F6 /* ITTBaseDataSourceImp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTBaseDataSourceImp.h; sourceTree = "<group>"; };
+		E39E4D4719DA04DE00AEA2F6 /* ITTBaseDataSourceImp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTBaseDataSourceImp.m; sourceTree = "<group>"; };
+		E39E4D4919DA04DE00AEA2F6 /* CalendarDateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarDateUtil.h; sourceTree = "<group>"; };
+		E39E4D4A19DA04DE00AEA2F6 /* CalendarDateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarDateUtil.m; sourceTree = "<group>"; };
+		E39E4D4B19DA04DE00AEA2F6 /* ITTCalDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalDay.h; sourceTree = "<group>"; };
+		E39E4D4C19DA04DE00AEA2F6 /* ITTCalDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTCalDay.m; sourceTree = "<group>"; };
+		E39E4D4D19DA04DE00AEA2F6 /* ITTCalMonth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalMonth.h; sourceTree = "<group>"; };
+		E39E4D4E19DA04DE00AEA2F6 /* ITTCalMonth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTCalMonth.m; sourceTree = "<group>"; };
+		E39E4D6219DA04F500AEA2F6 /* bg_calendar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_calendar@2x.png"; sourceTree = "<group>"; };
+		E39E4D6319DA04F500AEA2F6 /* bg_calendar_footer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_calendar_footer@2x.png"; sourceTree = "<group>"; };
+		E39E4D6419DA04F500AEA2F6 /* bg_calendar_header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_calendar_header@2x.png"; sourceTree = "<group>"; };
+		E39E4D6519DA04F500AEA2F6 /* bg_calendar_week_header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_calendar_week_header@2x.png"; sourceTree = "<group>"; };
+		E39E4D6619DA04F500AEA2F6 /* bg_grid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_grid@2x.png"; sourceTree = "<group>"; };
+		E39E4D6719DA04F500AEA2F6 /* btn_choose_date_left_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_choose_date_left_arrow@2x.png"; sourceTree = "<group>"; };
+		E39E4D6819DA04F500AEA2F6 /* btn_choose_date_left_arrow_highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_choose_date_left_arrow_highlight@2x.png"; sourceTree = "<group>"; };
+		E39E4D6919DA04F500AEA2F6 /* btn_choose_date_right_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_choose_date_right_arrow@2x.png"; sourceTree = "<group>"; };
+		E39E4D6A19DA04F500AEA2F6 /* btn_choose_date_right_arrow_highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_choose_date_right_arrow_highlight@2x.png"; sourceTree = "<group>"; };
+		E39E4D6B19DA04F500AEA2F6 /* btn_choose_departure_date@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_choose_departure_date@2x.png"; sourceTree = "<group>"; };
+		E39E4D6C19DA04F500AEA2F6 /* btn_chose_date@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_chose_date@2x.png"; sourceTree = "<group>"; };
+		E39E4D6D19DA04F500AEA2F6 /* btn_chose_date_highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_chose_date_highlight@2x.png"; sourceTree = "<group>"; };
+		E39E4D6E19DA04F500AEA2F6 /* btn_close_date@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_close_date@2x.png"; sourceTree = "<group>"; };
+		E39E4D6F19DA04F500AEA2F6 /* btn_close_date_hihglight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_close_date_hihglight@2x.png"; sourceTree = "<group>"; };
+		E39E4D7019DA04F500AEA2F6 /* btn_grid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_grid@2x.png"; sourceTree = "<group>"; };
+		E39E4D7119DA04F500AEA2F6 /* btn_grid_cell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_grid_cell@2x.png"; sourceTree = "<group>"; };
+		E39E4D7219DA04F500AEA2F6 /* btn_grid_cell_highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_grid_cell_highlight@2x.png"; sourceTree = "<group>"; };
+		E39E4D7319DA04F500AEA2F6 /* btn_grid_cell_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_grid_cell_selected@2x.png"; sourceTree = "<group>"; };
+		E39E4D7419DA04F500AEA2F6 /* btn_grid_highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_grid_highlight@2x.png"; sourceTree = "<group>"; };
+		E39E4D7519DA04F500AEA2F6 /* btn_grid_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_grid_selected@2x.png"; sourceTree = "<group>"; };
+		E39E4D7619DA04F500AEA2F6 /* btn_next_month@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_next_month@2x.png"; sourceTree = "<group>"; };
+		E39E4D7719DA04F500AEA2F6 /* btn_next_month_highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_next_month_highlight@2x.png"; sourceTree = "<group>"; };
+		E39E4D7819DA04F500AEA2F6 /* btn_previous_month@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_previous_month@2x.png"; sourceTree = "<group>"; };
+		E39E4D7919DA04F500AEA2F6 /* btn_previous_month_highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_previous_month_highlight@2x.png"; sourceTree = "<group>"; };
+		E39E4D7A19DA04F500AEA2F6 /* btn_radio_check_box@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_radio_check_box@2x.png"; sourceTree = "<group>"; };
+		E39E4D7B19DA04F500AEA2F6 /* btn_radio_check_box_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_radio_check_box_selected@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2006,6 +2116,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3076A4B19D9CC3100333B7E /* CoreGraphics.framework in Frameworks */,
+				E3076A4A19D9CC2000333B7E /* QuartzCore.framework in Frameworks */,
 				199BE9C8198B6B9E00049C6C /* CoreText.framework in Frameworks */,
 				19960D6B196A8DBE000121AA /* MessageUI.framework in Frameworks */,
 				19960D69196A8D96000121AA /* AVFoundation.framework in Frameworks */,
@@ -2043,20 +2155,11 @@
 		194EDB6A19D9B31000A60E32 /* fb */ = {
 			isa = PBXGroup;
 			children = (
-				194EDB6B19D9B35000A60E32 /* gm */,
+				E30769C119D9C57100333B7E /* gm */,
 				194EDB6C19D9B35000A60E32 /* soulnear */,
 				194EDB6D19D9B35000A60E32 /* zking */,
 			);
 			path = fb;
-			sourceTree = "<group>";
-		};
-		194EDB6B19D9B35000A60E32 /* gm */ = {
-			isa = PBXGroup;
-			children = (
-				E307699419D9C35300333B7E /* GcalendarViewController.h */,
-				E307699519D9C35300333B7E /* GcalendarViewController.m */,
-			);
-			path = gm;
 			sourceTree = "<group>";
 		};
 		194EDB6C19D9B35000A60E32 /* soulnear */ = {
@@ -3911,6 +4014,118 @@
 			path = "Networking Extensions";
 			sourceTree = "<group>";
 		};
+		E30769C119D9C57100333B7E /* gm */ = {
+			isa = PBXGroup;
+			children = (
+				E39E4D6119DA04F500AEA2F6 /* GImages */,
+				E39E4D2919DA04DE00AEA2F6 /* Src */,
+				E3076A4C19D9CCE600333B7E /* ITTDebug.h */,
+				E30769C219D9C5A200333B7E /* GcalendarViewController.h */,
+				E30769C319D9C5A200333B7E /* GcalendarViewController.m */,
+				E3076A8219D9D4B400333B7E /* GcalendarDetailViewController.h */,
+				E3076A8319D9D4B400333B7E /* GcalendarDetailViewController.m */,
+			);
+			path = gm;
+			sourceTree = "<group>";
+		};
+		E39E4D2919DA04DE00AEA2F6 /* Src */ = {
+			isa = PBXGroup;
+			children = (
+				E39E4D2A19DA04DE00AEA2F6 /* Core */,
+				E39E4D3919DA04DE00AEA2F6 /* Imp */,
+				E39E4D4819DA04DE00AEA2F6 /* Model */,
+			);
+			path = Src;
+			sourceTree = "<group>";
+		};
+		E39E4D2A19DA04DE00AEA2F6 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				E39E4D2B19DA04DE00AEA2F6 /* Enum.h */,
+				E39E4D2C19DA04DE00AEA2F6 /* ITTCalendarGridView.h */,
+				E39E4D2D19DA04DE00AEA2F6 /* ITTCalendarGridView.m */,
+				E39E4D2E19DA04DE00AEA2F6 /* ITTCalendarScrollView.h */,
+				E39E4D2F19DA04DE00AEA2F6 /* ITTCalendarScrollView.m */,
+				E39E4D3019DA04DE00AEA2F6 /* ITTCalendarView.h */,
+				E39E4D3119DA04DE00AEA2F6 /* ITTCalendarView.m */,
+				E39E4D3219DA04DE00AEA2F6 /* ITTCalendarView.xib */,
+				E39E4D3319DA04DE00AEA2F6 /* ITTCalendarViewDataSource.h */,
+				E39E4D3419DA04DE00AEA2F6 /* ITTCalendarViewDelegate.h */,
+				E39E4D3519DA04DE00AEA2F6 /* ITTCalendarViewFooterView.h */,
+				E39E4D3619DA04DE00AEA2F6 /* ITTCalendarViewFooterView.m */,
+				E39E4D3719DA04DE00AEA2F6 /* ITTCalendarViewHeaderView.h */,
+				E39E4D3819DA04DE00AEA2F6 /* ITTCalendarViewHeaderView.m */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		E39E4D3919DA04DE00AEA2F6 /* Imp */ = {
+			isa = PBXGroup;
+			children = (
+				E39E4D3A19DA04DE00AEA2F6 /* ITTBaseCalendarDisableGridView.h */,
+				E39E4D3B19DA04DE00AEA2F6 /* ITTBaseCalendarDisableGridView.m */,
+				E39E4D3C19DA04DE00AEA2F6 /* ITTBaseCalendarDisableGridView.xib */,
+				E39E4D3D19DA04DE00AEA2F6 /* ITTBaseCalendarGridView.h */,
+				E39E4D3E19DA04DE00AEA2F6 /* ITTBaseCalendarGridView.m */,
+				E39E4D3F19DA04DE00AEA2F6 /* ITTBaseCalendarGridView.xib */,
+				E39E4D4019DA04DE00AEA2F6 /* ITTBaseCalendarViewFooterView.h */,
+				E39E4D4119DA04DE00AEA2F6 /* ITTBaseCalendarViewFooterView.m */,
+				E39E4D4219DA04DE00AEA2F6 /* ITTBaseCalendarViewFooterView.xib */,
+				E39E4D4319DA04DE00AEA2F6 /* ITTBaseCalendarViewHeaderView.h */,
+				E39E4D4419DA04DE00AEA2F6 /* ITTBaseCalendarViewHeaderView.m */,
+				E39E4D4519DA04DE00AEA2F6 /* ITTBaseCalendarViewHeaderView.xib */,
+				E39E4D4619DA04DE00AEA2F6 /* ITTBaseDataSourceImp.h */,
+				E39E4D4719DA04DE00AEA2F6 /* ITTBaseDataSourceImp.m */,
+			);
+			path = Imp;
+			sourceTree = "<group>";
+		};
+		E39E4D4819DA04DE00AEA2F6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E39E4D4919DA04DE00AEA2F6 /* CalendarDateUtil.h */,
+				E39E4D4A19DA04DE00AEA2F6 /* CalendarDateUtil.m */,
+				E39E4D4B19DA04DE00AEA2F6 /* ITTCalDay.h */,
+				E39E4D4C19DA04DE00AEA2F6 /* ITTCalDay.m */,
+				E39E4D4D19DA04DE00AEA2F6 /* ITTCalMonth.h */,
+				E39E4D4E19DA04DE00AEA2F6 /* ITTCalMonth.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E39E4D6119DA04F500AEA2F6 /* GImages */ = {
+			isa = PBXGroup;
+			children = (
+				E39E4D6219DA04F500AEA2F6 /* bg_calendar@2x.png */,
+				E39E4D6319DA04F500AEA2F6 /* bg_calendar_footer@2x.png */,
+				E39E4D6419DA04F500AEA2F6 /* bg_calendar_header@2x.png */,
+				E39E4D6519DA04F500AEA2F6 /* bg_calendar_week_header@2x.png */,
+				E39E4D6619DA04F500AEA2F6 /* bg_grid@2x.png */,
+				E39E4D6719DA04F500AEA2F6 /* btn_choose_date_left_arrow@2x.png */,
+				E39E4D6819DA04F500AEA2F6 /* btn_choose_date_left_arrow_highlight@2x.png */,
+				E39E4D6919DA04F500AEA2F6 /* btn_choose_date_right_arrow@2x.png */,
+				E39E4D6A19DA04F500AEA2F6 /* btn_choose_date_right_arrow_highlight@2x.png */,
+				E39E4D6B19DA04F500AEA2F6 /* btn_choose_departure_date@2x.png */,
+				E39E4D6C19DA04F500AEA2F6 /* btn_chose_date@2x.png */,
+				E39E4D6D19DA04F500AEA2F6 /* btn_chose_date_highlight@2x.png */,
+				E39E4D6E19DA04F500AEA2F6 /* btn_close_date@2x.png */,
+				E39E4D6F19DA04F500AEA2F6 /* btn_close_date_hihglight@2x.png */,
+				E39E4D7019DA04F500AEA2F6 /* btn_grid@2x.png */,
+				E39E4D7119DA04F500AEA2F6 /* btn_grid_cell@2x.png */,
+				E39E4D7219DA04F500AEA2F6 /* btn_grid_cell_highlight@2x.png */,
+				E39E4D7319DA04F500AEA2F6 /* btn_grid_cell_selected@2x.png */,
+				E39E4D7419DA04F500AEA2F6 /* btn_grid_highlight@2x.png */,
+				E39E4D7519DA04F500AEA2F6 /* btn_grid_selected@2x.png */,
+				E39E4D7619DA04F500AEA2F6 /* btn_next_month@2x.png */,
+				E39E4D7719DA04F500AEA2F6 /* btn_next_month_highlight@2x.png */,
+				E39E4D7819DA04F500AEA2F6 /* btn_previous_month@2x.png */,
+				E39E4D7919DA04F500AEA2F6 /* btn_previous_month_highlight@2x.png */,
+				E39E4D7A19DA04F500AEA2F6 /* btn_radio_check_box@2x.png */,
+				E39E4D7B19DA04F500AEA2F6 /* btn_radio_check_box_selected@2x.png */,
+			);
+			path = GImages;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -4029,10 +4244,13 @@
 				3E7BAE1619D18F35002E28A1 /* guke_ic_write_right@2x.png in Resources */,
 				3E7BAE5619D18F35002E28A1 /* guke_tab_in@2x.png in Resources */,
 				199C007F195AAD1D00F74F7C /* back02@2x.png in Resources */,
+				E39E4D7C19DA04F500AEA2F6 /* bg_calendar@2x.png in Resources */,
 				199C00C0195AAD1D00F74F7C /* group_sms@2x.png in Resources */,
 				19960CE9196A80D6000121AA /* voice_L1@2x.png in Resources */,
 				199C007E195AAD1D00F74F7C /* back01@2x.png in Resources */,
+				E39E4D5819DA04DE00AEA2F6 /* ITTBaseCalendarGridView.xib in Resources */,
 				199C00C6195AAD1D00F74F7C /* ic_more_item_bottom_default.9@2x.png in Resources */,
+				E39E4D8A19DA04F500AEA2F6 /* btn_grid@2x.png in Resources */,
 				3E7BAE5419D18F35002E28A1 /* guke_share_weixin@2x.png in Resources */,
 				19960CDB196A80D6000121AA /* chatto_bg_voice_playing@2x.png in Resources */,
 				3E7BAE2019D18F35002E28A1 /* guke_icon_unread@2x.png in Resources */,
@@ -4040,6 +4258,7 @@
 				199C0093195AAD1D00F74F7C /* call@2x.png in Resources */,
 				199C0113195AAD1D00F74F7C /* share_weixingroup@2x.png in Resources */,
 				199C00C8195AAD1D00F74F7C /* ic_more_item_middle_default.9@2x.png in Resources */,
+				E39E4D8619DA04F500AEA2F6 /* btn_chose_date@2x.png in Resources */,
 				3E7BAE4219D18F35002E28A1 /* guke_search_icon@2x.png in Resources */,
 				199CFF81195AA8B100F74F7C /* zh.plist in Resources */,
 				3E7BAE7C19D18F35002E28A1 /* guke_voice_to_short@2x.png in Resources */,
@@ -4047,6 +4266,7 @@
 				199CFD95195AA50200F74F7C /* checked@2x.png in Resources */,
 				3E7BADD619D18F35002E28A1 /* guke_chatto_bg_voice_playing@2x.png in Resources */,
 				199C00FC195AAD1D00F74F7C /* rcd_cancel_icon@2x.png in Resources */,
+				E39E4D8019DA04F500AEA2F6 /* bg_grid@2x.png in Resources */,
 				3E7BADCE19D18F35002E28A1 /* guke_chatting_biaoqing_btn_press@2x.png in Resources */,
 				3E7BADAB19D18F35002E28A1 /* guke_back02@2x.png in Resources */,
 				199C0143195AAD1D00F74F7C /* taskop_resolve@2x.png in Resources */,
@@ -4069,6 +4289,7 @@
 				3E7BAE2F19D18F35002E28A1 /* guke_loading_6@2x.png in Resources */,
 				19960CDD196A80D6000121AA /* btn_check_on_normal@2x.png in Resources */,
 				3E7BAE5D19D18F35002E28A1 /* guke_top_logo@2x.png in Resources */,
+				E39E4D9419DA04F500AEA2F6 /* btn_radio_check_box@2x.png in Resources */,
 				199C009B195AAD1D00F74F7C /* chatfrom_bg_voice_playing.9@2x.png in Resources */,
 				199C00DE195AAD1D00F74F7C /* icon_rotate1@2x.png in Resources */,
 				3E7BAE5219D18F35002E28A1 /* guke_share_sina@2x.png in Resources */,
@@ -4100,6 +4321,7 @@
 				3E7BADDF19D18F35002E28A1 /* guke_dot_default@2x.png in Resources */,
 				199C0102195AAD1D00F74F7C /* set_changeinfo@2x.png in Resources */,
 				3E7BAE0B19D18F35002E28A1 /* guke_ic_photo@2x.png in Resources */,
+				E39E4D7F19DA04F500AEA2F6 /* bg_calendar_week_header@2x.png in Resources */,
 				199C00CE195AAD1D00F74F7C /* ic_task_chat@2x.png in Resources */,
 				199C00D0195AAD1D00F74F7C /* ic_task_mail@2x.png in Resources */,
 				3E7BAE6A19D18F35002E28A1 /* guke_userarticle_collapse@2x.png in Resources */,
@@ -4147,6 +4369,7 @@
 				3EEB7EF619A5EF3300ED4ABA /* friend_phone_ico@2x.png in Resources */,
 				3E7BAE4B19D18F35002E28A1 /* guke_set_usercheck@2x.png in Resources */,
 				3E7BAE2219D18F35002E28A1 /* guke_icon_word@2x.png in Resources */,
+				E39E4D8D19DA04F500AEA2F6 /* btn_grid_cell_selected@2x.png in Resources */,
 				199C00CB195AAD1D00F74F7C /* ic_more_item_top_pressed.9@2x.png in Resources */,
 				19960CE8196A80D6000121AA /* voice_L0@2x.png in Resources */,
 				3E7BADBF19D18F35002E28A1 /* guke_cal_current@2x.png in Resources */,
@@ -4156,8 +4379,10 @@
 				3E7BAE1119D18F35002E28A1 /* guke_ic_share_group@2x.png in Resources */,
 				199C0114195AAD1D00F74F7C /* switch_off@2x.png in Resources */,
 				199C008F195AAD1D00F74F7C /* button_left_select@2x.png in Resources */,
+				E39E4D5C19DA04DE00AEA2F6 /* ITTBaseCalendarViewHeaderView.xib in Resources */,
 				19960CD3196A80D6000121AA /* chatfrom_bg_voice_playing@2x.png in Resources */,
 				3E7BADDE19D18F35002E28A1 /* guke_doc@2x.png in Resources */,
+				E39E4D7D19DA04F500AEA2F6 /* bg_calendar_footer@2x.png in Resources */,
 				19960CCA196A80D6000121AA /* title_bj@2x.png in Resources */,
 				199C0160195AAD1D00F74F7C /* voice_rcd_btn_pressed.9@2x.png in Resources */,
 				199C00EF195AAD1D00F74F7C /* menuicon_img@2x.png in Resources */,
@@ -4168,6 +4393,7 @@
 				3E7BAE5B19D18F35002E28A1 /* guke_title_bg@2x.png in Resources */,
 				3EE1043319A494920029EC5C /* return_unis_logo@2x.png in Resources */,
 				3E7BAE7719D18F35002E28A1 /* guke_voice_rcd_btn_pressed@2x.png in Resources */,
+				E39E4D5A19DA04DE00AEA2F6 /* ITTBaseCalendarViewFooterView.xib in Resources */,
 				199C0105195AAD1D00F74F7C /* set_icon@2x.png in Resources */,
 				19960CCB196A80D6000121AA /* title_bj_hd.png in Resources */,
 				3E7BADDA19D18F35002E28A1 /* guke_chatto_voice_playing_f3@2x.png in Resources */,
@@ -4207,6 +4433,7 @@
 				199CFD99195AA50200F74F7C /* radio_checked@2x.png in Resources */,
 				19960D54196A80D7000121AA /* newdatatoast.wav in Resources */,
 				3E7BAE6519D18F35002E28A1 /* guke_user_default_small@2x.png in Resources */,
+				E39E4D8C19DA04F500AEA2F6 /* btn_grid_cell_highlight@2x.png in Resources */,
 				3E7BAE7619D18F35002E28A1 /* guke_voice_rcd_btn_nor@2x.png in Resources */,
 				199C0151195AAD1D00F74F7C /* user_default_small_64@2x.png in Resources */,
 				3E7BADCB19D18F35002E28A1 /* guke_chatfrom_group_voice_playing_f2@2x.png in Resources */,
@@ -4268,6 +4495,7 @@
 				199C0092195AAD1D00F74F7C /* button_right_select@2x.png in Resources */,
 				3E7BAE3619D18F35002E28A1 /* guke_menuicon_cam@2x.png in Resources */,
 				3E7C524719A5A6A800E12ACB /* user_default_small@2x.png in Resources */,
+				E39E4D8719DA04F500AEA2F6 /* btn_chose_date_highlight@2x.png in Resources */,
 				199C0148195AAD1D00F74F7C /* taskview_button@2x.png in Resources */,
 				19960CE7196A80D6000121AA /* type_btn_zhantie_press2@2x.png in Resources */,
 				3E7BAE7A19D18F35002E28A1 /* guke_voice_rcd_hint@2x.png in Resources */,
@@ -4282,6 +4510,7 @@
 				19BC02F219AC800A008EBA22 /* chatfrom_bg_voice_playing.9.png in Resources */,
 				199C0115195AAD1D00F74F7C /* switch_on@2x.png in Resources */,
 				3E7BAE5A19D18F35002E28A1 /* guke_taskchat_write@2x.png in Resources */,
+				E39E4D8519DA04F500AEA2F6 /* btn_choose_departure_date@2x.png in Resources */,
 				3E7BAE2B19D18F35002E28A1 /* guke_loading_2@2x.png in Resources */,
 				199C00A7195AAD1D00F74F7C /* chatto_bg_voice_playing.9@2x.png in Resources */,
 				199C013A195AAD1D00F74F7C /* taskchat_camera@2x.png in Resources */,
@@ -4289,6 +4518,7 @@
 				199C014F195AAD1D00F74F7C /* unlock_btn@2x.png in Resources */,
 				199C0137195AAD1D00F74F7C /* task_silence_select@2x.png in Resources */,
 				3E7BADC519D18F35002E28A1 /* guke_chatfrom_bg_focused@2x.png in Resources */,
+				E39E4D7E19DA04F500AEA2F6 /* bg_calendar_header@2x.png in Resources */,
 				19960CE2196A80D6000121AA /* chatting_setmode_voice_btn_normal2@2x.png in Resources */,
 				3E7BADAE19D18F35002E28A1 /* guke_btn_check_on_normal@2x.png in Resources */,
 				3EA47ADD19B988CC00C80082 /* user_default_ico@2x.png in Resources */,
@@ -4308,6 +4538,7 @@
 				199C0090195AAD1D00F74F7C /* button_long_bj@2x.png in Resources */,
 				199C00A3195AAD1D00F74F7C /* chatting_setmode_voice_btn_normal@2x.png in Resources */,
 				199C008D195AAD1D00F74F7C /* button_bj_send@2x.png in Resources */,
+				E39E4D8119DA04F500AEA2F6 /* btn_choose_date_left_arrow@2x.png in Resources */,
 				199C00AA195AAD1D00F74F7C /* chatto_voice_playing_f2@2x.png in Resources */,
 				3E7BAE7119D18F35002E28A1 /* guke_userarticle_heart_blue@2x.png in Resources */,
 				199C0125195AAD1D00F74F7C /* task_attach@2x.png in Resources */,
@@ -4374,10 +4605,12 @@
 				199C0133195AAD1D00F74F7C /* task_remind@2x.png in Resources */,
 				3E7BAE5119D18F35002E28A1 /* guke_set_uservolume@2x.png in Resources */,
 				3E7BADB719D18F35002E28A1 /* guke_button_add@2x.png in Resources */,
+				E39E4D9519DA04F500AEA2F6 /* btn_radio_check_box_selected@2x.png in Resources */,
 				199C00B7195AAD1D00F74F7C /* group_call@2x.png in Resources */,
 				199C00DF195AAD1D00F74F7C /* icon_unread@2x.png in Resources */,
 				3E7BADF419D18F35002E28A1 /* guke_ic_addvideo@2x.png in Resources */,
 				3E7BAE0219D18F35002E28A1 /* guke_ic_more@2x.png in Resources */,
+				E39E4D5619DA04DE00AEA2F6 /* ITTBaseCalendarDisableGridView.xib in Resources */,
 				199C00B9195AAD1D00F74F7C /* group_check_off@2x.png in Resources */,
 				199C012D195AAD1D00F74F7C /* task_emergency@2x.png in Resources */,
 				199C00F0195AAD1D00F74F7C /* menuicon_link@2x.png in Resources */,
@@ -4385,6 +4618,7 @@
 				3E9BD5D019A33B26005D7CAF /* addfri_ico@2x.png in Resources */,
 				3E7BAE2919D18F35002E28A1 /* guke_loading_0@2x.png in Resources */,
 				199C00B3195AAD1D00F74F7C /* friend_right@2x.png in Resources */,
+				E39E4D8819DA04F500AEA2F6 /* btn_close_date@2x.png in Resources */,
 				199C0161195AAD1D00F74F7C /* voice_rcd_cancel_bg@2x.png in Resources */,
 				199C011F195AAD1D00F74F7C /* tab_right_default_small@2x.png in Resources */,
 				3E7C523F19A597E700E12ACB /* userlogin_logo_ico@2x.png in Resources */,
@@ -4397,6 +4631,7 @@
 				3E7BADBA19D18F35002E28A1 /* guke_button_bj@2x.png in Resources */,
 				3E7BAE4A19D18F35002E28A1 /* guke_set_switch_lang@2x.png in Resources */,
 				19960CEF196A80D6000121AA /* voice_R3@2x.png in Resources */,
+				E39E4D8919DA04F500AEA2F6 /* btn_close_date_hihglight@2x.png in Resources */,
 				19960D4E196A80D7000121AA /* ChatRecorderView.xib in Resources */,
 				199C011B195AAD1D00F74F7C /* tab_middle_default_small@2x.png in Resources */,
 				3E7BADCC19D18F35002E28A1 /* guke_chatfrom_group_voice_playing_f3@2x.png in Resources */,
@@ -4442,6 +4677,7 @@
 				199C015D195AAD1D00F74F7C /* userarticle_heart_gray_blank@2x.png in Resources */,
 				3E7BADCF19D18F35002E28A1 /* guke_chatting_sent_btn@2x.png in Resources */,
 				19960CC0196A80D6000121AA /* button_right_default@2x.png in Resources */,
+				E39E4D8419DA04F500AEA2F6 /* btn_choose_date_right_arrow_highlight@2x.png in Resources */,
 				3E28B9B019A44A1A00EFFA9F /* frictr_bg@2x.png in Resources */,
 				199C0154195AAD1D00F74F7C /* userarticle_chat@2x.png in Resources */,
 				3E9BD5D719A33B26005D7CAF /* set_ico@2x.png in Resources */,
@@ -4473,20 +4709,24 @@
 				199C00B6195AAD1D00F74F7C /* group_bg.9@2x.png in Resources */,
 				199C012E195AAD1D00F74F7C /* task_emergency_select@2x.png in Resources */,
 				3E7BAE1D19D18F35002E28A1 /* guke_icon_menu_volume@2x.png in Resources */,
+				E39E4D8B19DA04F500AEA2F6 /* btn_grid_cell@2x.png in Resources */,
 				3E7BADC319D18F35002E28A1 /* guke_chat_btn_smallvoice@2x.png in Resources */,
 				199C0130195AAD1D00F74F7C /* task_line@2x.png in Resources */,
+				E39E4D9119DA04F500AEA2F6 /* btn_next_month_highlight@2x.png in Resources */,
 				199C0117195AAD1D00F74F7C /* tab_left_default@2x.png in Resources */,
 				3E7BADF019D18F35002E28A1 /* guke_group_searchicon@2x.png in Resources */,
 				19960CC8196A80D6000121AA /* group_middle@2x.png in Resources */,
 				199C0140195AAD1D00F74F7C /* taskop_archive@2x.png in Resources */,
 				199C00F7195AAD1D00F74F7C /* radio@2x.png in Resources */,
 				19960CEE196A80D6000121AA /* voice_R2@2x.png in Resources */,
+				E39E4D5219DA04DE00AEA2F6 /* ITTCalendarView.xib in Resources */,
 				19960CC1196A80D6000121AA /* button_right_default_small@2x.png in Resources */,
 				3E7BADDB19D18F35002E28A1 /* guke_checkin@2x.png in Resources */,
 				3E7BADDC19D18F35002E28A1 /* guke_closebtn@2x.png in Resources */,
 				199C0124195AAD1D00F74F7C /* task_arrow_up@2x.png in Resources */,
 				19960D24196A80D6000121AA /* grayArrow.png in Resources */,
 				19996499195D3E82006C84CC /* RemindTableViewCell.xib in Resources */,
+				E39E4D8219DA04F500AEA2F6 /* btn_choose_date_left_arrow_highlight@2x.png in Resources */,
 				199C00F6195AAD1D00F74F7C /* newfriend@2x.png in Resources */,
 				19960CD0196A80D6000121AA /* chatfrom_bg_pressed.png in Resources */,
 				3E7BAE4E19D18F35002E28A1 /* guke_set_usermsg@2x.png in Resources */,
@@ -4505,6 +4745,7 @@
 				199C0081195AAD1D00F74F7C /* btn_check_off_normal@2x.png in Resources */,
 				3E7BAE0A19D18F35002E28A1 /* guke_ic_ok@2x.png in Resources */,
 				3E7BAE7019D18F35002E28A1 /* guke_userarticle_heart@2x.png in Resources */,
+				E39E4D8F19DA04F500AEA2F6 /* btn_grid_selected@2x.png in Resources */,
 				19960D27196A80D6000121AA /* whiteArrow1@2x.png in Resources */,
 				3E23211A19A491C10019F174 /* select_no_ico@2x.png in Resources */,
 				3E7BAE3E19D18F35002E28A1 /* guke_msg_state_fail_resend@2x.png in Resources */,
@@ -4532,6 +4773,7 @@
 				19960CBD196A80D6000121AA /* button_left_default_small@2x.png in Resources */,
 				3E7BADB019D18F35002E28A1 /* guke_btn_style_alert_dialog_background@2x.png in Resources */,
 				199C00C2195AAD1D00F74F7C /* ic_call@2x.png in Resources */,
+				E39E4D9019DA04F500AEA2F6 /* btn_next_month@2x.png in Resources */,
 				199C00FA195AAD1D00F74F7C /* rate_good@2x.png in Resources */,
 				3E7BAE4C19D18F35002E28A1 /* guke_set_userexit@2x.png in Resources */,
 				199C0112195AAD1D00F74F7C /* share_weixin@2x.png in Resources */,
@@ -4540,12 +4782,15 @@
 				3E9BD5D519A33B26005D7CAF /* newfri_ico@2x.png in Resources */,
 				3E7BADE819D18F35002E28A1 /* guke_group_check_off@2x.png in Resources */,
 				3E7BADBD19D18F35002E28A1 /* guke_button_bj_send@2x.png in Resources */,
+				E39E4D9219DA04F500AEA2F6 /* btn_previous_month@2x.png in Resources */,
 				3E7BAE1E19D18F35002E28A1 /* guke_icon_rotate1@2x.png in Resources */,
 				199C00AB195AAD1D00F74F7C /* chatto_voice_playing_f3@2x.png in Resources */,
 				199C0155195AAD1D00F74F7C /* userarticle_collapse@2x.png in Resources */,
 				3E7BADA419D18F35002E28A1 /* guke_amp2@2x.png in Resources */,
 				3E7BADAF19D18F35002E28A1 /* guke_btn_speak_bg@2x.png in Resources */,
 				3E7BAE0E19D18F35002E28A1 /* guke_ic_send@2x.png in Resources */,
+				E39E4D9319DA04F500AEA2F6 /* btn_previous_month_highlight@2x.png in Resources */,
+				E39E4D8319DA04F500AEA2F6 /* btn_choose_date_right_arrow@2x.png in Resources */,
 				3E7BAE1919D18F35002E28A1 /* guke_ic_zhuanjia@2x.png in Resources */,
 				3E7BAE1A19D18F35002E28A1 /* guke_ic_zhuti@2x.png in Resources */,
 				3E37846F199092150000F8FF /* InferiorsTableViewCell.xib in Resources */,
@@ -4565,6 +4810,7 @@
 				19960D45196A80D6000121AA /* pagey7@2x.png in Resources */,
 				3E7BAE0719D18F35002E28A1 /* guke_ic_more_item_top_default@2x.png in Resources */,
 				199C0127195AAD1D00F74F7C /* task_btn_accept@2x.png in Resources */,
+				E39E4D8E19DA04F500AEA2F6 /* btn_grid_highlight@2x.png in Resources */,
 				3E7BADA619D18F35002E28A1 /* guke_amp4@2x.png in Resources */,
 				199C00F8195AAD1D00F74F7C /* radio_checked@2x.png in Resources */,
 				199C011A195AAD1D00F74F7C /* tab_left_select_small@2x.png in Resources */,
@@ -4669,6 +4915,7 @@
 				19960CAC196A80D6000121AA /* GrouplistsTableViewCell.m in Sources */,
 				3E4B255B197E1EB10061A9AE /* UINavigationItem+margin.m in Sources */,
 				199CFDF7195AA53900F74F7C /* Contactlist.m in Sources */,
+				E39E4D5519DA04DE00AEA2F6 /* ITTBaseCalendarDisableGridView.m in Sources */,
 				199CFDF9195AA53900F74F7C /* UserContact.m in Sources */,
 				19960CB0196A80D6000121AA /* LatestListModel.m in Sources */,
 				3E3785011990F9390000F8FF /* MJRefreshConst.m in Sources */,
@@ -4684,6 +4931,7 @@
 				3EC2DFF519B99BF300B42351 /* WindowCustom.m in Sources */,
 				19960D48196A80D6000121AA /* amrFileCodec.mm in Sources */,
 				19960D13196A80D6000121AA /* UIButton+WebCache.m in Sources */,
+				E39E4D5019DA04DE00AEA2F6 /* ITTCalendarScrollView.m in Sources */,
 				3E46C15319D2A31C00403A42 /* InformationViewController.m in Sources */,
 				199CFE15195AA53900F74F7C /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				19960CAA196A80D6000121AA /* ContactsListCell.m in Sources */,
@@ -4699,6 +4947,7 @@
 				199C017F195AE08B00F74F7C /* pinyin.c in Sources */,
 				199CFDF8195AA53900F74F7C /* SingleInstance.m in Sources */,
 				19960D33196A80D6000121AA /* UIImage+fixOrientation.m in Sources */,
+				E39E4D5719DA04DE00AEA2F6 /* ITTBaseCalendarGridView.m in Sources */,
 				19960D2F196A80D6000121AA /* MBProgressHUD.m in Sources */,
 				3EE1043719A497E50029EC5C /* SetUpTableViewCellOne.m in Sources */,
 				199CFD9C195AA50200F74F7C /* RadioButton.m in Sources */,
@@ -4716,6 +4965,7 @@
 				3E37846E199092150000F8FF /* InferiorsTableViewCell.m in Sources */,
 				19A069471970C6D000830898 /* GroupIfo.m in Sources */,
 				198F8A441961653800B3F09C /* QiDiPopoverView.m in Sources */,
+				E39E4D6019DA04DE00AEA2F6 /* ITTCalMonth.m in Sources */,
 				197ABFF71973EE9E00FC6A24 /* contentAndGood.m in Sources */,
 				840BB22719D7AB30000A4725 /* Reachability.m in Sources */,
 				197ABFED197388AC00FC6A24 /* FriendCircleTableViewCell.m in Sources */,
@@ -4737,6 +4987,7 @@
 				19960D28196A80D6000121AA /* PSCollectionView.m in Sources */,
 				1957C5E6197929BB00043F19 /* CommentTableViewCell.m in Sources */,
 				19A87FB71995B9A8009404F3 /* FriendContentView.m in Sources */,
+				E30769C419D9C5A200333B7E /* GcalendarViewController.m in Sources */,
 				19960CF2196A80D6000121AA /* ASIDataDecompressor.m in Sources */,
 				1957C5E01978F71100043F19 /* CommentCollectionView.m in Sources */,
 				19960CAD196A80D6000121AA /* GroupsViewController.m in Sources */,
@@ -4769,11 +5020,14 @@
 				199C017E195AE08B00F74F7C /* ChineseString.m in Sources */,
 				3E1EFFCD1980AB9D008C9B8D /* PECropView.m in Sources */,
 				19996494195D3E1A006C84CC /* RemindViewController.m in Sources */,
+				E39E4D4F19DA04DE00AEA2F6 /* ITTCalendarGridView.m in Sources */,
 				193ED7F6197F8552000C5009 /* UserInfoDB.m in Sources */,
 				19960CFF196A80D6000121AA /* SBJsonParser.m in Sources */,
+				E39E4D5F19DA04DE00AEA2F6 /* ITTCalDay.m in Sources */,
 				199CFE1A195AA53900F74F7C /* UIRefreshControl+AFNetworking.m in Sources */,
 				840BB22019D7AB30000A4725 /* AFURLConnectionOperation.m in Sources */,
 				840BB21A19D7AB30000A4725 /* AFHTTPRequestOperationManager.m in Sources */,
+				E39E4D5D19DA04DE00AEA2F6 /* ITTBaseDataSourceImp.m in Sources */,
 				3EEB7EE719A5D08600ED4ABA /* RemindTableViewCellOneTableViewCell.m in Sources */,
 				3E6BA42319D5080700A891EB /* SolveReasonCell.m in Sources */,
 				19960CB1196A80D6000121AA /* RSSwitch.m in Sources */,
@@ -4806,7 +5060,6 @@
 				19996490195D3E1A006C84CC /* SetUpViewController.m in Sources */,
 				840BB22219D7AB30000A4725 /* AFURLResponseSerialization.m in Sources */,
 				19960CA9196A80D6000121AA /* ContactsItem.m in Sources */,
-				E307699619D9C35300333B7E /* GcalendarViewController.m in Sources */,
 				19DAE965196D37CD00FE7187 /* GroupMemberList.m in Sources */,
 				19DAE968196D517F00FE7187 /* MyCollectionViewCell.m in Sources */,
 				1977B50919C84DB300D504A7 /* PrivatPoliceViewController.m in Sources */,
@@ -4861,19 +5114,25 @@
 				19996498195D3E82006C84CC /* RemindTableViewCell.m in Sources */,
 				19996491195D3E1A006C84CC /* AlterPerDetailsViewController.m in Sources */,
 				3EA2D6BC19835F3B0088E522 /* HPTextViewInternal.m in Sources */,
+				E39E4D5419DA04DE00AEA2F6 /* ITTCalendarViewHeaderView.m in Sources */,
+				E39E4D5919DA04DE00AEA2F6 /* ITTBaseCalendarViewFooterView.m in Sources */,
 				3E5C48B91985F35B00F8EC73 /* FriendCircleDetailViewController.m in Sources */,
 				3E765BAA197FA46D00B1BC7F /* UIImage+UIImageScale.m in Sources */,
 				19960CAF196A80D6000121AA /* ImageCache.m in Sources */,
 				1957C5E31979258D00043F19 /* CommentTableView.m in Sources */,
+				E39E4D5319DA04DE00AEA2F6 /* ITTCalendarViewFooterView.m in Sources */,
 				3951C91619D11CC10040B07E /* FMDatabasePool.m in Sources */,
 				199CFE14195AA53900F74F7C /* AFNetworkActivityIndicatorManager.m in Sources */,
 				19960CF1196A80D6000121AA /* ASIDataCompressor.m in Sources */,
 				19960D53196A80D7000121AA /* VoiceRecorderBaseVC.m in Sources */,
 				8458B80A19D953020083B4AC /* Toolbar.m in Sources */,
 				1957C5DD1978F24600043F19 /* CommentView.m in Sources */,
+				E3076A8419D9D4B400333B7E /* GcalendarDetailViewController.m in Sources */,
+				E39E4D5B19DA04DE00AEA2F6 /* ITTBaseCalendarViewHeaderView.m in Sources */,
 				19960D0C196A80D6000121AA /* SDImageCache.m in Sources */,
 				840BB22D19D7AB72000A4725 /* AFNetAPIClient.m in Sources */,
 				19960D1E196A80D6000121AA /* PullPsCollectionView.m in Sources */,
+				E39E4D5E19DA04DE00AEA2F6 /* CalendarDateUtil.m in Sources */,
 				840BB21F19D7AB30000A4725 /* AFSecurityPolicy.m in Sources */,
 				19A87FB41995B941009404F3 /* FriendCircleHomeTableViewCell.m in Sources */,
 				19960D12196A80D6000121AA /* SDWebImagePrefetcher.m in Sources */,
@@ -4881,6 +5140,7 @@
 				19960CF5196A80D6000121AA /* ASIHTTPRequest.m in Sources */,
 				19960D05196A80D6000121AA /* SBJsonStreamWriterAccumulator.m in Sources */,
 				19960D4D196A80D7000121AA /* ChatRecorderView.m in Sources */,
+				E39E4D5119DA04DE00AEA2F6 /* ITTCalendarView.m in Sources */,
 				3E67F49919D3CE89001B0880 /* InformationDetailModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4996,6 +5256,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "db5d35fa-89e9-42b3-ad18-97734e7f3484";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -5015,12 +5276,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GUKE/GUKE-Prefix.pch";
 				INFOPLIST_FILE = "GUKE/GUKE-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GUKE/Chat/modules/VoiceRecorder/VoiceConvert/lib",
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = GUKE;
 				PROVISIONING_PROFILE = "db5d35fa-89e9-42b3-ad18-97734e7f3484";
 				SDKROOT = iphoneos;
@@ -5042,12 +5303,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GUKE/GUKE-Prefix.pch";
 				INFOPLIST_FILE = "GUKE/GUKE-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GUKE/Chat/modules/VoiceRecorder/VoiceConvert/lib",
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = GUKE;
 				PROVISIONING_PROFILE = "db5d35fa-89e9-42b3-ad18-97734e7f3484";
 				SDKROOT = iphoneos;

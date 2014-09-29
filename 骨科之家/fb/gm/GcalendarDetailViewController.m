@@ -1,18 +1,18 @@
 //
-//  GcalendarViewController.m
+//  GcalendarDetailViewController.m
 //  GUKE
 //
 //  Created by gaomeng on 14-9-30.
 //  Copyright (c) 2014年 qidi. All rights reserved.
 //
 
-#import "GcalendarViewController.h"
+#import "GcalendarDetailViewController.h"
 
-@interface GcalendarViewController ()
+@interface GcalendarDetailViewController ()
 
 @end
 
-@implementation GcalendarViewController
+@implementation GcalendarDetailViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

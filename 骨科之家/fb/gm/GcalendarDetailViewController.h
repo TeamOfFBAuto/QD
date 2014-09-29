@@ -1,5 +1,5 @@
 //
-//  GcalendarViewController.h
+//  GcalendarDetailViewController.h
 //  GUKE
 //
 //  Created by gaomeng on 14-9-30.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GcalendarViewController : UIViewController
+@interface GcalendarDetailViewController : UIViewController
 
 @end
