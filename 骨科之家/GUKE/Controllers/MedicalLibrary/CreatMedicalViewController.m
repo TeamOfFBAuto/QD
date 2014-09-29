@@ -86,6 +86,16 @@
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:rightView];
     self.navigationItem.rightBarButtonItem = rightItem;
     
+    
+    //主tableview
+    
+    _mainTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, DEVICE_WIDTH, DEVICE_HEIGHT) style:UITableViewStylePlain];
+    _mainTableView.delegate=self;
+    _mainTableView.dataSource=self;
+    [self.view addSubview:_mainTableView];
+    
+    
+    
 }
 
 // 手势事件
@@ -99,6 +109,50 @@
 {
     NSLog(@"点击提交按钮");
 }
+
+
+
+#pragma mark-tableviewdelegateAndDatesource
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+
+
+    return 10;
+    
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+
+    return 1;
+    
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    static NSString *identifier=@"cell";
+    
+    
+    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:identifier];
+    
+    
+    if (!cell) {
+        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        
+    }
+    
+    return cell;
+
+}
+
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    return 44;
+}
+
+
+
 
 - (void)didReceiveMemoryWarning
 {
