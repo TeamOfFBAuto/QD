@@ -83,6 +83,11 @@
 #pragma mark - 业界动态接口
 #define INDUSTRY_NEWS_URL @"dongtailist.php"
 
+#pragma mark -病历列表
+#define BINGLI_LIST @"binglilist.php"
+
+
+
 
 // 请求参数
 #define REQUEST_PATAMETER  @{@"userId": [NSString stringWithFormat:@"%d",((User_Model*)[[SingleInstance shareManager].objecAarray firstObject]).userId],@"sid": ((User_Model*)[[SingleInstance shareManager].objecAarray firstObject]).sid}
