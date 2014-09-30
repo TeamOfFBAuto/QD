@@ -12,10 +12,10 @@
 #import "ITTCalDay.h"
 #import "ITTCalendarViewHeaderView.h"
 
-#define MARGIN_LEFT                              5
+#define MARGIN_LEFT                              10
 #define MARGIN_TOP                               9
 #define PADDING_VERTICAL                         5
-#define PADDING_HORIZONTAL                       3
+#define PADDING_HORIZONTAL                       5
 
 @interface ITTCalendarView()
 {
@@ -83,7 +83,7 @@
 #pragma mark - private methods
 - (void)initParameters
 {
-    _gridSize = CGSizeMake(39, 31);    
+    _gridSize = CGSizeMake(40, 50);
     _date = [[NSDate date] retain];    
     _calMonth = [[ITTCalMonth alloc] initWithDate:_date];            
     _selectedDay = [[_calMonth firstDay] retain];
@@ -177,6 +177,7 @@
     return valid;
 }
 
+#pragma mark - 点击的是哪一天
 - (GridIndex)getGridViewIndex:(ITTCalendarScrollView*)calendarScrollView touches:(NSSet*)touches
 {
     UITouch *touch = [touches anyObject];
@@ -187,6 +188,10 @@
     ITTDINFO(@"row %d column %d", row, column);
     index.row = row;
     index.column = column;
+    NSLog(@"row : %d    column : %d",row,column);
+    
+    
+    
     return index;
 }
 
@@ -209,7 +214,7 @@
         titles = [_dataSource weekTitlesForCalendarView:self];
     }
     if (!titles||![titles count]) {
-        titles = [NSArray arrayWithObjects:@"日", @"一", @"二", @"三", @"四", @"五", @"六", nil];
+        titles = [NSArray arrayWithObjects:@"日", @"一", @"二", @"三", @" 四", @" 五", @" 六", nil];
     }
     return titles;
 }
@@ -267,11 +272,14 @@
     BOOL selectedEnable = TRUE;    
     NSUInteger day = [self getMonthDayAtRow:row column:column];
     if (day < 1 || day > _calMonth.days) {
+        
         selectedEnable = FALSE;
     }
     else {
         ITTCalDay *calDay = [_calMonth calDayAtDay:day];
-        ITTDINFO(@"day is %d", day);            
+        ITTDINFO(@"day is %d", day);
+#pragma mark - 点击哪一天跳转
+        [self.delegate calendarViewDidSelectDay:self calDay:calDay];
         if([self isEarlyerMinimumDay:calDay] || [self isAfterMaximumDay:calDay])
         {
             selectedEnable = FALSE;
@@ -390,6 +398,7 @@
     }
 }
 
+#pragma mark - 设置每天的btn
 - (void)layoutGridCells
 {
     BOOL hasSelectedDay = FALSE;    
@@ -479,6 +488,79 @@
             [self addGridViewAtRow:gridView row:row column:column];
         }
     }
+    
+    NSLog(@"-----------------%f",maxHeight);
+    
+    if (maxHeight >275) {
+        if (!_down2Line) {//倒数第二条线
+            _down2Line = [[UIView alloc]initWithFrame:CGRectMake(10, 274, 300, 0.5)];
+            _down2Line.backgroundColor = [UIColor grayColor];
+            _down2Line.alpha = 0.5;
+            [self.gridScrollView addSubview:_down2Line];
+        }
+        if (!_downLine) {//倒数第一条线
+            _downLine = [[UIView alloc]initWithFrame:CGRectMake(10, 274+55, 300, 0.5)];
+            _downLine.backgroundColor = [UIColor grayColor];
+            _downLine.alpha = 0.5;
+            [self.gridScrollView addSubview:_downLine];
+        }
+        
+    }else if (maxHeight <275 && maxHeight>220){//最小219 中间274 最大329
+        if (!_down2Line) {
+            _down2Line = [[UIView alloc]initWithFrame:CGRectMake(10, 274, 300, 0.5)];
+            _down2Line.backgroundColor = [UIColor grayColor];
+            _down2Line.alpha = 0.5;
+            [self.gridScrollView addSubview:_down2Line];
+        }
+        
+        if (_downLine) {
+            [_downLine removeFromSuperview];
+            _downLine = nil;
+        }
+        
+    }else if (maxHeight < 220){
+        if (_downLine) {
+            [_downLine removeFromSuperview];
+            _downLine = nil;
+        }
+        
+        if (_down2Line) {
+            [_down2Line removeFromSuperview];
+            _down2Line = nil;
+        }
+        
+    }
+    
+    
+    if (!_label1) {
+        _label1 = [[UILabel alloc]init];
+        _label1.font = [UIFont systemFontOfSize:14];
+        _label1.backgroundColor = GETColor(255, 204, 204);
+        _label1.text = @"未报名";
+    }
+    
+    if (!_label2) {
+        _label2 = [[UILabel alloc]init];
+        _label2.font = [UIFont systemFontOfSize:14];
+        _label2.backgroundColor = GETColor(182, 250, 57);
+        _label2.text = @"已报名";
+    }
+    
+    [_label1 setFrame:CGRectMake(10, maxHeight+15, 50, 15)];
+    [_label2 setFrame:CGRectMake(CGRectGetMaxX(_label1.frame)+5, _label1.frame.origin.y, 50, 15)];
+    
+    [self.gridScrollView addSubview:_label1];
+    [self.gridScrollView addSubview:_label2];
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
 }
 
 - (CGRect)getFrameForRow:(NSUInteger)row column:(NSUInteger)column
@@ -507,6 +589,8 @@
     return footerView;    
 }
 
+
+#pragma mark - 加载天数按钮
 - (ITTCalendarGridView*)gridViewAtRow:(NSUInteger)row column:(NSUInteger)column calDay:(ITTCalDay*)calDay
 {
     ITTCalendarGridView *gridView = nil;
@@ -623,7 +707,7 @@
             }        
             else {
                 CGRect frame = self.frame;
-                frame.size.height = CALENDAR_VIEW_HEIGHT_WITHOUT_FOOTER_VIEW;
+                frame.size.height = CALENDAR_VIEW_HEIGHT;
                 self.frame = frame;
             }
         }               
@@ -643,13 +727,14 @@
         CGFloat marginX = 0;
         NSArray *titles = [self findWeekTitles];
         for (NSInteger i = 0; i < NUMBER_OF_DAYS_IN_WEEK; i++) {
+#pragma mark - 设置星期几的label
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(marginX, 0, width, CGRectGetHeight(self.weekHintView.bounds))];
-            label.textAlignment = UITextAlignmentCenter;
-            label.textColor = [UIColor whiteColor];
+            label.textAlignment = NSTextAlignmentCenter;
+            label.textColor = [UIColor blackColor];
             label.font = [UIFont systemFontOfSize:14];
             label.text = [titles objectAtIndex:i];
             label.backgroundColor = [UIColor clearColor];
-            label.minimumFontSize = 12;
+//            label.minimumFontSize = 12;
             label.adjustsFontSizeToFitWidth = TRUE;
             [self.weekHintView addSubview:label];
             [label release];
@@ -657,7 +742,8 @@
         }
         _firstLayout = FALSE;
     }
-    _calendarHeaderView.title = [self findMonthDescription];            
+#pragma mark - 设置headerview年月
+    _calendarHeaderView.title = [self findMonthDescription];
 }
 
 - (void)swipe:(UISwipeGestureRecognizer*)gesture
@@ -786,7 +872,9 @@
                     NSUInteger day = [self getMonthDayAtRow:row column:column];
                     ITTCalDay *calDay = [_calMonth calDayAtDay:day];
                     [selectedDates addObject:calDay.date];
+                    
                     ITTDINFO(@"selected row %d column %d day %d", row, column, day);
+                    
                 }
             }
         }
@@ -897,31 +985,32 @@
     ITTDINFO(@"calendarSrollViewTouchesBegan");
 }
 
-- (void)calendarSrollViewTouchesMoved:(ITTCalendarScrollView*)calendarScrollView touches:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    _moved = TRUE;
-    GridIndex index = [self getGridViewIndex:calendarScrollView touches:touches];
-    if ([self isValidGridViewIndex:index]) {
-        if (_allowsMultipleSelection) {
-            BOOL selectedEnable = FALSE;
-            /*
-             * the grid is on unselected state
-             */
-            BOOL selected = [self isSelectedAtRow:index.row column:index.column] ;
-            if (!selected) {              
-                [self resetFoucsMatrix];
-                selectedEnable = !selected;
-                selectedEnable = (selectedEnable & [self isGridViewSelectedEnableAtRow:index.row column:index.column]);
-                [self setSelectedAtRow:index.row column:index.column selected:selectedEnable];
-            }
-        }
-        else {
-            //do nothing
-        }
-        _previousSelectedIndex = index;        
-        [self updateSelectedGridViewState];                            
-    }
-}
+#pragma mark - 选择多个天
+//- (void)calendarSrollViewTouchesMoved:(ITTCalendarScrollView*)calendarScrollView touches:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    _moved = TRUE;
+//    GridIndex index = [self getGridViewIndex:calendarScrollView touches:touches];
+//    if ([self isValidGridViewIndex:index]) {
+//        if (_allowsMultipleSelection) {
+//            BOOL selectedEnable = FALSE;
+//            /*
+//             * the grid is on unselected state
+//             */
+//            BOOL selected = [self isSelectedAtRow:index.row column:index.column] ;
+//            if (!selected) {              
+//                [self resetFoucsMatrix];
+//                selectedEnable = !selected;
+//                selectedEnable = (selectedEnable & [self isGridViewSelectedEnableAtRow:index.row column:index.column]);
+//                [self setSelectedAtRow:index.row column:index.column selected:selectedEnable];
+//            }
+//        }
+//        else {
+//            //do nothing
+//        }
+//        _previousSelectedIndex = index;        
+//        [self updateSelectedGridViewState];                            
+//    }
+//}
 
 - (void)calendarSrollViewTouchesCancelled:(ITTCalendarScrollView*)calendarScrollView touches:(NSSet *)touches withEvent:(UIEvent *)event
 {

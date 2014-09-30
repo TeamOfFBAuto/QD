@@ -64,7 +64,9 @@
 {
     NSString *title = [NSString stringWithFormat:@"%d", [_calDay getDay]];
     [self.gridButton setTitle:title forState:UIControlStateNormal];
-    self.gridButton.selected = self.selected;    
+    
+    self.gridButton.selected = self.selected;
+    
 }
 
 - (void)dealloc 

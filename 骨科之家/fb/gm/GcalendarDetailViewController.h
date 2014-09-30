@@ -6,8 +6,17 @@
 //  Copyright (c) 2014年 qidi. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 
-@interface GcalendarDetailViewController : UIViewController
+//活动列表
+#import <UIKit/UIKit.h>
+#import "ITTCalDay.h"
+#import "GRefreshTableView.h"
+
+
+@interface GcalendarDetailViewController : UIViewController<UITableViewDataSource,RefreshDelegate>
+{
+    RefreshTableView *_tableView;
+}
+@property(nonatomic,strong)ITTCalDay *calDay;
 
 @end

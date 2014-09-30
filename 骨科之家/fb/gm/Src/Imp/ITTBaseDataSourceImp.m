@@ -17,21 +17,27 @@
 
 - (ITTCalendarGridView*)calendarView:(ITTCalendarView*)calendarView calendarGridViewForRow:(NSInteger)row column:(NSInteger)column calDay:(ITTCalDay*)calDay
 {
+    
     static NSString *identifier = @"BaseCalendarGridView";
     ITTCalendarGridView *gridView = [calendarView dequeueCalendarGridViewWithIdentifier:identifier];
     if (!gridView) {
         gridView = [ITTBaseCalendarGridView viewFromNibWithIdentifier:identifier];        
     }
+    
+    
     return gridView;
 }
 
 - (ITTCalendarGridView*)calendarView:(ITTCalendarView*)calendarView calendarDisableGridViewForRow:(NSInteger)row column:(NSInteger)column calDay:(ITTCalDay*)calDay
 {
+    
+    
     static NSString *identifier = @"ITTBaseCalendarDisableGridView";    
     ITTCalendarGridView *gridView = [calendarView dequeueCalendarGridViewWithIdentifier:identifier];
     if (!gridView) {
         gridView = [ITTBaseCalendarDisableGridView viewFromNibWithIdentifier:identifier];
     }
+    
     return gridView;
 }
 

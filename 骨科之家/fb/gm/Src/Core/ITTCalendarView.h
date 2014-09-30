@@ -16,7 +16,7 @@
 #import "ITTCalendarScrollView.h"
 
 #define CALENDAR_VIEW_HEIGHT_WITHOUT_FOOTER_VIEW 255
-#define CALENDAR_VIEW_HEIGHT                     301
+#define CALENDAR_VIEW_HEIGHT                     350
 
 @class CalDay;
 @class ITTCalMonth;
@@ -56,6 +56,16 @@ ITTCalendarViewHeaderViewDelegate, ITTCalendarViewFooterViewDelegate, ITTCalenda
     
     id<ITTCalendarViewDataSource>  _dataSource;
     id<ITTCalendarViewDelegate>    _delegate;
+    
+    
+    UIView *_downLine;//最下面的分割线
+    
+    UIView *_down2Line;//倒数第二条线
+    
+    
+    UILabel *_label1;//未报名
+    UILabel *_label2;//已报名
+    
 }
 @property (nonatomic, retain) id<ITTCalendarViewDataSource> dataSource;
 @property (nonatomic, assign) id<ITTCalendarViewDelegate>   delegate;
