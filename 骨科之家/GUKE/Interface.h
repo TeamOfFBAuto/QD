@@ -89,6 +89,16 @@
 #define INDUSTRY_NEWS_URL @"dongtailist.php"
 #pragma mark - 动态正文
 #define INDUSTRY_NEWS_DETAIL_URL @"dongtai.php"
+#pragma mark - 主题分类接口
+#define TOPIC_DISCUSS_TYPE_URL @"zhutitypelist.php"
+#pragma mark - 主题列表接口
+#define TOPIC_DISCUSS_LIST_URL @"zhutilist.php"
+#pragma mark - 主题正文接口
+#define TOPIC_DISCUSS_DETAIL_URL @"zhuti.php"
+#pragma mark - 主题评论接口
+#define TOPIC_DISCUSS_COMMENT_URL @"zhutireplylist.php"
+
+
 
 // 请求参数
 #define REQUEST_PATAMETER  @{@"userId": [NSString stringWithFormat:@"%d",((User_Model*)[[SingleInstance shareManager].objecAarray firstObject]).userId],@"sid": ((User_Model*)[[SingleInstance shareManager].objecAarray firstObject]).sid}

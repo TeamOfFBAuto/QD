@@ -164,7 +164,7 @@
     {
         NewsDetailModel * model = [data_array objectAtIndex:indexPath.row];
         [cell.myImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_BASE_URL,model.fileurl]] placeholderImage:[UIImage imageNamed:@"guke_image_loading"]];
-        cell.image_name_label.text = model.filename;
+        cell.image_name_label.text = [NSString _859ToUTF8:model.filename];
         
         CGRect rectr = [model.filename boundingRectWithSize:CGSizeMake(DEVICE_WIDTH-30, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15]} context:nil];
         cell.image_name_label.numberOfLines = 0;
@@ -178,7 +178,7 @@
         cell.imageView.image = nil;
         cell.image_name_label.text = @"";
         cell.textLabel.numberOfLines = 0;
-        cell.textLabel.text = [data_array objectAtIndex:indexPath.row];
+        cell.textLabel.text = [NSString _859ToUTF8:[data_array objectAtIndex:indexPath.row]];
         
     }
     

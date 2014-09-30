@@ -853,6 +853,16 @@
 		3EEE8C62196D8EB4008CBE1C /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EEE8C60196D8EB4008CBE1C /* libopencore-amrnb.a */; };
 		3EEE8C63196D8EB4008CBE1C /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EEE8C61196D8EB4008CBE1C /* libopencore-amrwb.a */; };
 		5295DB6E01E64A1C843C7A2C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA6440871D54FA4946A4F01 /* libPods.a */; };
+		565DAE4919DA739900C3924D /* TopicDiscussViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE4819DA739900C3924D /* TopicDiscussViewController.m */; };
+		565DAE4C19DA7A7F00C3924D /* TDListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE4B19DA7A7F00C3924D /* TDListViewController.m */; };
+		565DAE4F19DA7D9600C3924D /* TDListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE4E19DA7D9600C3924D /* TDListModel.m */; };
+		565DAE5319DA7FC800C3924D /* TDListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE5119DA7FC800C3924D /* TDListCell.m */; };
+		565DAE5419DA7FC800C3924D /* TDListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 565DAE5219DA7FC800C3924D /* TDListCell.xib */; };
+		565DAE5719DA86C500C3924D /* TDDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE5619DA86C500C3924D /* TDDetailViewController.m */; };
+		565DAE5A19DA9BCD00C3924D /* ReplyListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE5919DA9BCD00C3924D /* ReplyListModel.m */; };
+		565DAE5D19DA9C6B00C3924D /* AttachListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE5C19DA9C6B00C3924D /* AttachListModel.m */; };
+		565DAE6119DAAE8000C3924D /* TDDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE5F19DAAE8000C3924D /* TDDetailCell.m */; };
+		565DAE6219DAAE8000C3924D /* TDDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 565DAE6019DAAE8000C3924D /* TDDetailCell.xib */; };
 		5675CAE219D9C05100FB975F /* IndustryNewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5675CAE119D9C05100FB975F /* IndustryNewsController.m */; };
 		5675CAE519D9C7A600FB975F /* IndustryNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5675CAE419D9C7A600FB975F /* IndustryNewsModel.m */; };
 		5675CAE819D9CBF900FB975F /* IndustryNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5675CAE719D9CBF900FB975F /* IndustryNewsCell.m */; };
@@ -1969,6 +1979,24 @@
 		3EEE8C60196D8EB4008CBE1C /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
 		3EEE8C61196D8EB4008CBE1C /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
 		4EA6440871D54FA4946A4F01 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		565DAE4719DA739900C3924D /* TopicDiscussViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicDiscussViewController.h; sourceTree = "<group>"; };
+		565DAE4819DA739900C3924D /* TopicDiscussViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicDiscussViewController.m; sourceTree = "<group>"; };
+		565DAE4A19DA7A7F00C3924D /* TDListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDListViewController.h; sourceTree = "<group>"; };
+		565DAE4B19DA7A7F00C3924D /* TDListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDListViewController.m; sourceTree = "<group>"; };
+		565DAE4D19DA7D9600C3924D /* TDListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDListModel.h; sourceTree = "<group>"; };
+		565DAE4E19DA7D9600C3924D /* TDListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDListModel.m; sourceTree = "<group>"; };
+		565DAE5019DA7FC800C3924D /* TDListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDListCell.h; sourceTree = "<group>"; };
+		565DAE5119DA7FC800C3924D /* TDListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDListCell.m; sourceTree = "<group>"; };
+		565DAE5219DA7FC800C3924D /* TDListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDListCell.xib; sourceTree = "<group>"; };
+		565DAE5519DA86C500C3924D /* TDDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDetailViewController.h; sourceTree = "<group>"; };
+		565DAE5619DA86C500C3924D /* TDDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDDetailViewController.m; sourceTree = "<group>"; };
+		565DAE5819DA9BCD00C3924D /* ReplyListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyListModel.h; sourceTree = "<group>"; };
+		565DAE5919DA9BCD00C3924D /* ReplyListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyListModel.m; sourceTree = "<group>"; };
+		565DAE5B19DA9C6B00C3924D /* AttachListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttachListModel.h; sourceTree = "<group>"; };
+		565DAE5C19DA9C6B00C3924D /* AttachListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttachListModel.m; sourceTree = "<group>"; };
+		565DAE5E19DAAE8000C3924D /* TDDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDetailCell.h; sourceTree = "<group>"; };
+		565DAE5F19DAAE8000C3924D /* TDDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDDetailCell.m; sourceTree = "<group>"; };
+		565DAE6019DAAE8000C3924D /* TDDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDDetailCell.xib; sourceTree = "<group>"; };
 		5675CAE019D9C05100FB975F /* IndustryNewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndustryNewsController.h; sourceTree = "<group>"; };
 		5675CAE119D9C05100FB975F /* IndustryNewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndustryNewsController.m; sourceTree = "<group>"; };
 		5675CAE319D9C7A600FB975F /* IndustryNewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndustryNewsModel.h; sourceTree = "<group>"; };
@@ -3903,6 +3931,12 @@
 				5675CAE119D9C05100FB975F /* IndustryNewsController.m */,
 				5675CAEE19D9D71C00FB975F /* IndustryNewsDetailViewController.h */,
 				5675CAEF19D9D71C00FB975F /* IndustryNewsDetailViewController.m */,
+				565DAE4719DA739900C3924D /* TopicDiscussViewController.h */,
+				565DAE4819DA739900C3924D /* TopicDiscussViewController.m */,
+				565DAE4A19DA7A7F00C3924D /* TDListViewController.h */,
+				565DAE4B19DA7A7F00C3924D /* TDListViewController.m */,
+				565DAE5519DA86C500C3924D /* TDDetailViewController.h */,
+				565DAE5619DA86C500C3924D /* TDDetailViewController.m */,
 			);
 			path = SNControllers;
 			sourceTree = "<group>";
@@ -3912,6 +3946,12 @@
 			children = (
 				5675CAE319D9C7A600FB975F /* IndustryNewsModel.h */,
 				5675CAE419D9C7A600FB975F /* IndustryNewsModel.m */,
+				565DAE4D19DA7D9600C3924D /* TDListModel.h */,
+				565DAE4E19DA7D9600C3924D /* TDListModel.m */,
+				565DAE5819DA9BCD00C3924D /* ReplyListModel.h */,
+				565DAE5919DA9BCD00C3924D /* ReplyListModel.m */,
+				565DAE5B19DA9C6B00C3924D /* AttachListModel.h */,
+				565DAE5C19DA9C6B00C3924D /* AttachListModel.m */,
 			);
 			path = SNModels;
 			sourceTree = "<group>";
@@ -3925,6 +3965,12 @@
 				5675CAF119D9EBE000FB975F /* NewsDetailCell.h */,
 				5675CAF219D9EBE000FB975F /* NewsDetailCell.m */,
 				5675CAF319D9EBE000FB975F /* NewsDetailCell.xib */,
+				565DAE5019DA7FC800C3924D /* TDListCell.h */,
+				565DAE5119DA7FC800C3924D /* TDListCell.m */,
+				565DAE5219DA7FC800C3924D /* TDListCell.xib */,
+				565DAE5E19DAAE8000C3924D /* TDDetailCell.h */,
+				565DAE5F19DAAE8000C3924D /* TDDetailCell.m */,
+				565DAE6019DAAE8000C3924D /* TDDetailCell.xib */,
 			);
 			path = SNViews;
 			sourceTree = "<group>";
@@ -4190,6 +4236,7 @@
 				3E7BADAC19D18F35002E28A1 /* guke_back_icon@2x.png in Resources */,
 				19960CC2196A80D6000121AA /* button_right_select@2x.png in Resources */,
 				1977B50119C8447800D504A7 /* produce@2x.png in Resources */,
+				565DAE6219DAAE8000C3924D /* TDDetailCell.xib in Resources */,
 				199C0108195AAD1D00F74F7C /* set_usercheck@2x.png in Resources */,
 				3E7BADF319D18F35002E28A1 /* guke_ic_addphoto@2x.png in Resources */,
 				3E7BADA919D18F35002E28A1 /* guke_amp7@2x.png in Resources */,
@@ -4252,6 +4299,7 @@
 				199C011C195AAD1D00F74F7C /* tab_middle_select_small@2x.png in Resources */,
 				3E7BADB319D18F35002E28A1 /* guke_btn_style_alert_dialog_cancel_normal@2x.png in Resources */,
 				3E7BAE3719D18F35002E28A1 /* guke_menuicon_edit@2x.png in Resources */,
+				565DAE5419DA7FC800C3924D /* TDListCell.xib in Resources */,
 				3E1EFFCB1980AB9D008C9B8D /* PEPhotoCropEditor.bundle in Resources */,
 				19960D43196A80D6000121AA /* pagey5@2x.png in Resources */,
 				3EC2E00119B9A2A500B42351 /* amp2_new@2x.png in Resources */,
@@ -4745,6 +4793,7 @@
 				5675CAE219D9C05100FB975F /* IndustryNewsController.m in Sources */,
 				199CFE17195AA53900F74F7C /* UIButton+AFNetworking.m in Sources */,
 				3EC2DFF519B99BF300B42351 /* WindowCustom.m in Sources */,
+				565DAE4C19DA7A7F00C3924D /* TDListViewController.m in Sources */,
 				19960D48196A80D6000121AA /* amrFileCodec.mm in Sources */,
 				19960D13196A80D6000121AA /* UIButton+WebCache.m in Sources */,
 				5675CAE819D9CBF900FB975F /* IndustryNewsCell.m in Sources */,
@@ -4783,9 +4832,11 @@
 				19A069471970C6D000830898 /* GroupIfo.m in Sources */,
 				198F8A441961653800B3F09C /* QiDiPopoverView.m in Sources */,
 				197ABFF71973EE9E00FC6A24 /* contentAndGood.m in Sources */,
+				565DAE6119DAAE8000C3924D /* TDDetailCell.m in Sources */,
 				840BB22719D7AB30000A4725 /* Reachability.m in Sources */,
 				197ABFED197388AC00FC6A24 /* FriendCircleTableViewCell.m in Sources */,
 				19960D02196A80D6000121AA /* SBJsonStreamParserAdapter.m in Sources */,
+				565DAE4919DA739900C3924D /* TopicDiscussViewController.m in Sources */,
 				3E1EFFCE1980AB9D008C9B8D /* PECropViewController.m in Sources */,
 				1958D95C1975714B00578A10 /* PostMoodViewController.m in Sources */,
 				3E46C15919D2BC0000403A42 /* CreatMedicalViewController.m in Sources */,
@@ -4849,6 +4900,7 @@
 				19960D52196A80D7000121AA /* LLRecordVoiceViewController.m in Sources */,
 				199F1B5419BEAF4000750258 /* UserCenter.m in Sources */,
 				5675CAED19D9D35300FB975F /* SNTools.m in Sources */,
+				565DAE5319DA7FC800C3924D /* TDListCell.m in Sources */,
 				19960CAB196A80D6000121AA /* ContactsListViewController.m in Sources */,
 				199CFDFA195AA53900F74F7C /* UserIfo.m in Sources */,
 				3951C91819D11CC10040B07E /* FMResultSet.m in Sources */,
@@ -4864,6 +4916,7 @@
 				19960D0A196A80D6000121AA /* MKAnnotationView+WebCache.m in Sources */,
 				19960CFE196A80D6000121AA /* NSObject+SBJson.m in Sources */,
 				8458B80619D94EA50083B4AC /* BubbleCell.m in Sources */,
+				565DAE5D19DA9C6B00C3924D /* AttachListModel.m in Sources */,
 				1977B50619C84D9B00D504A7 /* AboutProduceViewController.m in Sources */,
 				3E4B255E197E3B490061A9AE /* AddNewColleagueViewController.m in Sources */,
 				19975B0B19767EE800ADF199 /* MBButtonMenuViewController.m in Sources */,
@@ -4920,6 +4973,7 @@
 				3EB9972719B5683D0032D37E /* dateAndContent.m in Sources */,
 				840BB22E19D7AB72000A4725 /* AFRequestService.m in Sources */,
 				3E46C16119D2CBA100403A42 /* InformationModel.m in Sources */,
+				565DAE4F19DA7D9600C3924D /* TDListModel.m in Sources */,
 				199C016B195AD43400F74F7C /* FriendIfo.m in Sources */,
 				8458B80719D94EA50083B4AC /* VChatViewController.m in Sources */,
 				19960D17196A80D6000121AA /* UIImageView+WebCache.m in Sources */,
@@ -4940,8 +4994,10 @@
 				8458B80A19D953020083B4AC /* Toolbar.m in Sources */,
 				1957C5DD1978F24600043F19 /* CommentView.m in Sources */,
 				19960D0C196A80D6000121AA /* SDImageCache.m in Sources */,
+				565DAE5719DA86C500C3924D /* TDDetailViewController.m in Sources */,
 				840BB22D19D7AB72000A4725 /* AFNetAPIClient.m in Sources */,
 				19960D1E196A80D6000121AA /* PullPsCollectionView.m in Sources */,
+				565DAE5A19DA9BCD00C3924D /* ReplyListModel.m in Sources */,
 				840BB21F19D7AB30000A4725 /* AFSecurityPolicy.m in Sources */,
 				19A87FB41995B941009404F3 /* FriendCircleHomeTableViewCell.m in Sources */,
 				19960D12196A80D6000121AA /* SDWebImagePrefetcher.m in Sources */,

@@ -138,7 +138,7 @@
 - (void)endPull{
     _myTableView.pullTableIsLoadingMore = NO;
     _myTableView.pullTableIsRefreshing = NO;
-//    _myTableView.pullLastRefreshDate = [NSDate date];
+    _myTableView.pullLastRefreshDate = [NSDate date];
 }
 
 @end
