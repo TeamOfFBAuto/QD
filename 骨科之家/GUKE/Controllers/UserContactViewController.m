@@ -1172,7 +1172,9 @@
     }else if (indexPath.row == 2)//会议日程
     {
         //跳转日历
-        [self.navigationController pushViewController:[[GcalendarViewController alloc]init] animated:YES];
+        
+        GcalendarViewController *gCalendarVC = [[GcalendarViewController alloc]init];
+        [self.navigationController pushViewController:gCalendarVC animated:YES];
         
         
     }else if (indexPath.row == 3)// 聊天广场
