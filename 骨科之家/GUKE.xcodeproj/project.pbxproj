@@ -855,7 +855,24 @@
 		3EEE8C62196D8EB4008CBE1C /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EEE8C60196D8EB4008CBE1C /* libopencore-amrnb.a */; };
 		3EEE8C63196D8EB4008CBE1C /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EEE8C61196D8EB4008CBE1C /* libopencore-amrwb.a */; };
 		5295DB6E01E64A1C843C7A2C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA6440871D54FA4946A4F01 /* libPods.a */; };
+		565DAE4919DA739900C3924D /* TopicDiscussViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE4819DA739900C3924D /* TopicDiscussViewController.m */; };
+		565DAE4C19DA7A7F00C3924D /* TDListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE4B19DA7A7F00C3924D /* TDListViewController.m */; };
+		565DAE4F19DA7D9600C3924D /* TDListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE4E19DA7D9600C3924D /* TDListModel.m */; };
+		565DAE5319DA7FC800C3924D /* TDListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE5119DA7FC800C3924D /* TDListCell.m */; };
+		565DAE5419DA7FC800C3924D /* TDListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 565DAE5219DA7FC800C3924D /* TDListCell.xib */; };
+		565DAE5719DA86C500C3924D /* TDDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE5619DA86C500C3924D /* TDDetailViewController.m */; };
+		565DAE5A19DA9BCD00C3924D /* ReplyListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE5919DA9BCD00C3924D /* ReplyListModel.m */; };
+		565DAE5D19DA9C6B00C3924D /* AttachListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE5C19DA9C6B00C3924D /* AttachListModel.m */; };
+		565DAE6119DAAE8000C3924D /* TDDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE5F19DAAE8000C3924D /* TDDetailCell.m */; };
+		565DAE6219DAAE8000C3924D /* TDDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 565DAE6019DAAE8000C3924D /* TDDetailCell.xib */; };
 		5675CAE219D9C05100FB975F /* IndustryNewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5675CAE119D9C05100FB975F /* IndustryNewsController.m */; };
+		5675CAE519D9C7A600FB975F /* IndustryNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5675CAE419D9C7A600FB975F /* IndustryNewsModel.m */; };
+		5675CAE819D9CBF900FB975F /* IndustryNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5675CAE719D9CBF900FB975F /* IndustryNewsCell.m */; };
+		5675CAEA19D9CC0B00FB975F /* IndustryNewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5675CAE919D9CC0B00FB975F /* IndustryNewsCell.xib */; };
+		5675CAED19D9D35300FB975F /* SNTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 5675CAEC19D9D35300FB975F /* SNTools.m */; };
+		5675CAF019D9D71C00FB975F /* IndustryNewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5675CAEF19D9D71C00FB975F /* IndustryNewsDetailViewController.m */; };
+		5675CAF419D9EBE000FB975F /* NewsDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5675CAF219D9EBE000FB975F /* NewsDetailCell.m */; };
+		5675CAF519D9EBE000FB975F /* NewsDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5675CAF319D9EBE000FB975F /* NewsDetailCell.xib */; };
 		840BB21919D7AB30000A4725 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BB1FA19D7AB30000A4725 /* AFHTTPRequestOperation.m */; };
 		840BB21A19D7AB30000A4725 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BB1FC19D7AB30000A4725 /* AFHTTPRequestOperationManager.m */; };
 		840BB21B19D7AB30000A4725 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 840BB1FE19D7AB30000A4725 /* AFHTTPSessionManager.m */; };
@@ -873,7 +890,42 @@
 		8458B80619D94EA50083B4AC /* BubbleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8458B80219D94EA50083B4AC /* BubbleCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8458B80719D94EA50083B4AC /* VChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8458B80419D94EA50083B4AC /* VChatViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8458B80A19D953020083B4AC /* Toolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8458B80919D953020083B4AC /* Toolbar.m */; };
-		E307699619D9C35300333B7E /* GcalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E307699519D9C35300333B7E /* GcalendarViewController.m */; };
+		E30769C419D9C5A200333B7E /* GcalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E30769C319D9C5A200333B7E /* GcalendarViewController.m */; };
+		E3076A4A19D9CC2000333B7E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E47C113196F9513003EE734 /* QuartzCore.framework */; };
+		E3076A4B19D9CC3100333B7E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 199CFD4C195AA48200F74F7C /* CoreGraphics.framework */; };
+		E3076A8419D9D4B400333B7E /* GcalendarDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3076A8319D9D4B400333B7E /* GcalendarDetailViewController.m */; };
+		E33D677319DA7B9E0070D207 /* tixiang-jiantou-16_26@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33D677219DA7B9E0070D207 /* tixiang-jiantou-16_26@2x.png */; };
+		E33D677519DA7C400070D207 /* tixiang-jiantouLeft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33D677419DA7C400070D207 /* tixiang-jiantouLeft@2x.png */; };
+		E39E4D4F19DA04DE00AEA2F6 /* ITTCalendarGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D2D19DA04DE00AEA2F6 /* ITTCalendarGridView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E39E4D5019DA04DE00AEA2F6 /* ITTCalendarScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D2F19DA04DE00AEA2F6 /* ITTCalendarScrollView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E39E4D5119DA04DE00AEA2F6 /* ITTCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D3119DA04DE00AEA2F6 /* ITTCalendarView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E39E4D5219DA04DE00AEA2F6 /* ITTCalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D3219DA04DE00AEA2F6 /* ITTCalendarView.xib */; };
+		E39E4D5319DA04DE00AEA2F6 /* ITTCalendarViewFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D3619DA04DE00AEA2F6 /* ITTCalendarViewFooterView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E39E4D5419DA04DE00AEA2F6 /* ITTCalendarViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D3819DA04DE00AEA2F6 /* ITTCalendarViewHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E39E4D5519DA04DE00AEA2F6 /* ITTBaseCalendarDisableGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D3B19DA04DE00AEA2F6 /* ITTBaseCalendarDisableGridView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E39E4D5619DA04DE00AEA2F6 /* ITTBaseCalendarDisableGridView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D3C19DA04DE00AEA2F6 /* ITTBaseCalendarDisableGridView.xib */; };
+		E39E4D5719DA04DE00AEA2F6 /* ITTBaseCalendarGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D3E19DA04DE00AEA2F6 /* ITTBaseCalendarGridView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E39E4D5819DA04DE00AEA2F6 /* ITTBaseCalendarGridView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D3F19DA04DE00AEA2F6 /* ITTBaseCalendarGridView.xib */; };
+		E39E4D5919DA04DE00AEA2F6 /* ITTBaseCalendarViewFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D4119DA04DE00AEA2F6 /* ITTBaseCalendarViewFooterView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E39E4D5A19DA04DE00AEA2F6 /* ITTBaseCalendarViewFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D4219DA04DE00AEA2F6 /* ITTBaseCalendarViewFooterView.xib */; };
+		E39E4D5B19DA04DE00AEA2F6 /* ITTBaseCalendarViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D4419DA04DE00AEA2F6 /* ITTBaseCalendarViewHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E39E4D5C19DA04DE00AEA2F6 /* ITTBaseCalendarViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D4519DA04DE00AEA2F6 /* ITTBaseCalendarViewHeaderView.xib */; };
+		E39E4D5D19DA04DE00AEA2F6 /* ITTBaseDataSourceImp.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D4719DA04DE00AEA2F6 /* ITTBaseDataSourceImp.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E39E4D5E19DA04DE00AEA2F6 /* CalendarDateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D4A19DA04DE00AEA2F6 /* CalendarDateUtil.m */; };
+		E39E4D5F19DA04DE00AEA2F6 /* ITTCalDay.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D4C19DA04DE00AEA2F6 /* ITTCalDay.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E39E4D6019DA04DE00AEA2F6 /* ITTCalMonth.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D4E19DA04DE00AEA2F6 /* ITTCalMonth.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E39E4D8A19DA04F500AEA2F6 /* btn_grid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D7019DA04F500AEA2F6 /* btn_grid@2x.png */; };
+		E39E4D8B19DA04F500AEA2F6 /* btn_grid_cell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D7119DA04F500AEA2F6 /* btn_grid_cell@2x.png */; };
+		E39E4D8C19DA04F500AEA2F6 /* btn_grid_cell_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D7219DA04F500AEA2F6 /* btn_grid_cell_highlight@2x.png */; };
+		E39E4D8D19DA04F500AEA2F6 /* btn_grid_cell_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D7319DA04F500AEA2F6 /* btn_grid_cell_selected@2x.png */; };
+		E39E4D8E19DA04F500AEA2F6 /* btn_grid_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E39E4D7419DA04F500AEA2F6 /* btn_grid_highlight@2x.png */; };
+		E3DF63F019DA9BFF00D05E6F /* GeventSingleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DF63EF19DA9BFF00D05E6F /* GeventSingleModel.m */; };
+		E3DF643519DAB1A400D05E6F /* bluedown@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3DF642D19DAB1A400D05E6F /* bluedown@2x.png */; };
+		E3DF643619DAB1A400D05E6F /* blueup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3DF642E19DAB1A400D05E6F /* blueup@2x.png */; };
+		E3DF643719DAB1A400D05E6F /* GEGORefreshTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DF643019DAB1A400D05E6F /* GEGORefreshTableFooterView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E3DF643819DAB1A400D05E6F /* GEGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DF643219DAB1A400D05E6F /* GEGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E3DF643919DAB1A400D05E6F /* GloadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DF643419DAB1A400D05E6F /* GloadingView.m */; };
+		E3DF643C19DAB22C00D05E6F /* GRefreshTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E3DF643A19DAB22C00D05E6F /* GRefreshTableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1968,8 +2020,38 @@
 		3EEE8C60196D8EB4008CBE1C /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
 		3EEE8C61196D8EB4008CBE1C /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
 		4EA6440871D54FA4946A4F01 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		565DAE4719DA739900C3924D /* TopicDiscussViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicDiscussViewController.h; sourceTree = "<group>"; };
+		565DAE4819DA739900C3924D /* TopicDiscussViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicDiscussViewController.m; sourceTree = "<group>"; };
+		565DAE4A19DA7A7F00C3924D /* TDListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDListViewController.h; sourceTree = "<group>"; };
+		565DAE4B19DA7A7F00C3924D /* TDListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDListViewController.m; sourceTree = "<group>"; };
+		565DAE4D19DA7D9600C3924D /* TDListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDListModel.h; sourceTree = "<group>"; };
+		565DAE4E19DA7D9600C3924D /* TDListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDListModel.m; sourceTree = "<group>"; };
+		565DAE5019DA7FC800C3924D /* TDListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDListCell.h; sourceTree = "<group>"; };
+		565DAE5119DA7FC800C3924D /* TDListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDListCell.m; sourceTree = "<group>"; };
+		565DAE5219DA7FC800C3924D /* TDListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDListCell.xib; sourceTree = "<group>"; };
+		565DAE5519DA86C500C3924D /* TDDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDetailViewController.h; sourceTree = "<group>"; };
+		565DAE5619DA86C500C3924D /* TDDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDDetailViewController.m; sourceTree = "<group>"; };
+		565DAE5819DA9BCD00C3924D /* ReplyListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyListModel.h; sourceTree = "<group>"; };
+		565DAE5919DA9BCD00C3924D /* ReplyListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyListModel.m; sourceTree = "<group>"; };
+		565DAE5B19DA9C6B00C3924D /* AttachListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttachListModel.h; sourceTree = "<group>"; };
+		565DAE5C19DA9C6B00C3924D /* AttachListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttachListModel.m; sourceTree = "<group>"; };
+		565DAE5E19DAAE8000C3924D /* TDDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDetailCell.h; sourceTree = "<group>"; };
+		565DAE5F19DAAE8000C3924D /* TDDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDDetailCell.m; sourceTree = "<group>"; };
+		565DAE6019DAAE8000C3924D /* TDDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDDetailCell.xib; sourceTree = "<group>"; };
 		5675CAE019D9C05100FB975F /* IndustryNewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndustryNewsController.h; sourceTree = "<group>"; };
 		5675CAE119D9C05100FB975F /* IndustryNewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndustryNewsController.m; sourceTree = "<group>"; };
+		5675CAE319D9C7A600FB975F /* IndustryNewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndustryNewsModel.h; sourceTree = "<group>"; };
+		5675CAE419D9C7A600FB975F /* IndustryNewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndustryNewsModel.m; sourceTree = "<group>"; };
+		5675CAE619D9CBF900FB975F /* IndustryNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndustryNewsCell.h; sourceTree = "<group>"; };
+		5675CAE719D9CBF900FB975F /* IndustryNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndustryNewsCell.m; sourceTree = "<group>"; };
+		5675CAE919D9CC0B00FB975F /* IndustryNewsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndustryNewsCell.xib; sourceTree = "<group>"; };
+		5675CAEB19D9D35300FB975F /* SNTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNTools.h; sourceTree = "<group>"; };
+		5675CAEC19D9D35300FB975F /* SNTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNTools.m; sourceTree = "<group>"; };
+		5675CAEE19D9D71C00FB975F /* IndustryNewsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndustryNewsDetailViewController.h; sourceTree = "<group>"; };
+		5675CAEF19D9D71C00FB975F /* IndustryNewsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndustryNewsDetailViewController.m; sourceTree = "<group>"; };
+		5675CAF119D9EBE000FB975F /* NewsDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDetailCell.h; sourceTree = "<group>"; };
+		5675CAF219D9EBE000FB975F /* NewsDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDetailCell.m; sourceTree = "<group>"; };
+		5675CAF319D9EBE000FB975F /* NewsDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsDetailCell.xib; sourceTree = "<group>"; };
 		840BB1F919D7AB30000A4725 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		840BB1FA19D7AB30000A4725 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		840BB1FB19D7AB30000A4725 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -2006,8 +2088,64 @@
 		8458B80819D953020083B4AC /* Toolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Toolbar.h; sourceTree = "<group>"; };
 		8458B80919D953020083B4AC /* Toolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Toolbar.m; sourceTree = "<group>"; };
 		CA67668589274E8DABA31016 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		E307699419D9C35300333B7E /* GcalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GcalendarViewController.h; sourceTree = SOURCE_ROOT; };
-		E307699519D9C35300333B7E /* GcalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GcalendarViewController.m; sourceTree = SOURCE_ROOT; };
+		E30769C219D9C5A200333B7E /* GcalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GcalendarViewController.h; sourceTree = "<group>"; };
+		E30769C319D9C5A200333B7E /* GcalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GcalendarViewController.m; sourceTree = "<group>"; };
+		E3076A4C19D9CCE600333B7E /* ITTDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTDebug.h; sourceTree = "<group>"; };
+		E3076A8219D9D4B400333B7E /* GcalendarDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GcalendarDetailViewController.h; sourceTree = "<group>"; };
+		E3076A8319D9D4B400333B7E /* GcalendarDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GcalendarDetailViewController.m; sourceTree = "<group>"; };
+		E33D677219DA7B9E0070D207 /* tixiang-jiantou-16_26@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tixiang-jiantou-16_26@2x.png"; sourceTree = "<group>"; };
+		E33D677419DA7C400070D207 /* tixiang-jiantouLeft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tixiang-jiantouLeft@2x.png"; sourceTree = "<group>"; };
+		E39E4D2B19DA04DE00AEA2F6 /* Enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enum.h; sourceTree = "<group>"; };
+		E39E4D2C19DA04DE00AEA2F6 /* ITTCalendarGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalendarGridView.h; sourceTree = "<group>"; };
+		E39E4D2D19DA04DE00AEA2F6 /* ITTCalendarGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTCalendarGridView.m; sourceTree = "<group>"; };
+		E39E4D2E19DA04DE00AEA2F6 /* ITTCalendarScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalendarScrollView.h; sourceTree = "<group>"; };
+		E39E4D2F19DA04DE00AEA2F6 /* ITTCalendarScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTCalendarScrollView.m; sourceTree = "<group>"; };
+		E39E4D3019DA04DE00AEA2F6 /* ITTCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalendarView.h; sourceTree = "<group>"; };
+		E39E4D3119DA04DE00AEA2F6 /* ITTCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTCalendarView.m; sourceTree = "<group>"; };
+		E39E4D3219DA04DE00AEA2F6 /* ITTCalendarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITTCalendarView.xib; sourceTree = "<group>"; };
+		E39E4D3319DA04DE00AEA2F6 /* ITTCalendarViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalendarViewDataSource.h; sourceTree = "<group>"; };
+		E39E4D3419DA04DE00AEA2F6 /* ITTCalendarViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalendarViewDelegate.h; sourceTree = "<group>"; };
+		E39E4D3519DA04DE00AEA2F6 /* ITTCalendarViewFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalendarViewFooterView.h; sourceTree = "<group>"; };
+		E39E4D3619DA04DE00AEA2F6 /* ITTCalendarViewFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTCalendarViewFooterView.m; sourceTree = "<group>"; };
+		E39E4D3719DA04DE00AEA2F6 /* ITTCalendarViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalendarViewHeaderView.h; sourceTree = "<group>"; };
+		E39E4D3819DA04DE00AEA2F6 /* ITTCalendarViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTCalendarViewHeaderView.m; sourceTree = "<group>"; };
+		E39E4D3A19DA04DE00AEA2F6 /* ITTBaseCalendarDisableGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTBaseCalendarDisableGridView.h; sourceTree = "<group>"; };
+		E39E4D3B19DA04DE00AEA2F6 /* ITTBaseCalendarDisableGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTBaseCalendarDisableGridView.m; sourceTree = "<group>"; };
+		E39E4D3C19DA04DE00AEA2F6 /* ITTBaseCalendarDisableGridView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITTBaseCalendarDisableGridView.xib; sourceTree = "<group>"; };
+		E39E4D3D19DA04DE00AEA2F6 /* ITTBaseCalendarGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTBaseCalendarGridView.h; sourceTree = "<group>"; };
+		E39E4D3E19DA04DE00AEA2F6 /* ITTBaseCalendarGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTBaseCalendarGridView.m; sourceTree = "<group>"; };
+		E39E4D3F19DA04DE00AEA2F6 /* ITTBaseCalendarGridView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITTBaseCalendarGridView.xib; sourceTree = "<group>"; };
+		E39E4D4019DA04DE00AEA2F6 /* ITTBaseCalendarViewFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTBaseCalendarViewFooterView.h; sourceTree = "<group>"; };
+		E39E4D4119DA04DE00AEA2F6 /* ITTBaseCalendarViewFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTBaseCalendarViewFooterView.m; sourceTree = "<group>"; };
+		E39E4D4219DA04DE00AEA2F6 /* ITTBaseCalendarViewFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITTBaseCalendarViewFooterView.xib; sourceTree = "<group>"; };
+		E39E4D4319DA04DE00AEA2F6 /* ITTBaseCalendarViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTBaseCalendarViewHeaderView.h; sourceTree = "<group>"; };
+		E39E4D4419DA04DE00AEA2F6 /* ITTBaseCalendarViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTBaseCalendarViewHeaderView.m; sourceTree = "<group>"; };
+		E39E4D4519DA04DE00AEA2F6 /* ITTBaseCalendarViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ITTBaseCalendarViewHeaderView.xib; sourceTree = "<group>"; };
+		E39E4D4619DA04DE00AEA2F6 /* ITTBaseDataSourceImp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTBaseDataSourceImp.h; sourceTree = "<group>"; };
+		E39E4D4719DA04DE00AEA2F6 /* ITTBaseDataSourceImp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTBaseDataSourceImp.m; sourceTree = "<group>"; };
+		E39E4D4919DA04DE00AEA2F6 /* CalendarDateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarDateUtil.h; sourceTree = "<group>"; };
+		E39E4D4A19DA04DE00AEA2F6 /* CalendarDateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarDateUtil.m; sourceTree = "<group>"; };
+		E39E4D4B19DA04DE00AEA2F6 /* ITTCalDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalDay.h; sourceTree = "<group>"; };
+		E39E4D4C19DA04DE00AEA2F6 /* ITTCalDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTCalDay.m; sourceTree = "<group>"; };
+		E39E4D4D19DA04DE00AEA2F6 /* ITTCalMonth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalMonth.h; sourceTree = "<group>"; };
+		E39E4D4E19DA04DE00AEA2F6 /* ITTCalMonth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTCalMonth.m; sourceTree = "<group>"; };
+		E39E4D7019DA04F500AEA2F6 /* btn_grid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_grid@2x.png"; sourceTree = "<group>"; };
+		E39E4D7119DA04F500AEA2F6 /* btn_grid_cell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_grid_cell@2x.png"; sourceTree = "<group>"; };
+		E39E4D7219DA04F500AEA2F6 /* btn_grid_cell_highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_grid_cell_highlight@2x.png"; sourceTree = "<group>"; };
+		E39E4D7319DA04F500AEA2F6 /* btn_grid_cell_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_grid_cell_selected@2x.png"; sourceTree = "<group>"; };
+		E39E4D7419DA04F500AEA2F6 /* btn_grid_highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_grid_highlight@2x.png"; sourceTree = "<group>"; };
+		E3DF63EE19DA9BFF00D05E6F /* GeventSingleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeventSingleModel.h; sourceTree = "<group>"; };
+		E3DF63EF19DA9BFF00D05E6F /* GeventSingleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeventSingleModel.m; sourceTree = "<group>"; };
+		E3DF642D19DAB1A400D05E6F /* bluedown@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bluedown@2x.png"; sourceTree = "<group>"; };
+		E3DF642E19DAB1A400D05E6F /* blueup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueup@2x.png"; sourceTree = "<group>"; };
+		E3DF642F19DAB1A400D05E6F /* GEGORefreshTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEGORefreshTableFooterView.h; sourceTree = "<group>"; };
+		E3DF643019DAB1A400D05E6F /* GEGORefreshTableFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEGORefreshTableFooterView.m; sourceTree = "<group>"; };
+		E3DF643119DAB1A400D05E6F /* GEGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		E3DF643219DAB1A400D05E6F /* GEGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		E3DF643319DAB1A400D05E6F /* GloadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GloadingView.h; sourceTree = "<group>"; };
+		E3DF643419DAB1A400D05E6F /* GloadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GloadingView.m; sourceTree = "<group>"; };
+		E3DF643A19DAB22C00D05E6F /* GRefreshTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRefreshTableView.m; sourceTree = "<group>"; };
+		E3DF643B19DAB22C00D05E6F /* GRefreshTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRefreshTableView.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2015,6 +2153,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3076A4B19D9CC3100333B7E /* CoreGraphics.framework in Frameworks */,
+				E3076A4A19D9CC2000333B7E /* QuartzCore.framework in Frameworks */,
 				199BE9C8198B6B9E00049C6C /* CoreText.framework in Frameworks */,
 				19960D6B196A8DBE000121AA /* MessageUI.framework in Frameworks */,
 				19960D69196A8D96000121AA /* AVFoundation.framework in Frameworks */,
@@ -2052,25 +2192,18 @@
 		194EDB6A19D9B31000A60E32 /* fb */ = {
 			isa = PBXGroup;
 			children = (
-				194EDB6B19D9B35000A60E32 /* gm */,
+				E30769C119D9C57100333B7E /* gm */,
 				194EDB6C19D9B35000A60E32 /* soulnear */,
 				194EDB6D19D9B35000A60E32 /* zking */,
 			);
 			path = fb;
 			sourceTree = "<group>";
 		};
-		194EDB6B19D9B35000A60E32 /* gm */ = {
-			isa = PBXGroup;
-			children = (
-				E307699419D9C35300333B7E /* GcalendarViewController.h */,
-				E307699519D9C35300333B7E /* GcalendarViewController.m */,
-			);
-			path = gm;
-			sourceTree = "<group>";
-		};
 		194EDB6C19D9B35000A60E32 /* soulnear */ = {
 			isa = PBXGroup;
 			children = (
+				5675CAEB19D9D35300FB975F /* SNTools.h */,
+				5675CAEC19D9D35300FB975F /* SNTools.m */,
 				5675CADD19D9C01D00FB975F /* SNControllers */,
 				5675CADE19D9C01D00FB975F /* SNModels */,
 				5675CADF19D9C01D00FB975F /* SNViews */,
@@ -3890,6 +4023,14 @@
 			children = (
 				5675CAE019D9C05100FB975F /* IndustryNewsController.h */,
 				5675CAE119D9C05100FB975F /* IndustryNewsController.m */,
+				5675CAEE19D9D71C00FB975F /* IndustryNewsDetailViewController.h */,
+				5675CAEF19D9D71C00FB975F /* IndustryNewsDetailViewController.m */,
+				565DAE4719DA739900C3924D /* TopicDiscussViewController.h */,
+				565DAE4819DA739900C3924D /* TopicDiscussViewController.m */,
+				565DAE4A19DA7A7F00C3924D /* TDListViewController.h */,
+				565DAE4B19DA7A7F00C3924D /* TDListViewController.m */,
+				565DAE5519DA86C500C3924D /* TDDetailViewController.h */,
+				565DAE5619DA86C500C3924D /* TDDetailViewController.m */,
 			);
 			path = SNControllers;
 			sourceTree = "<group>";
@@ -3897,6 +4038,14 @@
 		5675CADE19D9C01D00FB975F /* SNModels */ = {
 			isa = PBXGroup;
 			children = (
+				5675CAE319D9C7A600FB975F /* IndustryNewsModel.h */,
+				5675CAE419D9C7A600FB975F /* IndustryNewsModel.m */,
+				565DAE4D19DA7D9600C3924D /* TDListModel.h */,
+				565DAE4E19DA7D9600C3924D /* TDListModel.m */,
+				565DAE5819DA9BCD00C3924D /* ReplyListModel.h */,
+				565DAE5919DA9BCD00C3924D /* ReplyListModel.m */,
+				565DAE5B19DA9C6B00C3924D /* AttachListModel.h */,
+				565DAE5C19DA9C6B00C3924D /* AttachListModel.m */,
 			);
 			path = SNModels;
 			sourceTree = "<group>";
@@ -3904,6 +4053,18 @@
 		5675CADF19D9C01D00FB975F /* SNViews */ = {
 			isa = PBXGroup;
 			children = (
+				5675CAE619D9CBF900FB975F /* IndustryNewsCell.h */,
+				5675CAE719D9CBF900FB975F /* IndustryNewsCell.m */,
+				5675CAE919D9CC0B00FB975F /* IndustryNewsCell.xib */,
+				5675CAF119D9EBE000FB975F /* NewsDetailCell.h */,
+				5675CAF219D9EBE000FB975F /* NewsDetailCell.m */,
+				5675CAF319D9EBE000FB975F /* NewsDetailCell.xib */,
+				565DAE5019DA7FC800C3924D /* TDListCell.h */,
+				565DAE5119DA7FC800C3924D /* TDListCell.m */,
+				565DAE5219DA7FC800C3924D /* TDListCell.xib */,
+				565DAE5E19DAAE8000C3924D /* TDDetailCell.h */,
+				565DAE5F19DAAE8000C3924D /* TDDetailCell.m */,
+				565DAE6019DAAE8000C3924D /* TDDetailCell.xib */,
 			);
 			path = SNViews;
 			sourceTree = "<group>";
@@ -3948,6 +4109,119 @@
 				840BB22C19D7AB72000A4725 /* AFRequestService.m */,
 			);
 			path = "Networking Extensions";
+			sourceTree = "<group>";
+		};
+		E30769C119D9C57100333B7E /* gm */ = {
+			isa = PBXGroup;
+			children = (
+				E3DF642C19DAB1A400D05E6F /* GEGORefresh */,
+				E39E4D6119DA04F500AEA2F6 /* GImages */,
+				E39E4D2919DA04DE00AEA2F6 /* Src */,
+				E3076A4C19D9CCE600333B7E /* ITTDebug.h */,
+				E30769C219D9C5A200333B7E /* GcalendarViewController.h */,
+				E30769C319D9C5A200333B7E /* GcalendarViewController.m */,
+				E3076A8219D9D4B400333B7E /* GcalendarDetailViewController.h */,
+				E3076A8319D9D4B400333B7E /* GcalendarDetailViewController.m */,
+			);
+			path = gm;
+			sourceTree = "<group>";
+		};
+		E39E4D2919DA04DE00AEA2F6 /* Src */ = {
+			isa = PBXGroup;
+			children = (
+				E39E4D2A19DA04DE00AEA2F6 /* Core */,
+				E39E4D3919DA04DE00AEA2F6 /* Imp */,
+				E39E4D4819DA04DE00AEA2F6 /* Model */,
+			);
+			path = Src;
+			sourceTree = "<group>";
+		};
+		E39E4D2A19DA04DE00AEA2F6 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				E39E4D2B19DA04DE00AEA2F6 /* Enum.h */,
+				E39E4D2C19DA04DE00AEA2F6 /* ITTCalendarGridView.h */,
+				E39E4D2D19DA04DE00AEA2F6 /* ITTCalendarGridView.m */,
+				E39E4D2E19DA04DE00AEA2F6 /* ITTCalendarScrollView.h */,
+				E39E4D2F19DA04DE00AEA2F6 /* ITTCalendarScrollView.m */,
+				E39E4D3019DA04DE00AEA2F6 /* ITTCalendarView.h */,
+				E39E4D3119DA04DE00AEA2F6 /* ITTCalendarView.m */,
+				E39E4D3219DA04DE00AEA2F6 /* ITTCalendarView.xib */,
+				E39E4D3319DA04DE00AEA2F6 /* ITTCalendarViewDataSource.h */,
+				E39E4D3419DA04DE00AEA2F6 /* ITTCalendarViewDelegate.h */,
+				E39E4D3519DA04DE00AEA2F6 /* ITTCalendarViewFooterView.h */,
+				E39E4D3619DA04DE00AEA2F6 /* ITTCalendarViewFooterView.m */,
+				E39E4D3719DA04DE00AEA2F6 /* ITTCalendarViewHeaderView.h */,
+				E39E4D3819DA04DE00AEA2F6 /* ITTCalendarViewHeaderView.m */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		E39E4D3919DA04DE00AEA2F6 /* Imp */ = {
+			isa = PBXGroup;
+			children = (
+				E39E4D3A19DA04DE00AEA2F6 /* ITTBaseCalendarDisableGridView.h */,
+				E39E4D3B19DA04DE00AEA2F6 /* ITTBaseCalendarDisableGridView.m */,
+				E39E4D3C19DA04DE00AEA2F6 /* ITTBaseCalendarDisableGridView.xib */,
+				E39E4D3D19DA04DE00AEA2F6 /* ITTBaseCalendarGridView.h */,
+				E39E4D3E19DA04DE00AEA2F6 /* ITTBaseCalendarGridView.m */,
+				E39E4D3F19DA04DE00AEA2F6 /* ITTBaseCalendarGridView.xib */,
+				E39E4D4019DA04DE00AEA2F6 /* ITTBaseCalendarViewFooterView.h */,
+				E39E4D4119DA04DE00AEA2F6 /* ITTBaseCalendarViewFooterView.m */,
+				E39E4D4219DA04DE00AEA2F6 /* ITTBaseCalendarViewFooterView.xib */,
+				E39E4D4319DA04DE00AEA2F6 /* ITTBaseCalendarViewHeaderView.h */,
+				E39E4D4419DA04DE00AEA2F6 /* ITTBaseCalendarViewHeaderView.m */,
+				E39E4D4519DA04DE00AEA2F6 /* ITTBaseCalendarViewHeaderView.xib */,
+				E39E4D4619DA04DE00AEA2F6 /* ITTBaseDataSourceImp.h */,
+				E39E4D4719DA04DE00AEA2F6 /* ITTBaseDataSourceImp.m */,
+			);
+			path = Imp;
+			sourceTree = "<group>";
+		};
+		E39E4D4819DA04DE00AEA2F6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E39E4D4919DA04DE00AEA2F6 /* CalendarDateUtil.h */,
+				E39E4D4A19DA04DE00AEA2F6 /* CalendarDateUtil.m */,
+				E39E4D4B19DA04DE00AEA2F6 /* ITTCalDay.h */,
+				E39E4D4C19DA04DE00AEA2F6 /* ITTCalDay.m */,
+				E39E4D4D19DA04DE00AEA2F6 /* ITTCalMonth.h */,
+				E39E4D4E19DA04DE00AEA2F6 /* ITTCalMonth.m */,
+				E3DF63EE19DA9BFF00D05E6F /* GeventSingleModel.h */,
+				E3DF63EF19DA9BFF00D05E6F /* GeventSingleModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E39E4D6119DA04F500AEA2F6 /* GImages */ = {
+			isa = PBXGroup;
+			children = (
+				E33D677419DA7C400070D207 /* tixiang-jiantouLeft@2x.png */,
+				E33D677219DA7B9E0070D207 /* tixiang-jiantou-16_26@2x.png */,
+				E39E4D7019DA04F500AEA2F6 /* btn_grid@2x.png */,
+				E39E4D7119DA04F500AEA2F6 /* btn_grid_cell@2x.png */,
+				E39E4D7219DA04F500AEA2F6 /* btn_grid_cell_highlight@2x.png */,
+				E39E4D7319DA04F500AEA2F6 /* btn_grid_cell_selected@2x.png */,
+				E39E4D7419DA04F500AEA2F6 /* btn_grid_highlight@2x.png */,
+			);
+			path = GImages;
+			sourceTree = "<group>";
+		};
+		E3DF642C19DAB1A400D05E6F /* GEGORefresh */ = {
+			isa = PBXGroup;
+			children = (
+				E3DF643A19DAB22C00D05E6F /* GRefreshTableView.m */,
+				E3DF643B19DAB22C00D05E6F /* GRefreshTableView.h */,
+				E3DF642D19DAB1A400D05E6F /* bluedown@2x.png */,
+				E3DF642E19DAB1A400D05E6F /* blueup@2x.png */,
+				E3DF642F19DAB1A400D05E6F /* GEGORefreshTableFooterView.h */,
+				E3DF643019DAB1A400D05E6F /* GEGORefreshTableFooterView.m */,
+				E3DF643119DAB1A400D05E6F /* GEGORefreshTableHeaderView.h */,
+				E3DF643219DAB1A400D05E6F /* GEGORefreshTableHeaderView.m */,
+				E3DF643319DAB1A400D05E6F /* GloadingView.h */,
+				E3DF643419DAB1A400D05E6F /* GloadingView.m */,
+			);
+			path = GEGORefresh;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -4060,6 +4334,7 @@
 				19960CCC196A80D6000121AA /* title_bj_hd@2x.png in Resources */,
 				199C00BB195AAD1D00F74F7C /* group_default@2x.png in Resources */,
 				199C0159195AAD1D00F74F7C /* userarticle_commenttxt.9@2x.png in Resources */,
+				E33D677519DA7C400070D207 /* tixiang-jiantouLeft@2x.png in Resources */,
 				199C012C195AAD1D00F74F7C /* task_chat_btn@2x.png in Resources */,
 				3E7BAE5719D18F35002E28A1 /* guke_tab_out@2x.png in Resources */,
 				199C0165195AAD1D00F74F7C /* voice_to_short@2x.png in Resources */,
@@ -4071,10 +4346,13 @@
 				199C00C0195AAD1D00F74F7C /* group_sms@2x.png in Resources */,
 				19960CE9196A80D6000121AA /* voice_L1@2x.png in Resources */,
 				199C007E195AAD1D00F74F7C /* back01@2x.png in Resources */,
+				E39E4D5819DA04DE00AEA2F6 /* ITTBaseCalendarGridView.xib in Resources */,
 				199C00C6195AAD1D00F74F7C /* ic_more_item_bottom_default.9@2x.png in Resources */,
+				E39E4D8A19DA04F500AEA2F6 /* btn_grid@2x.png in Resources */,
 				3E7BAE5419D18F35002E28A1 /* guke_share_weixin@2x.png in Resources */,
 				19960CDB196A80D6000121AA /* chatto_bg_voice_playing@2x.png in Resources */,
 				3E7BAE2019D18F35002E28A1 /* guke_icon_unread@2x.png in Resources */,
+				E3DF643519DAB1A400D05E6F /* bluedown@2x.png in Resources */,
 				3E7BAE2E19D18F35002E28A1 /* guke_loading_5@2x.png in Resources */,
 				199C0093195AAD1D00F74F7C /* call@2x.png in Resources */,
 				199C0113195AAD1D00F74F7C /* share_weixingroup@2x.png in Resources */,
@@ -4169,6 +4447,7 @@
 				3E7BADAC19D18F35002E28A1 /* guke_back_icon@2x.png in Resources */,
 				19960CC2196A80D6000121AA /* button_right_select@2x.png in Resources */,
 				1977B50119C8447800D504A7 /* produce@2x.png in Resources */,
+				565DAE6219DAAE8000C3924D /* TDDetailCell.xib in Resources */,
 				199C0108195AAD1D00F74F7C /* set_usercheck@2x.png in Resources */,
 				3E7BADF319D18F35002E28A1 /* guke_ic_addphoto@2x.png in Resources */,
 				3E7BADA919D18F35002E28A1 /* guke_amp7@2x.png in Resources */,
@@ -4186,6 +4465,7 @@
 				3EEB7EF619A5EF3300ED4ABA /* friend_phone_ico@2x.png in Resources */,
 				3E7BAE4B19D18F35002E28A1 /* guke_set_usercheck@2x.png in Resources */,
 				3E7BAE2219D18F35002E28A1 /* guke_icon_word@2x.png in Resources */,
+				E39E4D8D19DA04F500AEA2F6 /* btn_grid_cell_selected@2x.png in Resources */,
 				199C00CB195AAD1D00F74F7C /* ic_more_item_top_pressed.9@2x.png in Resources */,
 				19960CE8196A80D6000121AA /* voice_L0@2x.png in Resources */,
 				3E7BADBF19D18F35002E28A1 /* guke_cal_current@2x.png in Resources */,
@@ -4195,6 +4475,7 @@
 				3E7BAE1119D18F35002E28A1 /* guke_ic_share_group@2x.png in Resources */,
 				199C0114195AAD1D00F74F7C /* switch_off@2x.png in Resources */,
 				199C008F195AAD1D00F74F7C /* button_left_select@2x.png in Resources */,
+				E39E4D5C19DA04DE00AEA2F6 /* ITTBaseCalendarViewHeaderView.xib in Resources */,
 				19960CD3196A80D6000121AA /* chatfrom_bg_voice_playing@2x.png in Resources */,
 				3E7BADDE19D18F35002E28A1 /* guke_doc@2x.png in Resources */,
 				19960CCA196A80D6000121AA /* title_bj@2x.png in Resources */,
@@ -4207,6 +4488,7 @@
 				3E7BAE5B19D18F35002E28A1 /* guke_title_bg@2x.png in Resources */,
 				3EE1043319A494920029EC5C /* return_unis_logo@2x.png in Resources */,
 				3E7BAE7719D18F35002E28A1 /* guke_voice_rcd_btn_pressed@2x.png in Resources */,
+				E39E4D5A19DA04DE00AEA2F6 /* ITTBaseCalendarViewFooterView.xib in Resources */,
 				199C0105195AAD1D00F74F7C /* set_icon@2x.png in Resources */,
 				19960CCB196A80D6000121AA /* title_bj_hd.png in Resources */,
 				3E7BADDA19D18F35002E28A1 /* guke_chatto_voice_playing_f3@2x.png in Resources */,
@@ -4231,6 +4513,7 @@
 				199C011C195AAD1D00F74F7C /* tab_middle_select_small@2x.png in Resources */,
 				3E7BADB319D18F35002E28A1 /* guke_btn_style_alert_dialog_cancel_normal@2x.png in Resources */,
 				3E7BAE3719D18F35002E28A1 /* guke_menuicon_edit@2x.png in Resources */,
+				565DAE5419DA7FC800C3924D /* TDListCell.xib in Resources */,
 				3E1EFFCB1980AB9D008C9B8D /* PEPhotoCropEditor.bundle in Resources */,
 				19960D43196A80D6000121AA /* pagey5@2x.png in Resources */,
 				3EC2E00119B9A2A500B42351 /* amp2_new@2x.png in Resources */,
@@ -4246,6 +4529,7 @@
 				199CFD99195AA50200F74F7C /* radio_checked@2x.png in Resources */,
 				19960D54196A80D7000121AA /* newdatatoast.wav in Resources */,
 				3E7BAE6519D18F35002E28A1 /* guke_user_default_small@2x.png in Resources */,
+				E39E4D8C19DA04F500AEA2F6 /* btn_grid_cell_highlight@2x.png in Resources */,
 				3E7BAE7619D18F35002E28A1 /* guke_voice_rcd_btn_nor@2x.png in Resources */,
 				199C0151195AAD1D00F74F7C /* user_default_small_64@2x.png in Resources */,
 				3E7BADCB19D18F35002E28A1 /* guke_chatfrom_group_voice_playing_f2@2x.png in Resources */,
@@ -4278,6 +4562,7 @@
 				3E7BAE4819D18F35002E28A1 /* guke_set_icon@2x.png in Resources */,
 				3E7BAE6919D18F35002E28A1 /* guke_userarticle_chat@2x.png in Resources */,
 				3E7BADE019D18F35002E28A1 /* guke_dot_default_on@2x.png in Resources */,
+				5675CAF519D9EBE000FB975F /* NewsDetailCell.xib in Resources */,
 				19960CE4196A80D6000121AA /* type_btn_pick_photo2@2x.png in Resources */,
 				3E7BAE6319D18F35002E28A1 /* guke_type_btn_zhantie_default@2x.png in Resources */,
 				3E7BADFE19D18F35002E28A1 /* guke_ic_edit@2x.png in Resources */,
@@ -4367,6 +4652,7 @@
 				3EEB7EF519A5EF3300ED4ABA /* friend_message_ico@2x.png in Resources */,
 				3E7BADD219D18F35002E28A1 /* guke_chatting_setmode_voice_btn_normal@2x.png in Resources */,
 				3E7BADAA19D18F35002E28A1 /* guke_back01@2x.png in Resources */,
+				5675CAEA19D9CC0B00FB975F /* IndustryNewsCell.xib in Resources */,
 				199C00BD195AAD1D00F74F7C /* group_editmemo@2x.png in Resources */,
 				3E7BADD319D18F35002E28A1 /* guke_chatto_bg_focused@2x.png in Resources */,
 				199C00E2195AAD1D00F74F7C /* loading_0@2x.png in Resources */,
@@ -4417,6 +4703,7 @@
 				199C00DF195AAD1D00F74F7C /* icon_unread@2x.png in Resources */,
 				3E7BADF419D18F35002E28A1 /* guke_ic_addvideo@2x.png in Resources */,
 				3E7BAE0219D18F35002E28A1 /* guke_ic_more@2x.png in Resources */,
+				E39E4D5619DA04DE00AEA2F6 /* ITTBaseCalendarDisableGridView.xib in Resources */,
 				199C00B9195AAD1D00F74F7C /* group_check_off@2x.png in Resources */,
 				199C012D195AAD1D00F74F7C /* task_emergency@2x.png in Resources */,
 				199C00F0195AAD1D00F74F7C /* menuicon_link@2x.png in Resources */,
@@ -4512,14 +4799,18 @@
 				199C00B6195AAD1D00F74F7C /* group_bg.9@2x.png in Resources */,
 				199C012E195AAD1D00F74F7C /* task_emergency_select@2x.png in Resources */,
 				3E7BAE1D19D18F35002E28A1 /* guke_icon_menu_volume@2x.png in Resources */,
+				E39E4D8B19DA04F500AEA2F6 /* btn_grid_cell@2x.png in Resources */,
+				E3DF643619DAB1A400D05E6F /* blueup@2x.png in Resources */,
 				3E7BADC319D18F35002E28A1 /* guke_chat_btn_smallvoice@2x.png in Resources */,
 				199C0130195AAD1D00F74F7C /* task_line@2x.png in Resources */,
+				E33D677319DA7B9E0070D207 /* tixiang-jiantou-16_26@2x.png in Resources */,
 				199C0117195AAD1D00F74F7C /* tab_left_default@2x.png in Resources */,
 				3E7BADF019D18F35002E28A1 /* guke_group_searchicon@2x.png in Resources */,
 				19960CC8196A80D6000121AA /* group_middle@2x.png in Resources */,
 				199C0140195AAD1D00F74F7C /* taskop_archive@2x.png in Resources */,
 				199C00F7195AAD1D00F74F7C /* radio@2x.png in Resources */,
 				19960CEE196A80D6000121AA /* voice_R2@2x.png in Resources */,
+				E39E4D5219DA04DE00AEA2F6 /* ITTCalendarView.xib in Resources */,
 				19960CC1196A80D6000121AA /* button_right_default_small@2x.png in Resources */,
 				3E7BADDB19D18F35002E28A1 /* guke_checkin@2x.png in Resources */,
 				3E7BADDC19D18F35002E28A1 /* guke_closebtn@2x.png in Resources */,
@@ -4604,6 +4895,7 @@
 				19960D45196A80D6000121AA /* pagey7@2x.png in Resources */,
 				3E7BAE0719D18F35002E28A1 /* guke_ic_more_item_top_default@2x.png in Resources */,
 				199C0127195AAD1D00F74F7C /* task_btn_accept@2x.png in Resources */,
+				E39E4D8E19DA04F500AEA2F6 /* btn_grid_highlight@2x.png in Resources */,
 				3E7BADA619D18F35002E28A1 /* guke_amp4@2x.png in Resources */,
 				199C00F8195AAD1D00F74F7C /* radio_checked@2x.png in Resources */,
 				199C011A195AAD1D00F74F7C /* tab_left_select_small@2x.png in Resources */,
@@ -4709,6 +5001,7 @@
 				19960CAC196A80D6000121AA /* GrouplistsTableViewCell.m in Sources */,
 				3E4B255B197E1EB10061A9AE /* UINavigationItem+margin.m in Sources */,
 				199CFDF7195AA53900F74F7C /* Contactlist.m in Sources */,
+				E39E4D5519DA04DE00AEA2F6 /* ITTBaseCalendarDisableGridView.m in Sources */,
 				199CFDF9195AA53900F74F7C /* UserContact.m in Sources */,
 				19960CB0196A80D6000121AA /* LatestListModel.m in Sources */,
 				3E3785011990F9390000F8FF /* MJRefreshConst.m in Sources */,
@@ -4722,11 +5015,16 @@
 				5675CAE219D9C05100FB975F /* IndustryNewsController.m in Sources */,
 				199CFE17195AA53900F74F7C /* UIButton+AFNetworking.m in Sources */,
 				3EC2DFF519B99BF300B42351 /* WindowCustom.m in Sources */,
+				565DAE4C19DA7A7F00C3924D /* TDListViewController.m in Sources */,
 				19960D48196A80D6000121AA /* amrFileCodec.mm in Sources */,
 				19960D13196A80D6000121AA /* UIButton+WebCache.m in Sources */,
+				E39E4D5019DA04DE00AEA2F6 /* ITTCalendarScrollView.m in Sources */,
+				5675CAE819D9CBF900FB975F /* IndustryNewsCell.m in Sources */,
 				3E46C15319D2A31C00403A42 /* InformationViewController.m in Sources */,
+				E3DF63F019DA9BFF00D05E6F /* GeventSingleModel.m in Sources */,
 				199CFE15195AA53900F74F7C /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				19960CAA196A80D6000121AA /* ContactsListCell.m in Sources */,
+				E3DF643919DAB1A400D05E6F /* GloadingView.m in Sources */,
 				199CFF7D195AA5C900F74F7C /* UserDefaultsCatch.m in Sources */,
 				19960D34196A80D6000121AA /* UIImage+UIImageCircle.m in Sources */,
 				199A5B0E1980A53900976D6C /* UserAddedGroupDB.m in Sources */,
@@ -4739,14 +5037,17 @@
 				199C017F195AE08B00F74F7C /* pinyin.c in Sources */,
 				199CFDF8195AA53900F74F7C /* SingleInstance.m in Sources */,
 				19960D33196A80D6000121AA /* UIImage+fixOrientation.m in Sources */,
+				E39E4D5719DA04DE00AEA2F6 /* ITTBaseCalendarGridView.m in Sources */,
 				19960D2F196A80D6000121AA /* MBProgressHUD.m in Sources */,
 				3EE1043719A497E50029EC5C /* SetUpTableViewCellOne.m in Sources */,
 				199CFD9C195AA50200F74F7C /* RadioButton.m in Sources */,
+				5675CAF419D9EBE000FB975F /* NewsDetailCell.m in Sources */,
 				840BB22319D7AB30000A4725 /* AFURLSessionManager.m in Sources */,
 				199C0173195AD88600F74F7C /* CachatTableViewCell.m in Sources */,
 				19960CAE196A80D6000121AA /* HttpRequsetFactory.m in Sources */,
 				840BB21D19D7AB30000A4725 /* AFNetworkReachabilityManager.m in Sources */,
 				199CFE1B195AA53900F74F7C /* UIWebView+AFNetworking.m in Sources */,
+				5675CAF019D9D71C00FB975F /* IndustryNewsDetailViewController.m in Sources */,
 				198BBF1D19B83FD6000FBC75 /* LoadToLocal.m in Sources */,
 				3E6F1E42196CD52400796B17 /* BlockButton.m in Sources */,
 				3E46C15019D2A2F200403A42 /* MedicalViewController.m in Sources */,
@@ -4756,10 +5057,13 @@
 				3E37846E199092150000F8FF /* InferiorsTableViewCell.m in Sources */,
 				19A069471970C6D000830898 /* GroupIfo.m in Sources */,
 				198F8A441961653800B3F09C /* QiDiPopoverView.m in Sources */,
+				E39E4D6019DA04DE00AEA2F6 /* ITTCalMonth.m in Sources */,
 				197ABFF71973EE9E00FC6A24 /* contentAndGood.m in Sources */,
+				565DAE6119DAAE8000C3924D /* TDDetailCell.m in Sources */,
 				840BB22719D7AB30000A4725 /* Reachability.m in Sources */,
 				197ABFED197388AC00FC6A24 /* FriendCircleTableViewCell.m in Sources */,
 				19960D02196A80D6000121AA /* SBJsonStreamParserAdapter.m in Sources */,
+				565DAE4919DA739900C3924D /* TopicDiscussViewController.m in Sources */,
 				3E1EFFCE1980AB9D008C9B8D /* PECropViewController.m in Sources */,
 				1958D95C1975714B00578A10 /* PostMoodViewController.m in Sources */,
 				3E46C15919D2BC0000403A42 /* CreatMedicalViewController.m in Sources */,
@@ -4777,8 +5081,10 @@
 				19960D28196A80D6000121AA /* PSCollectionView.m in Sources */,
 				1957C5E6197929BB00043F19 /* CommentTableViewCell.m in Sources */,
 				19A87FB71995B9A8009404F3 /* FriendContentView.m in Sources */,
+				E30769C419D9C5A200333B7E /* GcalendarViewController.m in Sources */,
 				19960CF2196A80D6000121AA /* ASIDataDecompressor.m in Sources */,
 				1957C5E01978F71100043F19 /* CommentCollectionView.m in Sources */,
+				E3DF643819DAB1A400D05E6F /* GEGORefreshTableHeaderView.m in Sources */,
 				19960CAD196A80D6000121AA /* GroupsViewController.m in Sources */,
 				3EBCF9A219B56AFD00D76C37 /* FriendCircleDetailContentViewCell.m in Sources */,
 				199964A4195D82C5006C84CC /* ApkVersion.m in Sources */,
@@ -4810,12 +5116,16 @@
 				199C017E195AE08B00F74F7C /* ChineseString.m in Sources */,
 				3E1EFFCD1980AB9D008C9B8D /* PECropView.m in Sources */,
 				19996494195D3E1A006C84CC /* RemindViewController.m in Sources */,
+				E39E4D4F19DA04DE00AEA2F6 /* ITTCalendarGridView.m in Sources */,
 				193ED7F6197F8552000C5009 /* UserInfoDB.m in Sources */,
 				19960CFF196A80D6000121AA /* SBJsonParser.m in Sources */,
+				E39E4D5F19DA04DE00AEA2F6 /* ITTCalDay.m in Sources */,
 				199CFE1A195AA53900F74F7C /* UIRefreshControl+AFNetworking.m in Sources */,
 				840BB22019D7AB30000A4725 /* AFURLConnectionOperation.m in Sources */,
 				840BB21A19D7AB30000A4725 /* AFHTTPRequestOperationManager.m in Sources */,
+				E39E4D5D19DA04DE00AEA2F6 /* ITTBaseDataSourceImp.m in Sources */,
 				3EEB7EE719A5D08600ED4ABA /* RemindTableViewCellOneTableViewCell.m in Sources */,
+				E3DF643C19DAB22C00D05E6F /* GRefreshTableView.m in Sources */,
 				3E6BA42319D5080700A891EB /* SolveReasonCell.m in Sources */,
 				19960CB1196A80D6000121AA /* RSSwitch.m in Sources */,
 				1971CB91197E4F9500165755 /* SqliteClass.m in Sources */,
@@ -4823,6 +5133,8 @@
 				3E46C16719D2E43E00403A42 /* InfoDetailViewController.m in Sources */,
 				19960D52196A80D7000121AA /* LLRecordVoiceViewController.m in Sources */,
 				199F1B5419BEAF4000750258 /* UserCenter.m in Sources */,
+				5675CAED19D9D35300FB975F /* SNTools.m in Sources */,
+				565DAE5319DA7FC800C3924D /* TDListCell.m in Sources */,
 				19960CAB196A80D6000121AA /* ContactsListViewController.m in Sources */,
 				199CFDFA195AA53900F74F7C /* UserIfo.m in Sources */,
 				3951C91819D11CC10040B07E /* FMResultSet.m in Sources */,
@@ -4838,6 +5150,7 @@
 				19960D0A196A80D6000121AA /* MKAnnotationView+WebCache.m in Sources */,
 				19960CFE196A80D6000121AA /* NSObject+SBJson.m in Sources */,
 				8458B80619D94EA50083B4AC /* BubbleCell.m in Sources */,
+				565DAE5D19DA9C6B00C3924D /* AttachListModel.m in Sources */,
 				1977B50619C84D9B00D504A7 /* AboutProduceViewController.m in Sources */,
 				3E4B255E197E3B490061A9AE /* AddNewColleagueViewController.m in Sources */,
 				19975B0B19767EE800ADF199 /* MBButtonMenuViewController.m in Sources */,
@@ -4847,7 +5160,6 @@
 				19996490195D3E1A006C84CC /* SetUpViewController.m in Sources */,
 				840BB22219D7AB30000A4725 /* AFURLResponseSerialization.m in Sources */,
 				19960CA9196A80D6000121AA /* ContactsItem.m in Sources */,
-				E307699619D9C35300333B7E /* GcalendarViewController.m in Sources */,
 				19DAE965196D37CD00FE7187 /* GroupMemberList.m in Sources */,
 				19DAE968196D517F00FE7187 /* MyCollectionViewCell.m in Sources */,
 				1977B50919C84DB300D504A7 /* PrivatPoliceViewController.m in Sources */,
@@ -4888,12 +5200,14 @@
 				197ABFF41973EDC800FC6A24 /* UserArticleList.m in Sources */,
 				199C0178195AD8A500F74F7C /* FriendsTableViewCell.m in Sources */,
 				1999647F195D252F006C84CC /* FriendDetailViewController.m in Sources */,
+				5675CAE519D9C7A600FB975F /* IndustryNewsModel.m in Sources */,
 				3EB9973019B56A0D0032D37E /* FriendCircleDetailContentTableViewCell.m in Sources */,
 				193ED7F3197F61D2000C5009 /* SqliteFieldAndTable.m in Sources */,
 				199D3E4C19DAA45400464981 /* BinglilistModels.m in Sources */,
 				3EB9972719B5683D0032D37E /* dateAndContent.m in Sources */,
 				840BB22E19D7AB72000A4725 /* AFRequestService.m in Sources */,
 				3E46C16119D2CBA100403A42 /* InformationModel.m in Sources */,
+				565DAE4F19DA7D9600C3924D /* TDListModel.m in Sources */,
 				199C016B195AD43400F74F7C /* FriendIfo.m in Sources */,
 				8458B80719D94EA50083B4AC /* VChatViewController.m in Sources */,
 				19960D17196A80D6000121AA /* UIImageView+WebCache.m in Sources */,
@@ -4903,26 +5217,36 @@
 				19996498195D3E82006C84CC /* RemindTableViewCell.m in Sources */,
 				19996491195D3E1A006C84CC /* AlterPerDetailsViewController.m in Sources */,
 				3EA2D6BC19835F3B0088E522 /* HPTextViewInternal.m in Sources */,
+				E39E4D5419DA04DE00AEA2F6 /* ITTCalendarViewHeaderView.m in Sources */,
+				E39E4D5919DA04DE00AEA2F6 /* ITTBaseCalendarViewFooterView.m in Sources */,
 				3E5C48B91985F35B00F8EC73 /* FriendCircleDetailViewController.m in Sources */,
 				3E765BAA197FA46D00B1BC7F /* UIImage+UIImageScale.m in Sources */,
 				19960CAF196A80D6000121AA /* ImageCache.m in Sources */,
 				1957C5E31979258D00043F19 /* CommentTableView.m in Sources */,
+				E39E4D5319DA04DE00AEA2F6 /* ITTCalendarViewFooterView.m in Sources */,
 				3951C91619D11CC10040B07E /* FMDatabasePool.m in Sources */,
 				199CFE14195AA53900F74F7C /* AFNetworkActivityIndicatorManager.m in Sources */,
 				19960CF1196A80D6000121AA /* ASIDataCompressor.m in Sources */,
 				19960D53196A80D7000121AA /* VoiceRecorderBaseVC.m in Sources */,
 				8458B80A19D953020083B4AC /* Toolbar.m in Sources */,
 				1957C5DD1978F24600043F19 /* CommentView.m in Sources */,
+				E3076A8419D9D4B400333B7E /* GcalendarDetailViewController.m in Sources */,
+				E39E4D5B19DA04DE00AEA2F6 /* ITTBaseCalendarViewHeaderView.m in Sources */,
 				19960D0C196A80D6000121AA /* SDImageCache.m in Sources */,
+				565DAE5719DA86C500C3924D /* TDDetailViewController.m in Sources */,
 				840BB22D19D7AB72000A4725 /* AFNetAPIClient.m in Sources */,
 				19960D1E196A80D6000121AA /* PullPsCollectionView.m in Sources */,
+				565DAE5A19DA9BCD00C3924D /* ReplyListModel.m in Sources */,
+				E39E4D5E19DA04DE00AEA2F6 /* CalendarDateUtil.m in Sources */,
 				840BB21F19D7AB30000A4725 /* AFSecurityPolicy.m in Sources */,
 				19A87FB41995B941009404F3 /* FriendCircleHomeTableViewCell.m in Sources */,
 				19960D12196A80D6000121AA /* SDWebImagePrefetcher.m in Sources */,
 				199CFD57195AA48300F74F7C /* main.m in Sources */,
 				19960CF5196A80D6000121AA /* ASIHTTPRequest.m in Sources */,
+				E3DF643719DAB1A400D05E6F /* GEGORefreshTableFooterView.m in Sources */,
 				19960D05196A80D6000121AA /* SBJsonStreamWriterAccumulator.m in Sources */,
 				19960D4D196A80D7000121AA /* ChatRecorderView.m in Sources */,
+				E39E4D5119DA04DE00AEA2F6 /* ITTCalendarView.m in Sources */,
 				3E67F49919D3CE89001B0880 /* InformationDetailModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5002,8 +5326,13 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+
 				ONLY_ACTIVE_ARCH = NO;
 				PROVISIONING_PROFILE = "db5d35fa-89e9-42b3-ad18-97734e7f3484";
+
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "663bce84-31f1-462e-a50d-ebbe7bacfbf5";
+
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -5038,8 +5367,13 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+
 				ONLY_ACTIVE_ARCH = NO;
 				PROVISIONING_PROFILE = "db5d35fa-89e9-42b3-ad18-97734e7f3484";
+
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "663bce84-31f1-462e-a50d-ebbe7bacfbf5";
+
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -5058,14 +5392,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GUKE/GUKE-Prefix.pch";
 				INFOPLIST_FILE = "GUKE/GUKE-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GUKE/Chat/modules/VoiceRecorder/VoiceConvert/lib",
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = GUKE;
-				PROVISIONING_PROFILE = "db5d35fa-89e9-42b3-ad18-97734e7f3484";
+				PROVISIONING_PROFILE = "663bce84-31f1-462e-a50d-ebbe7bacfbf5";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				VALID_ARCHS = "armv7 armv7s";
@@ -5085,14 +5419,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "GUKE/GUKE-Prefix.pch";
 				INFOPLIST_FILE = "GUKE/GUKE-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GUKE/Chat/modules/VoiceRecorder/VoiceConvert/lib",
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = GUKE;
-				PROVISIONING_PROFILE = "db5d35fa-89e9-42b3-ad18-97734e7f3484";
+				PROVISIONING_PROFILE = "663bce84-31f1-462e-a50d-ebbe7bacfbf5";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
 				VALID_ARCHS = "armv7 armv7s";

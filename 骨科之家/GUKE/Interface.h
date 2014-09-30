@@ -13,6 +13,11 @@
 #import "UserInfoDB.h"
 #import "AFRequestService.h"
 #import "UserDefaultsCatch.h"
+#import "UIImageView+WebCache.h"
+#import "SNTools.h"
+#import "PullTableView.h"
+#import "MBProgressHUD.h"
+
 //#define IMAGE_BASE_URL @"http://thunisoa.931.com/upload/"// 图片的链接固定部分
 //
 //#define BASE_URL               @"http://thunisoa.931.com/webservices/" // 主机地址
@@ -78,16 +83,33 @@
 #pragma mark - 屏幕宽度
 #define DEVICE_WIDTH  [UIScreen mainScreen].bounds.size.width
 #pragma mark - 屏幕高度
-#define DEVICE_HEIGHT [UIScreen mainScreen].bounds.size.height-64
+#define DEVICE_HEIGHT [UIScreen mainScreen].bounds.size.height
 
 #pragma mark - 业界动态接口
 #define INDUSTRY_NEWS_URL @"dongtailist.php"
+#pragma mark - 动态正文
+#define INDUSTRY_NEWS_DETAIL_URL @"dongtai.php"
+#pragma mark - 主题分类接口
+#define TOPIC_DISCUSS_TYPE_URL @"zhutitypelist.php"
+#pragma mark - 主题列表接口
+#define TOPIC_DISCUSS_LIST_URL @"zhutilist.php"
+#pragma mark - 主题正文接口
+#define TOPIC_DISCUSS_DETAIL_URL @"zhuti.php"
+#pragma mark - 主题评论接口
+#define TOPIC_DISCUSS_COMMENT_URL @"zhutireplylist.php"
+
+
 
 #pragma mark -病历列表
 #define BINGLI_LIST @"binglilist.php"
 
 
 
+#pragma mark - gm
+#pragma mark - 日历活动
+#define CALENDAR_ACTIVITIES @"eventstatus.php"
+#pragma mark - 活动列表
+#define CALENDAR_ACTIVITIESTABLEVIEW @"eventlist.php"
 
 // 请求参数
 #define REQUEST_PATAMETER  @{@"userId": [NSString stringWithFormat:@"%d",((User_Model*)[[SingleInstance shareManager].objecAarray firstObject]).userId],@"sid": ((User_Model*)[[SingleInstance shareManager].objecAarray firstObject]).sid}

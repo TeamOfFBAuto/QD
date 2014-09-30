@@ -9,60 +9,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "fb/soulnear/SNControllers/IndustryNewsController.m"
-            timestampString = "433702317.673792"
+            filePath = "GUKE/Controllers/InformationLibrary/CreatNewInfoViewController.m"
+            timestampString = "433761520.634836"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "-getIndustryNewsData"
+            startingLineNumber = "358"
+            endingLineNumber = "358"
+            landmarkName = "-gestureRecognizerHandle:"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "fb/soulnear/SNControllers/IndustryNewsController.m"
-            timestampString = "433702343.500045"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "-getIndustryNewsData"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[IndustryNewsController getIndustryNewsData]"
-                  moduleName = "GUKE"
-                  urlString = "file:///Users/soulnear/Desktop/%E6%A1%8C%E9%9D%A2/%E6%88%91%E7%9A%84%E5%B7%A5%E7%A8%8B/%E9%AA%A8%E7%A7%91%E4%B8%93%E5%AE%B6/app/QD/%E9%AA%A8%E7%A7%91%E4%B9%8B%E5%AE%B6/fb/soulnear/SNControllers/IndustryNewsController.m"
-                  timestampString = "433702343.506626"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "30"
-                  endingLineNumber = "30"
-                  offsetFromSymbolStart = "514">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__45-[IndustryNewsController getIndustryNewsData]_block_invoke"
-                  moduleName = "GUKE"
-                  urlString = "file:///Users/soulnear/Desktop/%E6%A1%8C%E9%9D%A2/%E6%88%91%E7%9A%84%E5%B7%A5%E7%A8%8B/%E9%AA%A8%E7%A7%91%E4%B8%93%E5%AE%B6/app/QD/%E9%AA%A8%E7%A7%91%E4%B9%8B%E5%AE%B6/fb/soulnear/SNControllers/IndustryNewsController.m"
-                  timestampString = "433702343.507018"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "30"
-                  endingLineNumber = "30"
-                  offsetFromSymbolStart = "26">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
