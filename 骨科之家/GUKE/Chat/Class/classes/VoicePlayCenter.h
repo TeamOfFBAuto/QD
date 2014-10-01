@@ -7,6 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+typedef enum {
+    Play_chat = 0,
+    Play_other
+}playVoice;
 typedef void(^stopBlock)();
 @class PlayerModel;
 @protocol VoicePlayCenterDelegate;
@@ -14,7 +18,7 @@ typedef void(^stopBlock)();
     id <VoicePlayCenterDelegate> _playDelegate;
 }
 @property (nonatomic,assign) id <VoicePlayCenterDelegate> playDelegate;
-
+@property (nonatomic,assign)playVoice playType;
 + (VoicePlayCenter *)sharedEnglishVoice;
 // 这儿使用 fid 回传判断并不是一种好得方式 如果后台返回得多条数据使用了同一个fid文件 那么就会乱掉 最好加一个 唯一得fid 判断 这个值才是 数据唯一性得判断值 而不用fid来判断
 - (void)downloadPlayVoice:(PlayerModel *)fid;

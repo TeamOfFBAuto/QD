@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "GroupList.h"
+#import "AppDelegate.h"
 #import "MBProgressHUD.h"
 @interface GroupMemberListViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegate,MBProgressHUDDelegate,UITextFieldDelegate>
 @property (nonatomic, strong)GroupList *groupModel;

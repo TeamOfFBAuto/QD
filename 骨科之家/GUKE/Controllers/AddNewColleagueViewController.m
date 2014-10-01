@@ -47,6 +47,7 @@
 {
     UIView *view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame];
     view.backgroundColor = [UIColor whiteColor];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view = view;
 }
 
@@ -63,7 +64,7 @@
     bgNavi.backgroundColor = [UIColor clearColor];
     bgNavi.userInteractionEnabled = YES;
     
-    UIImageView *logoView = [[UIImageView alloc]initWithImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"return_unis_logo@2x" ofType:@"png"]]];
+    UIImageView *logoView = [[UIImageView alloc]initWithImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"guke_top_logo_arrow@2x" ofType:@"png"]]];
     
     logoView.backgroundColor = [UIColor clearColor];
     logoView.frame = CGRectMake(0, 0, 44, 44);
@@ -190,9 +191,16 @@
     cell.backgroundColor = [UIColor clearColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.model = [_dataArray objectAtIndex:indexPath.row];
+    NSInteger count = [_dataArray count];
     cell.block = ^(){
-        [self.navigationController popViewControllerAnimated:YES];
-    
+        if (count > 1) {
+            [self requestData];
+            
+        }
+        // 在审核过最后一个好友申请之后，调到父级页面
+        else{
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     };
 
     return cell;

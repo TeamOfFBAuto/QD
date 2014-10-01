@@ -36,6 +36,7 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     [self navigetion];
     [self creatUI];
 }
@@ -87,13 +88,7 @@
 }
 - (void)creatUI
 {
-    if (IOS7_LATER) {
-        head_bg = [[UIView alloc]initWithFrame:CGRectMake(0, 0, viewSize.width, 40)];
-        
-    }
-    else{
-        head_bg = [[UIView alloc]initWithFrame:CGRectMake(0, 0, viewSize.width, 40)];
-    }
+    head_bg = [[UIView alloc]initWithFrame:CGRectMake(0, 0, viewSize.width, 40)];
     [head_bg setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"home_head"]]];
     
     UIButton *right_searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];

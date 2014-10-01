@@ -17,6 +17,7 @@ UILabel *_userNameLabel;
 }
 @property(nonatomic, strong)CheckBox *checkBox;
 @property(nonatomic, strong)UIImageView *imgView;
+@property(nonatomic, strong)UIButton *checkTitle;
 @property(nonatomic, strong)UILabel *nameLabel;
 @property(nonatomic, strong)UILabel *userNameLabel;
 @end

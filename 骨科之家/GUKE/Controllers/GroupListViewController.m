@@ -53,8 +53,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    
-    [self getGroupList];
+    [self writeServerToLocal];
 }
 - (void)viewDidLoad
 {
@@ -69,7 +68,7 @@
     bgNavi.backgroundColor = [UIColor clearColor];
     bgNavi.userInteractionEnabled = YES;
     
-    UIImageView *logoView = [[UIImageView alloc]initWithImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"return_unis_logo@2x" ofType:@"png"]]];
+    UIImageView *logoView = [[UIImageView alloc]initWithImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"guke_top_logo_arrow@2x" ofType:@"png"]]];
     
     logoView.backgroundColor = [UIColor clearColor];
     logoView.frame = CGRectMake(0, 0, 44, 44);
@@ -245,38 +244,20 @@
     [groupList removeAllObjects];
     [groupList addObjectsFromArray:[UserAddedGroupDB selectFeildString:nil andcuId:GET_USER_ID]];
     [_tableView reloadData];
-    [self tableHeight];
     [HUD hide:YES];
 }
-// 动态确定tableView的高度
-- (void)tableHeight
-{
-    if (IOS7_LATER) {
-        if (([groupList count]+1)*55 < viewSize.height-64) {
-            _tableView.frame = CGRectMake(_tableView.frame.origin.x, _tableView.frame.origin.y, _tableView.frame.size.width, ([groupList count]+1)*55+5);
-        }
-        else{
-            _tableView.frame = CGRectMake(_tableView.frame.origin.x, _tableView.frame.origin.y, _tableView.frame.size.width, viewSize.height-64+5);
-        }
-        
-    }
-//    else if (currentDev1)
-//    {
-//        if (([groupList count]+1)*50 < viewSize.height) {
-//            _tableView.frame = CGRectMake(_tableView.frame.origin.x, _tableView.frame.origin.y, _tableView.frame.size.width, ([groupList count]+1)*50);
-//        }
-//        else{
-//            _tableView.frame = CGRectMake(_tableView.frame.origin.x, _tableView.frame.origin.y, _tableView.frame.size.width, viewSize.height);
-//        }
-//    }
-    else{
-        if (([groupList count]+1)*55 < viewSize.height-44) {
-            _tableView.frame = CGRectMake(_tableView.frame.origin.x, _tableView.frame.origin.y, _tableView.frame.size.width, ([groupList count]+1)*55+5);
-        }
-        else{
-            _tableView.frame = CGRectMake(_tableView.frame.origin.x, _tableView.frame.origin.y, _tableView.frame.size.width, viewSize.height-44+5);
-        }
-    }
+// 开辟子线程把服务器上的数据写到本地数据库中 同事加载本地数据
+- (void)writeServerToLocal{
+    // 后台执行加载数据
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        SqliteFieldAndTable *sqliteAndtable = [[SqliteFieldAndTable alloc]init];
+        [sqliteAndtable getGroupInfo];
+        sqliteAndtable = nil;
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [self getGroupList];
+        });
+    });
+    
 }
 #pragma mark ====== TableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
