@@ -16,7 +16,8 @@
 ///弹出一个提示浮层，1.5秒后自动消失
 + (void)showMBProgressWithText:(NSString *)text addToView:(UIView *)aView;
 
-
+///返回一个NSUrl
++(NSURL *)returnUrl:(NSString *)url;
 
 
 

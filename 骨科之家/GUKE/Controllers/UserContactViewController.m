@@ -35,7 +35,7 @@
 #import "InformationViewController.h"
 #import "GcalendarViewController.h"
 #import "IndustryNewsController.h"
-
+#import "TopicDiscussViewController.h"
 
 #define TOP_CHAT_TAG 12345678
 #define CACLETOP_CHAT_TAG 123456789
@@ -1090,7 +1090,7 @@
     }else{
         cell.accessoryType =  UITableViewCellAccessoryNone;
         model = (UserContact *)[UserContactArray objectAtIndex:indexPath.row-4];
-        cell.nameLabel.text = model.contactName;
+        cell.nameLabel.text = [NSString _859ToUTF8:model.contactName];
         cell.nameLabel.backgroundColor = [UIColor clearColor];
         cell.timeLable.text = [SingleInstance handleDate:model.creatDate];
         if ([model.contactType isEqualToString:ORDINARY_GROUP_CODE]) {
@@ -1165,6 +1165,9 @@
         SSRCRelease(vc)
     }else if (indexPath.row == 1)//主题讨论
     {
+        TopicDiscussViewController * topic = [[TopicDiscussViewController alloc] init];
+        
+        [self.navigationController pushViewController:topic animated:YES];
         
     }else if (indexPath.row == 2)//会议日程
     {
@@ -1174,17 +1177,29 @@
         [self.navigationController pushViewController:gCalendarVC animated:YES];
         
         
-    }else if (indexPath.row == 3) {
+    }else if (indexPath.row == 3)// 聊天广场
+    {
+        
         VChatViewController *vc = [[VChatViewController alloc] init];
-        UserContact *model = (UserContact *)[UserContactArray objectAtIndex:indexPath.row-3];
+        UserContact *model = (UserContact *)[UserContactArray lastObject];
+        vc.recvFirstName = LOCALIZATION(@"chat_expressname");
+        vc.recvName = [NSString _859ToUTF8:model.contactUsername];
+        vc.type = VChatType_VC;
+        [self.navigationController pushViewController:vc animated:YES];
+        SSRCRelease(vc)
+       
+    }else
+    {
+        VChatViewController *vc = [[VChatViewController alloc] init];
+        UserContact *model = (UserContact *)[UserContactArray objectAtIndex:indexPath.row-4];
         // 未读数据清零
         model.lastMsgNum = @"0";
         // 个人聊天
         if ([model.contactType isEqualToString:ORDINARY_USER_CODE]) {
             vc.type = VChatType_pChat;
             vc.recvId = [NSNumber numberWithInt:[model.contactId intValue]];
-            vc.recvName = model.contactUsername;
-            vc.recvFirstName = model.contactName;
+            vc.recvName = [NSString _859ToUTF8:model.contactUsername];
+            vc.recvFirstName = [NSString _859ToUTF8:model.contactName];
         }
         // 群组聊天
         else if ([model.contactType isEqualToString:ORDINARY_GROUP_CODE]){
@@ -1192,32 +1207,23 @@
             if ([model.groupType isEqualToString:GROUPTYPE_NORMAL_CODE]) {
                 vc.type = VChatType_pGroup;
                 vc.recvId = [NSNumber numberWithInt:[model.contactId intValue]];
-                vc.recvName = model.contactUsername;
-                vc.recvFirstName = model.contactName;
+                vc.recvName = [NSString _859ToUTF8:model.contactUsername];
+                vc.recvFirstName = [NSString _859ToUTF8:model.contactName];
             }
             else if ([model.groupType isEqualToString:GROUPTYPE_SYSTEM_CODE]){
                 vc.type = VChatType_pGroup;
                 vc.recvId = [NSNumber numberWithInt:[model.contactId intValue]];
-                vc.recvFirstName = model.contactName;
+                vc.recvFirstName = [NSString _859ToUTF8:model.contactName];
             }
             else{
                 return;
             }
-        
+            
         }
         else{
             
         }
         
-        [self.navigationController pushViewController:vc animated:YES];
-        SSRCRelease(vc)
-    }else// 聊天广场
-    {
-        VChatViewController *vc = [[VChatViewController alloc] init];
-         UserContact *model = (UserContact *)[UserContactArray lastObject];
-        vc.recvFirstName = LOCALIZATION(@"chat_expressname");
-        vc.recvName = model.contactUsername;
-        vc.type = VChatType_VC;
         [self.navigationController pushViewController:vc animated:YES];
         SSRCRelease(vc)
     }
@@ -1226,7 +1232,7 @@
     
 }
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-     if (indexPath == 0) {
+     if (indexPath.row <= 3) {
          return NO;
      }
      else{
@@ -1236,7 +1242,7 @@
 //打开编辑模式后，默认情况下每行左边会出现红的删除按钮，这个方法就是关闭这些按钮的
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView
            editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath == 0) {
+    if (indexPath.row <= 3) {
          return UITableViewCellEditingStyleNone;
     }
     else{
@@ -1244,7 +1250,7 @@
     }
 }
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
+    if (indexPath.row <= 3) {
         return;
     }
     else{

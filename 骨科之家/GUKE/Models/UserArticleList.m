@@ -17,6 +17,7 @@
         self.goodArray = [[NSMutableArray alloc]init];
         self.allCommentArray = [[NSMutableArray alloc]init];
         self.allGoodArray = [[NSMutableArray alloc]init];
+        self.attachlistArray = [[NSMutableArray alloc] init];
     }
     return self;
 }

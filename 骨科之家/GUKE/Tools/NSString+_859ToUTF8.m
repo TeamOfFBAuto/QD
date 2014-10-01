@@ -11,6 +11,9 @@
 @implementation NSString (_859ToUTF8)
 + (NSString *)_859ToUTF8:(NSString *)oldStr
 {
+    if (oldStr.length == 0 || [oldStr isKindOfClass:[NSNull class]]) {
+        return oldStr;
+    }
     NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingISOLatin1);
     
     return [NSString stringWithUTF8String:[oldStr cStringUsingEncoding:enc]];

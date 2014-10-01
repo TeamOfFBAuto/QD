@@ -32,7 +32,10 @@
     [hud hide:YES afterDelay:1.5];
 }
 
-
++(NSURL *)returnUrl:(NSString *)url
+{
+    return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_BASE_URL,url]];
+}
 
 
 

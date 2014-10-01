@@ -24,6 +24,8 @@
 @property(nonatomic, strong)NSMutableArray *goodArray;
 @property(nonatomic, strong)NSMutableArray *allCommentArray;
 @property(nonatomic, strong)NSMutableArray *allGoodArray;
+///多个文件
+@property(nonatomic,strong)NSMutableArray * attachlistArray;
 @property(nonatomic, strong)NSString *iconUrl;
 
 @end

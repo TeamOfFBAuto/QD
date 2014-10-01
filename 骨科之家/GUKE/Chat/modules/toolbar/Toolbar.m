@@ -156,12 +156,13 @@
     CGColorSpaceRef colorSpace2 = CGColorSpaceCreateDeviceRGB();
     CGColorRef colorref2 = CGColorCreate(colorSpace2,(CGFloat[]){ 0.5, 0.5, 0.5, 1 });
     [recordBtn.layer setBorderColor:colorref2];//边框颜色
+    [self addSubview:recordBtn];
     
     UILabel *label = [[UILabel alloc] init];
     label.frame = CGRectMake(220/2-80/2-10, 3, 80, 30);
     label.backgroundColor = [UIColor clearColor];
     label.text = @"按住说话";
-    label.userInteractionEnabled = YES;
+    label.userInteractionEnabled = NO;
     [label setTextColor:[UIColor grayColor]];
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:14.0f];

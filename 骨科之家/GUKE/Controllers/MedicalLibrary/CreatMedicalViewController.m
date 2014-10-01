@@ -9,6 +9,12 @@
 #import "CreatMedicalViewController.h"
 
 @interface CreatMedicalViewController ()
+{
+    ///存放条件数据
+    NSMutableArray * content_array;
+    
+    
+}
 // 自定义导航栏
 - (void)loadNavigation;
 @end
@@ -35,6 +41,11 @@
 {
     [super viewDidLoad];
     [self loadNavigation];
+    
+    content_array = [NSMutableArray arrayWithObjects:@"姓名",@"性别",@"就诊时间",@"诊断",@"病人手机号",@"家属手机号",@"病历号",@"身份证号",@"标记编号",nil];
+    
+    
+    
 }
 
 // 导航的设置
@@ -93,9 +104,6 @@
     _mainTableView.delegate=self;
     _mainTableView.dataSource=self;
     [self.view addSubview:_mainTableView];
-    
-    
-    
 }
 
 // 手势事件
@@ -110,6 +118,16 @@
     NSLog(@"点击提交按钮");
 }
 
+
+#pragma mark - 加载头视图
+-(void)loadSectionView
+{
+    CGRect viewFrame = CGRectMake(0,0,DEVICE_WIDTH,0);
+    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,0)];
+    
+    
+    
+}
 
 
 #pragma mark-tableviewdelegateAndDatesource
