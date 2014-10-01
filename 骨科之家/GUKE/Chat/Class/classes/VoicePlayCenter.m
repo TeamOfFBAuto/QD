@@ -44,6 +44,7 @@ static VoicePlayCenter *sharInstance;
     if (self) {
         self.downQueue = [[[NSOperationQueue alloc] init] autorelease];
         self.downQueue.maxConcurrentOperationCount = 4;
+        self.playType = Play_other;
     }
     return self;
 }
@@ -165,14 +166,18 @@ static VoicePlayCenter *sharInstance;
 }
 #pragma mark player delegate
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
-    if (self.playDelegate && [self.playDelegate respondsToSelector:@selector(stopPlayVoice:)]) {
-        [self.playDelegate stopPlayVoice:self.playerModel];
+    if (self.playType == Play_chat) {
+        if (self.playDelegate && [self.playDelegate respondsToSelector:@selector(stopPlayVoice:)]) {
+            [self.playDelegate stopPlayVoice:self.playerModel];
+        }
+        [player stop];
+        self.playerModel = nil;
+        self.playerWaitModel = nil;
+        self.player = nil;
     }
-    [player stop];
+    else if(self.playType == Play_other){
     self.block();
-    self.playerModel = nil;
-    self.playerWaitModel = nil;
-    self.player = nil;
+    }
 }
 - (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError *)error{
     if (self.playDelegate && [self.playDelegate respondsToSelector:@selector(stopPlayVoice:)]) {

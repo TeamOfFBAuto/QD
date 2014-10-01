@@ -29,6 +29,7 @@
 #import "SqliteFieldAndTable.h"
 
 #import "UserLoginViewController.h"
+static CGPoint offset;
 
 @interface FriendListViewController ()
 {
@@ -49,6 +50,7 @@
 @end
 
 @implementation FriendListViewController
+// dealloc
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:PUSH_NEW object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:IS_DATACHANG object:nil];
@@ -143,13 +145,13 @@
     UIView *leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
     leftView.backgroundColor = [UIColor clearColor];
     
-    UIImageView *logoView = [[UIImageView alloc]initWithImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"guke_top_logo@2x" ofType:@"png"]]];
+    UIImageView *logoView = [[UIImageView alloc]initWithImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"unis_logo@2x" ofType:@"png"]]];
     
-    logoView.frame = CGRectMake(0, 13, 35/2, 35/2);
+    logoView.frame = CGRectMake(0, 5, 71/2, 71/2);
     logoView.contentMode = UIViewContentModeScaleAspectFit;
     
-    UILabel *loginLabel = [[UILabel alloc]initWithFrame:CGRectMake(27, 7, 160, 30)];
-    loginLabel.text = LOCALIZATION(@"nav_title");
+    UILabel *loginLabel = [[UILabel alloc]initWithFrame:CGRectMake(40, 7, 160, 30)];
+    loginLabel.text = LOCALIZATION(@"home_chat");
     loginLabel.textColor = [UIColor whiteColor];
     loginLabel.backgroundColor = [UIColor clearColor];
     loginLabel.font = [UIFont systemFontOfSize:16.0f];
@@ -172,7 +174,7 @@
     rightBtn1.tag =SEARCH_BTN_TAG;
 
     [rightBtn1 addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-    
+    [rightBtn1 setShowsTouchWhenHighlighted:YES];
     
     UIButton * rightBtn2 = [UIButton buttonWithType:UIButtonTypeCustom];
     rightBtn2.frame = CGRectMake(44, 0, 44, 44);
@@ -181,7 +183,8 @@
     
     [rightBtn2 setImageEdgeInsets:UIEdgeInsetsMake(9.5, 16, 9.5, 3)];
     [rightBtn2 addTarget:self action:@selector(showActionSheet:forEvent:) forControlEvents:UIControlEventTouchUpInside];
-
+    [rightBtn2 setShowsTouchWhenHighlighted:YES];
+    
     UIButton * rightBtn3 = [UIButton buttonWithType:UIButtonTypeCustom];
     rightBtn3.frame = CGRectMake(88, 0, 44, 44);
     rightBtn3.tag =SET_BTN_TAG;
@@ -189,6 +192,8 @@
     
     [rightBtn3 setImageEdgeInsets:UIEdgeInsetsMake(9.5, 16, 9.5, 3)];
     [rightBtn3 addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [rightBtn3 setShowsTouchWhenHighlighted:YES];
+    
     [rightView addSubview:rightBtn1];
     [rightView addSubview:rightBtn2];
     [rightView addSubview:rightBtn3];
@@ -210,13 +215,16 @@
 - (void)creatHead
 {
 
-    head_bg = [[UIView alloc]initWithFrame:CGRectMake(0, 64, viewSize.width, 40)];
+    head_bg = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
     [head_bg setBackgroundColor:GETColor(245, 245, 245)];
     
     
     UIImageView *imgView = [[UIImageView alloc]initWithImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"navline_ico@2x" ofType:@"png"]]];
     
-    imgView.frame = CGRectMake(0, 34, 107, 6);
+    CGFloat buttonWidth = SCREEN_WIDTH/3;
+    
+    imgView.frame = CGRectMake(0, 34, buttonWidth, 6);
+    
     // 通讯录
     NSString *ContactsText = LOCALIZATION(@"home_friend");
     UIButton *Contacts = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -224,44 +232,54 @@
     Contacts.userInteractionEnabled = NO;
     Contacts.backgroundColor = [UIColor clearColor];
     //Contacts.frame = CGRectMake(0, 5, 80, 30);
-    Contacts.frame = CGRectMake(0, 0, 107, 40);
+    Contacts.frame = CGRectMake(0, 0, buttonWidth, 40);
     [Contacts setTitle:ContactsText forState:UIControlStateNormal];
     [Contacts setTitleColor:GETColor(144, 84, 158) forState:UIControlStateNormal];
-    [Contacts addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+    //[Contacts addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     Contacts.titleLabel.textAlignment = NSTextAlignmentCenter;
     Contacts.titleLabel.font = [UIFont systemFontOfSize:16];
-    // 诊疗圈
+    [Contacts setShowsTouchWhenHighlighted:YES];
+    UITapGestureRecognizer * ContactsGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(gestureClick:)];
+    ContactsGesture.view.tag = CONTACT_BTN_TAG;
+    [Contacts addGestureRecognizer:ContactsGesture];
+    // 朋友圈
     NSString *MomentsText = LOCALIZATION(@"home_group");
     UIButton *Moments = [UIButton buttonWithType:UIButtonTypeCustom];
     Moments.tag = MOMENTS_BTN_TAG;
     Moments.backgroundColor = [UIColor clearColor];
-    //Moments.frame = CGRectMake(160, 5, 80, 30);
-    Moments.frame = CGRectMake(107, 0, 106, 40);
+    Moments.frame = CGRectMake(buttonWidth, 0, buttonWidth, 40);
     [Moments setTitle:MomentsText forState:UIControlStateNormal];
     [Moments setTitleColor:[UIColor blackColor]  forState:UIControlStateNormal];
-    [Moments addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     Moments.titleLabel.textAlignment = NSTextAlignmentCenter;
     Moments.titleLabel.font = [UIFont systemFontOfSize:16];
+    [Moments setShowsTouchWhenHighlighted:YES];
+    UITapGestureRecognizer * MomentsGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(gestureClick:)];
+    MomentsGesture.view.tag = MOMENTS_BTN_TAG;
+    [Moments addGestureRecognizer:MomentsGesture];
     // 聊天
     UIButton *Cochat = [UIButton buttonWithType:UIButtonTypeCustom];
     Cochat.tag = COCHAT_BTN_TAG;
     Cochat.backgroundColor = [UIColor clearColor];
     Cochat.userInteractionEnabled = YES;
-    //Cochat.frame = CGRectMake(240, 5, 80, 30);
-    Cochat.frame = CGRectMake(107+106, 0, 107, 40);
+    Cochat.frame = CGRectMake(buttonWidth*2, 0, buttonWidth, 40);
     NSString *CochatText = LOCALIZATION(@"home_chat");
     [Cochat setTitle:CochatText forState:UIControlStateNormal];
     [Cochat setTitleColor:[UIColor blackColor]  forState:UIControlStateNormal];
-    [Cochat addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     Cochat.titleLabel.textAlignment = NSTextAlignmentCenter;
     Cochat.titleLabel.font = [UIFont systemFontOfSize:16];
+    [Cochat setShowsTouchWhenHighlighted:YES];
+    UITapGestureRecognizer * CochatGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(gestureClick:)];
+    CochatGesture.view.tag = COCHAT_BTN_TAG;
+    [Cochat addGestureRecognizer:CochatGesture];
+    
     [head_bg addSubview:Cochat];
     [head_bg addSubview:Moments];
     [head_bg addSubview:Contacts];
-    //[head_bg addSubview:metter];
     [head_bg addSubview:imgView];
     Cochat = nil;
     Moments = nil;
+    Contacts = nil;
+    //metter = nil;
     [self.view addSubview:head_bg];
 }
 - (void)creatTable
@@ -270,7 +288,7 @@
     [self creatHUD:alertText];
     [HUD show:YES];
     CGFloat height = head_bg.frame.size.height + head_bg.frame.origin.y;
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, height, viewSize.width, viewSize.height-height) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, height, SCREEN_WIDTH, viewSize.height-height) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     if (IOS7_LATER) {
@@ -279,11 +297,25 @@
     _tableView.sectionIndexColor = [UIColor blackColor];
 
     [self setExtraCellLineHidden:_tableView];
-
-    UIView *linebg = [[UIView alloc]initWithFrame:CGRectMake(0, 0, viewSize.width, 0)];
+    [self SetTablePosition];
+    UIView *linebg = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0)];
     [self.view addSubview:linebg];
     [self.view addSubview:_tableView];
     linebg = nil;
+}
+// 滚动的代理方法
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView;
+{
+    CGFloat offset_Y = _tableView.contentOffset.y;
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithFloat:offset_Y] forKey:@"offset_Y"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+}
+- (void)SetTablePosition{
+    CGPoint OffSet;
+    OffSet.y = [[[NSUserDefaults standardUserDefaults] objectForKey:@"offset_Y"] floatValue];
+    OffSet.x = _tableView.contentOffset.x;
+    _tableView.contentOffset = OffSet;
+   
 }
 //获取公开信及群组最新信息列表
 - (void)getNewArticleList:(FriendIfo *)friendModel
@@ -294,10 +326,12 @@
         
         if ([self bindData:dict]) {
             [_tableView reloadData];
+            [self SetTablePosition];
             
         }
     }];
 }
+
 //获取用户群组及联系人列表
 - (void)getFriendList
 {
@@ -311,9 +345,10 @@
         
         if ([self bindData:dict]) {
             [_tableView reloadData];
+            [self tableHeight];
         }
        
-    } andCathtype:[GET_USER_ID integerValue] andID:FREIENDLIST_CATCH_ID andtypeName:GET_USER_ID];// 好友列表的唯一标识
+    } andCathtype:[GET_USER_ID integerValue] andID:FREIENDLIST_CATCH_ID andtypeName:nil];// 好友列表的唯一标识
 }
 - (BOOL)bindData:(NSDictionary *)dict
 {
@@ -335,8 +370,8 @@
             
         }
         
-       [_tableView reloadData];
-        [self tableHeight];
+//       [_tableView reloadData];
+        //[self tableHeight];
          [HUD hide:YES];
         self.sortedArrForArrays = [self getChineseStringArr:frindsArray];
     }
@@ -374,6 +409,32 @@
         else{
             _tableView.frame = CGRectMake(_tableView.frame.origin.x, _tableView.frame.origin.y, _tableView.frame.size.width, viewSize.height-height+5);
         }
+
+}
+// 事件点击
+- (void)gestureClick:(UITapGestureRecognizer *)tapSender
+{
+    if (tapSender.view.tag == CONTACT_BTN_TAG){
+        SetUpViewController *setUp = [[SetUpViewController alloc]init];
+        [self.navigationController pushViewController:setUp animated:YES];
+        setUp = nil;
+    }
+    // 事项
+    else if (tapSender.view.tag == MATTER_BTN_TAG){
+//        MattersViewController *mvc = [[MattersViewController alloc] init];
+//        [self.navigationController pushViewController:mvc animated:YES];
+//        mvc = nil;
+    }
+    else if (tapSender.view.tag == MOMENTS_BTN_TAG){
+        FirendCircleHomeTableViewController *friendCircle = [[FirendCircleHomeTableViewController alloc]init];
+        [self.navigationController pushViewController:friendCircle animated:YES];
+        friendCircle = nil;
+    }
+    else if (tapSender.view.tag == COCHAT_BTN_TAG){
+        UserContactViewController *userContact = [[UserContactViewController alloc]init];
+        [self.navigationController pushViewController:userContact animated:NO];
+        userContact = nil;
+    }
 
 }
 - (void)btnClick:(UIButton *)sender
@@ -506,6 +567,7 @@
         }
         
         [_tableView reloadData];
+        //[self SetTablePosition];
 
     }];
 
@@ -618,6 +680,7 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     if (indexPath.section == 0) {
         // 新同事
         if (indexPath.row == 0) {

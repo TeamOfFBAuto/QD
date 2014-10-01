@@ -97,6 +97,7 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     [self creatUI];
     [self getFriendDetail];
     [self navigetion];
@@ -113,7 +114,7 @@
     bgNavi.backgroundColor = [UIColor clearColor];
     bgNavi.userInteractionEnabled = YES;
     
-    UIImageView *logoView = [[UIImageView alloc]initWithImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"return_unis_logo@2x" ofType:@"png"]]];
+    UIImageView *logoView = [[UIImageView alloc]initWithImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"guke_top_logo_arrow@2x" ofType:@"png"]]];
     
     logoView.backgroundColor = [UIColor clearColor];
     logoView.frame = CGRectMake(0, 0, 44, 44);
@@ -730,8 +731,9 @@
         {
             
             if (_friendModel.dstUser.length <= 0 || userModel.username.length <= 0) {
-                return;
-            }
+                [self.navigationController popViewControllerAnimated:YES];
+         }
+            else{
                 VChatViewController *vc = [[VChatViewController alloc] init];
                 // 添加好友到联系人列表
                 [addNewContact addUserContact:userModel.userId];
@@ -740,6 +742,7 @@
                 vc.recvName = _friendModel.dstUser;
                 vc.recvFirstName = _friendModel.dstUserName;
                 [self.navigationController pushViewController:vc animated:YES];
+            }
         }
             
             break;
@@ -825,7 +828,7 @@
            
         {// 跳转到主界面
             AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-            [appDelegate showControlView:Root_friend];
+            [appDelegate showControlView:Root_contact];
         }
             break;
         case ALERT_ADDERROR_TAG:

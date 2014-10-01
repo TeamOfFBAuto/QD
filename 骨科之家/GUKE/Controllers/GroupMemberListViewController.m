@@ -115,7 +115,7 @@ static NSInteger const codeDelOk_tag = 123413;
     bgNavi.backgroundColor = [UIColor clearColor];
     bgNavi.userInteractionEnabled = YES;
     
-    UIImageView *logoView = [[UIImageView alloc]initWithImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"return_unis_logo@2x" ofType:@"png"]]];
+    UIImageView *logoView = [[UIImageView alloc]initWithImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"guke_top_logo_arrow@2x" ofType:@"png"]]];
     
     logoView.backgroundColor = [UIColor clearColor];
     logoView.frame = CGRectMake(0, 0, 44, 44);
@@ -646,6 +646,9 @@ static NSInteger const codeDelOk_tag = 123413;
             // 同是删除其在的聊天列表
             [userContactDB delContactInfo:self.groupModel.groupId];
             // 返回父控制器
+            // 跳转到主界面
+            AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            [appDelegate showControlView:Root_contact];
             [self.navigationController popViewControllerAnimated:YES];
         }
         else if (codeNum == CODE_ERROE){

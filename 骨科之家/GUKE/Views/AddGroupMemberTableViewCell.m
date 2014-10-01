@@ -14,10 +14,14 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.imgView = [[UIImageView alloc]initWithFrame:CGRectMake(30, 5, 40, 40)];
-        self.nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(75, 15, 200, 20)];
-        
-        [self.contentView addSubview:self.checkBox];
+        self.imgView = [[UIImageView alloc]initWithFrame:CGRectMake(15, 5, 40, 40)];
+        self.nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(60, 15, 200, 20)];
+        self.checkTitle = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.checkTitle.frame =CGRectMake(SCREEN_WIDTH - 32, 15, 20, 20);
+        self.checkTitle.layer.cornerRadius = 3;
+        self.checkTitle.layer.borderWidth = 1;
+        self.checkTitle.layer.borderColor = [[UIColor grayColor] CGColor];
+        [self.contentView addSubview:self.checkTitle];
         [self.contentView addSubview:self.imgView];
         [self.contentView addSubview:self.nameLabel];
     }

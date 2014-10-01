@@ -79,23 +79,10 @@
      */
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:@"isShowRed"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    [self creatHead];
     [self creatTable];
     [self addRedLable];
     [self getUserADDGroupList];
-    
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // 如果是因推送启动的程序
-    if (self.index == 1) {
-        [self pushVachat];
-    }
-    self.view.backgroundColor = [UIColor whiteColor];
-    [self navigation];
-    
+    [self SetTablePosition];
 }
 // 红点的标记
 - (void)addRedLable{
@@ -113,6 +100,19 @@
             redLable.layer.cornerRadius = 6;
         }
     }
+}
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    // 如果是因推送启动的程序
+    if (self.index == 1) {
+        [self pushVachat];
+    }
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self navigation];
+    [self creatHead];
 }
 // 程序由推送启动跳转到聊天的界面
 - (void)pushVachat
@@ -211,7 +211,7 @@
 // 创建头部视图
 - (void)creatHead
 {
-    head_bg = [[UIView alloc]initWithFrame:CGRectMake(0, 64, viewSize.width, 40)];
+    head_bg = [[UIView alloc]initWithFrame:CGRectMake(0, 0, viewSize.width, 40)];
     [head_bg setBackgroundColor:GETColor(245, 245, 245)];
     
     UIImageView *imgView = [[UIImageView alloc]initWithImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"navline_ico@2x" ofType:@"png"]]];
@@ -230,7 +230,7 @@
     [Cochat addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     Cochat.titleLabel.textAlignment = NSTextAlignmentCenter;
     Cochat.titleLabel.font = [UIFont systemFontOfSize:16];
-
+    
     // 诊疗圈
     UIButton *Moments = [UIButton buttonWithType:UIButtonTypeCustom];
     Moments.tag = MOMENTS_BTN_TAG;
@@ -241,7 +241,7 @@
     [Moments addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     Moments.titleLabel.textAlignment = NSTextAlignmentCenter;
     Moments.titleLabel.font = [UIFont systemFontOfSize:16];
-
+    
     // 资料库
     UIButton *information = [UIButton buttonWithType:UIButtonTypeCustom];
     information.tag = INFORMATION_BTN_TAG;
@@ -268,13 +268,13 @@
     [head_bg addSubview:Moments];
     [head_bg addSubview:information];
     [head_bg addSubview:medical];
-
+    
     [head_bg addSubview:imgView];
     Cochat = nil;
     Moments = nil;
     information = nil;
     medical = nil;
-
+    
     [self.view addSubview:head_bg];
     
 }
@@ -394,9 +394,9 @@
     UserContactArray = [[NSMutableArray alloc]init];
     imageAndTitleArray = [NSMutableArray arrayWithObjects:[NSArray arrayWithObjects:@"guke_ic_dongtai",@"guke_ic_zhuti",@"guke_ic_yicheng",nil],[NSMutableArray arrayWithObjects:@"业界动态",@"主题讨论",@"会议日程",nil],nil];
     CGFloat height = head_bg.frame.size.height + head_bg.frame.origin.y;
-
+    
     _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, height, viewSize.width, viewSize.height-height) style:UITableViewStylePlain];
-
+    
     _tableView.delegate = self;
     _tableView.dataSource = self;
     // 解决IOS7下tableview分割线左边短了一点
@@ -407,6 +407,20 @@
     }
     [self setExtraCellLineHidden:_tableView];
     [self.view addSubview:_tableView];
+    
+}
+// 滚动的代理方法
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView;
+{
+    CGFloat offset_Y = _tableView.contentOffset.y;
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithFloat:offset_Y] forKey:@"Contact_Y"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+}
+- (void)SetTablePosition{
+    CGPoint OffSet;
+    OffSet.y = [[[NSUserDefaults standardUserDefaults] objectForKey:@"Contact_Y"] floatValue];
+    OffSet.x = _tableView.contentOffset.x;
+    _tableView.contentOffset = OffSet;
     
 }
 // 将新的聊天好友添加到本地数据库中
@@ -445,7 +459,7 @@
             NSDictionary *dict =(NSDictionary *)responseData;
             NSUInteger codeNum = [[dict objectForKey:@"code"] integerValue];
             if (codeNum == CODE_SUCCESS) {
-                    return ;
+                return ;
             }
             else if (codeNum == CODE_ERROE){
                 SqliteFieldAndTable *sqliteAndtable = [[SqliteFieldAndTable alloc]init];
@@ -504,7 +518,7 @@
     NSDictionary *params = @{@"userId":GET_USER_ID,@"sid":GET_S_ID, @"pageSize":[NSString stringWithFormat:@"%d",INT_MAX],@"page":[NSString stringWithFormat:@"%d",1]};
     [AFRequestService responseData:USER_ADDED_GROUP_LIST andparameters:params andResponseData:^(id responseData){
         NSDictionary *dict =(NSDictionary *)responseData;
-         NSUInteger codeNum = [[dict objectForKey:@"code"] integerValue];
+        NSUInteger codeNum = [[dict objectForKey:@"code"] integerValue];
         if (codeNum == CODE_SUCCESS) {
             if ([[[SqliteFieldAndTable alloc]init] getGroupFeildandValue:dict]) {
                 [self getUserADDGroupList];
@@ -560,7 +574,6 @@
     
     // 获取最新的消息
     [self getNewArticle:UserContactArray];
-    // 动态确定tableView的高度
     [self setExtraCellLineHidden:_tableView];
 }
 // 得到最新的聊天信息(从聊天的数据库中的数据库中)
@@ -598,13 +611,13 @@
     vcContact.creatDate = model.creatDate;
     vcContact.contactId = @"0";
     vcContact.context = model.context;
-    vcContact.contactType = @"4";
+    vcContact.contactType = PUSH_GCHAT;
     vcContact.typeId =model.typeId;
     vcContact.firstUsername = model.firstname;
     vcContact.filename = [[att.filename componentsSeparatedByString:@"."] lastObject];
     [userArray addObject:vcContact];
 }
-// 推送获取的数据
+#pragma mark =========if there is not data in database,we write the data pushed into the database
 - (void)pushGetData{
     [newArticleDic setValue:GET_S_ID forKey:@"sid"];
     [newArticleDic setValue:GET_USER_ID forKey:@"userId"];
@@ -616,7 +629,6 @@
     
     [AFRequestService responseData:NEW_ARTICLE_LIST andparameters:newArticleDic andResponseData:^(NSData *responseData) {
         NSDictionary *dict = (NSDictionary *)responseData;
-        // 得到聊天信息的总条数
         id article  = [dict objectForKey:@"articlelist"];
         if ([article isKindOfClass:[NSArray class]]) {
             [SqliteBase witeInbase:TABLE_HD withData:[VChatModel vChatMakeModel:article]];
@@ -625,7 +637,7 @@
         }
     }
      // 网络请求失败，加载本地数据
-    andFailfailWithRequest:^{
+            andFailfailWithRequest:^{
             }
      ];
     
@@ -713,7 +725,7 @@
      ];
     
 }
-// 不是推送过来的数据
+#pragma mark ==============当没有推送过来时加载的数据
 - (void)GetData:(UserContact *)userContact andIndex:(NSInteger)i{
     
     // 个人聊天
@@ -741,65 +753,65 @@
     if (articleId <=0) {
         // 则在服务器中取出最近一条加到数据库中
         if ([userContact.contactId isEqualToString:[SingleInstance shareManager].recvId]) {
-        [newArticleDic setValue:GET_S_ID forKey:@"sid"];
-        [newArticleDic setValue:GET_USER_ID forKey:@"userId"];
-        [newArticleDic setObject:[NSNumber numberWithInteger:0] forKey:@"articleId"];
-        [newArticleDic setObject:[NSNumber numberWithInteger:1] forKey:@"sort"];
-        [newArticleDic setObject:[NSNumber numberWithInteger:1] forKey:@"order"];
-        [newArticleDic setObject:[NSNumber numberWithInteger:1] forKey:@"recordCount"];
-        // 先获取数据库中的数据
-        [self getLocalData:userContact andDict:dictData andIndex:i];
-        
-        [AFRequestService responseData:NEW_ARTICLE_LIST andparameters:newArticleDic andResponseData:^(NSData *responseData) {
-            NSDictionary *dict = (NSDictionary *)responseData;
-            // 得到聊天信息的总条数
-            NSInteger totalCount = [[dict objectForKey:@"articlelist"] count];
-            userContact.lastMsgNum = [NSString stringWithFormat:@"%d",totalCount];
-            // 如果服务器没有新的数据，则加载本地最新一条数据
-            if (totalCount == 0) {
-                NSArray *array = [SqliteBase readbase:TABLE_HD query:dictData count:1];
-                VChatModel *model = (VChatModel *)[array firstObject];
-                VChatAttachModel *att = (VChatAttachModel *)[model.attachlist lastObject];
-                userContact.creatDate = model.creatDate;
-                userContact.context = model.context;
-                userContact.typeId =model.typeId;
-                userContact.firstUsername = model.firstname;
-                
-                if (att.filename != nil)
-                {
-                    userContact.filename = [[att.filename componentsSeparatedByString:@"."] lastObject];
-                }
-                //更新最近一条信息的时间到联系人的数据库中
-                [userContactDB updateuserContactInfo:nil andkeyValue:userContact];
-            }
-            else{
-                NSDictionary *articlelist = [[dict objectForKey:@"articlelist"] lastObject];
-                userContact.creatDate = [articlelist objectForKey:@"createDate"];
-                userContact.context = [articlelist objectForKey:@"context"];
-                userContact.typeId = [articlelist objectForKey:@"typeId"];
-                userContact.firstUsername = [articlelist objectForKey:@"firstname"];
-                NSDictionary *attachlist = [[articlelist objectForKey:@"attachlist"] firstObject];
-                userContact.filename = [[[attachlist objectForKey:@"filename"] componentsSeparatedByString:@"."] lastObject];
-                //更新最近一条信息的时间到联系人的数据库中
-                [userContactDB updateuserContactInfo:nil andkeyValue:userContact];
-                // 上侧显示红点
-                UIView *redLable = (UIView *)[head_bg viewWithTag:615];
-                if (redLable.frame.size.width == 0) {
-                    redLable.frame = CGRectMake(285, 5, 12, 12);
-                    redLable.layer.cornerRadius = 6;
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"redLabel" object:nil userInfo:nil];
-                }
-                
-            }
-            [_tableView reloadData];
+            [newArticleDic setValue:GET_S_ID forKey:@"sid"];
+            [newArticleDic setValue:GET_USER_ID forKey:@"userId"];
+            [newArticleDic setObject:[NSNumber numberWithInteger:0] forKey:@"articleId"];
+            [newArticleDic setObject:[NSNumber numberWithInteger:1] forKey:@"sort"];
+            [newArticleDic setObject:[NSNumber numberWithInteger:1] forKey:@"order"];
+            [newArticleDic setObject:[NSNumber numberWithInteger:1] forKey:@"recordCount"];
+            // 先获取数据库中的数据
+            [self getLocalData:userContact andDict:dictData andIndex:i];
             
-        }
-         // 网络请求失败，加载本地数据
-                andFailfailWithRequest:^{
-                    [self getLocalData:userContact andDict:dictData andIndex:i];
+            [AFRequestService responseData:NEW_ARTICLE_LIST andparameters:newArticleDic andResponseData:^(NSData *responseData) {
+                NSDictionary *dict = (NSDictionary *)responseData;
+                // 得到聊天信息的总条数
+                NSInteger totalCount = [[dict objectForKey:@"articlelist"] count];
+                userContact.lastMsgNum = [NSString stringWithFormat:@"%d",totalCount];
+                // 如果服务器没有新的数据，则加载本地最新一条数据
+                if (totalCount == 0) {
+                    NSArray *array = [SqliteBase readbase:TABLE_HD query:dictData count:1];
+                    VChatModel *model = (VChatModel *)[array firstObject];
+                    VChatAttachModel *att = (VChatAttachModel *)[model.attachlist lastObject];
+                    userContact.creatDate = model.creatDate;
+                    userContact.context = model.context;
+                    userContact.typeId =model.typeId;
+                    userContact.firstUsername = model.firstname;
+                    
+                    if (att.filename != nil)
+                    {
+                        userContact.filename = [[att.filename componentsSeparatedByString:@"."] lastObject];
+                    }
+                    //更新最近一条信息的时间到联系人的数据库中
+                    [userContactDB updateuserContactInfo:nil andkeyValue:userContact];
                 }
-         ];
-
+                else{
+                    NSDictionary *articlelist = [[dict objectForKey:@"articlelist"] lastObject];
+                    userContact.creatDate = [articlelist objectForKey:@"createDate"];
+                    userContact.context = [articlelist objectForKey:@"context"];
+                    userContact.typeId = [articlelist objectForKey:@"typeId"];
+                    userContact.firstUsername = [articlelist objectForKey:@"firstname"];
+                    NSDictionary *attachlist = [[articlelist objectForKey:@"attachlist"] firstObject];
+                    userContact.filename = [[[attachlist objectForKey:@"filename"] componentsSeparatedByString:@"."] lastObject];
+                    //更新最近一条信息的时间到联系人的数据库中
+                    [userContactDB updateuserContactInfo:nil andkeyValue:userContact];
+                    // 上侧显示红点
+                    UIView *redLable = (UIView *)[head_bg viewWithTag:615];
+                    if (redLable.frame.size.width == 0) {
+                        redLable.frame = CGRectMake(285, 5, 12, 12);
+                        redLable.layer.cornerRadius = 6;
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"redLabel" object:nil userInfo:nil];
+                    }
+                    
+                }
+                [_tableView reloadData];
+                
+            }
+             // 网络请求失败，加载本地数据
+                    andFailfailWithRequest:^{
+                        [self getLocalData:userContact andDict:dictData andIndex:i];
+                    }
+             ];
+            
         }
     }
     else{
@@ -851,7 +863,7 @@
                     redLable.layer.cornerRadius = 6;
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"redLabel" object:nil userInfo:nil];
                 }
-
+                
             }
             [_tableView reloadData];
             
@@ -926,7 +938,7 @@
             //本地数据库之前本没有数据
             if (articleId <=0) {
                 // 推送获取的信息
-                [self pushGetData];  
+                [self pushGetData];
             }
             else{
                 [newArticleDic setValue:GET_S_ID forKey:@"sid"];
@@ -978,7 +990,8 @@
                         }
                         
                     }
-                    [_tableView reloadData];
+                    [self pushArraySort:userContact];
+                    //[_tableView reloadData];
                     
                 }
                  // 网络请求失败，加载本地数据
@@ -1011,28 +1024,18 @@
         }
     }
 }
-
-- (void)tableHeight
-{
-    CGFloat height = head_bg.frame.size.height + head_bg.frame.origin.y;
-    if (IOS7_LATER) {
-        if (([UserContactArray count]) * 65 < viewSize.height-height) {
-            _tableView.frame = CGRectMake(_tableView.frame.origin.x, _tableView.frame.origin.y, _tableView.frame.size.width, ([UserContactArray count]) * 65);
-        }
-        else{
-            _tableView.frame = CGRectMake(_tableView.frame.origin.x, _tableView.frame.origin.y, _tableView.frame.size.width, viewSize.height-height);
-        }
-        
+// 是推送获得的数据，要对推送来的数组进行排序，最新消息排在最前面
+- (void)pushArraySort:(UserContact *)model{
+    if ([model.contactType isEqualToString:PUSH_GCHAT]) {
+        [_tableView reloadData];
     }
     else{
-        if (([UserContactArray count]) * 65 < viewSize.height-height) {
-            _tableView.frame = CGRectMake(_tableView.frame.origin.x, _tableView.frame.origin.y, _tableView.frame.size.width, ([UserContactArray count]) * 65);
-        }
-        else{
-            _tableView.frame = CGRectMake(_tableView.frame.origin.x, _tableView.frame.origin.y, _tableView.frame.size.width, viewSize.height-height);
-        }
+        [UserContactArray removeObject:model];
+        [UserContactArray insertObject:model atIndex:0];
+        [_tableView reloadData];
     }
 }
+
 #pragma mark ====== TableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

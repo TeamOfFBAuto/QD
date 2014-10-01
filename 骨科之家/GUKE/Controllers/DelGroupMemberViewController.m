@@ -19,6 +19,9 @@
     UITableView *_tableView;
     NSMutableArray * userArray;
     NSMutableString *userIds;
+    CheckBox *checkBox;
+    BOOL isChecked;
+    NSMutableArray *nameArray;
 }
 @end
 
@@ -37,8 +40,10 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     // 初始化数组和字符串对象
     userArray = [[NSMutableArray alloc]init];
+    nameArray = [[NSMutableArray alloc]init];
     userIds = [[NSMutableString alloc]init];
     [self navigation];
     [self dataRequest];
@@ -52,7 +57,7 @@
     bgNavi.backgroundColor = [UIColor clearColor];
     bgNavi.userInteractionEnabled = YES;
     
-    UIImageView *logoView = [[UIImageView alloc]initWithImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"return_unis_logo@2x" ofType:@"png"]]];
+    UIImageView *logoView = [[UIImageView alloc]initWithImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"guke_top_logo_arrow@2x" ofType:@"png"]]];
     
     logoView.backgroundColor = [UIColor clearColor];
     logoView.frame = CGRectMake(0, 0, 44, 44);
@@ -106,11 +111,21 @@
     }
 }
 - (void)delMemeber{
-    if (userIds == nil || userIds.length == 0) {
+    if ([nameArray count] == 0) {
         [self.navigationController popViewControllerAnimated:YES];
         
     }
     else{
+        for (NSString *userName in nameArray) {
+            if (userName == nil || userName <= 0 ) {
+                [userIds appendFormat:@"%@",userName];
+                
+            }
+            else{
+                [userIds appendFormat:@",%@",userName];
+            }
+            
+        }
         NSDictionary *parameters = @{@"userId": GET_USER_ID,@"sid":GET_S_ID,@"groupId": self.groupId,@"delUserId":userIds};
         [AFRequestService responseData:DEL_GROUP_MEMBER andparameters:parameters andResponseData:^(id responseData) {
             NSDictionary *dict = (NSDictionary *)responseData;
@@ -268,48 +283,36 @@
         cell = [[AddGroupMemberTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName];
     }
     UserIfo *model = (UserIfo *)userArray[indexPath.row];
-    CheckBox *checkBox = [[CheckBox alloc] initWithDelegate:self];
-    checkBox.frame = CGRectMake(7, 10, 20, 20);
-    checkBox.tag = 401+indexPath.row;
-    checkBox.titleLabel.text = model.userId;
-    [checkBox setTitle:@"" forState:UIControlStateNormal];
-    [checkBox setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
-    [checkBox.titleLabel setFont:[UIFont boldSystemFontOfSize:13.0f]];
-    [cell.contentView addSubview:checkBox];
+    cell.checkTitle.tag = 401+indexPath.row;
+    cell.checkTitle.titleLabel.text = model.userId;
     
     [cell.imgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_BASE_URL,model.icon]] placeholderImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"portrait_ico@2x" ofType:@"png"]]];
     
     cell.nameLabel.text = model.firstname;
     return cell;
 }
-- (void)didSelectedCheckBox:(CheckBox *)checkbox checked:(BOOL)checked
-{
-    if (checked) {
-        if (userIds == nil) {
-            [userIds appendFormat:@"%@",checkbox.titleLabel.text];
-            
-        }
-        else{
-            [userIds appendFormat:@",%@",checkbox.titleLabel.text];
-        }
-        
-    }
-    else{
-        
-    }
-}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    CheckBox *checkBox = (CheckBox *)[cell viewWithTag:401+indexPath.row];
-    if (checkBox.selected == NO) {
-        checkBox.selected = YES;
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    UITableViewCell *tableCell = [tableView cellForRowAtIndexPath:indexPath];
+    UIButton *titleBtn = (UIButton *)[tableCell viewWithTag:401+indexPath.row];
+    
+    BOOL isSelected = (tableCell.accessoryType == UITableViewCellAccessoryCheckmark);
+    
+    if (isSelected) {
+        tableCell.accessoryType = UITableViewCellAccessoryNone;
+        isChecked = NO;
     }
-    else if (checkBox.selected == YES) {
-        checkBox.selected = NO;
+    else {
+        tableCell.accessoryType = UITableViewCellAccessoryCheckmark;
+        isChecked = YES;
+    }
+    
+    if (isChecked) {
+        [nameArray addObject:titleBtn.titleLabel.text];
     }
     else{
-        return;
+        [nameArray removeObject:titleBtn.titleLabel.text];
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

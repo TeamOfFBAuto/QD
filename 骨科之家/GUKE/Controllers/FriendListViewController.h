@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
-@interface FriendListViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,MBProgressHUDDelegate,UITextFieldDelegate>
+@interface FriendListViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,MBProgressHUDDelegate,UITextFieldDelegate,UIScrollViewDelegate>
 @property (nonatomic, retain) NSMutableArray *sortedArrForArrays;
 @property (nonatomic, retain) NSMutableArray *sectionHeadsKeys;
 @end

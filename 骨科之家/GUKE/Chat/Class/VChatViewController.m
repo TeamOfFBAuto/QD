@@ -119,6 +119,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     [self navigetion];
     self.selfTypeDic = [self dicWithVType:_type];
     
@@ -133,7 +135,7 @@
     UIView *bgNavi = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 190, 44)];
     bgNavi.backgroundColor = [UIColor clearColor];
     bgNavi.userInteractionEnabled = YES;
-    UIImage *image = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"return_unis_logo@2x" ofType:@"png"] ];
+    UIImage *image = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"guke_top_logo_arrow@2x" ofType:@"png"] ];
     UIImageView *logoView = [[UIImageView alloc]initWithImage:image];
     [image release];
     logoView.backgroundColor = [UIColor clearColor];
@@ -185,6 +187,7 @@
     [_groupList removeAllObjects];
     [_groupList addObjectsFromArray:[UserAddedGroupDB selectFeildString:nil andcuId:GET_USER_ID]];
     for (GroupList *model in _groupList) {
+        NSLog(@"%@",model.groupId);
         if([[NSString stringWithFormat:@"%@",self.recvId] isEqualToString:model.groupId]){
             groupModel = [[GroupList alloc] init];
             groupModel = [model retain];
@@ -366,6 +369,7 @@
     if (!voicePlayCenter) {
         voicePlayCenter = [[VoicePlayCenter alloc] init];
         voicePlayCenter.playDelegate = self;// 播放声音的代理方法
+        voicePlayCenter.playType = Play_chat;
     }
     PlayerModel *model = [[PlayerModel alloc] init];
     model.fileId = content;
@@ -1043,11 +1047,7 @@
     NSUInteger codeNum = [[dic objectForKey:CKEY] integerValue];
     if (request.responseStatusCode == 200 && codeNum == CODE_SUCCESS){
         id articlelist = [dic objectForKey:@"articlelist"];
-        if ([articlelist isKindOfClass:[NSArray class]]) {
-//            if([[[NSUserDefaults standardUserDefaults] objectForKey:@"ison0"] boolValue] == NO &&( _type == VChatType_VC || _type == VChatType_pGroup) && [[request.userInfo objectForKey:DRAGG] isEqualToString:DRAG_DOWN]){
-//                return;
-//            }
-            
+        if ([articlelist isKindOfClass:[NSArray class]]) {  
             [self updateVIDatas:[VChatModel vChatMakeModel:articlelist] dragg:[request.userInfo objectForKey:DRAGG]];
         }
     }
@@ -1137,6 +1137,7 @@
 // 给selfTypeDic赋值
 - (NSMutableDictionary *)dicWithVType:(VChatType)type{
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    NSLog(@"%@",dic);
     // 聊天广场
     if (type == VChatType_VC) {
         [dic setObject:@"9" forKey:@"typeId"];
