@@ -853,6 +853,10 @@
 		3EEE8C62196D8EB4008CBE1C /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EEE8C60196D8EB4008CBE1C /* libopencore-amrnb.a */; };
 		3EEE8C63196D8EB4008CBE1C /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EEE8C61196D8EB4008CBE1C /* libopencore-amrwb.a */; };
 		5295DB6E01E64A1C843C7A2C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EA6440871D54FA4946A4F01 /* libPods.a */; };
+		5630B97A19DB2AEA00DCFE1B /* UserArticleListAttachListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5630B97919DB2AEA00DCFE1B /* UserArticleListAttachListModel.m */; };
+		5630B97D19DBAD4E00DCFE1B /* FBCirclePicturesViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 5630B97C19DBAD4E00DCFE1B /* FBCirclePicturesViews.m */; };
+		5630B98119DBF35A00DCFE1B /* ShowImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5630B98019DBF35A00DCFE1B /* ShowImagesViewController.m */; };
+		5630B98419DBF3B500DCFE1B /* QBShowImagesScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5630B98319DBF3B500DCFE1B /* QBShowImagesScrollView.m */; };
 		565DAE4919DA739900C3924D /* TopicDiscussViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE4819DA739900C3924D /* TopicDiscussViewController.m */; };
 		565DAE4C19DA7A7F00C3924D /* TDListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE4B19DA7A7F00C3924D /* TDListViewController.m */; };
 		565DAE4F19DA7D9600C3924D /* TDListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE4E19DA7D9600C3924D /* TDListModel.m */; };
@@ -2014,6 +2018,14 @@
 		3EEE8C60196D8EB4008CBE1C /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrnb.a"; sourceTree = "<group>"; };
 		3EEE8C61196D8EB4008CBE1C /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
 		4EA6440871D54FA4946A4F01 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5630B97819DB2AEA00DCFE1B /* UserArticleListAttachListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserArticleListAttachListModel.h; sourceTree = "<group>"; };
+		5630B97919DB2AEA00DCFE1B /* UserArticleListAttachListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserArticleListAttachListModel.m; sourceTree = "<group>"; };
+		5630B97B19DBAD4E00DCFE1B /* FBCirclePicturesViews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBCirclePicturesViews.h; sourceTree = "<group>"; };
+		5630B97C19DBAD4E00DCFE1B /* FBCirclePicturesViews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBCirclePicturesViews.m; sourceTree = "<group>"; };
+		5630B97F19DBF35A00DCFE1B /* ShowImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowImagesViewController.h; sourceTree = "<group>"; };
+		5630B98019DBF35A00DCFE1B /* ShowImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowImagesViewController.m; sourceTree = "<group>"; };
+		5630B98219DBF3B500DCFE1B /* QBShowImagesScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBShowImagesScrollView.h; sourceTree = "<group>"; };
+		5630B98319DBF3B500DCFE1B /* QBShowImagesScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBShowImagesScrollView.m; sourceTree = "<group>"; };
 		565DAE4719DA739900C3924D /* TopicDiscussViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicDiscussViewController.h; sourceTree = "<group>"; };
 		565DAE4819DA739900C3924D /* TopicDiscussViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicDiscussViewController.m; sourceTree = "<group>"; };
 		565DAE4A19DA7A7F00C3924D /* TDListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDListViewController.h; sourceTree = "<group>"; };
@@ -4008,9 +4020,21 @@
 			path = FriendDetailImage;
 			sourceTree = "<group>";
 		};
+		5630B97E19DBF34F00DCFE1B /* ShowImageClasses */ = {
+			isa = PBXGroup;
+			children = (
+				5630B97F19DBF35A00DCFE1B /* ShowImagesViewController.h */,
+				5630B98019DBF35A00DCFE1B /* ShowImagesViewController.m */,
+				5630B98219DBF3B500DCFE1B /* QBShowImagesScrollView.h */,
+				5630B98319DBF3B500DCFE1B /* QBShowImagesScrollView.m */,
+			);
+			path = ShowImageClasses;
+			sourceTree = "<group>";
+		};
 		5675CADD19D9C01D00FB975F /* SNControllers */ = {
 			isa = PBXGroup;
 			children = (
+				5630B97E19DBF34F00DCFE1B /* ShowImageClasses */,
 				5675CAE019D9C05100FB975F /* IndustryNewsController.h */,
 				5675CAE119D9C05100FB975F /* IndustryNewsController.m */,
 				5675CAEE19D9D71C00FB975F /* IndustryNewsDetailViewController.h */,
@@ -4036,6 +4060,8 @@
 				565DAE5919DA9BCD00C3924D /* ReplyListModel.m */,
 				565DAE5B19DA9C6B00C3924D /* AttachListModel.h */,
 				565DAE5C19DA9C6B00C3924D /* AttachListModel.m */,
+				5630B97819DB2AEA00DCFE1B /* UserArticleListAttachListModel.h */,
+				5630B97919DB2AEA00DCFE1B /* UserArticleListAttachListModel.m */,
 			);
 			path = SNModels;
 			sourceTree = "<group>";
@@ -4043,6 +4069,8 @@
 		5675CADF19D9C01D00FB975F /* SNViews */ = {
 			isa = PBXGroup;
 			children = (
+				5630B97B19DBAD4E00DCFE1B /* FBCirclePicturesViews.h */,
+				5630B97C19DBAD4E00DCFE1B /* FBCirclePicturesViews.m */,
 				5675CAE619D9CBF900FB975F /* IndustryNewsCell.h */,
 				5675CAE719D9CBF900FB975F /* IndustryNewsCell.m */,
 				5675CAE919D9CC0B00FB975F /* IndustryNewsCell.xib */,
@@ -4996,6 +5024,7 @@
 				19960CB0196A80D6000121AA /* LatestListModel.m in Sources */,
 				3E3785011990F9390000F8FF /* MJRefreshConst.m in Sources */,
 				199DAD9D19837C50007EB14E /* GroupMember.m in Sources */,
+				5630B97A19DB2AEA00DCFE1B /* UserArticleListAttachListModel.m in Sources */,
 				3E37846A199091C80000F8FF /* InferiorsTableViewController.m in Sources */,
 				19960D08196A80D6000121AA /* SBJsonUTF8Stream.m in Sources */,
 				3E6BA41F19D507A400A891EB /* imgUploadModel.m in Sources */,
@@ -5070,6 +5099,7 @@
 				19960CB4196A80D6000121AA /* VChatModel.m in Sources */,
 				19960D28196A80D6000121AA /* PSCollectionView.m in Sources */,
 				1957C5E6197929BB00043F19 /* CommentTableViewCell.m in Sources */,
+				5630B97D19DBAD4E00DCFE1B /* FBCirclePicturesViews.m in Sources */,
 				19A87FB71995B9A8009404F3 /* FriendContentView.m in Sources */,
 				E30769C419D9C5A200333B7E /* GcalendarViewController.m in Sources */,
 				19960CF2196A80D6000121AA /* ASIDataDecompressor.m in Sources */,
@@ -5101,6 +5131,7 @@
 				199CFD9E195AA50200F74F7C /* UserLoginViewController.m in Sources */,
 				19975AFD19762AB400ADF199 /* ShareImageViewController.m in Sources */,
 				19960D50196A80D7000121AA /* ChatVoiceRecorderVC.m in Sources */,
+				5630B98419DBF3B500DCFE1B /* QBShowImagesScrollView.m in Sources */,
 				199AA6DB19627CF300ED10B1 /* AppInPhone.m in Sources */,
 				199C017E195AE08B00F74F7C /* ChineseString.m in Sources */,
 				3E1EFFCD1980AB9D008C9B8D /* PECropView.m in Sources */,
@@ -5173,6 +5204,7 @@
 				3E3785041990F9390000F8FF /* UIScrollView+Extension.m in Sources */,
 				19996492195D3E1A006C84CC /* ChangPWDViewController.m in Sources */,
 				19DAE95E196D228700FE7187 /* GroupListTableViewCell.m in Sources */,
+				5630B98119DBF35A00DCFE1B /* ShowImagesViewController.m in Sources */,
 				19960D07196A80D6000121AA /* SBJsonTokeniser.m in Sources */,
 				19960D1F196A80D6000121AA /* PullTableView.m in Sources */,
 				3E9BD5E119A36398005D7CAF /* FriendsTableViewCellOne.m in Sources */,

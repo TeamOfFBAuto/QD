@@ -102,6 +102,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     cell.textLabel.text = [NSString _859ToUTF8:[[data_array objectAtIndex:indexPath.row] objectForKey:@"typeName"]];
     
     return cell;

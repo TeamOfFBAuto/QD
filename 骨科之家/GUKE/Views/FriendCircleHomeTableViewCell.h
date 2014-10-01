@@ -11,6 +11,16 @@
 #import "FriendContentView.h"
 #import "CommentView.h"
 #import "CommentTableView.h"
+#import "FBCirclePicturesViews.h"
+
+
+@protocol FriendCircleHomeTableViewCellDelegate <NSObject>
+
+
+
+@end
+
+
 typedef void(^CommentViewBlock)(NSString *);
 @class UserArticleList;
 @interface FriendCircleHomeTableViewCell : UITableViewCell<RTLabelDelegate>
@@ -30,5 +40,8 @@ typedef void(^CommentViewBlock)(NSString *);
 @property(nonatomic, strong)CommentView *goodView;
 @property(nonatomic, strong)CommentTableView *commentView;
 @property(nonatomic, copy)CommentViewBlock sendUserId;
+@property(nonatomic,strong)FBCirclePicturesViews * PictureViews;
+@property(nonatomic,strong)UIImageView * single_imageView;
+@property(nonatomic,weak)id<FriendCircleHomeTableViewCellDelegate>delegate;
 + (CGFloat)heightForCellWithPost:(UserArticleList *)post;
 @end

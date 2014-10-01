@@ -11,8 +11,9 @@
 
 #import <UIKit/UIKit.h>
 #import "TDListModel.h"
+#import "ChatVoiceRecorderVC.h"
 
-@interface TDDetailViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface TDDetailViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     
 }
@@ -20,4 +21,5 @@
 @property(nonatomic,strong)TDListModel * info;
 
 @property(nonatomic,strong)UITableView * myTableVIEW;
+@property(nonatomic,strong)ChatVoiceRecorderVC * recorderVC;
 @end

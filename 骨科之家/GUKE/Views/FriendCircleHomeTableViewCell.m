@@ -12,9 +12,12 @@
 #import "Interface.h"
 #import "contentAndGood.h"
 #import "CommentView.h"
+#import "SingleInstance.h"
 #import "CommentTableView.h"
+#import "ShowImagesViewController.h"
 static const NSMutableArray *subjectArry;
 @implementation FriendCircleHomeTableViewCell
+@synthesize delegate = _delegate;
 
 - (void)dealloc
 {
@@ -27,6 +30,7 @@ static const NSMutableArray *subjectArry;
     self.comment = nil;
     self.favorite = nil;
     self.post = nil;
+    self.PictureViews = nil;
 
 }
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -105,6 +109,13 @@ static const NSMutableArray *subjectArry;
             ownView.sendUserId(userId);
         };
         
+        
+        self.PictureViews = [[FBCirclePicturesViews alloc] initWithFrame:CGRectMake(60,0,240,0)];
+        [self.contentView addSubview:self.PictureViews];
+        
+        _single_imageView = [[UIImageView alloc]  initWithFrame:CGRectZero];
+        [self.contentView addSubview:_single_imageView];
+        
         [self addSubview:self.ContentView];
         [self addSubview:self.goodView ];
         [self addSubview:self.commentView];
@@ -125,6 +136,8 @@ static const NSMutableArray *subjectArry;
     if (_post != post) {
         _post = post;
     }
+    
+    
     // 标注当前用户是否已进行评论
     BOOL flag = NO;
     for (contentAndGood * model in _post.goodArray) {
@@ -144,7 +157,7 @@ static const NSMutableArray *subjectArry;
     [self.userIcon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_BASE_URL,_post.iconUrl]] placeholderImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"portrait_ico@2x" ofType:@"png"]]];
     
     // 用户名
-    self.userName.text = _post.username;
+    self.userName.text = [NSString _859ToUTF8:_post.username];
     
     // 设置日期
     self.reportTime.text = [SingleInstance handleDate:_post.createDate];
@@ -177,31 +190,74 @@ static const NSMutableArray *subjectArry;
 
 - (void)layoutSubviews{
     [super layoutSubviews];
+    
     self.userIcon.frame = CGRectMake(10, 15, USER_ICON_WHDTH, USER_ICON_HEIGHT);
-    self.userName.frame = CGRectMake(USER_ICON_WHDTH + 20, 25, USER_NAME_WHDTH, USER_NAME_HEIGHT);
+    self.userName.frame = CGRectMake(USER_ICON_WHDTH + 20, 20, USER_NAME_WHDTH, USER_NAME_HEIGHT);
     self.urlLabel.frame = CGRectMake(USER_ICON_WHDTH + USER_NAME_WHDTH+5, 26, URL_LABEL_WHDTH, URL_LABEL_HEIGHT);
     
     CGFloat contentHeight = [FriendContentView heightForCellWithPost:_post];
-    _ContentView.frame = CGRectMake(0, 50, 320,contentHeight);
+    _ContentView.frame = CGRectMake(0,45, 320,contentHeight);
     if (_ContentView.isShareLabel) {
         self.urlLabel.hidden = NO;
     }else{
         self.urlLabel.hidden = YES;
     }
     
-    self.reportTime.frame = CGRectMake(USER_ICON_WHDTH + 10 + 10, _ContentView.frame.size.height + _ContentView.frame.origin.y+13, REPORT_TIME_WHDTH, REPORT_TIME_HEIGHT);
-    self.favorite.frame = CGRectMake(195, _ContentView.frame.size.height + _ContentView.frame.origin.y+4,FAVORITE_WHDTH, FAVORITE_HEIGHT);
-    self.comment.frame = CGRectMake(260, _ContentView.frame.size.height + _ContentView.frame.origin.y+4,COMMENT_WHDTH, COMMENT_HEIGHT);
+    ///判断图片大小位置
     
+    CGFloat content_height;
+    if (_post.context == nil || _post.context.length == 0 || [_post.context isEqualToString:@" "]) {
+        content_height = 0;
+    }else
+    {
+        content_height = [SingleInstance customFontHeightFont:_post.context andFontSize:15 andLineWidth:250] +10;
+    }
+    
+    if (_post.photo.length > 0 && ![_post.photo isKindOfClass:[NSNull class]])
+    {
+        _single_imageView.frame = CGRectMake(64,content_height+50,SHARE_IMAGE_WHDTH,SHARE_IMAGE_HEIGHT);
+        [_single_imageView sd_setImageWithURL:[SNTools returnUrl:_post.photo] placeholderImage:[UIImage imageNamed:@"guke_image_loading"]];
+    }else
+    {
+        if (_post.attachlistArray.count)
+        {
+            int i = _post.attachlistArray.count/3;
+            
+            int j = _post.attachlistArray.count%3?1:0;
+            
+            float height = 75*(i+j)+2.5*(j + i - 1);
+            
+            _PictureViews.frame = CGRectMake(64,contentHeight+50+10,231,height);
+            
+            [_PictureViews setimageArr:_post.attachlistArray withSize:75 isjuzhong:NO];
+            [_PictureViews setthebloc:^(NSInteger index) {
+                
+                ShowImagesViewController *showBigVC=[[ShowImagesViewController alloc]init];
+                showBigVC.allImagesUrlArray=_post.attachlistArray;
+
+                showBigVC.currentPage = index-1;
+                showBigVC.hidesBottomBarWhenPushed = YES;
+                UIViewController *VCtest=(UIViewController *)self.delegate;
+                [VCtest.navigationController pushViewController:showBigVC animated:YES];
+            }];
+        }
+    }
+    
+    float img_height = _PictureViews.frame.size.height + 10;
+    
+    self.reportTime.frame = CGRectMake(USER_ICON_WHDTH + 10 + 10,img_height+ _ContentView.frame.size.height + _ContentView.frame.origin.y+13, REPORT_TIME_WHDTH, REPORT_TIME_HEIGHT);
+    self.favorite.frame = CGRectMake(195,img_height+ _ContentView.frame.size.height + _ContentView.frame.origin.y+4,FAVORITE_WHDTH, FAVORITE_HEIGHT);
+    self.comment.frame = CGRectMake(260,img_height+ _ContentView.frame.size.height + _ContentView.frame.origin.y+4,COMMENT_WHDTH, COMMENT_HEIGHT);
+
     // 设置咱得位置
-    self.goodView.frame = CGRectMake(60, self.comment.frame.size.height + self.comment.frame.origin.y, 250,[SingleInstance customHeight:[_post.goodArray count] andcount:5 andsingleHeight:35.0]);
+    self.goodView.frame = CGRectMake(60,self.comment.frame.size.height + self.comment.frame.origin.y, 250,[SingleInstance customHeight:[_post.goodArray count] andcount:5 andsingleHeight:35.0]);
     // 设置评论的位置
     CGFloat commentHeight = 0.0;
     for (contentAndGood *modle in _post.commentArray) {
         commentHeight = commentHeight + [SingleInstance customFontHeightFont:modle.context andFontSize:14 andLineWidth:245] ;
     }
     commentHeight = commentHeight + [_post.commentArray count] *4;
-    self.commentView.frame = CGRectMake(60, self.goodView.frame.size.height + self.goodView.frame.origin.y + 2, 250,commentHeight);
+    self.commentView.frame = CGRectMake(60,self.goodView.frame.size.height + self.goodView.frame.origin.y + 2, 250,commentHeight);
     
 }
 + (CGFloat)heightForCellWithPost:(UserArticleList *)post

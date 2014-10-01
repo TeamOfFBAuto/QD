@@ -80,6 +80,11 @@
 
 
 #pragma mark - soulnear
+#pragma mark - 颜色
+#define RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]
+#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f \
+alpha:(a)]
+
 #pragma mark - 屏幕宽度
 #define DEVICE_WIDTH  [UIScreen mainScreen].bounds.size.width
 #pragma mark - 屏幕高度
@@ -97,7 +102,8 @@
 #define TOPIC_DISCUSS_DETAIL_URL @"zhuti.php"
 #pragma mark - 主题评论接口
 #define TOPIC_DISCUSS_COMMENT_URL @"zhutireplylist.php"
-
+#pragma mark - 对主题进行评论接口
+#define TOPIC_DISCUSS_COMMIT_URL @"zhutireplynew.php"
 
 
 #pragma mark - gm

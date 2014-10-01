@@ -30,6 +30,7 @@
 #import "FriendCircleDetailViewController.h"
 #import "MJRefresh.h"
 #import "FriendCircleHomeTableViewCell.h"
+#import "UserArticleListAttachListModel.h"
 
 #define USER_ARTI_LIST @"user_article_list"
 #define FAVORIT_DEFAULT_TAG 1024
@@ -332,6 +333,7 @@ static NSString *commentId = 0;
     __weak FirendCircleHomeTableViewController *friendCircleView = self;
     [AFRequestService responseData:USER_ARTICLE_LIST andparameters:parameters andResponseData:^(NSData *responseData) {
         NSDictionary *articleDict = (NSDictionary *)responseData;
+        NSLog(@"zenme le ne ---  %@",articleDict);
         NSInteger codeNum = [[articleDict objectForKey:@"code"]integerValue];
         if(codeNum == CODE_SUCCESS){
         NSArray *articleLists = [articleDict valueForKeyPath:@"articlelist"];
@@ -355,6 +357,18 @@ static NSString *commentId = 0;
             userArticleModel.username = [articleList valueForKeyPath:@"username"];
             userArticleModel.imageHeight = [articleList valueForKey:@"height"];
             userArticleModel.imageWidth = [articleList valueForKey:@"width"];
+            
+            
+            NSArray * attachlistarray = [articleList objectForKey:@"attachlist"];
+            if ([attachlistarray isKindOfClass:[NSArray class]])
+            {
+                for (NSDictionary * dicc in attachlistarray)
+                {
+                    UserArticleListAttachListModel * aModel = [[UserArticleListAttachListModel alloc] initWithDic:dicc];
+                    [userArticleModel.attachlistArray addObject:aModel];
+                }
+            }
+            
             
             NSMutableArray *commentArray = [articleList valueForKeyPath:@"commentlist"];
             for (NSDictionary *commentlist in commentArray) {
@@ -513,6 +527,22 @@ static NSString *commentId = 0;
             cell = [[FriendCircleHomeTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName];
         }
         
+        for (int i = 0;i < cell.PictureViews.subviews.count;i++)
+        {
+            id view = [cell.PictureViews.subviews objectAtIndex:i];
+            if ([view isKindOfClass:[UIImageView class]]) {
+                [(UIImageView *)view setImage:nil];
+            }
+            [view removeFromSuperview];
+        }
+        
+        cell.delegate = self;
+        
+        cell.single_imageView.image = nil;
+        cell.PictureViews.frame = CGRectZero;
+        cell.single_imageView.frame = CGRectZero;
+        
+        
         // 保存cell
         [cellDic setObject:cell forKey:[NSString stringWithFormat:@"%d",indexPath.row-1]];
         
@@ -585,16 +615,27 @@ static NSString *commentId = 0;
         }
         CGFloat height = 0.0f;
         if ([articleModel.photo isEqualToString:@""]||articleModel.photo == nil) {
-            height = USER_ICON_WHDTH +[SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250]+REPORT_TIME_HEIGHT+40 + shareHeight + commentHeight;
-        }
-        else{
+            
+            float imgHeight = 0;
+            
+            if (articleModel.attachlistArray.count)
+            {
+                int i = articleModel.attachlistArray.count/3;
+                
+                int j = articleModel.attachlistArray.count%3?1:0;
+                
+                imgHeight = 75*(i+j)+2.5*(j + i - 1);
+            }
+            
+            height = USER_ICON_WHDTH +[SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250]+REPORT_TIME_HEIGHT+40 + shareHeight + commentHeight + imgHeight;
+        }else{
             double imgHeight = SHARE_IMAGE_HEIGHT;
             
-            if (([articleModel.imageWidth floatValue]/[articleModel.imageHeight floatValue])>1) {
-                imgHeight = [articleModel.imageHeight floatValue]*(SHARE_IMAGE_WHDTH/[articleModel.imageWidth floatValue]);
-            }else{
-                imgHeight = SHARE_IMAGE_HEIGHT;
-            }
+//            if (([articleModel.imageWidth floatValue]/[articleModel.imageHeight floatValue])>1) {
+//                imgHeight = [articleModel.imageHeight floatValue]*(SHARE_IMAGE_WHDTH/[articleModel.imageWidth floatValue]);
+//            }else{
+//                imgHeight = SHARE_IMAGE_HEIGHT;
+//            }
             
             if (articleModel.context == nil || articleModel.context.length == 0 || [articleModel.context isEqualToString:@" "]){
                  height = USER_ICON_WHDTH+imgHeight+REPORT_TIME_HEIGHT+40 + shareHeight + commentHeight-16 ;

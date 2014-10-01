@@ -24,7 +24,7 @@ typedef enum{
 @property(nonatomic,strong)NSString * context;
 @property(nonatomic,strong)NSString * firstname;
 @property(nonatomic,strong)NSString * replyId;
-@property(nonatomic,strong)NSString * sendTime;
+@property(nonatomic,strong)NSString * createDate;
 @property(nonatomic,strong)NSString * userId;
 @property(nonatomic,strong)NSString * zhutiId;
 @property(nonatomic,strong)NSMutableArray * attach_array;

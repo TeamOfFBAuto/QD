@@ -12,7 +12,7 @@
 @synthesize context = _context;
 @synthesize firstname = _firstname;
 @synthesize replyId = _replyId;
-@synthesize sendTime = _sendTime;
+@synthesize createDate = _createDate;
 @synthesize userId = _userId;
 @synthesize zhutiId = _zhutiId;
 @synthesize attach_array = _attach_array;
@@ -27,7 +27,7 @@
         _context = [NSString _859ToUTF8:[dic objectForKey:@"context"]];
         _firstname = [NSString _859ToUTF8:[dic objectForKey:@"firstname"]];
         _replyId = [NSString _859ToUTF8:[dic objectForKey:@"replyId"]];
-        _sendTime = [NSString _859ToUTF8:[dic objectForKey:@"sendTime"]];
+        _createDate = [NSString _859ToUTF8:[dic objectForKey:@"sendTime"]];
         _userId = [NSString _859ToUTF8:[dic objectForKey:@"userId"]];
         _zhutiId = [NSString _859ToUTF8:[dic objectForKey:@"zhutiId"]];
         
