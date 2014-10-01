@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MedicalViewController : UIViewController
+#import "MBProgressHUD.h"
+
+
+@interface MedicalViewController : UIViewController<MBProgressHUDDelegate>
 
 // 创建病历库的列表
 @property (nonatomic, strong) UITableView *tableView;

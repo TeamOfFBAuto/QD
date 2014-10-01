@@ -6,16 +6,18 @@
 //  Copyright (c) 2014年 qidi. All rights reserved.
 //
 
+
 #import "RecordsTableViewCell.h"
+
 
 @implementation RecordsTableViewCell
 
 
-
 - (void)awakeFromNib {
+    
     // Initialization code
+    
 }
-
 
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -35,9 +37,6 @@
     }
     return self;
 }
-
-
-
 
 
 

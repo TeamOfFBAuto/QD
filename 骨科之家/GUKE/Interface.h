@@ -106,6 +106,11 @@ alpha:(a)]
 #define TOPIC_DISCUSS_COMMIT_URL @"zhutireplynew.php"
 
 
+#pragma mark -病历列表
+#define BINGLI_LIST @"binglilist.php"
+
+
+
 #pragma mark - gm
 #pragma mark - 日历活动
 #define CALENDAR_ACTIVITIES @"eventstatus.php"

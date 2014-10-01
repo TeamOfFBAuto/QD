@@ -9,6 +9,9 @@
 #import "MedicalViewController.h"
 #import "CreatMedicalViewController.h"
 
+#import "BinglilistModels.h"
+
+
 
 @interface MedicalViewController ()
 
@@ -44,6 +47,7 @@
     [self loadNavigation];
     [self loadUITableView];
     [self loadNewInformationBtn];
+    [self layOutlist];
 }
 
 // 导航的设置
@@ -121,6 +125,36 @@
 - (void)tapAction
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark--获取列表数据
+
+-(void)layOutlist{
+
+    BinglilistModels *_model=[[BinglilistModels alloc]init];
+    
+    
+    [_model setBinglilistModelDatawithBloc:^(int errcode, NSString *info) {
+        
+        
+        
+//        if (errcode==1) {
+//            
+//            
+//            MBProgressHUD *hud = [[MBProgressHUD alloc]initWithView:self.view];
+//            hud.mode = MBProgressHUDModeCustomView;
+//            hud.labelText = info;
+//            hud.margin = 40.f;
+//            hud.yOffset = 10.f;
+//            hud.removeFromSuperViewOnHide = YES;
+//            [hud hide:YES afterDelay:2];
+//        }
+//        
+//        
+   }];
+//    
+    
+
 }
 
 
