@@ -7,13 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ChatVoiceRecorderVC.h"
+#import "VoiceConverter.h"
 
-@interface CreatMedicalViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
+@interface CreatMedicalViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate>{
 
 
 
 }
 
 @property(nonatomic,strong)UITableView *mainTableView;
+
+@property(nonatomic,strong)ChatVoiceRecorderVC * recorderVC;
 
 @end

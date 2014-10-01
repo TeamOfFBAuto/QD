@@ -7,11 +7,23 @@
 //
 
 #import "CreatMedicalViewController.h"
+#import "CreateMedicalCell.h"
+#import "UIImage+fixOrientation.h"
+#import "QiDiPopoverView.h"
 
-@interface CreatMedicalViewController ()
+@interface CreatMedicalViewController ()<UITextViewDelegate>
 {
     ///存放条件数据
     NSMutableArray * content_array;
+    ///治疗方案
+    UITextView * treatment_case;
+    ///治疗方案默认文字
+    UILabel * placeHolder_treatment_case;
+    
+    ///弹出框
+    QiDiPopoverView * popOver;
+    
+    UITextField * groupName;
     
     
 }
@@ -42,7 +54,7 @@
     [super viewDidLoad];
     [self loadNavigation];
     
-    content_array = [NSMutableArray arrayWithObjects:@"姓名",@"性别",@"就诊时间",@"诊断",@"病人手机号",@"家属手机号",@"病历号",@"身份证号",@"标记编号",nil];
+    content_array = [NSMutableArray arrayWithObjects:@"姓名",@"性别",@"就诊时间",@"诊断",@"病人手机号",@"家属手机号",@"治疗方案",@"病历号",@"身份证号",@"标记编号",nil];
     
     
     
@@ -103,6 +115,7 @@
     _mainTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, DEVICE_WIDTH, DEVICE_HEIGHT) style:UITableViewStylePlain];
     _mainTableView.delegate=self;
     _mainTableView.dataSource=self;
+    _mainTableView.tableHeaderView = [self loadSectionView];
     [self.view addSubview:_mainTableView];
 }
 
@@ -120,21 +133,226 @@
 
 
 #pragma mark - 加载头视图
--(void)loadSectionView
+-(UIView *)loadSectionView
 {
-    CGRect viewFrame = CGRectMake(0,0,DEVICE_WIDTH,0);
-    UIView * view = [[UIView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,0)];
+    CGRect viewFrame = CGRectMake(0,0,DEVICE_WIDTH,120);
+    UIView * view = [[UIView alloc] initWithFrame:viewFrame];
+    UITextView * text_view = [[UITextView alloc] initWithFrame:CGRectMake(10,10,DEVICE_WIDTH-20,60)];
+    text_view.textAlignment = NSTextAlignmentLeft;
+    text_view.textColor = [UIColor lightGrayColor];
+    text_view.font = [UIFont systemFontOfSize:14];
+    text_view.layer.borderColor = [UIColor blueColor].CGColor;
+    text_view.layer.borderWidth = 0.5;
+    [view addSubview:text_view];
     
+    NSArray * image_array = [NSArray arrayWithObjects:@"guke_ic_addcamera",@"guke_ic_addvoice.png",@"guke_ic_addvideo.png",@"guke_ic_addphoto.png",nil];
     
+    for (int i = 0;i < 4;i++)
+    {
+        UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = CGRectMake((DEVICE_WIDTH-150)+37*i,80,27,28);
+        button.tag = 1000+i;
+        [button addTarget:self action:@selector(doButton:) forControlEvents:UIControlEventTouchUpInside];
+        [button setImage:[UIImage imageNamed:[image_array objectAtIndex:i]] forState:UIControlStateNormal];
+        [view addSubview:button];
+    }
+    return view;
+}
+
+#pragma makr - button点击方法
+-(void)doButton:(UIButton *)sender
+{
+    switch (sender.tag - 1000) {
+        case 0:///拍照
+        {
+            [self takePotoPicture:UIImagePickerControllerSourceTypeCamera];
+        }
+            break;
+        case 1:///录音
+        {
+            [self recordStartQiDi];
+        }
+            break;
+        case 2:///视频
+        {
+            
+        }
+            break;
+        case 3:///相册
+        {
+            [self takePotoPicture:UIImagePickerControllerSourceTypePhotoLibrary];
+        }
+            break;
+            
+        default:
+            break;
+    }
     
+}
+
+#pragma mark - 选择完文件后，输入介绍
+-(void)inputIntroduce
+{
+    popOver = [[QiDiPopoverView alloc] init];
+    [popOver showPopoverAtPoint:CGPointMake(viewSize.width, 0) inView:self.view withContentView:[self creatGroupView]];
+    
+}
+
+- (UIView *)creatGroupView{
+    UIView *contaiterView = [[UIView alloc]initWithFrame:CGRectMake(30, 64, viewSize.width-60, 170)];
+    contaiterView.backgroundColor = [UIColor blackColor];
+    
+    UILabel *groupNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, 150, 40)];
+    groupNameLabel.text = LOCALIZATION(@"chat_groupname");
+    groupNameLabel.textColor = [UIColor whiteColor];
+    groupNameLabel.backgroundColor = [UIColor clearColor];
+    groupNameLabel.font = [UIFont systemFontOfSize:16];
+    [contaiterView addSubview:groupNameLabel];
+    
+    UIImageView *lineBg1 = [[UIImageView alloc]initWithFrame:CGRectMake(0, 45, contaiterView.frame.size.width, 2)];
+    lineBg1.image = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"searchbglinered@2x" ofType:@"png"]];
+    
+    [contaiterView addSubview:lineBg1];
+    
+    groupName = [[UITextField alloc]initWithFrame:CGRectMake(5, 60, contaiterView.frame.size.width-10, 30)];
+    [groupName setBorderStyle:UITextBorderStyleLine];
+    groupName.layer.borderColor = [[UIColor orangeColor]CGColor];
+    groupName.font = [UIFont systemFontOfSize:16];
+    groupName.textColor = [UIColor whiteColor];
+    groupName.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    groupName.keyboardAppearance = UIKeyboardAppearanceDefault;
+    groupName.keyboardType = UIKeyboardTypeDefault;
+    groupName.returnKeyType = UIReturnKeyGo;
+    [groupName becomeFirstResponder];
+    groupName.tag = 101;
+    groupName.delegate = self;
+    [contaiterView addSubview:groupName];
+    
+    UIImageView *lineBg2 = [[UIImageView alloc]initWithFrame:CGRectMake(6, 90, contaiterView.frame.size.width-10, 4)];
+    lineBg2.image = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"searchbglinered@2x" ofType:@"png"]];
+    
+    [contaiterView addSubview:lineBg2];
+    
+    UIButton *dialogBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    dialogBtn.frame = CGRectMake(30, 120, 70, 40);
+    dialogBtn.backgroundColor = [UIColor clearColor];
+    dialogBtn.tag = DIALOG_Btn_TAG;
+    [dialogBtn setTitle:LOCALIZATION(@"dialog_cancel") forState:UIControlStateNormal];
+    [dialogBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [dialogBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+    dialogBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+    dialogBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    
+    UIButton *subMitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    subMitBtn.frame = CGRectMake(150, 120, 70, 40);
+    subMitBtn.backgroundColor = [UIColor clearColor];
+    subMitBtn.tag = SUBMIT_BTN_TAG;
+    [subMitBtn setTitle:LOCALIZATION(@"button_submit") forState:UIControlStateNormal];
+    [subMitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [subMitBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+    subMitBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+    subMitBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    [contaiterView addSubview:dialogBtn];
+    [contaiterView addSubview:subMitBtn];
+    
+    return contaiterView;
+}
+
+-(void)btnClick:(UIButton *)sender
+{
+    switch (sender.tag) {
+        case DIALOG_Btn_TAG:///取消
+        {
+            
+        }
+            
+            break;
+        case SUBMIT_BTN_TAG:///完成
+        {
+            
+        }
+            
+            break;
+            
+        default:
+            break;
+    }
+}
+
+
+// 触发录音事件
+- (void)recordStartQiDi
+{
+    NSString *originWav = [VoiceRecorderBaseVC getCurrentTimeString];
+    if (!self.recorderVC) {
+        self.recorderVC = [[ChatVoiceRecorderVC alloc]init];
+        _recorderVC.vrbDelegate = (id)self;
+    }
+    [self.recorderVC beginRecordByFileName:originWav];
+}
+
+// 结束录音事件
+- (void)recordEndQiDi
+{
+    [self.recorderVC end];
+    
+}
+
+#pragma mark - 录音方法
+#pragma mark record 开始录音
+#pragma mark ---------record delegate
+- (void)VoiceRecorderBaseVCRecordFinish:(NSString *)_filePath fileName:(NSString *)_fileName withVoiceLenth:(CGFloat)length{
+    int a =(int) length;
+    if (a > 0) {
+        [self wavToAmr:_filePath with:_fileName length:length];
+    }
+}
+-(void)wavToAmr:(NSString *)_filePath  with:(NSString *)_fileName length:(CGFloat)length{
+    [VoiceConverter wavToAmr:_filePath amrSavePath:[VoiceRecorderBaseVC getPathByFileName:[_fileName stringByAppendingString:@"wavToAmr"] ofType:@"amr"]];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:_fileName,@"fid",_filePath,@"fileName",[NSNumber numberWithInt:(int)length],@"length", nil];
+    NSLog(@"%@==%@",_filePath,_fileName);
+    [self inputIntroduce];
+//    [self sureUpload:dic withType:SEND_Type_voice];
+}
+
+
+#pragma mark imagepicker delegate
+-(void)takePotoPicture:(UIImagePickerControllerSourceType)sourceType{
+    //指定图片来源
+    //    UIImagePickerControllerSourceType sourceType=UIImagePickerControllerSourceTypeCamera;
+    //判断如果摄像机不能用图片来源与图片库
+    if (sourceType == UIImagePickerControllerSourceTypeCamera) {
+        if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+        {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"不能使用相机" message:@"本地图片" delegate:self cancelButtonTitle:LOCALIZATION(@"dialog_ok") otherButtonTitles: nil];
+            [alertView show];
+            return;
+        }
+    }
+    UIImagePickerController *picker=[[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.sourceType = sourceType;
+    //[[TabBarView sharedTabBarView] hideTabbar:YES animated:YES];
+    [self presentViewController:picker animated:YES completion:^{}];
+}
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    
+    UIImage *image = [[info objectForKey:UIImagePickerControllerOriginalImage] fixOrientation];
+    [picker dismissViewControllerAnimated:YES completion:^{
+        [self inputIntroduce];
+    }];
+    // 发送图片
+//    [self sureUpload:image withType:SEND_Type_photo];
+    
+}
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 
 #pragma mark-tableviewdelegateAndDatesource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-
-
     return 10;
     
 }
@@ -146,19 +364,74 @@
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-
-    static NSString *identifier=@"cell";
     
-    
-    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:identifier];
-    
-    
-    if (!cell) {
-        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    if (indexPath.row == 6)
+    {
+        static NSString * identifier = @"identifier";
+        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        if (cell == nil)
+        {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        }
         
+        if (!treatment_case)
+        {
+            treatment_case = [[UITextView alloc] initWithFrame:CGRectMake(10,5,DEVICE_WIDTH-20,60)];
+            treatment_case.tag = 100 + indexPath.row;
+            treatment_case.textAlignment = NSTextAlignmentLeft;
+            treatment_case.layer.cornerRadius = 5;
+            treatment_case.font = [UIFont systemFontOfSize:15];
+            treatment_case.delegate = self;
+            treatment_case.layer.masksToBounds = YES;
+            treatment_case.layer.borderColor = [UIColor grayColor].CGColor;
+            treatment_case.layer.borderWidth = 0.5;
+            [cell.contentView addSubview:treatment_case];
+            
+            
+            placeHolder_treatment_case = [[UILabel alloc] initWithFrame:CGRectMake(10,5,200,20)];
+            placeHolder_treatment_case.text = @"治疗方案";
+            placeHolder_treatment_case.font = [UIFont systemFontOfSize:15];
+            placeHolder_treatment_case.textAlignment = NSTextAlignmentLeft;
+            placeHolder_treatment_case.textColor = [UIColor blackColor];
+            [treatment_case addSubview:placeHolder_treatment_case];
+        }
+        
+        return cell;
+    }else
+    {
+        static NSString *identifier=@"cell";
+        
+        CreateMedicalCell *cell=[tableView dequeueReusableCellWithIdentifier:identifier];
+        
+        if (!cell)
+        {
+            cell = [[CreateMedicalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        NSString * title = [content_array objectAtIndex:indexPath.row];
+        cell.title_label.text = title;
+        cell.input_textView.tag = indexPath.row + 100;
+        cell.input_textView.delegate = self;
+        
+        CGSize aSize = [title sizeWithFont:[UIFont systemFontOfSize:16] constrainedToSize:CGSizeMake(MAXFLOAT, 30)];
+        
+        CGRect titleFrame = cell.title_label.frame;
+        
+        titleFrame.size.width = aSize.width;
+        cell.title_label.frame = titleFrame;
+        
+        float input_widht = DEVICE_WIDTH - 20 - aSize.width -10;
+        
+//        CGSize input_tv_size = [SNTools returnStringHeightWith:cell.input_textView.text WithWidth:input_widht WithFont:15];
+        
+        CGRect textViewFrame = CGRectMake(aSize.width+10,10,input_widht,25);
+        cell.input_textView.frame = textViewFrame;
+        
+        cell.input_line_view.frame = CGRectMake(aSize.width+10,textViewFrame.origin.y+textViewFrame.size.height+2.5,input_widht+5,4);
+        
+        return cell;
     }
-    
-    return cell;
+    return nil;
 
 }
 
@@ -166,10 +439,49 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    return 44;
+    if (indexPath.row == 6) {
+        return 90;
+    }else
+    {
+        return 50;
+    }
 }
 
 
+#pragma mark - UITextViewDelegate
+-(BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+//    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:textView.tag-100 inSection:0];
+//    CreateMedicalCell * cell = (CreateMedicalCell *)[_mainTableView cellForRowAtIndexPath:indexPath];
+//    CGRect rect = [cell convertRect:cell.frame toView:_mainTableView];
+//    
+//    NSLog(@" -----------   %@",NSStringFromCGRect(rect));
+//    
+//    if (rect.origin.y > DEVICE_HEIGHT-220)
+//    {
+//        _mainTableView.contentOffset = CGPointMake(0,rect.origin.y);
+//    }
+    return YES;
+}
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    //碰到换行，键盘消失
+    if ([@"\n" isEqualToString:text] == YES)
+    {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    
+    if (textView.text.length > 0) {
+        placeHolder_treatment_case.text = @"";
+    }else
+    {
+        placeHolder_treatment_case.text = @"治疗方案";
+    }
+    
+    return YES;
+}
 
 
 - (void)didReceiveMemoryWarning

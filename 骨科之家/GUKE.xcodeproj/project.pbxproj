@@ -859,6 +859,8 @@
 		5630B97D19DBAD4E00DCFE1B /* FBCirclePicturesViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 5630B97C19DBAD4E00DCFE1B /* FBCirclePicturesViews.m */; };
 		5630B98119DBF35A00DCFE1B /* ShowImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5630B98019DBF35A00DCFE1B /* ShowImagesViewController.m */; };
 		5630B98419DBF3B500DCFE1B /* QBShowImagesScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5630B98319DBF3B500DCFE1B /* QBShowImagesScrollView.m */; };
+		5630B98B19DC07A400DCFE1B /* CreateMedicalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5630B98919DC07A400DCFE1B /* CreateMedicalCell.m */; };
+		5630B99219DC374900DCFE1B /* MedicalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5630B99119DC374900DCFE1B /* MedicalModel.m */; };
 		565DAE4919DA739900C3924D /* TopicDiscussViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE4819DA739900C3924D /* TopicDiscussViewController.m */; };
 		565DAE4C19DA7A7F00C3924D /* TDListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE4B19DA7A7F00C3924D /* TDListViewController.m */; };
 		565DAE4F19DA7D9600C3924D /* TDListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE4E19DA7D9600C3924D /* TDListModel.m */; };
@@ -2032,6 +2034,10 @@
 		5630B98019DBF35A00DCFE1B /* ShowImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowImagesViewController.m; sourceTree = "<group>"; };
 		5630B98219DBF3B500DCFE1B /* QBShowImagesScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBShowImagesScrollView.h; sourceTree = "<group>"; };
 		5630B98319DBF3B500DCFE1B /* QBShowImagesScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBShowImagesScrollView.m; sourceTree = "<group>"; };
+		5630B98819DC07A400DCFE1B /* CreateMedicalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateMedicalCell.h; sourceTree = "<group>"; };
+		5630B98919DC07A400DCFE1B /* CreateMedicalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateMedicalCell.m; sourceTree = "<group>"; };
+		5630B99019DC374900DCFE1B /* MedicalModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedicalModel.h; sourceTree = "<group>"; };
+		5630B99119DC374900DCFE1B /* MedicalModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedicalModel.m; sourceTree = "<group>"; };
 		565DAE4719DA739900C3924D /* TopicDiscussViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicDiscussViewController.h; sourceTree = "<group>"; };
 		565DAE4819DA739900C3924D /* TopicDiscussViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicDiscussViewController.m; sourceTree = "<group>"; };
 		565DAE4A19DA7A7F00C3924D /* TDListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDListViewController.h; sourceTree = "<group>"; };
@@ -3714,6 +3720,8 @@
 				3E46C14F19D2A2F200403A42 /* MedicalViewController.m */,
 				3E46C15719D2BC0000403A42 /* CreatMedicalViewController.h */,
 				3E46C15819D2BC0000403A42 /* CreatMedicalViewController.m */,
+				5630B98819DC07A400DCFE1B /* CreateMedicalCell.h */,
+				5630B98919DC07A400DCFE1B /* CreateMedicalCell.m */,
 			);
 			path = MedicalLibrary;
 			sourceTree = "<group>";
@@ -4072,6 +4080,8 @@
 				565DAE5C19DA9C6B00C3924D /* AttachListModel.m */,
 				5630B97819DB2AEA00DCFE1B /* UserArticleListAttachListModel.h */,
 				5630B97919DB2AEA00DCFE1B /* UserArticleListAttachListModel.m */,
+				5630B99019DC374900DCFE1B /* MedicalModel.h */,
+				5630B99119DC374900DCFE1B /* MedicalModel.m */,
 			);
 			path = SNModels;
 			sourceTree = "<group>";
@@ -5224,6 +5234,7 @@
 				19960D18196A80D6000121AA /* CCMD5.m in Sources */,
 				19960D0D196A80D6000121AA /* SDWebImageCompat.m in Sources */,
 				19960D01196A80D6000121AA /* SBJsonStreamParserAccumulator.m in Sources */,
+				5630B98B19DC07A400DCFE1B /* CreateMedicalCell.m in Sources */,
 				19975B071976765600ADF199 /* QIDIActionSheet.m in Sources */,
 				19960CF4196A80D6000121AA /* ASIFormDataRequest.m in Sources */,
 				195C2FFB19888ADD0099B45F /* UncaughtExceptionHandler.m in Sources */,
@@ -5274,6 +5285,7 @@
 				19A87FB41995B941009404F3 /* FriendCircleHomeTableViewCell.m in Sources */,
 				19960D12196A80D6000121AA /* SDWebImagePrefetcher.m in Sources */,
 				199CFD57195AA48300F74F7C /* main.m in Sources */,
+				5630B99219DC374900DCFE1B /* MedicalModel.m in Sources */,
 				19960CF5196A80D6000121AA /* ASIHTTPRequest.m in Sources */,
 				E3DF643719DAB1A400D05E6F /* GEGORefreshTableFooterView.m in Sources */,
 				19960D05196A80D6000121AA /* SBJsonStreamWriterAccumulator.m in Sources */,
@@ -5358,13 +5370,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-
-				ONLY_ACTIVE_ARCH = NO;
-				PROVISIONING_PROFILE = "db5d35fa-89e9-42b3-ad18-97734e7f3484";
-
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "663bce84-31f1-462e-a50d-ebbe7bacfbf5";
-
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -5399,13 +5406,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-
-				ONLY_ACTIVE_ARCH = NO;
-				PROVISIONING_PROFILE = "db5d35fa-89e9-42b3-ad18-97734e7f3484";
-
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "663bce84-31f1-462e-a50d-ebbe7bacfbf5";
-
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

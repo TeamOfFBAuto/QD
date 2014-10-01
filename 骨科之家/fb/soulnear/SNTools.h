@@ -18,8 +18,8 @@
 
 ///返回一个NSUrl
 +(NSURL *)returnUrl:(NSString *)url;
-
-
+///返回字符串宽度高度
++(CGSize)returnStringHeightWith:(NSString *)string WithWidth:(float)theWidht WithFont:(int)aFont;
 
 
 

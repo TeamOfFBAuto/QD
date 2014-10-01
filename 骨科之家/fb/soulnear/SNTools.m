@@ -38,7 +38,11 @@
 }
 
 
-
++(CGSize)returnStringHeightWith:(NSString *)string WithWidth:(float)theWidht WithFont:(int)aFont
+{
+    CGRect rectr = [string boundingRectWithSize:CGSizeMake(theWidht, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:aFont]} context:nil];
+    return rectr.size;
+}
 
 
 

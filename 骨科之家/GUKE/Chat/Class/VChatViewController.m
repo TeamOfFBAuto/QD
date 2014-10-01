@@ -119,6 +119,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     [self navigetion];
     self.selfTypeDic = [self dicWithVType:_type];
     
