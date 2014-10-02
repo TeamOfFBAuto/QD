@@ -37,6 +37,9 @@
 - (void)loadView
 {
     UIView *view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame];
+    if (IOS7_LATER) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
     view.backgroundColor = [UIColor whiteColor];
     self.view = view;
 }
@@ -87,7 +90,7 @@
 // 创建资料库列表
 - (void)loadUITableView
 {
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64-50) style:UITableViewStylePlain];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-50) style:UITableViewStylePlain];
     self.tableView.backgroundColor = [UIColor whiteColor];
     // 解决IOS7下tableview分割线左边短了一点
     if ([_tableView respondsToSelector:@selector(setSeparatorInset:)]) {

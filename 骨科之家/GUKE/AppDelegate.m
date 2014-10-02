@@ -202,7 +202,9 @@
     if (type == Root_login){
         UserLoginViewController *vc = [[UserLoginViewController alloc] init];
         UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:vc];
-        vc.edgesForExtendedLayout = UIRectEdgeNone;
+        if (IOS7_LATER) {
+            nv.edgesForExtendedLayout = UIRectEdgeNone;
+        }
         self.window.rootViewController = nv;
         
     }else if (type == Root_home){
@@ -250,7 +252,9 @@
         UINavigationController *nvc = [[UINavigationController alloc]initWithRootViewController:userContact];
         //标记是否是推送过去的
         userContact.index = 1;
-        nvc.edgesForExtendedLayout = UIRectEdgeNone;
+        if (IOS7_LATER) {
+            nvc.edgesForExtendedLayout = UIRectEdgeNone;
+        }
         self.window.rootViewController = nvc;
     }
     else if(type == Root_friend){

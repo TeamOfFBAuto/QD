@@ -31,7 +31,10 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    self.edgesForExtendedLayout = UIRectEdgeAll;
+    self.view.backgroundColor = [UIColor whiteColor];
+    if (IOS7_LATER) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
     data_array = [NSMutableArray array];
     currentPage = 1;
     

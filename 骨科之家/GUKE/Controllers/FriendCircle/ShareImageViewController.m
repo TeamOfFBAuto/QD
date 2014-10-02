@@ -52,7 +52,9 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.edgesForExtendedLayout = UIRectEdgeNone;
+    if (IOS7_LATER) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
     [self navigation];
     [self creatUI];
     // Do any additional setup after loading the view.

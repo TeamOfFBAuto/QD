@@ -40,7 +40,9 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.edgesForExtendedLayout = UIRectEdgeNone;
+    if (IOS7_LATER) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
     // 初始化数组和字符串对象
     userArray = [[NSMutableArray alloc]init];
     nameArray = [[NSMutableArray alloc]init];
