@@ -119,10 +119,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-<<<<<<< HEAD
-=======
     self.view.backgroundColor = [UIColor whiteColor];
->>>>>>> FETCH_HEAD
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self navigetion];
     self.selfTypeDic = [self dicWithVType:_type];
