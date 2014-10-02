@@ -113,6 +113,9 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [SingleInstance colorFromHexRGB:@"f5f5f5"];
+    if (IOS7_LATER) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
     UIView *bgNavi = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 200, 44)];
     bgNavi.backgroundColor = [UIColor clearColor];
     
@@ -136,7 +139,7 @@
     UIView *rightView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
     rightView.backgroundColor = [UIColor clearColor];
 
-    UIButton * rightBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     rightBtn.frame = CGRectMake(0, (44-28)/2+1, 44, 28);
     rightBtn.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.2f];
     rightBtn.layer.cornerRadius = 4;
@@ -177,13 +180,8 @@
 - (void)creatUI{
     // 设置一个整体的背景
     UIView *viewline = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 0)];
-    if (IOS7_LATER) {
-        _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, SCREEN_HEIGHT-64)];
-        
-    }
-    else{
-        _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, SCREEN_HEIGHT-64)];
-    }
+    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, SCREEN_HEIGHT)];
+
     _scrollView.contentSize =_scrollView.frame.size;
     
     _scrollView.showsVerticalScrollIndicator = NO;
@@ -340,7 +338,6 @@
         _scrollView.frame = CGRectMake(0, -20, SCREEN_WIDTH, SCREEN_HEIGHT);
     }
     [UIView commitAnimations];
-//    _scrollView.frame = CGRectMake(_scrollView.frame.origin.x, _scrollView.frame.origin.y, _scrollView.frame.size.width, self.view.frame.size.height - height);
 }
 
 //当键退出时调用
@@ -350,7 +347,7 @@
     [UIView setAnimationDuration:0.3];
     [UIView setAnimationDelegate:self];
     [UIView setAnimationTransition:UIViewAnimationTransitionNone forView:_scrollView cache:YES];
-    _scrollView.frame = CGRectMake(0, 64, self.view.frame.size.width, SCREEN_HEIGHT-64);
+    _scrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     [UIView commitAnimations];
 }
 
