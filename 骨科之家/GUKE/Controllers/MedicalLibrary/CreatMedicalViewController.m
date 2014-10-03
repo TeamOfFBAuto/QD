@@ -126,7 +126,7 @@
     logoView.userInteractionEnabled = YES;
     
     UILabel *loginLabel = [[UILabel alloc]initWithFrame:CGRectMake(44, 7, 160, 30)];
-    loginLabel.text = @"病历库";
+    loginLabel.text = @"新建病历库";
     loginLabel.textColor = [UIColor whiteColor];
     loginLabel.backgroundColor = [UIColor clearColor];
     loginLabel.font = [UIFont systemFontOfSize:16];

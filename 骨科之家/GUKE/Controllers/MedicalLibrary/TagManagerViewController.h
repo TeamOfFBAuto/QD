@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BingLiListFeed.h"
 
-@interface TagManagerViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface TagManagerViewController : SNViewController<UITableViewDataSource,UITableViewDelegate>
 {
     
 }

@@ -862,6 +862,7 @@
 		563D756B19DE9C8700095CC7 /* LiuLanSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 563D756A19DE9C8700095CC7 /* LiuLanSectionView.xib */; };
 		563D756E19DECF0600095CC7 /* TagManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 563D756D19DECF0600095CC7 /* TagManagerViewController.m */; };
 		563D757119DED87000095CC7 /* SNViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 563D757019DED87000095CC7 /* SNViewController.m */; };
+		563D757419DEE06400095CC7 /* AddTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 563D757319DEE06400095CC7 /* AddTagViewController.m */; };
 		565DAE4919DA739900C3924D /* TopicDiscussViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE4819DA739900C3924D /* TopicDiscussViewController.m */; };
 		565DAE4C19DA7A7F00C3924D /* TDListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE4B19DA7A7F00C3924D /* TDListViewController.m */; };
 		565DAE4F19DA7D9600C3924D /* TDListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE4E19DA7D9600C3924D /* TDListModel.m */; };
@@ -2048,6 +2049,8 @@
 		563D756D19DECF0600095CC7 /* TagManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagManagerViewController.m; sourceTree = "<group>"; };
 		563D756F19DED87000095CC7 /* SNViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNViewController.h; sourceTree = "<group>"; };
 		563D757019DED87000095CC7 /* SNViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNViewController.m; sourceTree = "<group>"; };
+		563D757219DEE06400095CC7 /* AddTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTagViewController.h; sourceTree = "<group>"; };
+		563D757319DEE06400095CC7 /* AddTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTagViewController.m; sourceTree = "<group>"; };
 		565DAE4719DA739900C3924D /* TopicDiscussViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicDiscussViewController.h; sourceTree = "<group>"; };
 		565DAE4819DA739900C3924D /* TopicDiscussViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicDiscussViewController.m; sourceTree = "<group>"; };
 		565DAE4A19DA7A7F00C3924D /* TDListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDListViewController.h; sourceTree = "<group>"; };
@@ -3760,6 +3763,8 @@
 				563D756A19DE9C8700095CC7 /* LiuLanSectionView.xib */,
 				563D756C19DECF0600095CC7 /* TagManagerViewController.h */,
 				563D756D19DECF0600095CC7 /* TagManagerViewController.m */,
+				563D757219DEE06400095CC7 /* AddTagViewController.h */,
+				563D757319DEE06400095CC7 /* AddTagViewController.m */,
 				3E46C15719D2BC0000403A42 /* CreatMedicalViewController.h */,
 				3E46C15819D2BC0000403A42 /* CreatMedicalViewController.m */,
 				561A869019DDDDB900CC8674 /* ChooseCaseTypeViewController.h */,
@@ -5335,6 +5340,7 @@
 				19960CF1196A80D6000121AA /* ASIDataCompressor.m in Sources */,
 				563D756219DE6CFC00095CC7 /* MedicalCell.m in Sources */,
 				19960D53196A80D7000121AA /* VoiceRecorderBaseVC.m in Sources */,
+				563D757419DEE06400095CC7 /* AddTagViewController.m in Sources */,
 				8458B80A19D953020083B4AC /* Toolbar.m in Sources */,
 				1957C5DD1978F24600043F19 /* CommentView.m in Sources */,
 				E3076A8419D9D4B400333B7E /* GcalendarDetailViewController.m in Sources */,

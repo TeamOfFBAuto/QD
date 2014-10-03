@@ -19,7 +19,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.aTitle = @"标签";
     
+    UIBarButtonItem * spaceButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spaceButton.width = IOS7_OR_LATER ? -5:5;
+    
+    UIButton * right_button = [UIButton buttonWithType:UIButtonTypeCustom];
+    right_button.frame = CGRectMake(0,0,50,30);
+    right_button.layer.cornerRadius = 5;
+    right_button.backgroundColor = RGB(0,136,161);
+    [right_button addTarget:self action:@selector(addTagTap:) forControlEvents:UIControlEventTouchUpInside];
+    [right_button setTitle:@"添加" forState:UIControlStateNormal];
+    right_button.titleLabel.font  = [UIFont systemFontOfSize:15];
+    [right_button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    UIBarButtonItem * right_item = [[UIBarButtonItem alloc] initWithCustomView:right_button];
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:spaceButton,right_item,nil];
     
     _myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT) style:UITableViewStylePlain];
     _myTableView.delegate = self;
@@ -31,6 +46,11 @@
     
     UIView * vvv = [[UIView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,0)];
     _myTableView.tableFooterView = vvv;
+}
+
+-(void)addTagTap:(UIButton *)button
+{
+    
 }
 
 

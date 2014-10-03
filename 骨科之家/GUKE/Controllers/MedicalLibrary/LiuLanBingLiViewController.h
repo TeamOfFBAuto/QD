@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BingLiListFeed.h"
 
-@interface LiuLanBingLiViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface LiuLanBingLiViewController : SNViewController<UITableViewDataSource,UITableViewDelegate>
 {
     
 }

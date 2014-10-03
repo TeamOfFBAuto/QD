@@ -22,6 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.aTitle = @"浏览病历";
     self.view.backgroundColor = [UIColor whiteColor];
     _myFeed = [[BingLiListFeed alloc] init];
     _myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT) style:UITableViewStylePlain];
