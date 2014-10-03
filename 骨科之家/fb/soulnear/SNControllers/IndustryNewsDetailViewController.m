@@ -63,6 +63,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.aTitle = @"业界动态";
     self.view.backgroundColor = [UIColor whiteColor];
     data_array = [NSMutableArray array];
     

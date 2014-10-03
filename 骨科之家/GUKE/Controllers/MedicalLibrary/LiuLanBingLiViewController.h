@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BingLiListFeed.h"
 
-@interface LiuLanBingLiViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface LiuLanBingLiViewController : SNViewController<UITableViewDataSource,UITableViewDelegate>
 {
     
 }
@@ -18,6 +18,6 @@
 
 @property(nonatomic,strong)BingLiListFeed * feed;
 
-
+@property(nonatomic,strong)BingLiListFeed * myFeed;
 
 @end

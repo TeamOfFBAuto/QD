@@ -37,6 +37,9 @@
     self.backView = [[UIView alloc] initWithFrame:CGRectZero];
     self.backView.backgroundColor = RGB(238, 238, 238);
     
+    self.PictureViews = [[FBCirclePicturesViews alloc] init];
+    
+    [self.backView addSubview:self.PictureViews];
     [self.contentView addSubview:self.backView];
     [self.contentView addSubview:self.content];
     [self.contentView addSubview:self.shareImg];

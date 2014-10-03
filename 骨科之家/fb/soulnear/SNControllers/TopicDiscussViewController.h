@@ -11,7 +11,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TopicDiscussViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,PullTableViewDelegate>
+@interface TopicDiscussViewController : SNViewController<UITableViewDelegate,UITableViewDataSource,PullTableViewDelegate>
 {
     
 }

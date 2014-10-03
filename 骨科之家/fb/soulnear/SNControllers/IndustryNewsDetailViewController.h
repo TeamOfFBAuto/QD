@@ -32,7 +32,7 @@
 
 
 
-@interface IndustryNewsDetailViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface IndustryNewsDetailViewController : SNViewController<UITableViewDataSource,UITableViewDelegate>
 {
     
 }

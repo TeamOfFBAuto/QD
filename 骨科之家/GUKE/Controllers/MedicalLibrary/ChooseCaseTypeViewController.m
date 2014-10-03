@@ -20,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.aTitle = @"选择病历分类";
     data_array = [NSMutableArray array];
     
     

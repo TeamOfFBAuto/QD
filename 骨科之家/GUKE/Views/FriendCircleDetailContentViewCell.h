@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MyLabel.h"
+#import "FBCirclePicturesViews.h"
 
 #define SHARE_IMAGE_WHDTH 220.0
 #define SHARE_IMAGE_HEIGHT 165.0
@@ -20,4 +21,5 @@
 @property(nonatomic, strong)MyLabel *contentShare;
 @property(nonatomic, strong)UILabel *urlLabel;
 @property(nonatomic, strong)UIView *backView;
+@property(nonatomic,strong)FBCirclePicturesViews * PictureViews;
 @end

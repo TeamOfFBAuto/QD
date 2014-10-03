@@ -10,7 +10,7 @@
 #import "ChatVoiceRecorderVC.h"
 #import "VoiceConverter.h"
 
-@interface CreatMedicalViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate>{
+@interface CreatMedicalViewController : SNViewController<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate>{
 
 
 

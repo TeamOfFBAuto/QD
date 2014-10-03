@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FriendCircleDetailContentViewCell.h"
 #import "MyLabel.h"
+#import "FBCirclePicturesViews.h"
 
 @interface FriendCircleDetailContentView : UIView<UITableViewDataSource,UITableViewDelegate,MyLabelDelegate>
 @property(nonatomic, strong)UITableView *tableView;

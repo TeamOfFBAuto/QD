@@ -15,7 +15,6 @@
         return oldStr;
     }
     
-    NSLog(@"oldstr --------   %@",oldStr);
     NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingISOLatin1);
     
     return [NSString stringWithUTF8String:[oldStr cStringUsingEncoding:enc]];

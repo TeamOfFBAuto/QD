@@ -10,7 +10,7 @@
  */
 #import <UIKit/UIKit.h>
 
-@interface IndustryNewsController : UIViewController
+@interface IndustryNewsController : SNViewController
 {
     
 }

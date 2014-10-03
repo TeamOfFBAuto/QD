@@ -28,7 +28,7 @@
         self.selectionStyle=UITableViewCellSelectionStyleNone;
         
         
-        _inputField=[[UITextField alloc]initWithFrame:CGRectMake(70, 0, 200, 15)];
+        _inputField=[[UITextField alloc]initWithFrame:CGRectMake(0, 0, 320, 15)];
         _inputField.delegate=self;
         [self addSubview:_inputField];
         
@@ -37,6 +37,11 @@
     }
     return self;
 }
+
+
+
+
+
 
 
 

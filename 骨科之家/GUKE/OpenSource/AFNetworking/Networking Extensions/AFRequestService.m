@@ -22,7 +22,7 @@
             getdata(responseObject);
            
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-
+        
         }];
 
 }

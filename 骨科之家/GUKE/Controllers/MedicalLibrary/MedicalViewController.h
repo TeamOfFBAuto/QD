@@ -11,7 +11,7 @@
 #import "MBProgressHUD.h"
 
 
-@interface MedicalViewController : UIViewController<MBProgressHUDDelegate>
+@interface MedicalViewController : SNViewController<MBProgressHUDDelegate>
 
 // 创建病历库的列表
 @property (nonatomic, strong) PullTableView *tableView;

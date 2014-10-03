@@ -32,6 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.aTitle = @"主题讨论";
     self.view.backgroundColor = [UIColor whiteColor];
     data_array = [NSMutableArray array];
     currentPage = 1;

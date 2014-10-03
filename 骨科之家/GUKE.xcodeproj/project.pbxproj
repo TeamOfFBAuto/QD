@@ -13,6 +13,8 @@
 		193ED7F3197F61D2000C5009 /* SqliteFieldAndTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 193ED7F2197F61D2000C5009 /* SqliteFieldAndTable.m */; };
 		193ED7F6197F8552000C5009 /* UserInfoDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 193ED7F5197F8552000C5009 /* UserInfoDB.m */; };
 		194EDB7C19D9D3D800A60E32 /* RecordsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 194EDB7B19D9D3D800A60E32 /* RecordsTableViewCell.m */; };
+		1954B75919DEE5A00056A971 /* BiaoQianBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1954B75819DEE5A00056A971 /* BiaoQianBottomView.m */; };
+		1954B75C19DEEA360056A971 /* FbRegistCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1954B75B19DEEA360056A971 /* FbRegistCell.m */; };
 		1956AC28196E4A230092A4CA /* speratechbgline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1956AC27196E4A220092A4CA /* speratechbgline@2x.png */; };
 		1957C5DD1978F24600043F19 /* CommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1957C5DC1978F24600043F19 /* CommentView.m */; };
 		1957C5E01978F71100043F19 /* CommentCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1957C5DF1978F71100043F19 /* CommentCollectionView.m */; };
@@ -860,6 +862,9 @@
 		563D756619DE8B1300095CC7 /* LiuLanBingLiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 563D756519DE8B1300095CC7 /* LiuLanBingLiViewController.m */; };
 		563D756919DE9C7500095CC7 /* LiuLanSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 563D756819DE9C7500095CC7 /* LiuLanSectionView.m */; };
 		563D756B19DE9C8700095CC7 /* LiuLanSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 563D756A19DE9C8700095CC7 /* LiuLanSectionView.xib */; };
+		563D756E19DECF0600095CC7 /* TagManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 563D756D19DECF0600095CC7 /* TagManagerViewController.m */; };
+		563D757119DED87000095CC7 /* SNViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 563D757019DED87000095CC7 /* SNViewController.m */; };
+		563D757419DEE06400095CC7 /* AddTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 563D757319DEE06400095CC7 /* AddTagViewController.m */; };
 		565DAE4919DA739900C3924D /* TopicDiscussViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE4819DA739900C3924D /* TopicDiscussViewController.m */; };
 		565DAE4C19DA7A7F00C3924D /* TDListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE4B19DA7A7F00C3924D /* TDListViewController.m */; };
 		565DAE4F19DA7D9600C3924D /* TDListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE4E19DA7D9600C3924D /* TDListModel.m */; };
@@ -965,6 +970,10 @@
 		193ED7F5197F8552000C5009 /* UserInfoDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoDB.m; sourceTree = "<group>"; };
 		194EDB7A19D9D3D800A60E32 /* RecordsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordsTableViewCell.h; sourceTree = "<group>"; };
 		194EDB7B19D9D3D800A60E32 /* RecordsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordsTableViewCell.m; sourceTree = "<group>"; };
+		1954B75719DEE5A00056A971 /* BiaoQianBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BiaoQianBottomView.h; sourceTree = "<group>"; };
+		1954B75819DEE5A00056A971 /* BiaoQianBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BiaoQianBottomView.m; sourceTree = "<group>"; };
+		1954B75A19DEEA360056A971 /* FbRegistCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FbRegistCell.h; sourceTree = "<group>"; };
+		1954B75B19DEEA360056A971 /* FbRegistCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FbRegistCell.m; sourceTree = "<group>"; };
 		1956AC27196E4A220092A4CA /* speratechbgline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "speratechbgline@2x.png"; sourceTree = "<group>"; };
 		1957C5DB1978F24600043F19 /* CommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentView.h; sourceTree = "<group>"; };
 		1957C5DC1978F24600043F19 /* CommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentView.m; sourceTree = "<group>"; };
@@ -2042,6 +2051,12 @@
 		563D756719DE9C7500095CC7 /* LiuLanSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiuLanSectionView.h; sourceTree = "<group>"; };
 		563D756819DE9C7500095CC7 /* LiuLanSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiuLanSectionView.m; sourceTree = "<group>"; };
 		563D756A19DE9C8700095CC7 /* LiuLanSectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LiuLanSectionView.xib; sourceTree = "<group>"; };
+		563D756C19DECF0600095CC7 /* TagManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagManagerViewController.h; sourceTree = "<group>"; };
+		563D756D19DECF0600095CC7 /* TagManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagManagerViewController.m; sourceTree = "<group>"; };
+		563D756F19DED87000095CC7 /* SNViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNViewController.h; sourceTree = "<group>"; };
+		563D757019DED87000095CC7 /* SNViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNViewController.m; sourceTree = "<group>"; };
+		563D757219DEE06400095CC7 /* AddTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTagViewController.h; sourceTree = "<group>"; };
+		563D757319DEE06400095CC7 /* AddTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTagViewController.m; sourceTree = "<group>"; };
 		565DAE4719DA739900C3924D /* TopicDiscussViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicDiscussViewController.h; sourceTree = "<group>"; };
 		565DAE4819DA739900C3924D /* TopicDiscussViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicDiscussViewController.m; sourceTree = "<group>"; };
 		565DAE4A19DA7A7F00C3924D /* TDListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDListViewController.h; sourceTree = "<group>"; };
@@ -2249,6 +2264,8 @@
 				561A868919DD78F200CC8674 /* Send_Image_close@2x.png */,
 				5675CAEB19D9D35300FB975F /* SNTools.h */,
 				5675CAEC19D9D35300FB975F /* SNTools.m */,
+				563D756F19DED87000095CC7 /* SNViewController.h */,
+				563D757019DED87000095CC7 /* SNViewController.m */,
 				5675CADD19D9C01D00FB975F /* SNControllers */,
 				5675CADE19D9C01D00FB975F /* SNModels */,
 				5675CADF19D9C01D00FB975F /* SNViews */,
@@ -2287,8 +2304,12 @@
 		194EDB7319D9C5D700A60E32 /* zkingView */ = {
 			isa = PBXGroup;
 			children = (
+				1954B75A19DEEA360056A971 /* FbRegistCell.h */,
+				1954B75B19DEEA360056A971 /* FbRegistCell.m */,
 				194EDB7A19D9D3D800A60E32 /* RecordsTableViewCell.h */,
 				194EDB7B19D9D3D800A60E32 /* RecordsTableViewCell.m */,
+				1954B75719DEE5A00056A971 /* BiaoQianBottomView.h */,
+				1954B75819DEE5A00056A971 /* BiaoQianBottomView.m */,
 			);
 			path = zkingView;
 			sourceTree = "<group>";
@@ -3750,6 +3771,10 @@
 				563D756719DE9C7500095CC7 /* LiuLanSectionView.h */,
 				563D756819DE9C7500095CC7 /* LiuLanSectionView.m */,
 				563D756A19DE9C8700095CC7 /* LiuLanSectionView.xib */,
+				563D756C19DECF0600095CC7 /* TagManagerViewController.h */,
+				563D756D19DECF0600095CC7 /* TagManagerViewController.m */,
+				563D757219DEE06400095CC7 /* AddTagViewController.h */,
+				563D757319DEE06400095CC7 /* AddTagViewController.m */,
 				3E46C15719D2BC0000403A42 /* CreatMedicalViewController.h */,
 				3E46C15819D2BC0000403A42 /* CreatMedicalViewController.m */,
 				561A869019DDDDB900CC8674 /* ChooseCaseTypeViewController.h */,
@@ -5147,6 +5172,7 @@
 				565DAE6119DAAE8000C3924D /* TDDetailCell.m in Sources */,
 				840BB22719D7AB30000A4725 /* Reachability.m in Sources */,
 				197ABFED197388AC00FC6A24 /* FriendCircleTableViewCell.m in Sources */,
+				563D756E19DECF0600095CC7 /* TagManagerViewController.m in Sources */,
 				19960D02196A80D6000121AA /* SBJsonStreamParserAdapter.m in Sources */,
 				565DAE4919DA739900C3924D /* TopicDiscussViewController.m in Sources */,
 				3E1EFFCE1980AB9D008C9B8D /* PECropViewController.m in Sources */,
@@ -5207,6 +5233,7 @@
 				19996494195D3E1A006C84CC /* RemindViewController.m in Sources */,
 				E39E4D4F19DA04DE00AEA2F6 /* ITTCalendarGridView.m in Sources */,
 				193ED7F6197F8552000C5009 /* UserInfoDB.m in Sources */,
+				1954B75C19DEEA360056A971 /* FbRegistCell.m in Sources */,
 				19960CFF196A80D6000121AA /* SBJsonParser.m in Sources */,
 				E39E4D5F19DA04DE00AEA2F6 /* ITTCalDay.m in Sources */,
 				199CFE1A195AA53900F74F7C /* UIRefreshControl+AFNetworking.m in Sources */,
@@ -5270,6 +5297,7 @@
 				3E46C16419D2DEE600403A42 /* NSString+_859ToUTF8.m in Sources */,
 				3E3785051990F9390000F8FF /* UIScrollView+MJRefresh.m in Sources */,
 				19960D0F196A80D6000121AA /* SDWebImageDownloader.m in Sources */,
+				563D757119DED87000095CC7 /* SNViewController.m in Sources */,
 				3EB9972A19B568D10032D37E /* FriendCircleDetailContentView.m in Sources */,
 				3E3785041990F9390000F8FF /* UIScrollView+Extension.m in Sources */,
 				19996492195D3E1A006C84CC /* ChangPWDViewController.m in Sources */,
@@ -5323,6 +5351,7 @@
 				19960CF1196A80D6000121AA /* ASIDataCompressor.m in Sources */,
 				563D756219DE6CFC00095CC7 /* MedicalCell.m in Sources */,
 				19960D53196A80D7000121AA /* VoiceRecorderBaseVC.m in Sources */,
+				563D757419DEE06400095CC7 /* AddTagViewController.m in Sources */,
 				8458B80A19D953020083B4AC /* Toolbar.m in Sources */,
 				1957C5DD1978F24600043F19 /* CommentView.m in Sources */,
 				E3076A8419D9D4B400333B7E /* GcalendarDetailViewController.m in Sources */,
@@ -5340,6 +5369,7 @@
 				5630B99219DC374900DCFE1B /* MedicalModel.m in Sources */,
 				19960CF5196A80D6000121AA /* ASIHTTPRequest.m in Sources */,
 				E3DF643719DAB1A400D05E6F /* GEGORefreshTableFooterView.m in Sources */,
+				1954B75919DEE5A00056A971 /* BiaoQianBottomView.m in Sources */,
 				19960D05196A80D6000121AA /* SBJsonStreamWriterAccumulator.m in Sources */,
 				19960D4D196A80D7000121AA /* ChatRecorderView.m in Sources */,
 				E39E4D5119DA04DE00AEA2F6 /* ITTCalendarView.m in Sources */,
@@ -5423,7 +5453,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "663bce84-31f1-462e-a50d-ebbe7bacfbf5";
+				PROVISIONING_PROFILE = "db5d35fa-89e9-42b3-ad18-97734e7f3484";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -5459,7 +5489,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "663bce84-31f1-462e-a50d-ebbe7bacfbf5";
+				PROVISIONING_PROFILE = "db5d35fa-89e9-42b3-ad18-97734e7f3484";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -5485,7 +5515,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = GUKE;
-				PROVISIONING_PROFILE = "663bce84-31f1-462e-a50d-ebbe7bacfbf5";
+				PROVISIONING_PROFILE = "db5d35fa-89e9-42b3-ad18-97734e7f3484";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
@@ -5513,7 +5543,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = GUKE;
-				PROVISIONING_PROFILE = "663bce84-31f1-462e-a50d-ebbe7bacfbf5";
+				PROVISIONING_PROFILE = "db5d35fa-89e9-42b3-ad18-97734e7f3484";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";

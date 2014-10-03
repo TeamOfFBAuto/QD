@@ -32,6 +32,8 @@
     if (self) {
         self.tagId = [NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[dic objectForKey:@"tagId"]]];
         self.tag = [NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[dic objectForKey:@"tag"]]];
+        self.userId = [NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[dic objectForKey:@"userId"]]];
+        self.bingliId = [NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[dic objectForKey:@"bingliId"]]];
     }
     return self;
 }
@@ -83,24 +85,17 @@
     
     self.firstname=[NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[mydic objectForKey:@"firstname"]]];
     
-    if ([mydic objectForKey:@"attachlist"] && [[mydic objectForKey:@"attachlist"] isKindOfClass:[NSArray class]]) {
-        self.attach_array = [NSMutableArray array];
-        NSArray * array = [ mydic objectForKey:@"attachlist"];
-        
-        for (NSDictionary * aDic in array) {
-            AttachListFeed * alFeed = [[AttachListFeed alloc] initWithDic:aDic];
-            [self.attach_array addObject:alFeed];
-        }
-    }
+    NSArray * array = [mydic objectForKey:@"attachlist"];
+
+    self.attach_array = [NSMutableArray arrayWithArray:array];
     
-    if ([mydic objectForKey:@"tagId"] && [[mydic objectForKey:@"tagId"] isKindOfClass:[NSArray class]]) {
-        self.attach_array = [NSMutableArray array];
-        NSArray * array = [ mydic objectForKey:@"tagId"];
+    self.tag_array = [NSMutableArray array];
+    
+    NSArray * array1 = [mydic objectForKey:@"taglist"];
         
-        for (NSDictionary * aDic in array) {
-            TagListFeed * alFeed = [[TagListFeed alloc] initWithDic:aDic];
-            [self.tag_array addObject:alFeed];
-        }
+    for (NSDictionary * aDic in array1) {
+        TagListFeed * alFeed = [[TagListFeed alloc] initWithDic:aDic];
+        [self.tag_array addObject:alFeed];
     }
 }
 
