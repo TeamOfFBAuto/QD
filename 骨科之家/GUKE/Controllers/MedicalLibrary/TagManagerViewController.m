@@ -7,6 +7,7 @@
 //
 
 #import "TagManagerViewController.h"
+#import "AddTagViewController.h"
 
 @interface TagManagerViewController ()
 
@@ -50,7 +51,8 @@
 
 -(void)addTagTap:(UIButton *)button
 {
-    
+    AddTagViewController * add = [[AddTagViewController alloc] init];
+    [self.navigationController pushViewController:add animated:YES];
 }
 
 
