@@ -248,6 +248,15 @@
         UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:vc];
         self.window.rootViewController = nv;
     }else if (type == Root_contact){
+        // 后台执行加载数据
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            SqliteFieldAndTable *sqliteAndtable = [[SqliteFieldAndTable alloc]init];
+            [sqliteAndtable getAllInfo];
+            sqliteAndtable = nil;
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                
+            });
+        });
          UserContactViewController *userContact = [[UserContactViewController alloc]init];
         UINavigationController *nvc = [[UINavigationController alloc]initWithRootViewController:userContact];
         //标记是否是推送过去的

@@ -188,7 +188,6 @@
     call.font = [UIFont systemFontOfSize:14];
     
     UIButton *callBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [callBtn setBackgroundImage:[UIImage imageNamed:@"friend_phone_ico"] forState:UIControlStateNormal];
     callBtn.frame = CGRectMake(245, 5, 30, 30);
     [callBtn setImage:[UIImage imageNamed:@"friend_phone_ico.png"] forState:UIControlStateNormal];
     callBtn.imageEdgeInsets = UIEdgeInsetsMake(3, 5, 7, 5);
@@ -198,7 +197,6 @@
     callBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     
     UIButton *msgBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [msgBtn setBackgroundImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"friend_chat_ico@2x" ofType:@"png"]] forState:UIControlStateNormal];
     [msgBtn setImage:[UIImage imageNamed:@"friend_chat_ico.png"] forState:UIControlStateNormal];
     msgBtn.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
     
@@ -828,7 +826,8 @@
         case ALERT_ADDSUCCESS_TAG:
             //[self.navigationController popViewControllerAnimated:NO];
            
-        {// 跳转到主界面
+        {
+            // 跳转到主界面
             AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
             [appDelegate showControlView:Root_contact];
         }
@@ -913,53 +912,53 @@
         
         NSDictionary *userDetail = [userIfo objectForKey:@"user"];
         userModel = [[UserIfo alloc]init];
-        userModel.address = [userDetail valueForKey:@"address"];
-        userModel.allowPosition = [userDetail valueForKey:@"allowPosition"];
-        userModel.articleBg = [userDetail valueForKey:@"articleBg"];
-        userModel.bgUpdateTime = [userDetail valueForKey:@"bgUpdateTime"];
-        userModel.chkATime = [userDetail valueForKey:@"chkATime"];
-        userModel.cityName = [userDetail valueForKey:@"cityName"];
-        userModel.companyId = [userDetail valueForKey:@"companyId"];
-        userModel.createDate = [userDetail valueForKey:@"createDate"];
-        userModel.deletePerm = [userDetail valueForKey:@"deletePerm"];
-        userModel.district = [userDetail valueForKey:@"district"];
-        userModel.email = [userDetail valueForKey:@"email"];
-        userModel.firstname = [userDetail valueForKey:@"firstname"];
-        userModel.firstnameen = [userDetail valueForKey:@"firstnameen"];
-        userModel.icon = [userDetail valueForKey:@"icon"];
-        userModel.iconUpdateTime = [userDetail valueForKey:@"iconUpdateTime"];
-        userModel.inviteCodeId = [userDetail valueForKey:@"inviteCodeId"];
-        userModel.invitePerm = [userDetail valueForKey:@"invitePerm"];
-        userModel.itcode = [userDetail valueForKey:@"itcode"];
-        userModel.isFriend = [userDetail valueForKey:@"isFriend"];
-        userModel.lastChkETime = [userDetail valueForKey:@"lastChkETime"];
-        userModel.lastLogin = [userDetail valueForKey:@"lastLogin"];
-        userModel.lastLoginIP = [userDetail valueForKey:@"lastLoginIP"];
-        userModel.latitude = [userDetail valueForKey:@"latitude"];
-        userModel.loginCount = [userDetail valueForKey:@"loginCount"];
-        userModel.longitude = [userDetail valueForKey:@"longitude"];
-        userModel.mailStatus = [userDetail valueForKey:@"mailStatus"];
-        userModel.memo = [userDetail valueForKey:@"memo"];
-        userModel.mobile = [userDetail valueForKey:@"mobile"];
-        userModel.organization = [userDetail valueForKey:@"organization"];
-        userModel.organizationen = [userDetail valueForKey:@"organizationen"];
-        userModel.parentCode = [userDetail valueForKey:@"parentCode"];
-        userModel.parentId = [userDetail valueForKey:@"parentId"];
-        userModel.position = [userDetail valueForKey:@"position"];
-        userModel.positionen = [userDetail valueForKey:@"positionen"];
-        userModel.province = [userDetail valueForKey:@"province"];
-        userModel.sex = [userDetail valueForKey:@"sex"];
-        userModel.showMobile = [userDetail valueForKey:@"showMobile"];
-        userModel.sid = [userDetail valueForKey:@"sid"];
-        userModel.status = [userDetail valueForKey:@"status"];
-        userModel.street = [userDetail valueForKey:@"street"];
-        userModel.street_number = [userDetail valueForKey:@"street_number"];
-        userModel.sysAdmin = [userDetail valueForKey:@"sysAdmin"];
-        userModel.telephone = [userDetail valueForKey:@"telephone"];
-        userModel.userId = [userDetail valueForKey:@"userId"];
-        userModel.userType = [userDetail valueForKey:@"userType"];
-        userModel.username = [userDetail valueForKey:@"username"];
-        userModel.versionName = [userDetail valueForKey:@"versionName"];
+        userModel.address =[NSString _859ToUTF8:[userDetail valueForKey:@"address"]];
+        userModel.allowPosition = [NSString _859ToUTF8:[userDetail valueForKey:@"allowPosition"]];
+        userModel.articleBg = [NSString _859ToUTF8:[userDetail valueForKey:@"articleBg"]];
+        userModel.bgUpdateTime = [NSString _859ToUTF8:[userDetail valueForKey:@"bgUpdateTime"]];
+        userModel.chkATime = [NSString _859ToUTF8:[userDetail valueForKey:@"chkATime"]];
+        userModel.cityName = [NSString _859ToUTF8:[userDetail valueForKey:@"cityName"]];
+        userModel.companyId = [NSString _859ToUTF8:[userDetail valueForKey:@"companyId"]];
+        userModel.createDate = [NSString _859ToUTF8:[userDetail valueForKey:@"createDate"]];
+        userModel.deletePerm = [NSString _859ToUTF8:[userDetail valueForKey:@"deletePerm"]];
+        userModel.district = [NSString _859ToUTF8:[userDetail valueForKey:@"district"]];
+        userModel.email = [NSString _859ToUTF8:[userDetail valueForKey:@"email"]];
+        userModel.firstname = [NSString _859ToUTF8:[userDetail valueForKey:@"firstname"]];
+        userModel.firstnameen = [NSString _859ToUTF8:[userDetail valueForKey:@"firstnameen"]];
+        userModel.icon = [NSString _859ToUTF8:[userDetail valueForKey:@"icon"]];
+        userModel.iconUpdateTime = [NSString _859ToUTF8:[userDetail valueForKey:@"iconUpdateTime"]];
+        userModel.inviteCodeId = [NSString _859ToUTF8:[userDetail valueForKey:@"inviteCodeId"]];
+        userModel.invitePerm = [NSString _859ToUTF8:[userDetail valueForKey:@"invitePerm"]];
+        userModel.itcode = [NSString _859ToUTF8:[userDetail valueForKey:@"itcode"]];
+        userModel.isFriend = [NSString _859ToUTF8:[userDetail valueForKey:@"isFriend"]];
+        userModel.lastChkETime = [NSString _859ToUTF8:[userDetail valueForKey:@"lastChkETime"]];
+        userModel.lastLogin = [NSString _859ToUTF8:[userDetail valueForKey:@"lastLogin"]];
+        userModel.lastLoginIP =[NSString _859ToUTF8: [userDetail valueForKey:@"lastLoginIP"]];
+        userModel.latitude = [NSString _859ToUTF8:[userDetail valueForKey:@"latitude"]];
+        userModel.loginCount = [NSString _859ToUTF8:[userDetail valueForKey:@"loginCount"]];
+        userModel.longitude = [NSString _859ToUTF8:[userDetail valueForKey:@"longitude"]];
+        userModel.mailStatus = [NSString _859ToUTF8:[userDetail valueForKey:@"mailStatus"]];
+        userModel.memo = [NSString _859ToUTF8:[userDetail valueForKey:@"memo"]];
+        userModel.mobile = [NSString _859ToUTF8:[userDetail valueForKey:@"mobile"]];
+        userModel.organization = [NSString _859ToUTF8:[userDetail valueForKey:@"organization"]];
+        userModel.organizationen = [NSString _859ToUTF8:[userDetail valueForKey:@"organizationen"]];
+        userModel.parentCode = [NSString _859ToUTF8:[userDetail valueForKey:@"parentCode"]];
+        userModel.parentId = [NSString _859ToUTF8:[userDetail valueForKey:@"parentId"]];
+        userModel.position = [NSString _859ToUTF8:[userDetail valueForKey:@"position"]];
+        userModel.positionen = [NSString _859ToUTF8:[userDetail valueForKey:@"positionen"]];
+        userModel.province = [NSString _859ToUTF8:[userDetail valueForKey:@"province"]];
+        userModel.sex = [NSString _859ToUTF8:[userDetail valueForKey:@"sex"]];
+        userModel.showMobile = [NSString _859ToUTF8:[userDetail valueForKey:@"showMobile"]];
+        userModel.sid = [NSString _859ToUTF8:[userDetail valueForKey:@"sid"]];
+        userModel.status = [NSString _859ToUTF8:[userDetail valueForKey:@"status"]];
+        userModel.street = [NSString _859ToUTF8:[userDetail valueForKey:@"street"]];
+        userModel.street_number = [NSString _859ToUTF8:[userDetail valueForKey:@"street_number"]];
+        userModel.sysAdmin = [NSString _859ToUTF8:[userDetail valueForKey:@"sysAdmin"]];
+        userModel.telephone = [NSString _859ToUTF8:[userDetail valueForKey:@"telephone"]];
+        userModel.userId = [NSString _859ToUTF8:[userDetail valueForKey:@"userId"]];
+        userModel.userType = [NSString _859ToUTF8:[userDetail valueForKey:@"userType"]];
+        userModel.username = [NSString _859ToUTF8:[userDetail valueForKey:@"username"]];
+        userModel.versionName = [NSString _859ToUTF8:[userDetail valueForKey:@"versionName"]];
         [UserInfoDB selectUserInfo:USERIFO_TABLE andkeyValue:userModel andkeyArray:nil];
         return YES;
     }
