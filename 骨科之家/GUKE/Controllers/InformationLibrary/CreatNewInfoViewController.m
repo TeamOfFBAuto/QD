@@ -32,6 +32,32 @@
     // 文本内容视图
     UITextView *_AddContentView;
     
+    
+    
+    //视频相关
+    
+    int _btnChoose;//用于在回调方法中判断是 选择视频 还是录制视频
+    
+    
+    UIImagePickerControllerQualityType                  _qualityType;
+    NSString*                                           _mp4Quality;
+    
+    NSURL*                                              _videoURL;
+    NSString*                                           _mp4Path;
+    
+    UIAlertView*                                        _alert;
+    NSDate*                                             _startDate;
+    
+    
+    BOOL                                                _hasVideo;
+    BOOL                                                _networkOpt;
+    BOOL                                                _hasMp4;
+    
+    
+    NSString * _videoDuration;//视频持续时间
+    NSString *_videoSize;//视频文件大小
+    
+    
 }
 // 自定义导航栏
 - (void)loadNavigation;
@@ -74,6 +100,20 @@
     [self loadFileView];
     [self loadFileTableView];
     [self loadAddContentView];
+    
+    
+    
+    _networkOpt = YES;
+    
+    
+    _qualityType = UIImagePickerControllerQualityTypeLow;
+    _mp4Quality = AVAssetExportPresetLowQuality;
+    _hasVideo = NO;
+    _hasMp4 = NO;
+    
+    _btnChoose = 0;
+    
+    
 }
 
 // 导航的设置
@@ -265,7 +305,7 @@
     [self.view.window addSubview:bgView];
     
     UIView *sendView = [[UIView alloc] init];
-    sendView.frame = CGRectMake(SCREEN_WIDTH/2-200/2, SCREEN_HEIGHT/2-205/2-20, 200, 205);
+    sendView.frame = CGRectMake(SCREEN_WIDTH/2-200/2, SCREEN_HEIGHT/2-205/2-20, 200, 290);
     sendView.backgroundColor = [UIColor whiteColor];
     sendView.clipsToBounds = YES;
     sendView.layer.cornerRadius = 5.0f;
@@ -313,13 +353,59 @@
     };
     [sendView addSubview:takePhoto];
     
+    
     UIView *line2 = [[UIView alloc] init];
     line2.frame = CGRectMake(0, takePhoto.frame.origin.y+takePhoto.frame.size.height, sendView.frame.size.width, 0.5);
     line2.backgroundColor = [UIColor grayColor];
     [sendView addSubview:line2];
     
+    
+#pragma mark - gm start
+    
+    //拍视频
+    BlockButton *takeVieo = [[BlockButton alloc] init];
+    takeVieo.frame = CGRectMake(0, line2.frame.origin.y+line2.frame.size.height, sendView.frame.size.width, 40);
+    takeVieo.backgroundColor = [UIColor clearColor];
+    [takeVieo setTitle:@"拍摄视频" forState:UIControlStateNormal];
+    [takeVieo setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [takeVieo setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+    takeVieo.titleLabel.font = [UIFont systemFontOfSize:15.0f];
+    takeVieo.block = ^(BlockButton *btn){
+        NSLog(@"点击拍摄视频");
+        [self createVideo];
+        [bgView removeFromSuperview];
+    };
+    [sendView addSubview:takeVieo];
+    
+    UIView *line3 = [[UIView alloc] init];
+    line3.frame = CGRectMake(0, takeVieo.frame.origin.y+takeVieo.frame.size.height, sendView.frame.size.width, 0.5);
+    line3.backgroundColor = [UIColor grayColor];
+    [sendView addSubview:line3];
+    
+    
+    //选择视频
+    BlockButton *chooseVieo = [[BlockButton alloc] init];
+    chooseVieo.frame = CGRectMake(0, line3.frame.origin.y+line3.frame.size.height, sendView.frame.size.width, 40);
+    chooseVieo.backgroundColor = [UIColor clearColor];
+    [chooseVieo setTitle:@"选择视频" forState:UIControlStateNormal];
+    [chooseVieo setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [chooseVieo setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+    chooseVieo.titleLabel.font = [UIFont systemFontOfSize:15.0f];
+    chooseVieo.block = ^(BlockButton *btn){
+        NSLog(@"点击选择视频");
+        [self chooseVideo];
+        [bgView removeFromSuperview];
+    };
+    [sendView addSubview:chooseVieo];
+    
+    UIView *line4 = [[UIView alloc] init];
+    line4.frame = CGRectMake(0, chooseVieo.frame.origin.y+chooseVieo.frame.size.height, sendView.frame.size.width, 0.5);
+    line4.backgroundColor = [UIColor grayColor];
+    [sendView addSubview:line4];
+#pragma mark - gm end
+    
     UILabel *voiceLabel = [[UILabel alloc] init];
-    voiceLabel.frame = CGRectMake(0, line2.frame.origin.y+line2.frame.size.height, sendView.frame.size.width, 40);
+    voiceLabel.frame = CGRectMake(0, line4.frame.origin.y+line4.frame.size.height, sendView.frame.size.width, 40);
     voiceLabel.backgroundColor = [UIColor clearColor];
     voiceLabel.text = @"按住说话";
     voiceLabel.userInteractionEnabled = YES;
@@ -334,13 +420,13 @@
     longPressGestureRecognizer.minimumPressDuration = 0.1;
     [voiceLabel addGestureRecognizer:longPressGestureRecognizer];
     
-    UIView *line3 = [[UIView alloc] init];
-    line3.frame = CGRectMake(0, voiceLabel.frame.origin.y+voiceLabel.frame.size.height, sendView.frame.size.width, 0.5);
-    line3.backgroundColor = [UIColor grayColor];
-    [sendView addSubview:line3];
+    UIView *line5 = [[UIView alloc] init];
+    line5.frame = CGRectMake(0, voiceLabel.frame.origin.y+voiceLabel.frame.size.height, sendView.frame.size.width, 0.5);
+    line5.backgroundColor = [UIColor grayColor];
+    [sendView addSubview:line5];
     
     BlockButton *cancel = [[BlockButton alloc] init];
-    cancel.frame = CGRectMake(0, line3.frame.origin.y+line3.frame.size.height, sendView.frame.size.width, 40);
+    cancel.frame = CGRectMake(0, line5.frame.origin.y+line5.frame.size.height, sendView.frame.size.width, 40);
     cancel.backgroundColor = [UIColor clearColor];
     [cancel setTitle:@"取消" forState:UIControlStateNormal];
     [cancel setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -353,6 +439,62 @@
     
     [sendView addSubview:cancel];
 }
+
+#pragma mark - 选择视频 拍摄视频点击方法 start
+-(void)chooseVideo{
+    _btnChoose = 10;//选择视频
+    if (_hasVideo)
+    {
+        _mp4Path = nil;
+        _videoURL = nil;
+        _startDate = nil;
+        
+    }
+    UIImagePickerController *picker = [[UIImagePickerController alloc]init];
+    //    NSArray *array = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    //    picker.mediaTypes = array;
+    picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+    picker.mediaTypes = [NSArray arrayWithObjects:@"public.movie", nil];
+    picker.delegate = self;
+    [self presentViewController:picker animated:YES completion:^{
+        
+    }];
+}
+
+-(void)createVideo{
+    _btnChoose = 11;//拍摄视频
+    if (_hasVideo)
+    {
+        _mp4Path = nil;
+        _videoURL = nil;
+        _startDate = nil;
+        
+    }
+    UIImagePickerController* pickerView = [[UIImagePickerController alloc] init];
+    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        pickerView.sourceType = UIImagePickerControllerSourceTypeCamera;
+        NSArray* availableMedia = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+        pickerView.mediaTypes = [NSArray arrayWithObject:availableMedia[1]];
+        [self presentViewController:pickerView animated:YES completion:^{
+            
+        }];
+        pickerView.videoMaximumDuration = 30;
+        pickerView.delegate = self;
+        
+        
+        
+        
+    }else{
+        UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"相机不可用" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [al show];
+    }
+}
+
+
+
+#pragma mark - 选择视频 拍摄视频点击方法 end
+
 
 - (void)gestureRecognizerHandle:(id)sender
 {
@@ -445,47 +587,206 @@
 }
 #pragma mark ====== UIImagePickerController Delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    UIImage *img = [info objectForKey:UIImagePickerControllerOriginalImage];
-    UIImage *imgScale = img;
-    NSData *imgData = UIImageJPEGRepresentation(img, 0.3);
-    if (img.size.width>800) {
-        imgScale = [img scaleToSize:CGSizeMake(800, img.size.height*(800.0/img.size.width))];
-        imgData = UIImageJPEGRepresentation(imgScale, 0.3);
-    }
-    if([picker isEqual:shareImagePicker]){
-        
-        // 将图片数据名称和数据data保存为model对象保存到数组中去
-        
-        // 获取系统当前时间
-        NSDate *senddate=[NSDate date];
-        NSDateFormatter *dateformatter=[[NSDateFormatter alloc] init];
-        [dateformatter setDateFormat:@"YYYYMMddhhmmss"];
-        NSString *locationString=[dateformatter stringFromDate:senddate];
+    
+    if (_btnChoose == 10) {//选择视频
+        _videoURL = info[UIImagePickerControllerMediaURL];
+        _hasVideo = YES;
+        [picker dismissViewControllerAnimated:YES completion:^{
+            [self convertVideo];
+        }];
         
         
-        imgUploadModel *model = [[imgUploadModel alloc] init];
-        model.imageName = [locationString stringByAppendingString:@".jpg"];
-        model.imageData = imgData;
-        [_dataArray addObject:model];
-        if (SCREEN_HEIGHT<568) {
-            if (_dataArray.count*50<210) {
-                _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, _dataArray.count*50);
-            }else{
-                _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, 210);
-            }
-        }else{
-            if (_dataArray.count*50<210+88) {
-                _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, _dataArray.count*50);
-            }else{
-                _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, 210+88);
-            }
+    }else if (_btnChoose == 11){//录制视频
+        
+        _videoURL = info[UIImagePickerControllerMediaURL];
+        _hasVideo = YES;
+        
+        [picker dismissViewControllerAnimated:YES completion:^{
+            [self convertVideo];
+        }];
+        
+    }else{
+        UIImage *img = [info objectForKey:UIImagePickerControllerOriginalImage];
+        UIImage *imgScale = img;
+        NSData *imgData = UIImageJPEGRepresentation(img, 0.3);
+        if (img.size.width>800) {
+            imgScale = [img scaleToSize:CGSizeMake(800, img.size.height*(800.0/img.size.width))];
+            imgData = UIImageJPEGRepresentation(imgScale, 0.3);
         }
-        _AddContentView.frame = CGRectMake(5, _tableView.frame.origin.y+_tableView.frame.size.height+2, 310, 100);
-        [_tableView reloadData];
-        [self tableViewSlide];
-        [self dismissViewControllerAnimated:YES completion:nil];
+        if([picker isEqual:shareImagePicker]){
+            
+            // 将图片数据名称和数据data保存为model对象保存到数组中去
+            
+            // 获取系统当前时间
+            NSDate *senddate=[NSDate date];
+            NSDateFormatter *dateformatter=[[NSDateFormatter alloc] init];
+            [dateformatter setDateFormat:@"YYYYMMddhhmmss"];
+            NSString *locationString=[dateformatter stringFromDate:senddate];
+            
+            
+            imgUploadModel *model = [[imgUploadModel alloc] init];
+            model.imageName = [locationString stringByAppendingString:@".jpg"];
+            model.imageData = imgData;
+            [_dataArray addObject:model];
+            if (SCREEN_HEIGHT<568) {
+                if (_dataArray.count*50<210) {
+                    _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, _dataArray.count*50);
+                }else{
+                    _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, 210);
+                }
+            }else{
+                if (_dataArray.count*50<210+88) {
+                    _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, _dataArray.count*50);
+                }else{
+                    _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, 210+88);
+                }
+            }
+            _AddContentView.frame = CGRectMake(5, _tableView.frame.origin.y+_tableView.frame.size.height+2, 310, 100);
+            [_tableView reloadData];
+            [self tableViewSlide];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    }
+
+    
+    
+    
+    
+}
+
+
+#pragma mark - 压缩刚拍摄的视频
+- (void)convertVideo
+{
+    if (!_hasVideo)
+    {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"ERROR"
+                                                         message:@"Please record a video first"
+                                                        delegate:nil
+                                               cancelButtonTitle:@"OK"
+                                               otherButtonTitles: nil];
+        [alert show];
+        return;
+    }
+    
+    AVURLAsset *avAsset = [AVURLAsset URLAssetWithURL:_videoURL options:nil];
+    NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:avAsset];
+    
+    if ([compatiblePresets containsObject:_mp4Quality])
+        
+    {
+        _alert = [[UIAlertView alloc] init];
+        [_alert setTitle:@"Waiting.."];
+        
+        UIActivityIndicatorView* activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        activity.frame = CGRectMake(140,
+                                    80,
+                                    CGRectGetWidth(_alert.frame),
+                                    CGRectGetHeight(_alert.frame));
+        [_alert addSubview:activity];
+        [activity startAnimating];
+        [_alert show];
+        
+        _startDate = [NSDate date];
+        
+        AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]initWithAsset:avAsset
+                                                                              presetName:_mp4Quality];
+        NSDateFormatter* formater = [[NSDateFormatter alloc] init];
+        [formater setDateFormat:@"yyyy-MM-dd-HH:mm:ss"];
+        _mp4Path = [NSHomeDirectory() stringByAppendingFormat:@"/Documents/output-%@.mp4", [formater stringFromDate:[NSDate date]]];
+        
+        exportSession.outputURL = [NSURL fileURLWithPath: _mp4Path];
+        exportSession.shouldOptimizeForNetworkUse = _networkOpt;
+        exportSession.outputFileType = AVFileTypeMPEG4;
+        [exportSession exportAsynchronouslyWithCompletionHandler:^{
+            switch ([exportSession status]) {
+                case AVAssetExportSessionStatusFailed:
+                {
+                    [_alert dismissWithClickedButtonIndex:0 animated:NO];
+                    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                    message:[[exportSession error] localizedDescription]
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"OK"
+                                                          otherButtonTitles: nil];
+                    [alert show];
+                    break;
+                }
+                    
+                case AVAssetExportSessionStatusCancelled:
+                    NSLog(@"Export canceled");
+                    [_alert dismissWithClickedButtonIndex:0
+                                                 animated:YES];
+                    break;
+                case AVAssetExportSessionStatusCompleted:
+                    NSLog(@"Successful!");
+                    [self performSelectorOnMainThread:@selector(convertFinish) withObject:nil waitUntilDone:NO];
+                    break;
+                default:
+                    break;
+            }
+        }];
+    }
+    else
+    {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:@"AVAsset doesn't support mp4 quality"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles: nil];
+        [alert show];
     }
 }
+
+
+
+
+
+
+#pragma mark - 压缩完成
+- (void) convertFinish
+{
+    [_alert dismissWithClickedButtonIndex:0 animated:YES];
+    CGFloat duration = [[NSDate date] timeIntervalSinceDate:_startDate];
+    _alert = [[UIAlertView alloc] initWithTitle:@"干的漂亮"
+                                        message:[NSString stringWithFormat:@"压缩成功 消耗%.2f秒 路径 :%@ ", duration,_mp4Path]
+                                       delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles: nil];
+    
+    NSLog(@"压缩文件输出路径 :%@",_mp4Path);
+    
+    
+    [_alert show];
+    
+    
+    _videoDuration = [NSString stringWithFormat:@"%.2f s", duration];
+    _videoSize = [NSString stringWithFormat:@"%d kb", [self getFileSize:_mp4Path]];
+    _hasMp4 = YES;
+    
+}
+
+#pragma mark - 计算视频压缩文件大小
+- (NSInteger) getFileSize:(NSString*) path
+{
+    NSFileManager * filemanager = [NSFileManager defaultManager];
+    if([filemanager fileExistsAtPath:path]){
+        NSDictionary * attributes = [filemanager attributesOfItemAtPath:path error:nil];
+        NSNumber *theFileSize;
+        if ( (theFileSize = [attributes objectForKey:NSFileSize]) )
+            return  [theFileSize intValue]/1024;
+        else
+            return -1;
+    }
+    else
+    {
+        return -1;
+    }
+}
+
+
+
+
+
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
