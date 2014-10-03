@@ -32,6 +32,30 @@
     NSMutableArray * data_array;
     
     
+    
+    //视频相关
+    
+    int _btnChoose;//用于在回调方法中判断是 选择视频 还是录制视频
+    
+    
+    UIImagePickerControllerQualityType                  _qualityType;
+    NSString*                                           _mp4Quality;
+    
+    NSURL*                                              _videoURL;
+    NSString*                                           _mp4Path;
+    
+    UIAlertView*                                        _alert;
+    NSDate*                                             _startDate;
+    
+    
+    BOOL                                                _hasVideo;
+    BOOL                                                _networkOpt;
+    BOOL                                                _hasMp4;
+    
+    
+    
+    
+    
 }
 // 自定义导航栏
 - (void)loadNavigation;
@@ -80,6 +104,18 @@
                                              selector:@selector(uploadData:)
                                                  name:@"uploadData"
                                                object:nil];
+    
+    
+    
+    //视频相关
+    _networkOpt = YES;
+    _qualityType = UIImagePickerControllerQualityTypeLow;
+    _mp4Quality = AVAssetExportPresetLowQuality;
+    _hasVideo = NO;
+    _hasMp4 = NO;
+    _btnChoose = 0;
+    
+    
     
 }
 
@@ -233,7 +269,33 @@
             break;
         case 2:///视频
         {
+            _btnChoose = 11;
+            if (_hasVideo)
+            {
+                _mp4Path = nil;
+                _videoURL = nil;
+                _startDate = nil;
+                
+            }
+            UIImagePickerController* pickerView = [[UIImagePickerController alloc] init];
             
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                pickerView.sourceType = UIImagePickerControllerSourceTypeCamera;
+                NSArray* availableMedia = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+                pickerView.mediaTypes = [NSArray arrayWithObject:availableMedia[1]];
+                [self presentViewController:pickerView animated:YES completion:^{
+                    
+                }];
+                pickerView.videoMaximumDuration = 30;
+                pickerView.delegate = self;
+                
+                
+                
+                
+            }else{
+                UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"相机不可用" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [al show];
+            }
         }
             break;
         case 3:///相册
@@ -411,25 +473,148 @@
 }
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     
-    UIImage *image = [[info objectForKey:UIImagePickerControllerOriginalImage] fixOrientation];
-    [picker dismissViewControllerAnimated:YES completion:^{
+    
+    
+    if (_btnChoose == 11) {//录制视频
+        _videoURL = info[UIImagePickerControllerMediaURL];
+        _hasVideo = YES;
         
-        imgUploadModel * imageModel = [[imgUploadModel alloc] init];
-        UIImage *newImage = [image imageByScalingOrgSize:CGSIZE_SCALE_MAX];
-        NSData * aData = UIImageJPEGRepresentation(newImage, 1);
-        imageModel.imageName = [NSString stringWithFormat:@"%@.jpg",[UUID createUUID]];
-        imageModel.imageData = aData;
-        
-        NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:[UUID createUUID],@"fid",[NSNumber numberWithFloat:aData.length/1024],@"length",imageModel,@"fileData",@"image",@"type",nil];
-        
-        [data_array addObject:dic];
-        
-        [self inputIntroduce];
-    }];
-    // 发送图片
-//    [self sureUpload:image withType:SEND_Type_photo];
+        [picker dismissViewControllerAnimated:YES completion:^{
+            [self convertVideo];
+            _btnChoose = 0;
+        }];
+    }else{
+        UIImage *image = [[info objectForKey:UIImagePickerControllerOriginalImage] fixOrientation];
+        [picker dismissViewControllerAnimated:YES completion:^{
+            
+            imgUploadModel * imageModel = [[imgUploadModel alloc] init];
+            UIImage *newImage = [image imageByScalingOrgSize:CGSIZE_SCALE_MAX];
+            NSData * aData = UIImageJPEGRepresentation(newImage, 1);
+            imageModel.imageName = [NSString stringWithFormat:@"%@.jpg",[UUID createUUID]];
+            imageModel.imageData = aData;
+            
+            NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:[UUID createUUID],@"fid",[NSNumber numberWithFloat:aData.length/1024],@"length",imageModel,@"fileData",@"image",@"type",nil];
+            
+            [data_array addObject:dic];
+            
+            [self inputIntroduce];
+        }];
+        // 发送图片
+        //    [self sureUpload:image withType:SEND_Type_photo];
+    }
     
 }
+
+
+#pragma mark - 压缩刚拍摄的视频
+- (void)convertVideo
+{
+    if (!_hasVideo)
+    {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"ERROR"
+                                                         message:@"Please record a video first"
+                                                        delegate:nil
+                                               cancelButtonTitle:@"OK"
+                                               otherButtonTitles: nil];
+        [alert show];
+        return;
+    }
+    
+    AVURLAsset *avAsset = [AVURLAsset URLAssetWithURL:_videoURL options:nil];
+    NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:avAsset];
+    
+    if ([compatiblePresets containsObject:_mp4Quality])
+        
+    {
+        _alert = [[UIAlertView alloc] init];
+        [_alert setTitle:@"Waiting.."];
+        
+        UIActivityIndicatorView* activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        activity.frame = CGRectMake(140,
+                                    80,
+                                    CGRectGetWidth(_alert.frame),
+                                    CGRectGetHeight(_alert.frame));
+        [_alert addSubview:activity];
+        [activity startAnimating];
+        [_alert show];
+        
+        _startDate = [NSDate date];
+        
+        AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]initWithAsset:avAsset
+                                                                              presetName:_mp4Quality];
+        NSDateFormatter* formater = [[NSDateFormatter alloc] init];
+        [formater setDateFormat:@"yyyy-MM-dd-HH:mm:ss"];
+        _mp4Path = [NSHomeDirectory() stringByAppendingFormat:@"/Documents/output-%@.mp4", [formater stringFromDate:[NSDate date]]];
+        
+        exportSession.outputURL = [NSURL fileURLWithPath: _mp4Path];
+        exportSession.shouldOptimizeForNetworkUse = _networkOpt;
+        exportSession.outputFileType = AVFileTypeMPEG4;
+        [exportSession exportAsynchronouslyWithCompletionHandler:^{
+            switch ([exportSession status]) {
+                case AVAssetExportSessionStatusFailed:
+                {
+                    [_alert dismissWithClickedButtonIndex:0 animated:NO];
+                    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                    message:[[exportSession error] localizedDescription]
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"OK"
+                                                          otherButtonTitles: nil];
+                    [alert show];
+                    break;
+                }
+                    
+                case AVAssetExportSessionStatusCancelled:
+                    NSLog(@"Export canceled");
+                    [_alert dismissWithClickedButtonIndex:0
+                                                 animated:YES];
+                    break;
+                case AVAssetExportSessionStatusCompleted:
+                    NSLog(@"Successful!");
+                    [self performSelectorOnMainThread:@selector(convertFinish) withObject:nil waitUntilDone:NO];
+                    break;
+                default:
+                    break;
+            }
+        }];
+    }
+    else
+    {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:@"AVAsset doesn't support mp4 quality"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles: nil];
+        [alert show];
+    }
+}
+
+
+
+
+
+
+//压缩完成
+- (void) convertFinish
+{
+    [_alert dismissWithClickedButtonIndex:0 animated:YES];
+    CGFloat duration = [[NSDate date] timeIntervalSinceDate:_startDate];
+    _alert = [[UIAlertView alloc] initWithTitle:@"干的漂亮"
+                                        message:[NSString stringWithFormat:@"压缩成功 消耗%.2f秒 路径 :%@ ", duration,_mp4Path]
+                                       delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles: nil];
+    
+    NSLog(@"压缩文件输出路径 :%@",_mp4Path);
+    
+    
+    [_alert show];
+    
+    _hasMp4 = YES;
+}
+
+
+
+
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     [picker dismissViewControllerAnimated:YES completion:nil];
 }

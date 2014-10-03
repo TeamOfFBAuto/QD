@@ -593,6 +593,7 @@
         _hasVideo = YES;
         [picker dismissViewControllerAnimated:YES completion:^{
             [self convertVideo];
+            _btnChoose = 0;
         }];
         
         
@@ -603,6 +604,7 @@
         
         [picker dismissViewControllerAnimated:YES completion:^{
             [self convertVideo];
+            _btnChoose = 0;
         }];
         
     }else{
