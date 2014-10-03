@@ -459,7 +459,6 @@ static NSString *commentId = 0;
         if (dicKeyArray) {
             hegiht = [FriendCircleDetailContentView heightForCellWithPost:((dateAndContent *)[dicKeyArray objectAtIndex:indexPath.row-1]).array];
         }
-        
         return hegiht;
     }
 }
