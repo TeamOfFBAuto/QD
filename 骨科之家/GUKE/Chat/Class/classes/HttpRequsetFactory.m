@@ -17,7 +17,6 @@
         [dic setValue:access_token forKey:@"sid"];
         [dic setValue:u_id forKey:@"userId"];
     }
-    
     return [dic autorelease];
 }
 + (ASIFormDataRequest *)getRequestKeys:(NSDictionary *)keyDic subUrl:(NSString *)suburl userCommon:(BOOL)con{
