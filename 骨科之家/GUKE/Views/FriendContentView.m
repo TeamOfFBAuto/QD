@@ -214,13 +214,6 @@
     
     return contentHeight + imgHeight ;
 }
-//// 点击超链接调用的程序
-//- (void)rtLabel:(id)rtLabel didSelectLinkWithURL:(NSURL *)url
-//{
-//    NSString *urlString = [NSString stringWithFormat:@"%@",url];
-//    urlString = [[urlString componentsSeparatedByString:@"//"] lastObject];
-//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",urlString]]];
-//}
 
 #pragma mark - "分享图片"的放大以及保存 -
 - (void)TapImageClick:(id)sender

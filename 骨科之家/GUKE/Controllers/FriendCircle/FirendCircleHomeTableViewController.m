@@ -346,17 +346,17 @@ static NSString *commentId = 0;
         }
         for (NSDictionary *articleList in articleLists) {
             UserArticleList *userArticleModel = [[UserArticleList alloc]init];
-            userArticleModel.articleId = [articleList valueForKeyPath:@"articleId"];
-            userArticleModel.context = [articleList valueForKeyPath:@"context"];
-            userArticleModel.createDate = [articleList valueForKeyPath:@"createDate"];
-            userArticleModel.deleteFlag = [articleList valueForKeyPath:@"deleteFlag"];
-            userArticleModel.isShare = [articleList valueForKeyPath:@"isShare"];
-            userArticleModel.photo = [articleList valueForKeyPath:@"photo"];
-            userArticleModel.shareUrl = [articleList valueForKeyPath:@"shareUrl"];
-            userArticleModel.userId = [articleList valueForKeyPath:@"userId"];
-            userArticleModel.username = [articleList valueForKeyPath:@"username"];
-            userArticleModel.imageHeight = [articleList valueForKey:@"height"];
-            userArticleModel.imageWidth = [articleList valueForKey:@"width"];
+            userArticleModel.articleId = [NSString _859ToUTF8:[articleList valueForKeyPath:@"articleId"]];
+            userArticleModel.context = [NSString _859ToUTF8:[articleList valueForKeyPath:@"context"]];
+            userArticleModel.createDate = [NSString _859ToUTF8:[articleList valueForKeyPath:@"createDate"]];
+            userArticleModel.deleteFlag = [NSString _859ToUTF8:[articleList valueForKeyPath:@"deleteFlag"]];
+            userArticleModel.isShare = [NSString _859ToUTF8:[articleList valueForKeyPath:@"isShare"]];
+            userArticleModel.photo = [NSString _859ToUTF8:[articleList valueForKeyPath:@"photo"]];
+            userArticleModel.shareUrl = [NSString _859ToUTF8:[articleList valueForKeyPath:@"shareUrl"]];
+            userArticleModel.userId = [NSString _859ToUTF8:[articleList valueForKeyPath:@"userId"]];
+            userArticleModel.username = [NSString _859ToUTF8:[articleList valueForKeyPath:@"username"]];
+            userArticleModel.imageHeight = [NSString _859ToUTF8:[articleList valueForKey:@"height"]];
+            userArticleModel.imageWidth = [NSString _859ToUTF8:[articleList valueForKey:@"width"]];
             
             
             NSArray * attachlistarray = [articleList objectForKey:@"attachlist"];
@@ -373,14 +373,14 @@ static NSString *commentId = 0;
             NSMutableArray *commentArray = [articleList valueForKeyPath:@"commentlist"];
             for (NSDictionary *commentlist in commentArray) {
                 contentAndGood *commentModel = [[contentAndGood alloc]init];
-                commentModel.articleId = [commentlist valueForKeyPath:@"articleId"];
-                commentModel.articleUserId = [commentlist valueForKeyPath:@"articleUserId"];
-                commentModel.commentId = [commentlist valueForKeyPath:@"commentId"];
-                commentModel.commentType = [commentlist valueForKeyPath:@"commentType"];
-                commentModel.context = [commentlist valueForKeyPath:@"context"];
-                commentModel.createDate = [commentlist valueForKeyPath:@"createDate"];
-                commentModel.deleteFlag = [commentlist valueForKeyPath:@"deleteFlag"];
-                commentModel.userId = [commentlist valueForKeyPath:@"userId"];
+                commentModel.articleId = [NSString _859ToUTF8:[commentlist valueForKeyPath:@"articleId"]];
+                commentModel.articleUserId = [NSString _859ToUTF8:[commentlist valueForKeyPath:@"articleUserId"]];
+                commentModel.commentId = [NSString _859ToUTF8:[commentlist valueForKeyPath:@"commentId"]];
+                commentModel.commentType = [NSString _859ToUTF8:[commentlist valueForKeyPath:@"commentType"]];
+                commentModel.context = [NSString _859ToUTF8:[commentlist valueForKeyPath:@"context"]];
+                commentModel.createDate = [NSString _859ToUTF8:[commentlist valueForKeyPath:@"createDate"]];
+                commentModel.deleteFlag = [NSString _859ToUTF8:[commentlist valueForKeyPath:@"deleteFlag"]];
+                commentModel.userId = [NSString _859ToUTF8:[commentlist valueForKeyPath:@"userId"]];
                 commentModel.userName = [UserInfoDB selectFeildString:@"firstname" andcuId:GET_U_ID anduserId:commentModel.userId];
                 if (commentModel.userName.length <= 0) {
                     commentModel.userName = [commentlist valueForKeyPath:@"username"];
@@ -398,14 +398,14 @@ static NSString *commentId = 0;
             NSMutableArray *goodArray = [articleList valueForKeyPath:@"goodlist"];
             for (NSDictionary *goodlist in goodArray) {
                 contentAndGood *goodModel = [[contentAndGood alloc]init];
-                goodModel.articleId = [goodlist valueForKeyPath:@"articleId"];
-                goodModel.articleUserId = [goodlist valueForKeyPath:@"articleUserId"];
-                goodModel.commentId = [goodlist valueForKeyPath:@"commentId"];
-                goodModel.commentType = [goodlist valueForKeyPath:@"commentType"];
-                goodModel.context = [goodlist valueForKeyPath:@"context"];
-                goodModel.createDate = [goodlist valueForKeyPath:@"createDate"];
-                goodModel.deleteFlag = [goodlist valueForKeyPath:@"deleteFlag"];
-                goodModel.userId = [goodlist valueForKeyPath:@"userId"];
+                goodModel.articleId = [NSString _859ToUTF8:[goodlist valueForKeyPath:@"articleId"]];
+                goodModel.articleUserId = [NSString _859ToUTF8:[goodlist valueForKeyPath:@"articleUserId"]];
+                goodModel.commentId = [NSString _859ToUTF8:[goodlist valueForKeyPath:@"commentId"]];
+                goodModel.commentType = [NSString _859ToUTF8:[goodlist valueForKeyPath:@"commentType"]];
+                goodModel.context = [NSString _859ToUTF8:[goodlist valueForKeyPath:@"context"]];
+                goodModel.createDate = [NSString _859ToUTF8:[goodlist valueForKeyPath:@"createDate"]];
+                goodModel.deleteFlag = [NSString _859ToUTF8:[goodlist valueForKeyPath:@"deleteFlag"]];
+                goodModel.userId = [NSString _859ToUTF8:[goodlist valueForKeyPath:@"userId"]];
                 goodModel.iconUrl = [UserInfoDB selectFeildString:@"icon" andcuId:GET_U_ID anduserId:goodModel.userId];
                  NSString *userID  = [UserInfoDB selectFeildString:@"userId" andcuId:GET_U_ID anduserId:goodModel.userId];
                 // 没有此用户，便提取写到数据库中

@@ -41,7 +41,6 @@ static const NSMutableArray *subjectArry;
         self.userIcon = [[UIImageView alloc]initWithFrame:CGRectZero];
         // 用户名
         self.userName = [[UILabel alloc]initWithFrame:CGRectZero];
-//        self.userName.textColor =  [UIColor colorWithRed:0/255.0 green:102/255.0 blue:153/255.0 alpha:1];#576b95
         self.userName.textColor = [SingleInstance colorFromHexRGB:@"576b95"];
         self.userName.font = [UIFont boldSystemFontOfSize:14.0f];
         self.userName.backgroundColor = [UIColor clearColor];
@@ -164,7 +163,7 @@ static const NSMutableArray *subjectArry;
     [self.userIcon sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_BASE_URL,_post.iconUrl]] placeholderImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"portrait_ico@2x" ofType:@"png"]]];
     
     // 用户名
-    self.userName.text = [NSString _859ToUTF8:_post.username];
+    self.userName.text = _post.username;
     
     // 设置日期
     self.reportTime.text = [SingleInstance handleDate:_post.createDate];

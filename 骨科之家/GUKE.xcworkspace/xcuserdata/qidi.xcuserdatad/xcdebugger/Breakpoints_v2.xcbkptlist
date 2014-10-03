@@ -17,68 +17,6 @@
             endingLineNumber = "920"
             landmarkName = "-messageRequestFinish:"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[VChatViewController messageRequestFinish:]"
-                  moduleName = "GUKE"
-                  urlString = "file:///Users/qidi/Desktop/QD/%E9%AA%A8%E7%A7%91%E4%B9%8B%E5%AE%B6/GUKE/Chat/Class/VChatViewController.m"
-                  timestampString = "434024419.938881"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "920"
-                  endingLineNumber = "920"
-                  offsetFromSymbolStart = "1926">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__44-[VChatViewController messageRequestFinish:]_block_invoke"
-                  moduleName = "GUKE"
-                  urlString = "file:///Users/qidi/Desktop/QD/%E9%AA%A8%E7%A7%91%E4%B9%8B%E5%AE%B6/GUKE/Chat/Class/VChatViewController.m"
-                  timestampString = "434024419.939522"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "921"
-                  endingLineNumber = "921"
-                  offsetFromSymbolStart = "28">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GUKE/Controllers/FriendCircle/FirendCircleHomeTableViewController.m"
-            timestampString = "434024414.774818"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "335"
-            endingLineNumber = "335"
-            landmarkName = "-getArticleList"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GUKE/Controllers/FriendCircle/FirendCircleHomeTableViewController.m"
-            timestampString = "434024479.845556"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "499"
-            endingLineNumber = "499"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
