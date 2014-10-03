@@ -27,6 +27,10 @@
 @property(nonatomic,strong)NSString * tagId;
 ///标签内容
 @property(nonatomic,strong)NSString * tag;
+///病历id
+@property(nonatomic,strong)NSString * bingliId;
+///用户id
+@property(nonatomic,strong)NSString * userId;
 
 -(id)initWithDic:(NSDictionary *)dic;
 

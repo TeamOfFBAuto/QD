@@ -373,19 +373,14 @@
 -(void)wavToAmr:(NSString *)_filePath  with:(NSString *)_fileName length:(CGFloat)length{
     [VoiceConverter wavToAmr:_filePath amrSavePath:[VoiceRecorderBaseVC getPathByFileName:[_fileName stringByAppendingString:@"wavToAmr"] ofType:@"amr"]];
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:_fileName,@"fid",_filePath,@"fileName",[NSNumber numberWithInt:(int)length],@"length", nil];
-//    NSDictionary *dic = (NSDictionary *)object;
-//    NSData *ImageData = [[NSData alloc] initWithContentsOfFile:[dic objectForKey:@"fileName"]];
-//    NSString *tempVoice = [NSString stringWithFormat:@"%@",[dic objectForKey:@"fid"]];
-//    NSString *voiceName = [tempVoice stringByAppendingString:@".amr"];
     
-    NSMutableData * data = [NSMutableData dataWithContentsOfFile:[VoiceRecorderBaseVC getPathByFileName:_fileName ofType:@"amr"]];
+    NSMutableData * data = [NSMutableData dataWithContentsOfFile:[VoiceRecorderBaseVC getPathByFileName:[_fileName stringByAppendingString:@"wavToAmr"] ofType:@"amr"]];
     [dic setObject:data forKey:@"fileData"];
     [dic setObject:@"voice" forKey:@"type"];
     [data_array addObject:dic];
     
     NSLog(@"%@==%@",_filePath,_fileName);
     [self inputIntroduce];
-//    [self sureUpload:dic withType:SEND_Type_voice];
 }
 
 
@@ -666,8 +661,8 @@
 #pragma mark - UITextViewDelegate
 -(BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
-    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:textView.tag-100 inSection:0];
-    [_mainTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+//    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:textView.tag-100 inSection:0];
+//    [_mainTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
     return YES;
 }
 

@@ -860,6 +860,8 @@
 		563D756619DE8B1300095CC7 /* LiuLanBingLiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 563D756519DE8B1300095CC7 /* LiuLanBingLiViewController.m */; };
 		563D756919DE9C7500095CC7 /* LiuLanSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 563D756819DE9C7500095CC7 /* LiuLanSectionView.m */; };
 		563D756B19DE9C8700095CC7 /* LiuLanSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 563D756A19DE9C8700095CC7 /* LiuLanSectionView.xib */; };
+		563D756E19DECF0600095CC7 /* TagManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 563D756D19DECF0600095CC7 /* TagManagerViewController.m */; };
+		563D757119DED87000095CC7 /* SNViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 563D757019DED87000095CC7 /* SNViewController.m */; };
 		565DAE4919DA739900C3924D /* TopicDiscussViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE4819DA739900C3924D /* TopicDiscussViewController.m */; };
 		565DAE4C19DA7A7F00C3924D /* TDListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE4B19DA7A7F00C3924D /* TDListViewController.m */; };
 		565DAE4F19DA7D9600C3924D /* TDListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE4E19DA7D9600C3924D /* TDListModel.m */; };
@@ -2042,6 +2044,10 @@
 		563D756719DE9C7500095CC7 /* LiuLanSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiuLanSectionView.h; sourceTree = "<group>"; };
 		563D756819DE9C7500095CC7 /* LiuLanSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiuLanSectionView.m; sourceTree = "<group>"; };
 		563D756A19DE9C8700095CC7 /* LiuLanSectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LiuLanSectionView.xib; sourceTree = "<group>"; };
+		563D756C19DECF0600095CC7 /* TagManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagManagerViewController.h; sourceTree = "<group>"; };
+		563D756D19DECF0600095CC7 /* TagManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagManagerViewController.m; sourceTree = "<group>"; };
+		563D756F19DED87000095CC7 /* SNViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNViewController.h; sourceTree = "<group>"; };
+		563D757019DED87000095CC7 /* SNViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNViewController.m; sourceTree = "<group>"; };
 		565DAE4719DA739900C3924D /* TopicDiscussViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicDiscussViewController.h; sourceTree = "<group>"; };
 		565DAE4819DA739900C3924D /* TopicDiscussViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicDiscussViewController.m; sourceTree = "<group>"; };
 		565DAE4A19DA7A7F00C3924D /* TDListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDListViewController.h; sourceTree = "<group>"; };
@@ -2249,6 +2255,8 @@
 				561A868919DD78F200CC8674 /* Send_Image_close@2x.png */,
 				5675CAEB19D9D35300FB975F /* SNTools.h */,
 				5675CAEC19D9D35300FB975F /* SNTools.m */,
+				563D756F19DED87000095CC7 /* SNViewController.h */,
+				563D757019DED87000095CC7 /* SNViewController.m */,
 				5675CADD19D9C01D00FB975F /* SNControllers */,
 				5675CADE19D9C01D00FB975F /* SNModels */,
 				5675CADF19D9C01D00FB975F /* SNViews */,
@@ -3750,6 +3758,8 @@
 				563D756719DE9C7500095CC7 /* LiuLanSectionView.h */,
 				563D756819DE9C7500095CC7 /* LiuLanSectionView.m */,
 				563D756A19DE9C8700095CC7 /* LiuLanSectionView.xib */,
+				563D756C19DECF0600095CC7 /* TagManagerViewController.h */,
+				563D756D19DECF0600095CC7 /* TagManagerViewController.m */,
 				3E46C15719D2BC0000403A42 /* CreatMedicalViewController.h */,
 				3E46C15819D2BC0000403A42 /* CreatMedicalViewController.m */,
 				561A869019DDDDB900CC8674 /* ChooseCaseTypeViewController.h */,
@@ -5147,6 +5157,7 @@
 				565DAE6119DAAE8000C3924D /* TDDetailCell.m in Sources */,
 				840BB22719D7AB30000A4725 /* Reachability.m in Sources */,
 				197ABFED197388AC00FC6A24 /* FriendCircleTableViewCell.m in Sources */,
+				563D756E19DECF0600095CC7 /* TagManagerViewController.m in Sources */,
 				19960D02196A80D6000121AA /* SBJsonStreamParserAdapter.m in Sources */,
 				565DAE4919DA739900C3924D /* TopicDiscussViewController.m in Sources */,
 				3E1EFFCE1980AB9D008C9B8D /* PECropViewController.m in Sources */,
@@ -5270,6 +5281,7 @@
 				3E46C16419D2DEE600403A42 /* NSString+_859ToUTF8.m in Sources */,
 				3E3785051990F9390000F8FF /* UIScrollView+MJRefresh.m in Sources */,
 				19960D0F196A80D6000121AA /* SDWebImageDownloader.m in Sources */,
+				563D757119DED87000095CC7 /* SNViewController.m in Sources */,
 				3EB9972A19B568D10032D37E /* FriendCircleDetailContentView.m in Sources */,
 				3E3785041990F9390000F8FF /* UIScrollView+Extension.m in Sources */,
 				19996492195D3E1A006C84CC /* ChangPWDViewController.m in Sources */,

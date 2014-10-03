@@ -13,7 +13,7 @@
 #import "TDListModel.h"
 #import "ChatVoiceRecorderVC.h"
 
-@interface TDDetailViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface TDDetailViewController : SNViewController<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     
 }

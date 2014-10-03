@@ -18,6 +18,6 @@
 
 @property(nonatomic,strong)BingLiListFeed * feed;
 
-
+@property(nonatomic,strong)BingLiListFeed * myFeed;
 
 @end

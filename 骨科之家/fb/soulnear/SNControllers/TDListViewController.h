@@ -12,7 +12,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TDListViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,PullTableViewDelegate>
+@interface TDListViewController : SNViewController<UITableViewDataSource,UITableViewDelegate,PullTableViewDelegate>
 {
     
 }

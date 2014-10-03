@@ -8,6 +8,8 @@
 
 #import "LiuLanBingLiViewController.h"
 #import "LiuLanSectionView.h"
+#import "InfoFileTableViewCell.h"
+#import "TagManagerViewController.h"
 
 @interface LiuLanBingLiViewController ()
 
@@ -16,11 +18,12 @@
 @implementation LiuLanBingLiViewController
 @synthesize myTableView = _myTableView;
 @synthesize feed = _feed;
+@synthesize myFeed = _myFeed;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    _myFeed = [[BingLiListFeed alloc] init];
     _myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT) style:UITableViewStylePlain];
     _myTableView.dataSource = self;
     _myTableView.delegate = self;
@@ -29,6 +32,11 @@
     }
     [self.view addSubview:_myTableView];
     
+    UIView * vvvv = [[UIView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,0)];
+    _myTableView.tableFooterView = vvvv;
+    
+    
+    [self loadBingliDetailData];
 }
 
 -(void)loadBingliDetailData
@@ -45,7 +53,7 @@
         
         if ([code intValue]==0)//说明请求数据成功
         {
-            wself.feed = [dict objectForKey:@"bingli"];
+            [wself.myFeed setBingLiListFeedDic:[dict objectForKey:@"bingli"]];
             [wself.myTableView reloadData];
         }
     }];
@@ -53,7 +61,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return 5 + _myFeed.attach_array.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -78,6 +86,9 @@
     {
         CGSize size = [SNTools returnStringHeightWith:self.feed.memo WithWidth:240 WithFont:14];
         return size.height + 20;
+    }else
+    {
+        return 70;
     }
     
     return 0;
@@ -85,84 +96,108 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString * identifier = @"identifier";
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    
+    if (indexPath.row  < 5) {
+        static NSString * identifier = @"identifier";
+        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        }
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        for (UIView * view in cell.contentView.subviews) {
+            [view removeFromSuperview];
+        }
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        
+        if (indexPath.row == 0) {
+            LiuLanSectionView * aView = [[[NSBundle mainBundle] loadNibNamed:@"LiuLanSectionView" owner:self options:nil] objectAtIndex:0];
+            [aView setContentWithFenLei:_feed.fenleiname Date:_feed.jiuzhen UserName:_feed.psnname Sex:_feed.sex];
+            [cell.contentView addSubview:aView];
+        }else if (indexPath.row == 1)
+        {
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            NSString * tag_string = @"";
+            for (TagListFeed * model in _myFeed.tag_array)
+            {
+                tag_string = [tag_string stringByAppendingString:[NSString stringWithFormat:@"/%@",model.tag]];
+            }
+            
+            UILabel * tagLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,0,DEVICE_WIDTH-40,50)];
+            tagLabel.text = [NSString stringWithFormat:@"标签：%@",tag_string];
+            tagLabel.textAlignment = NSTextAlignmentLeft;
+            tagLabel.textColor = [UIColor blackColor];
+            tagLabel.font = [UIFont systemFontOfSize:15];
+            [cell.contentView addSubview:tagLabel];
+            
+        }else if (indexPath.row == 2)
+        {
+            CGSize bl_height = [SNTools returnStringHeightWith:self.feed.binglihao WithWidth:240 WithFont:14];
+            CGSize zd_height = [SNTools returnStringHeightWith:self.feed.zhenduan WithWidth:240 WithFont:14];
+            
+            UILabel * binglihao = [[UILabel alloc] initWithFrame:CGRectMake(10,10,DEVICE_WIDTH-20,bl_height.height)];
+            binglihao.text = [NSString stringWithFormat:@"病历号：%@",_feed.binglihao];
+            binglihao.textAlignment = NSTextAlignmentLeft;
+            binglihao.textColor = [UIColor blackColor];
+            binglihao.font = [UIFont systemFontOfSize:14];
+            [cell.contentView addSubview:binglihao];
+            
+            UILabel * zhenduan = [[UILabel alloc] initWithFrame:CGRectMake(10,20+bl_height.height,DEVICE_WIDTH-20,zd_height.height)];
+            zhenduan.text = [NSString stringWithFormat:@"诊断：%@",_feed.zhenduan];
+            zhenduan.textAlignment = NSTextAlignmentLeft;
+            zhenduan.textColor = [UIColor blackColor];
+            zhenduan.font = [UIFont systemFontOfSize:14];
+            [cell.contentView addSubview:zhenduan];
+            
+        }else if (indexPath.row == 3)
+        {
+            CGSize size = [SNTools returnStringHeightWith:self.feed.fangan WithWidth:240 WithFont:14];
+            
+            UILabel * zhiliaofangan = [[UILabel alloc] initWithFrame:CGRectMake(10,10,DEVICE_WIDTH-20,size.height)];
+            zhiliaofangan.text = [NSString stringWithFormat:@"治疗方案：%@",_feed.fangan];
+            zhiliaofangan.textAlignment = NSTextAlignmentLeft;
+            zhiliaofangan.textColor = [UIColor blackColor];
+            zhiliaofangan.font = [UIFont systemFontOfSize:14];
+            [cell.contentView addSubview:zhiliaofangan];
+            
+        }else if (indexPath.row == 4)
+        {
+            CGSize size = [SNTools returnStringHeightWith:self.feed.memo WithWidth:240 WithFont:14];
+            
+            UILabel * binglishuoming = [[UILabel alloc] initWithFrame:CGRectMake(10,10,DEVICE_WIDTH-20,size.height)];
+            binglishuoming.text = [NSString stringWithFormat:@"病例说明：%@",_feed.fangan];
+            binglishuoming.textAlignment = NSTextAlignmentLeft;
+            binglishuoming.textColor = [UIColor blackColor];
+            binglishuoming.font = [UIFont systemFontOfSize:14];
+            [cell.contentView addSubview:binglishuoming];
+        }
+        
+        return cell;
+    }else
+    {
+        static NSString *cellName = @"infoFileCell";
+        InfoFileTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellName];
+        if (cell == nil) {
+            cell = [[InfoFileTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.fileDic = [_myFeed.attach_array objectAtIndex:indexPath.row-5];
+        return cell;
     }
     
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    for (UIView * view in cell.contentView.subviews) {
-        [view removeFromSuperview];
-    }
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    
-    if (indexPath.row == 0) {
-        LiuLanSectionView * aView = [[[NSBundle mainBundle] loadNibNamed:@"LiuLanSectionView" owner:self options:nil] objectAtIndex:0];
-        [aView setContentWithFenLei:_feed.fenleiname Date:_feed.jiuzhen UserName:_feed.psnname Sex:_feed.sex];
-        [cell.contentView addSubview:aView];
-    }else if (indexPath.row == 1)
-    {
-        cell.accessoryType = UITableViewCellAccessoryDetailButton;
-        
-        NSString * tag_string = [_feed.tag_array componentsJoinedByString:@"/"];
-        UILabel * tagLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,10,DEVICE_WIDTH-20,50)];
-        tagLabel.text = [NSString stringWithFormat:@"标签：%@",tag_string];
-        tagLabel.textAlignment = NSTextAlignmentLeft;
-        tagLabel.textColor = [UIColor blackColor];
-        tagLabel.font = [UIFont systemFontOfSize:15];
-        [cell.contentView addSubview:tagLabel];
-        
-    }else if (indexPath.row == 2)
-    {
-        CGSize bl_height = [SNTools returnStringHeightWith:self.feed.binglihao WithWidth:240 WithFont:14];
-        CGSize zd_height = [SNTools returnStringHeightWith:self.feed.zhenduan WithWidth:240 WithFont:14];
-        
-        UILabel * binglihao = [[UILabel alloc] initWithFrame:CGRectMake(10,10,DEVICE_WIDTH-20,bl_height.height)];
-        binglihao.text = [NSString stringWithFormat:@"病历号：%@",_feed.binglihao];
-        binglihao.textAlignment = NSTextAlignmentLeft;
-        binglihao.textColor = [UIColor blackColor];
-        binglihao.font = [UIFont systemFontOfSize:14];
-        [cell.contentView addSubview:binglihao];
-        
-        UILabel * zhenduan = [[UILabel alloc] initWithFrame:CGRectMake(10,20+bl_height.height,DEVICE_WIDTH-20,zd_height.height)];
-        zhenduan.text = [NSString stringWithFormat:@"诊断：%@",_feed.zhenduan];
-        zhenduan.textAlignment = NSTextAlignmentLeft;
-        zhenduan.textColor = [UIColor blackColor];
-        zhenduan.font = [UIFont systemFontOfSize:14];
-        [cell.contentView addSubview:zhenduan];
-        
-    }else if (indexPath.row == 3)
-    {
-        CGSize size = [SNTools returnStringHeightWith:self.feed.fangan WithWidth:240 WithFont:14];
-        
-        UILabel * zhiliaofangan = [[UILabel alloc] initWithFrame:CGRectMake(10,10,DEVICE_WIDTH-20,size.height)];
-        zhiliaofangan.text = [NSString stringWithFormat:@"治疗方案：%@",_feed.fangan];
-        zhiliaofangan.textAlignment = NSTextAlignmentLeft;
-        zhiliaofangan.textColor = [UIColor blackColor];
-        zhiliaofangan.font = [UIFont systemFontOfSize:14];
-        [cell.contentView addSubview:zhiliaofangan];
-        
-    }else if (indexPath.row == 4)
-    {
-        CGSize size = [SNTools returnStringHeightWith:self.feed.memo WithWidth:240 WithFont:14];
-        
-        UILabel * binglishuoming = [[UILabel alloc] initWithFrame:CGRectMake(10,10,DEVICE_WIDTH-20,size.height)];
-        binglishuoming.text = [NSString stringWithFormat:@"病例说明：%@",_feed.fangan];
-        binglishuoming.textAlignment = NSTextAlignmentLeft;
-        binglishuoming.textColor = [UIColor blackColor];
-        binglishuoming.font = [UIFont systemFontOfSize:14];
-        [cell.contentView addSubview:binglishuoming];
-    }
-    
-    
-    return cell;
+    return nil;
 }
 
-
-
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 1)
+    {
+        TagManagerViewController * manager = [[TagManagerViewController alloc] init];
+        manager.myFeed = _myFeed;
+        [self.navigationController pushViewController:manager animated:YES];
+    }
+}
 
 
 - (void)didReceiveMemoryWarning {
