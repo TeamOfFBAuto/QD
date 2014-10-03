@@ -84,53 +84,53 @@
         NSDictionary *userLists = [userIfo objectForKey:@"userlist"];
         for (NSDictionary *userInfo in userLists) {
             UserIfo *model = [[UserIfo alloc]init];
-            model.address = [userInfo valueForKey:@"address"];
-            model.allowPosition = [userInfo valueForKey:@"allowPosition"];
-            model.articleBg = [userInfo valueForKey:@"articleBg"];
-            model.bgUpdateTime = [userInfo valueForKey:@"bgUpdateTime"];
-            model.chkATime = [userInfo valueForKey:@"chkATime"];
-            model.cityName = [userInfo valueForKey:@"cityName"];
-            model.companyId = [userInfo valueForKey:@"companyId"];
-            model.createDate = [userInfo valueForKey:@"createDate"];
-            model.deletePerm = [userInfo valueForKey:@"deletePerm"];
-            model.district = [userInfo valueForKey:@"district"];
-            model.email = [userInfo valueForKey:@"email"];
-            model.firstname = [userInfo valueForKey:@"firstname"];
-            model.firstnameen = [userInfo valueForKey:@"firstnameen"];
-            model.icon = [userInfo valueForKey:@"icon"];
-            model.iconUpdateTime = [userInfo valueForKey:@"iconUpdateTime"];
-            model.inviteCodeId = [userInfo valueForKey:@"inviteCodeId"];
-            model.invitePerm = [userInfo valueForKey:@"invitePerm"];
-            model.itcode = [userInfo valueForKey:@"itcode"];
-            model.lastChkETime = [userInfo valueForKey:@"lastChkETime"];
-            model.lastLogin = [userInfo valueForKey:@"lastLogin"];
-            model.lastLoginIP = [userInfo valueForKey:@"lastLoginIP"];
-            model.latitude = [userInfo valueForKey:@"latitude"];
-            model.loginCount = [userInfo valueForKey:@"loginCount"];
-            model.longitude = [userInfo valueForKey:@"longitude"];
-            model.mailStatus = [userInfo valueForKey:@"mailStatus"];
-            model.memo = [userInfo valueForKey:@"memo"];
-            model.mobile = [userInfo valueForKey:@"mobile"];
-            model.organization = [userInfo valueForKey:@"organization"];
-            model.organizationen = [userInfo valueForKey:@"organizationen"];
-            model.parentCode = [userInfo valueForKey:@"parentCode"];
-            model.parentId = [userInfo valueForKey:@"parentId"];
-            model.position = [userInfo valueForKey:@"position"];
-            model.positionen = [userInfo valueForKey:@"positionen"];
-            model.province = [userInfo valueForKey:@"province"];
-            model.sex = [userInfo valueForKey:@"sex"];
-            model.showMobile = [userInfo valueForKey:@"showMobile"];
-            model.sid = [userInfo valueForKey:@"sid"];
-            model.status = [userInfo valueForKey:@"status"];
-            model.street = [userInfo valueForKey:@"street"];
-            model.street_number = [userInfo valueForKey:@"street_number"];
-            model.sysAdmin = [userInfo valueForKey:@"sysAdmin"];
-            model.telephone = [userInfo valueForKey:@"telephone"];
-            model.userId = [userInfo valueForKey:@"userId"];
-            model.userType = [userInfo valueForKey:@"userType"];
-            model.username = [userInfo valueForKey:@"username"];
-            model.versionName = [userInfo valueForKey:@"versionName"];
-            model.isFriend = [userInfo valueForKey:@"isFriend"];
+            model.address = [NSString _859ToUTF8:[userInfo valueForKey:@"address"]];
+            model.allowPosition = [NSString _859ToUTF8:[userInfo valueForKey:@"allowPosition"]];
+            model.articleBg = [NSString _859ToUTF8:[userInfo valueForKey:@"articleBg"]];
+            model.bgUpdateTime = [NSString _859ToUTF8:[userInfo valueForKey:@"bgUpdateTime"]];
+            model.chkATime = [NSString _859ToUTF8:[userInfo valueForKey:@"chkATime"]];
+            model.cityName = [NSString _859ToUTF8:[userInfo valueForKey:@"cityName"]];
+            model.companyId = [NSString _859ToUTF8:[userInfo valueForKey:@"companyId"]];
+            model.createDate = [NSString _859ToUTF8:[userInfo valueForKey:@"createDate"]];
+            model.deletePerm = [NSString _859ToUTF8:[userInfo valueForKey:@"deletePerm"]];
+            model.district = [NSString _859ToUTF8:[userInfo valueForKey:@"district"]];
+            model.email = [NSString _859ToUTF8:[userInfo valueForKey:@"email"]];
+            model.firstname = [NSString _859ToUTF8:[userInfo valueForKey:@"firstname"]];
+            model.firstnameen = [NSString _859ToUTF8:[userInfo valueForKey:@"firstnameen"]];
+            model.icon = [NSString _859ToUTF8:[userInfo valueForKey:@"icon"]];
+            model.iconUpdateTime = [NSString _859ToUTF8:[userInfo valueForKey:@"iconUpdateTime"]];
+            model.inviteCodeId = [NSString _859ToUTF8:[userInfo valueForKey:@"inviteCodeId"]];
+            model.invitePerm = [NSString _859ToUTF8:[userInfo valueForKey:@"invitePerm"]];
+            model.itcode = [NSString _859ToUTF8:[userInfo valueForKey:@"itcode"]];
+            model.lastChkETime = [NSString _859ToUTF8:[userInfo valueForKey:@"lastChkETime"]];
+            model.lastLogin = [NSString _859ToUTF8:[userInfo valueForKey:@"lastLogin"]];
+            model.lastLoginIP = [NSString _859ToUTF8:[userInfo valueForKey:@"lastLoginIP"]];
+            model.latitude = [NSString _859ToUTF8:[userInfo valueForKey:@"latitude"]];
+            model.loginCount = [NSString _859ToUTF8:[userInfo valueForKey:@"loginCount"]];
+            model.longitude = [NSString _859ToUTF8:[userInfo valueForKey:@"longitude"]];
+            model.mailStatus = [NSString _859ToUTF8:[userInfo valueForKey:@"mailStatus"]];
+            model.memo = [NSString _859ToUTF8:[userInfo valueForKey:@"memo"]];
+            model.mobile = [NSString _859ToUTF8:[userInfo valueForKey:@"mobile"]];
+            model.organization = [NSString _859ToUTF8:[userInfo valueForKey:@"organization"]];
+            model.organizationen = [NSString _859ToUTF8:[userInfo valueForKey:@"organizationen"]];
+            model.parentCode = [NSString _859ToUTF8:[userInfo valueForKey:@"parentCode"]];
+            model.parentId = [NSString _859ToUTF8:[userInfo valueForKey:@"parentId"]];
+            model.position = [NSString _859ToUTF8:[userInfo valueForKey:@"position"]];
+            model.positionen = [NSString _859ToUTF8:[userInfo valueForKey:@"positionen"]];
+            model.province = [NSString _859ToUTF8:[userInfo valueForKey:@"province"]];
+            model.sex = [NSString _859ToUTF8:[userInfo valueForKey:@"sex"]];
+            model.showMobile = [NSString _859ToUTF8:[userInfo valueForKey:@"showMobile"]];
+            model.sid = [NSString _859ToUTF8:[userInfo valueForKey:@"sid"]];
+            model.status = [NSString _859ToUTF8:[userInfo valueForKey:@"status"]];
+            model.street = [NSString _859ToUTF8:[userInfo valueForKey:@"street"]];
+            model.street_number = [NSString _859ToUTF8:[userInfo valueForKey:@"street_number"]];
+            model.sysAdmin = [NSString _859ToUTF8:[userInfo valueForKey:@"sysAdmin"]];
+            model.telephone = [NSString _859ToUTF8:[userInfo valueForKey:@"telephone"]];
+            model.userId = [NSString _859ToUTF8:[userInfo valueForKey:@"userId"]];
+            model.userType = [NSString _859ToUTF8:[userInfo valueForKey:@"userType"]];
+            model.username = [NSString _859ToUTF8:[userInfo valueForKey:@"username"]];
+            model.versionName = [NSString _859ToUTF8:[userInfo valueForKey:@"versionName"]];
+            model.isFriend = [NSString _859ToUTF8:[userInfo valueForKey:@"isFriend"]];
             
             
             NSArray *valueArray = @[
@@ -203,53 +203,53 @@
 
         NSDictionary *userList = [userIfo objectForKey:@"user"];
             UserIfo *model = [[UserIfo alloc]init];
-            model.address = [userList valueForKey:@"address"];
-            model.allowPosition = [userList valueForKey:@"allowPosition"];
-            model.articleBg = [userList valueForKey:@"articleBg"];
-            model.bgUpdateTime = [userList valueForKey:@"bgUpdateTime"];
-            model.chkATime = [userList valueForKey:@"chkATime"];
-            model.cityName = [userList valueForKey:@"cityName"];
-            model.companyId = [userList valueForKey:@"companyId"];
-            model.createDate = [userList valueForKey:@"createDate"];
-            model.deletePerm = [userList valueForKey:@"deletePerm"];
-            model.district = [userList valueForKey:@"district"];
-            model.email = [userList valueForKey:@"email"];
-            model.firstname = [userList valueForKey:@"firstname"];
-            model.firstnameen = [userList valueForKey:@"firstnameen"];
-            model.icon = [userList valueForKey:@"icon"];
-            model.iconUpdateTime = [userList valueForKey:@"iconUpdateTime"];
-            model.inviteCodeId = [userList valueForKey:@"inviteCodeId"];
-            model.invitePerm = [userList valueForKey:@"invitePerm"];
-            model.itcode = [userList valueForKey:@"itcode"];
-            model.lastChkETime = [userList valueForKey:@"lastChkETime"];
-            model.lastLogin = [userList valueForKey:@"lastLogin"];
-            model.lastLoginIP = [userList valueForKey:@"lastLoginIP"];
-            model.latitude = [userList valueForKey:@"latitude"];
-            model.loginCount = [userList valueForKey:@"loginCount"];
-            model.longitude = [userList valueForKey:@"longitude"];
-            model.mailStatus = [userList valueForKey:@"mailStatus"];
-            model.memo = [userList valueForKey:@"memo"];
-            model.mobile = [userList valueForKey:@"mobile"];
-            model.organization = [userList valueForKey:@"organization"];
-            model.organizationen = [userList valueForKey:@"organizationen"];
-            model.parentCode = [userList valueForKey:@"parentCode"];
-            model.parentId = [userList valueForKey:@"parentId"];
-            model.position = [userList valueForKey:@"position"];
-            model.positionen = [userList valueForKey:@"positionen"];
-            model.province = [userList valueForKey:@"province"];
-            model.sex = [userList valueForKey:@"sex"];
-            model.showMobile = [userList valueForKey:@"showMobile"];
-            model.sid = [userList valueForKey:@"sid"];
-            model.status = [userList valueForKey:@"status"];
-            model.street = [userList valueForKey:@"street"];
-            model.street_number = [userList valueForKey:@"street_number"];
-            model.sysAdmin = [userList valueForKey:@"sysAdmin"];
-            model.telephone = [userList valueForKey:@"telephone"];
-            model.userId = [userList valueForKey:@"userId"];
-            model.userType = [userList valueForKey:@"userType"];
-            model.username = [userList valueForKey:@"username"];
-            model.versionName = [userList valueForKey:@"versionName"];
-            model.isFriend = [userList valueForKey:@"isFriend"];
+            model.address = [NSString _859ToUTF8:[userList valueForKey:@"address"]];
+            model.allowPosition = [NSString _859ToUTF8:[userList valueForKey:@"allowPosition"]];
+            model.articleBg = [NSString _859ToUTF8:[userList valueForKey:@"articleBg"]];
+            model.bgUpdateTime = [NSString _859ToUTF8:[userList valueForKey:@"bgUpdateTime"]];
+            model.chkATime = [NSString _859ToUTF8:[userList valueForKey:@"chkATime"]];
+            model.cityName = [NSString _859ToUTF8:[userList valueForKey:@"cityName"]];
+            model.companyId = [NSString _859ToUTF8:[userList valueForKey:@"companyId"]];
+            model.createDate = [NSString _859ToUTF8:[userList valueForKey:@"createDate"]];
+            model.deletePerm = [NSString _859ToUTF8:[userList valueForKey:@"deletePerm"]];
+            model.district = [NSString _859ToUTF8:[userList valueForKey:@"district"]];
+            model.email = [NSString _859ToUTF8:[userList valueForKey:@"email"]];
+            model.firstname = [NSString _859ToUTF8:[userList valueForKey:@"firstname"]];
+            model.firstnameen = [NSString _859ToUTF8:[userList valueForKey:@"firstnameen"]];
+            model.icon = [NSString _859ToUTF8:[userList valueForKey:@"icon"]];
+            model.iconUpdateTime = [NSString _859ToUTF8:[userList valueForKey:@"iconUpdateTime"]];
+            model.inviteCodeId = [NSString _859ToUTF8:[userList valueForKey:@"inviteCodeId"]];
+            model.invitePerm = [NSString _859ToUTF8:[userList valueForKey:@"invitePerm"]];
+            model.itcode = [NSString _859ToUTF8:[userList valueForKey:@"itcode"]];
+            model.lastChkETime = [NSString _859ToUTF8:[userList valueForKey:@"lastChkETime"]];
+            model.lastLogin = [NSString _859ToUTF8:[userList valueForKey:@"lastLogin"]];
+            model.lastLoginIP = [NSString _859ToUTF8:[userList valueForKey:@"lastLoginIP"]];
+            model.latitude = [NSString _859ToUTF8:[userList valueForKey:@"latitude"]];
+            model.loginCount = [NSString _859ToUTF8:[userList valueForKey:@"loginCount"]];
+            model.longitude = [NSString _859ToUTF8:[userList valueForKey:@"longitude"]];
+            model.mailStatus = [NSString _859ToUTF8:[userList valueForKey:@"mailStatus"]];
+            model.memo = [NSString _859ToUTF8:[userList valueForKey:@"memo"]];
+            model.mobile = [NSString _859ToUTF8:[userList valueForKey:@"mobile"]];
+            model.organization = [NSString _859ToUTF8:[userList valueForKey:@"organization"]];
+            model.organizationen = [NSString _859ToUTF8:[userList valueForKey:@"organizationen"]];
+            model.parentCode = [NSString _859ToUTF8:[userList valueForKey:@"parentCode"]];
+            model.parentId = [NSString _859ToUTF8:[userList valueForKey:@"parentId"]];
+            model.position = [NSString _859ToUTF8:[userList valueForKey:@"position"]];
+            model.positionen = [NSString _859ToUTF8:[userList valueForKey:@"positionen"]];
+            model.province = [NSString _859ToUTF8:[userList valueForKey:@"province"]];
+            model.sex = [NSString _859ToUTF8:[userList valueForKey:@"sex"]];
+            model.showMobile = [NSString _859ToUTF8:[userList valueForKey:@"showMobile"]];
+            model.sid = [NSString _859ToUTF8:[userList valueForKey:@"sid"]];
+            model.status = [NSString _859ToUTF8:[userList valueForKey:@"status"]];
+            model.street = [NSString _859ToUTF8:[userList valueForKey:@"street"]];
+            model.street_number = [NSString _859ToUTF8:[userList valueForKey:@"street_number"]];
+            model.sysAdmin = [NSString _859ToUTF8:[userList valueForKey:@"sysAdmin"]];
+            model.telephone = [NSString _859ToUTF8:[userList valueForKey:@"telephone"]];
+            model.userId = [NSString _859ToUTF8:[userList valueForKey:@"userId"]];
+            model.userType = [NSString _859ToUTF8:[userList valueForKey:@"userType"]];
+            model.username = [NSString _859ToUTF8:[userList valueForKey:@"username"]];
+            model.versionName = [NSString _859ToUTF8:[userList valueForKey:@"versionName"]];
+            model.isFriend = [NSString _859ToUTF8:[userList valueForKey:@"isFriend"]];
             
             
             NSArray *valueArray = @[
@@ -305,20 +305,20 @@
         for (int i = 0; i <[groupLists count]; ++i) {
             NSDictionary *contactlist = (NSDictionary *)groupLists[i];
             GroupList *model = [[GroupList alloc]init];
-            model.addTime = [contactlist objectForKey:@"addTime"];
-            model.createDate = [contactlist valueForKey:@"createDate"];
-            model.creator = [contactlist objectForKey:@"creator"];
-            model.creatorName = [contactlist objectForKey:@"creatorName"];
-            model.denytalk = [contactlist objectForKey:@"denytalk"];
-            model.groupId = [contactlist objectForKey:@"groupId"];
-            model.groupName = [contactlist objectForKey:@"groupName"];
-            model.groupType = [contactlist objectForKey:@"groupType"];
-            model.isCreator = [contactlist objectForKey:@"isCreator"];
-            model.latestMsg = [contactlist objectForKey:@"latestMsg"];
-            model.latestMsgUser = [contactlist objectForKey:@"latestMsgUser"];
-            model.latestMsgUserName = [contactlist objectForKey:@"latestMsgUserName"];
-            model.membermemo = [contactlist objectForKey:@"membermemo"];
-            model.memo = [contactlist objectForKey:@"memo"];
+            model.addTime = [NSString _859ToUTF8:[contactlist objectForKey:@"addTime"]];
+            model.createDate = [NSString _859ToUTF8:[contactlist valueForKey:@"createDate"]];
+            model.creator = [NSString _859ToUTF8:[contactlist objectForKey:@"creator"]];
+            model.creatorName = [NSString _859ToUTF8:[contactlist objectForKey:@"creatorName"]];
+            model.denytalk = [NSString _859ToUTF8:[contactlist objectForKey:@"denytalk"]];
+            model.groupId = [NSString _859ToUTF8:[contactlist objectForKey:@"groupId"]];
+            model.groupName = [NSString _859ToUTF8:[contactlist objectForKey:@"groupName"]];
+            model.groupType = [NSString _859ToUTF8:[contactlist objectForKey:@"groupType"]];
+            model.isCreator = [NSString _859ToUTF8:[contactlist objectForKey:@"isCreator"]];
+            model.latestMsg = [NSString _859ToUTF8:[contactlist objectForKey:@"latestMsg"]];
+            model.latestMsgUser = [NSString _859ToUTF8:[contactlist objectForKey:@"latestMsgUser"]];
+            model.latestMsgUserName = [NSString _859ToUTF8:[contactlist objectForKey:@"latestMsgUserName"]];
+            model.membermemo = [NSString _859ToUTF8:[contactlist objectForKey:@"membermemo"]];
+            model.memo = [NSString _859ToUTF8:[contactlist objectForKey:@"memo"]];
             
             NSArray *valueArray = @[
                                     @"cuId",
@@ -367,20 +367,20 @@
 - (void)getReturnAddGroup:(NSDictionary *)userIfo
 {
             GroupList *model = [[GroupList alloc]init];
-            model.addTime = [userIfo objectForKey:@"createDate"];// 加入时间标注为群组的创建时间
-            model.createDate = [userIfo valueForKey:@"createDate"];
-            model.creator = [userIfo objectForKey:@"creator"];
+            model.addTime = [NSString _859ToUTF8:[userIfo objectForKey:@"createDate"]];// 加入时间标注为群组的创建时间
+            model.createDate = [NSString _859ToUTF8:[userIfo valueForKey:@"createDate"]];
+            model.creator = [NSString _859ToUTF8:[userIfo objectForKey:@"creator"]];
             model.creatorName = GET_U_NAME;// 创建者的用户名位当前用户名
-            model.denytalk = [userIfo objectForKey:@"denytalk"];
-            model.groupId = [userIfo objectForKey:@"groupId"];
-            model.groupName = [userIfo objectForKey:@"groupName"];
-            model.groupType = [userIfo objectForKey:@"groupType"];
+            model.denytalk = [NSString _859ToUTF8:[userIfo objectForKey:@"denytalk"]];
+            model.groupId = [NSString _859ToUTF8:[userIfo objectForKey:@"groupId"]];
+            model.groupName = [NSString _859ToUTF8:[userIfo objectForKey:@"groupName"]];
+            model.groupType = [NSString _859ToUTF8:[userIfo objectForKey:@"groupType"]];
             model.isCreator = @"1";
-            model.latestMsg = [userIfo objectForKey:@"latestMsg"];
-            model.latestMsgUser = [userIfo objectForKey:@"latestMsgUser"];
-            model.latestMsgUserName = [userIfo objectForKey:@"latestMsgUserName"];
-            model.membermemo = [userIfo objectForKey:@"membermemo"];
-            model.memo = [userIfo objectForKey:@"memo"];
+            model.latestMsg = [NSString _859ToUTF8:[userIfo objectForKey:@"latestMsg"]];
+            model.latestMsgUser = [NSString _859ToUTF8:[userIfo objectForKey:@"latestMsgUser"]];
+            model.latestMsgUserName = [NSString _859ToUTF8:[userIfo objectForKey:@"latestMsgUserName"]];
+            model.membermemo = [NSString _859ToUTF8:[userIfo objectForKey:@"membermemo"]];
+            model.memo = [NSString _859ToUTF8:[userIfo objectForKey:@"memo"]];
             NSArray *valueArray = @[
                                     @"cuId",
                                     @"groupId",
@@ -406,13 +406,13 @@
 - (BOOL)getGroupMememberFeildandValue:(NSDictionary *)groupMemberIfo
 {
     GroupMemberList *model = [[GroupMemberList alloc]init];
-    model.addTime = [groupMemberIfo objectForKey:@"addTime"];
-    model.denytalk = [groupMemberIfo objectForKey:@"denytalk"];
-    model.isCreator = [groupMemberIfo objectForKey:@"isCreator"];
-    model.firstname = [groupMemberIfo objectForKey:@"firstname"];
-    model.membermemo = [groupMemberIfo objectForKey:@"membermemo"];
-    model.userId = [groupMemberIfo objectForKey:@"userId"];
-    model.username = [groupMemberIfo objectForKey:@"username"];
+    model.addTime = [NSString _859ToUTF8:[groupMemberIfo objectForKey:@"addTime"]];
+    model.denytalk = [NSString _859ToUTF8:[groupMemberIfo objectForKey:@"denytalk"]];
+    model.isCreator = [NSString _859ToUTF8:[groupMemberIfo objectForKey:@"isCreator"]];
+    model.firstname = [NSString _859ToUTF8:[groupMemberIfo objectForKey:@"firstname"]];
+    model.membermemo = [NSString _859ToUTF8:[groupMemberIfo objectForKey:@"membermemo"]];
+    model.userId = [NSString _859ToUTF8:[groupMemberIfo objectForKey:@"userId"]];
+    model.username = [NSString _859ToUTF8:[groupMemberIfo objectForKey:@"username"]];
     NSArray *valueArray = @[
                             @"cuId",
                             @"groupId",
@@ -435,21 +435,21 @@
         for (int i = [contactlists count]-1; i >=0; --i) {
             NSDictionary *contactlist = (NSDictionary *)contactlists[i];
             UserContact *model = [[UserContact alloc]init];
-            model.contactId = [contactlist objectForKey:@"contactId"];
-            model.contactName = [contactlist valueForKey:@"contactName"];
-            model.contactType = [contactlist objectForKey:@"contactType"];
-            model.contactUsername = [contactlist objectForKey:@"contactUsername"];
-            model.createDate = [contactlist objectForKey:@"createDate"];
-            model.creator = [contactlist objectForKey:@"creator"];
-            model.creatorName = [contactlist objectForKey:@"creatorName"];
-            model.creatorUsername = [contactlist objectForKey:@"creatorUsername"];
-            model.groupType = [contactlist objectForKey:@"groupType"];
-            model.lastMsg = [contactlist objectForKey:@"lastMsg"];
-            model.lastMsgTime = [contactlist objectForKey:@"lastMsgTime"];
-            model.lastMsgUser = [contactlist objectForKey:@"lastMsgUser"];
-            model.lastMsgUserFirstname = [contactlist objectForKey:@"lastMsgUserFirstname"];
-            model.lastMsgUserUsername = [contactlist objectForKey:@"lastMsgUserUsername"];
-            model.memo = [contactlist objectForKey:@"memo"];
+            model.contactId = [NSString _859ToUTF8:[contactlist objectForKey:@"contactId"]];
+            model.contactName = [NSString _859ToUTF8:[contactlist valueForKey:@"contactName"]];
+            model.contactType = [NSString _859ToUTF8:[contactlist objectForKey:@"contactType"]];
+            model.contactUsername = [NSString _859ToUTF8:[contactlist objectForKey:@"contactUsername"]];
+            model.createDate = [NSString _859ToUTF8:[contactlist objectForKey:@"createDate"]];
+            model.creator = [NSString _859ToUTF8:[contactlist objectForKey:@"creator"]];
+            model.creatorName = [NSString _859ToUTF8:[contactlist objectForKey:@"creatorName"]];
+            model.creatorUsername = [NSString _859ToUTF8:[contactlist objectForKey:@"creatorUsername"]];
+            model.groupType = [NSString _859ToUTF8:[contactlist objectForKey:@"groupType"]];
+            model.lastMsg = [NSString _859ToUTF8:[contactlist objectForKey:@"lastMsg"]];
+            model.lastMsgTime = [NSString _859ToUTF8:[contactlist objectForKey:@"lastMsgTime"]];
+            model.lastMsgUser = [NSString _859ToUTF8:[contactlist objectForKey:@"lastMsgUser"]];
+            model.lastMsgUserFirstname = [NSString _859ToUTF8:[contactlist objectForKey:@"lastMsgUserFirstname"]];
+            model.lastMsgUserUsername = [NSString _859ToUTF8:[contactlist objectForKey:@"lastMsgUserUsername"]];
+            model.memo = [NSString _859ToUTF8:[contactlist objectForKey:@"memo"]];
             NSArray *valueArray = @[
                                     @"cuId",
                                     @"contactId",
@@ -508,9 +508,9 @@
         //存储登入信息
         NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
         // 获取并存储userId
-        [user setObject:[userDetail objectForKey:@"userId"] forKey:U_ID];
+        [user setObject:[NSString _859ToUTF8:[userDetail objectForKey:@"userId"]] forKey:U_ID];
         // 获取并存储sid
-        [user setObject:[userDetail objectForKey:@"sid"] forKey:ACCESS_TOKEN_K];
+        [user setObject:[NSString _859ToUTF8:[userDetail objectForKey:@"sid"]] forKey:ACCESS_TOKEN_K];
         [user synchronize];
         
         // 把tocken写到服务器

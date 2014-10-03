@@ -367,8 +367,8 @@
             });
             //  跳转到群组成员添加页面
             AddGroupMemberViewController *addGroupMember = [[AddGroupMemberViewController alloc]init];
-            addGroupMember.groupId = [groupDict objectForKey:@"groupId"];
-            addGroupMember.groupName = [groupDict objectForKey:@"groupName"];
+            addGroupMember.groupId = [NSString _859ToUTF8:[groupDict objectForKey:@"groupId"]];
+            addGroupMember.groupName = [NSString _859ToUTF8:[groupDict objectForKey:@"groupName"]];
             [self.navigationController pushViewController:addGroupMember animated:YES];
         }
         else if (codeNum == CODE_ERROE){
@@ -550,25 +550,25 @@
 // 获取用户加入及创建的群组列表
 - (void)getUserADDGroupList
 {
-    [groupArray removeAllObjects];
-    [groupToContactArray removeAllObjects];
-    [groupArray addObjectsFromArray:[UserAddedGroupDB selectFeildString:nil andcuId:GET_USER_ID]];
-    for (int i = 0; i < [groupArray count]; i++) {
-        GroupList *groupmModel = (GroupList *)groupArray[i];
-        UserContact *model = [[UserContact alloc]init];
-        model.creator = groupmModel.creator;
-        model.creatorName = groupmModel.creatorName;
-        model.contactId = groupmModel.groupId;
-        model.groupType = groupmModel.groupType;
-        model.contactType = PUSH_GPCHAT;
-        model.lastMsgUser = groupmModel.latestMsgUser;
-        model.lastMsgUserUsername = groupmModel.latestMsgUserName;
-        model.contactName = groupmModel.groupName;
-        model.memo = groupmModel.memo;
-        model.icon = [UserInfoDB selectFeildString:@"icon" andcuId:GET_U_ID anduserId:model.contactId];
-        // 将群组添加到用户联系人的数据库中（没有重的数据便插入）
-        [userContactDB selectuserContactInfo:USERCONTACT_TABLE andkeyValue:model andkeyArray:[self getFieldArray]];
-    }
+//    [groupArray removeAllObjects];
+//    [groupToContactArray removeAllObjects];
+//    [groupArray addObjectsFromArray:[UserAddedGroupDB selectFeildString:nil andcuId:GET_USER_ID]];
+//    for (int i = 0; i < [groupArray count]; i++) {
+//        GroupList *groupmModel = (GroupList *)groupArray[i];
+//        UserContact *model = [[UserContact alloc]init];
+//        model.creator = groupmModel.creator;
+//        model.creatorName = groupmModel.creatorName;
+//        model.contactId = groupmModel.groupId;
+//        model.groupType = groupmModel.groupType;
+//        model.contactType = PUSH_GPCHAT;
+//        model.lastMsgUser = groupmModel.latestMsgUser;
+//        model.lastMsgUserUsername = groupmModel.latestMsgUserName;
+//        model.contactName = groupmModel.groupName;
+//        model.memo = groupmModel.memo;
+//        model.icon = [UserInfoDB selectFeildString:@"icon" andcuId:GET_U_ID anduserId:model.contactId];
+//        // 将群组添加到用户联系人的数据库中（没有重的数据便插入）
+//        [userContactDB selectuserContactInfo:USERCONTACT_TABLE andkeyValue:model andkeyArray:[self getFieldArray]];
+//    }
     [UserContactArray removeAllObjects];
     
     // 将正在聊天的人员加入到数组中
@@ -1095,7 +1095,7 @@
     }else{
         cell.accessoryType =  UITableViewCellAccessoryNone;
         model = (UserContact *)[UserContactArray objectAtIndex:indexPath.row-4];
-        cell.nameLabel.text = [NSString _859ToUTF8:model.contactName];
+        cell.nameLabel.text = model.contactName;
         cell.nameLabel.backgroundColor = [UIColor clearColor];
         cell.timeLable.text = [SingleInstance handleDate:model.creatDate];
         if ([model.contactType isEqualToString:ORDINARY_GROUP_CODE]) {
@@ -1188,7 +1188,7 @@
         VChatViewController *vc = [[VChatViewController alloc] init];
         UserContact *model = (UserContact *)[UserContactArray lastObject];
         vc.recvFirstName = LOCALIZATION(@"chat_expressname");
-        vc.recvName = [NSString _859ToUTF8:model.contactUsername];
+        vc.recvName = model.contactUsername;
         vc.type = VChatType_VC;
         [self.navigationController pushViewController:vc animated:YES];
         SSRCRelease(vc)
@@ -1203,8 +1203,8 @@
         if ([model.contactType isEqualToString:ORDINARY_USER_CODE]) {
             vc.type = VChatType_pChat;
             vc.recvId = [NSNumber numberWithInt:[model.contactId intValue]];
-            vc.recvName = [NSString _859ToUTF8:model.contactUsername];
-            vc.recvFirstName = [NSString _859ToUTF8:model.contactName];
+            vc.recvName = model.contactUsername;
+            vc.recvFirstName = model.contactName;
         }
         // 群组聊天
         else if ([model.contactType isEqualToString:ORDINARY_GROUP_CODE]){
@@ -1212,13 +1212,13 @@
             if ([model.groupType isEqualToString:GROUPTYPE_NORMAL_CODE]) {
                 vc.type = VChatType_pGroup;
                 vc.recvId = [NSNumber numberWithInt:[model.contactId intValue]];
-                vc.recvName = [NSString _859ToUTF8:model.contactUsername];
-                vc.recvFirstName = [NSString _859ToUTF8:model.contactName];
+                vc.recvName = model.contactUsername;
+                vc.recvFirstName = model.contactName;
             }
             else if ([model.groupType isEqualToString:GROUPTYPE_SYSTEM_CODE]){
                 vc.type = VChatType_pGroup;
                 vc.recvId = [NSNumber numberWithInt:[model.contactId intValue]];
-                vc.recvFirstName = [NSString _859ToUTF8:model.contactName];
+                vc.recvFirstName = model.contactName;
             }
             else{
                 return;
