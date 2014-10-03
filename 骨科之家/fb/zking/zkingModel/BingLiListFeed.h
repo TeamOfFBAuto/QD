@@ -7,6 +7,32 @@
 //
 
 #import <Foundation/Foundation.h>
+///文件数据类
+@interface AttachListFeed : NSObject
+///文件id
+@property(nonatomic,strong)NSString * attachId;
+///文件名
+@property(nonatomic,strong)NSString * filename;
+///文件链接地址
+@property(nonatomic,strong)NSString * fileurl;
+
+-(id)initWithDic:(NSDictionary *)dic;
+
+@end
+
+///病例标签
+@interface TagListFeed : NSObject
+
+///标签id
+@property(nonatomic,strong)NSString * tagId;
+///标签内容
+@property(nonatomic,strong)NSString * tag;
+
+-(id)initWithDic:(NSDictionary *)dic;
+
+@end
+
+
 
 @interface BingLiListFeed : NSObject
 
@@ -32,6 +58,8 @@
 
 @property(nonatomic,strong)NSString * idno;
 
+@property(nonatomic,strong)NSString * jiuzhen;
+
 @property(nonatomic,strong)NSString * bianma;
 
 @property(nonatomic,strong)NSString * memo;
@@ -46,6 +74,10 @@
 
 @property(nonatomic,strong)NSString * firstname;
 
+///文件数据
+@property(nonatomic,strong)NSMutableArray * attach_array;
+///标签数据
+@property(nonatomic,strong)NSMutableArray * tag_array;
 
 -(void)setBingLiListFeedDic:(NSDictionary *)mydic;
 

@@ -62,6 +62,13 @@ static const NSMutableArray *subjectArry;
         self.reportTime.textColor = [UIColor grayColor];
         self.reportTime.font = [UIFont systemFontOfSize:13.0f];
         self.reportTime.backgroundColor = [UIColor clearColor];
+        
+        //删除按钮
+        self.delete_button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self.delete_button setTitle:@"删除" forState:UIControlStateNormal];
+        self.delete_button.titleLabel.font = [UIFont systemFontOfSize:13];
+        [self.delete_button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [self.delete_button addTarget:self action:@selector(deleteButtonTap:) forControlEvents:UIControlEventTouchUpInside];
         // 赞
         self.favorite = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.favorite setImage:[UIImage imageNamed:@"userarticle_heart.png"] forState:UIControlStateNormal];
@@ -127,7 +134,7 @@ static const NSMutableArray *subjectArry;
         [self addSubview:self.comment];
         [self addSubview:self.favorite];
         [self addSubview:self.urlLabel];
-        
+        [self addSubview:self.delete_button];
     }
     return self;
 }
@@ -161,6 +168,13 @@ static const NSMutableArray *subjectArry;
     
     // 设置日期
     self.reportTime.text = [SingleInstance handleDate:_post.createDate];
+    
+    if ([_post.userId isEqualToString:GET_U_ID]) {
+        self.delete_button.hidden = NO;
+    }else
+    {
+        self.delete_button.hidden = YES;
+    }
     
     // 设置发表的内容
     _ContentView.articleModel = _post;
@@ -246,6 +260,8 @@ static const NSMutableArray *subjectArry;
     float img_height = _PictureViews.frame.size.height + 10;
     
     self.reportTime.frame = CGRectMake(USER_ICON_WHDTH + 10 + 10,img_height+ _ContentView.frame.size.height + _ContentView.frame.origin.y+13, REPORT_TIME_WHDTH, REPORT_TIME_HEIGHT);
+    self.delete_button.frame = CGRectMake(REPORT_TIME_WHDTH+20,img_height+ _ContentView.frame.size.height + _ContentView.frame.origin.y+13,30,REPORT_TIME_HEIGHT);
+    
     self.favorite.frame = CGRectMake(195,img_height+ _ContentView.frame.size.height + _ContentView.frame.origin.y+4,FAVORITE_WHDTH, FAVORITE_HEIGHT);
     self.comment.frame = CGRectMake(260,img_height+ _ContentView.frame.size.height + _ContentView.frame.origin.y+4,COMMENT_WHDTH, COMMENT_HEIGHT);
 
@@ -283,6 +299,14 @@ static const NSMutableArray *subjectArry;
     height = 70 + [FriendContentView heightForCellWithPost:post] + REPORT_TIME_HEIGHT + shareHeight + commentHeight;
     
     return height;
+}
+
+#pragma mark - 删除操作
+-(void)deleteButtonTap:(UIButton *)button
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(deleteBlogWithCell:)]) {
+        [_delegate deleteBlogWithCell:self];
+    }
 }
 
 - (void)awakeFromNib

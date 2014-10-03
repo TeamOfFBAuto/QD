@@ -39,7 +39,10 @@
     _myTableVIEW = [[UITableView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT-44) style:UITableViewStylePlain];
     _myTableVIEW.delegate = self;
     _myTableVIEW.dataSource = self;
-    _myTableVIEW.separatorInset = UIEdgeInsetsZero;
+    if (IOS7_LATER) {
+        _myTableVIEW.separatorInset = UIEdgeInsetsZero;
+    }
+    
     [self.view addSubview:_myTableVIEW];
     
     _myTableVIEW.tableHeaderView = [self loadSectionView];

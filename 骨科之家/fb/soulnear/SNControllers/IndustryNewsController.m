@@ -42,7 +42,10 @@
     _myTableView.delegate = self;
     _myTableView.dataSource = self;
     _myTableView.pullDelegate = self;
-    _myTableView.separatorInset = UIEdgeInsetsZero;
+    if (IOS7_LATER) {
+        _myTableView.separatorInset = UIEdgeInsetsZero;
+    }
+    
     [self.view addSubview:_myTableView];
     _myTableView.pullTableIsRefreshing = YES;
     

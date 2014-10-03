@@ -660,6 +660,36 @@ static NSString *commentId = 0;
         
     }
 }
+
+#pragma mark - 删除微博
+-(void)deleteBlogWithCell:(FriendCircleHomeTableViewCell *)cell
+{
+    NSIndexPath * indexPath = [self.tableView indexPathForCell:cell];
+    UserArticleList * model = [articleArray objectAtIndex:indexPath.row-1];
+    MBProgressHUD * hud = [SNTools returnMBProgressWithText:@"正在删除..." addToView:self.view];
+    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"articleId":model.articleId};
+    __weak typeof(self)bself = self;
+    
+    [AFRequestService responseData:DELETE_BLOG_URL andparameters:parameters andResponseData:^(id responseData) {
+        
+        NSDictionary * dict = (NSDictionary *)responseData;
+        NSLog(@"dic -----  %@",dict);
+        if ([[dict objectForKey:@"code"] intValue] == 0)
+        {
+            [articleArray removeObjectAtIndex:indexPath.row-1];
+            hud.labelText = @"删除成功";
+            [hud hide:YES afterDelay:1.5];
+            
+            [bself.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationLeft];
+        }else
+        {
+            hud.labelText = @"删除失败，请重试";
+            [hud hide:YES afterDelay:1.5];
+        }
+    }];
+    
+    
+}
 // 添加赞的事件
 - (void)addFavorite:(UIButton *)sender
 {
@@ -897,7 +927,10 @@ static NSString *commentId = 0;
         soursceType = UIImagePickerControllerSourceTypeCamera;
     }
     else if (index == 1){
-        soursceType = UIImagePickerControllerSourceTypePhotoLibrary;
+//        soursceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self chooseMorePhoto];
+        
+        return;
     }
     else if (index == 2){
         return;
@@ -916,6 +949,53 @@ static NSString *commentId = 0;
         [self presentViewController:shareImagePicker animated:YES completion:nil];
     }
 }
+
+#pragma mark - 多图选择
+-(void)chooseMorePhoto
+{
+    ELCImagePickerController *elcPicker = [[ELCImagePickerController alloc] init];
+    
+    elcPicker.maximumImagesCount = 100; //Set the maximum number of images to select to 100
+    elcPicker.maximumImagesCount = 9;
+    elcPicker.imagePickerDelegate = self;
+    
+    [self presentViewController:elcPicker animated:YES completion:nil];
+}
+
+#pragma mark ELCImagePickerControllerDelegate Methods
+
+- (void)elcImagePickerController:(ELCImagePickerController *)picker didFinishPickingMediaWithInfo:(NSArray *)info
+{
+    NSLog(@"info -------  %@",info);
+    NSMutableArray * img_array = [NSMutableArray array];
+    
+    for (NSDictionary * dic in info)
+    {
+        UIImage *img = [dic objectForKey:UIImagePickerControllerOriginalImage];
+        UIImage *imgScale = img;
+        NSData *imgData = UIImageJPEGRepresentation(img, 0.3);
+        if (img.size.width>800) {
+            imgScale = [img scaleToSize:CGSizeMake(800, img.size.height*(800.0/img.size.width))];
+            imgData = UIImageJPEGRepresentation(imgScale, 0.3);
+        }
+        
+        [img_array addObject:imgScale];
+    }
+    
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        ShareImageViewController * shareImage = [[ShareImageViewController alloc]init];
+        shareImage.data_array = img_array;
+        [self.navigationController pushViewController:shareImage animated:YES];
+    }];
+}
+
+- (void)elcImagePickerControllerDidCancel:(ELCImagePickerController *)picker
+{
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark ====== UIImagePickerController Delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     UIImage *img = [info objectForKey:UIImagePickerControllerOriginalImage];
@@ -930,6 +1010,7 @@ static NSString *commentId = 0;
         ShareImageViewController * shareImage = [[ShareImageViewController alloc]init];
         shareImage.img = imgScale;
         shareImage.imgData = imgData;
+        shareImage.data_array = [NSMutableArray arrayWithObjects:imgScale, nil];
         [self.navigationController pushViewController:shareImage animated:YES];
     }
     else if ([picker isEqual:bgImagePicker]){

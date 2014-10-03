@@ -33,7 +33,10 @@
     _myTableView.dataSource = self;
     _myTableView.delegate = self;
     _myTableView.pullDelegate = self;
-    _myTableView.separatorInset = UIEdgeInsetsZero;
+    if (IOS7_LATER) {
+        _myTableView.separatorInset = UIEdgeInsetsZero;
+    }
+    
     [self.view addSubview:_myTableView];
     
     UIView * vvv = [[UIView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,0)];
