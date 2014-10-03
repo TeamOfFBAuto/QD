@@ -11,9 +11,11 @@
 @implementation NSString (_859ToUTF8)
 + (NSString *)_859ToUTF8:(NSString *)oldStr
 {
-    if (oldStr.length == 0 || [oldStr isKindOfClass:[NSNull class]]) {
+    if (oldStr.length == 0 || [oldStr isKindOfClass:[NSNull class]] || [oldStr isEqualToString:@""] || [oldStr isEqualToString:@"(null)"] ||[[oldStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0 || oldStr == nil || oldStr == NULL) {
         return oldStr;
     }
+    
+    NSLog(@"oldstr --------   %@",oldStr);
     NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingISOLatin1);
     
     return [NSString stringWithUTF8String:[oldStr cStringUsingEncoding:enc]];

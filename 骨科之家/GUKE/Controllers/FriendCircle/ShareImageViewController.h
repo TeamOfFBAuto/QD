@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
+#import "SendPostsImageScrollView.h"
 @interface ShareImageViewController : UIViewController<UITextViewDelegate,MBProgressHUDDelegate>
+{
+    SendPostsImageScrollView * imageScrollView;
+}
 @property(nonatomic, strong)UIImage *img;
 @property(nonatomic, strong)NSData *imgData;
+
+@property(nonatomic,strong)NSMutableArray * data_array;
 @end

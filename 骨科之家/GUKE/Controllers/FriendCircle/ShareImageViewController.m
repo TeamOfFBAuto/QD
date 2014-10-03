@@ -8,6 +8,7 @@
 
 #import "ShareImageViewController.h"
 #import "Interface.h"
+#import "imgUploadModel.h"
 @interface ShareImageViewController ()
 {
     MBProgressHUD *HUD;
@@ -23,6 +24,7 @@
 @end
 
 @implementation ShareImageViewController
+@synthesize data_array = _data_array;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -133,12 +135,26 @@
     line = [[UIImageView alloc]initWithImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"searchbglinered@2x" ofType:@"png"]]];
     
     line.frame = CGRectMake(5, moodContent.frame.size.height+moodContent.frame.origin.y+5, viewSize.width-10, 4);
-    imgView = [[UIImageView alloc]initWithFrame:CGRectMake(5, line.frame.size.height+line.frame.origin.y+10, 50, 50)];
-    imgView.image = self.img;
+//    imgView = [[UIImageView alloc]initWithFrame:CGRectMake(5, line.frame.size.height+line.frame.origin.y+10, 50, 50)];
+//    imgView.image = self.img;
+    
     [head_bg addSubview:line];
     [head_bg addSubview:moodContent];
-    [head_bg addSubview:imgView];
+//    [head_bg addSubview:imgView];
     [self.view addSubview:head_bg];
+    
+    
+    
+    imageScrollView = [[SendPostsImageScrollView alloc] initWithFrame:CGRectMake(0,125,320,150)];
+    imageScrollView.showsHorizontalScrollIndicator = NO;
+    imageScrollView.showsVerticalScrollIndicator = NO;
+    [self.view addSubview:imageScrollView];
+    
+    __weak typeof(self)bself = self;
+    [imageScrollView loadAllViewsWith:_data_array WithBlock:^(int index, int preViewPage) {
+        [bself.data_array removeObjectAtIndex:index];
+    }];
+    
     
 }
 - (void)tapAction
@@ -157,7 +173,7 @@
 }
 - (void)subMit
 {
-    if ([moodContent.text isEqualToString:@""] || moodContent.text == nil ) {
+    if ([moodContent.text isEqualToString:@""] || moodContent.text == nil || [moodContent.text isKindOfClass:[NSNull class]]) {
         NSString *alertcontext = LOCALIZATION(@"userarticle_newtext_empty");
         NSString *alertText = LOCALIZATION(@"dialog_prompt");
         NSString *alertOk = LOCALIZATION(@"dialog_ok");
@@ -168,9 +184,48 @@
         [self creatHUD:LOCALIZATION(@"userarticle_newfile_sending")];
         [HUD show:YES];
         NSDictionary *parameters = @{@"userId":GET_USER_ID,@"sid":GET_S_ID,@"context":moodContent.text,@"isShare":ISNOT_SHARE_CODE};
-        [AFRequestService responseDataWithImage:USER_ARTICEL_NEW andparameters:parameters andImageData:self.imgData  andfieldType:@"photo" andfileName:@"photo.jpg" andResponseData:^(NSData *responseData){
+        /*s上传单张图片
+//        [AFRequestService responseDataWithImage:USER_ARTICEL_NEW andparameters:parameters andImageData:self.imgData  andfieldType:@"photo" andfileName:@"photo.jpg" andResponseData:^(NSData *responseData){
+//            NSDictionary * dict = (NSDictionary *)responseData;
+//            NSUInteger codeNum = [[dict objectForKey:@"code"] integerValue];
+//            if (codeNum == 0) {
+//                [HUD hide:YES];
+//                NSString *alertcontext = LOCALIZATION(@"userarticle_newfile_success");
+//                NSString *alertText = LOCALIZATION(@"dialog_prompt");
+//                NSString *alertOk = LOCALIZATION(@"dialog_ok");
+//                UIAlertView * alert = [[UIAlertView alloc]initWithTitle:alertText message:alertcontext delegate:self cancelButtonTitle:alertOk otherButtonTitles:nil];
+//                alert.tag = 401;
+//                [alert show];
+//            }
+//            else if (codeNum == 1){
+//                NSString *alertcontext = LOCALIZATION(@"userarticle_newfile_error");
+//                NSString *alertText = LOCALIZATION(@"dialog_prompt");
+//                NSString *alertOk = LOCALIZATION(@"dialog_ok");
+//                UIAlertView * alert = [[UIAlertView alloc]initWithTitle:alertText message:alertcontext delegate:self cancelButtonTitle:alertOk otherButtonTitles:nil];
+//                alert.tag = 402;
+//                [alert show];
+//            }
+//            
+//        }];
+         */
+        
+        NSMutableArray * array = [NSMutableArray array];
+        
+        for (UIImage * image in _data_array)
+        {
+            NSData * imgData = UIImageJPEGRepresentation(image, 0.3);
+        
+            imgUploadModel * model = [[imgUploadModel alloc] init];
+            model.imageName = [UUID createUUID];
+            model.imageData = imgData;
+            [array addObject:model];
+        }
+        
+        
+        [AFRequestService responseDataWithImage:USER_ARTICEL_NEW andparameters:parameters andDataArray:array andfieldType:@"photo" andfileName:@"photo.jpg" andResponseData:^(NSData *responseData) {
             NSDictionary * dict = (NSDictionary *)responseData;
             NSUInteger codeNum = [[dict objectForKey:@"code"] integerValue];
+            
             if (codeNum == 0) {
                 [HUD hide:YES];
                 NSString *alertcontext = LOCALIZATION(@"userarticle_newfile_success");
@@ -180,7 +235,8 @@
                 alert.tag = 401;
                 [alert show];
             }
-            else if (codeNum == 1){
+            else if (codeNum == 1)
+            {
                 NSString *alertcontext = LOCALIZATION(@"userarticle_newfile_error");
                 NSString *alertText = LOCALIZATION(@"dialog_prompt");
                 NSString *alertOk = LOCALIZATION(@"dialog_ok");
@@ -188,8 +244,8 @@
                 alert.tag = 402;
                 [alert show];
             }
-            
-        }];
+         
+        }];        
     }
     
 }

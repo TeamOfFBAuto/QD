@@ -17,6 +17,9 @@
 #import "SNTools.h"
 #import "PullTableView.h"
 #import "MBProgressHUD.h"
+#import "UIImage+UIImageExt.h"
+#import "UIImage+fixOrientation.h"
+#import "UUID.h"
 
 //#define IMAGE_BASE_URL @"http://thunisoa.931.com/upload/"// 图片的链接固定部分
 //
@@ -108,6 +111,13 @@ alpha:(a)]
 
 #pragma mark -病历列表
 #define BINGLI_LIST @"binglilist.php"
+#pragma mark - 病例正文
+#define BINGLI_DETAIL_URL @"bingli.php"
+#pragma mark - 病例分类列表
+#define BINGLI_TYPE_LIST_URL @"binglifenleilist.php"
+#pragma mark - 删除朋友圈文章
+#define DELETE_BLOG_URL @"userarticledel.php"
+
 
 
 

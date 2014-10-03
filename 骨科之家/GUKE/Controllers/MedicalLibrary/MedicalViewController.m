@@ -8,12 +8,17 @@
 
 #import "MedicalViewController.h"
 #import "CreatMedicalViewController.h"
-
+#import "BingLiListFeed.h"
 #import "BinglilistModels.h"
+#import "MedicalCell.h"
+#import "LiuLanBingLiViewController.h"
 
 
-
-@interface MedicalViewController ()
+@interface MedicalViewController ()<PullTableViewDelegate,UITableViewDataSource,UITableViewDelegate>
+{
+    NSMutableArray * data_array;
+    int currentPage;
+}
 
 // 自定义导航栏
 - (void)loadNavigation;
@@ -47,6 +52,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    data_array = [NSMutableArray array];
     [self loadNavigation];
     [self loadUITableView];
     [self loadNewInformationBtn];
@@ -90,8 +96,11 @@
 // 创建资料库列表
 - (void)loadUITableView
 {
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-50) style:UITableViewStylePlain];
+    self.tableView = [[PullTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-50) style:UITableViewStylePlain with:Dragging_upLoadmore];
     self.tableView.backgroundColor = [UIColor whiteColor];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.pullDelegate = self;
     // 解决IOS7下tableview分割线左边短了一点
     if ([_tableView respondsToSelector:@selector(setSeparatorInset:)]) {
         
@@ -107,7 +116,7 @@
 - (void)loadNewInformationBtn
 {
     UIButton *NewInformationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    NewInformationBtn.frame = CGRectMake(20, SCREEN_HEIGHT-40, SCREEN_WIDTH-40, 30);
+    NewInformationBtn.frame = CGRectMake(20, SCREEN_HEIGHT-40-64, SCREEN_WIDTH-40, 30);
     NewInformationBtn.layer.cornerRadius = 5.0f;
     NewInformationBtn.backgroundColor = GETColor(39, 207, 104);
     [NewInformationBtn setTitle:@"新建病历" forState:UIControlStateNormal];
@@ -134,30 +143,107 @@
 
 -(void)layOutlist{
 
-    BinglilistModels *_model=[[BinglilistModels alloc]init];
+    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"pageSize":@"20",@"page":[NSString stringWithFormat:@"%d",currentPage]};
     
+    __weak typeof(self)wself=self;
     
-    [_model setBinglilistModelDatawithBloc:^(int errcode, NSString *info) {
+    [AFRequestService responseData:BINGLI_LIST andparameters:parameters andResponseData:^(id responseData) {
         
+        NSDictionary * dict = (NSDictionary *)responseData;
         
+        NSString * code=[NSString stringWithFormat:@"%@",[dict objectForKey:@"code"]];
+        NSString * page=[NSString stringWithFormat:@"%@",[dict objectForKey:@"page"]];
+        NSString * pageCount=[NSString stringWithFormat:@"%@",[dict objectForKey:@"pageCount"]];
+        NSString * recordCount=[NSString stringWithFormat:@"%@",[dict objectForKey:@"recordCount"]];
         
-//        if (errcode==1) {
-//            
-//            
-//            MBProgressHUD *hud = [[MBProgressHUD alloc]initWithView:self.view];
-//            hud.mode = MBProgressHUDModeCustomView;
-//            hud.labelText = info;
-//            hud.margin = 40.f;
-//            hud.yOffset = 10.f;
-//            hud.removeFromSuperViewOnHide = YES;
-//            [hud hide:YES afterDelay:2];
-//        }
-//        
-//        
-   }];
-//    
-    
+        NSLog(@"xxxxx======%@",dict);
+        
+        [self endPull];
+        
+        if ([code intValue]==0)//说明请求数据成功
+        {
+            if (data_array.count == [recordCount intValue]) {
+                [SNTools showMBProgressWithText:@"没有更多数据了" addToView:self.view];
+                return ;
+            }
+            
+            if (currentPage == 1)
+            {
+                [data_array removeAllObjects];
+            }
+            
+            
+            NSArray * array = [dict objectForKey:@"binglilist"];
+            
+            for (NSDictionary * dic in array) {
+                
+                BingLiListFeed *feed=[[BingLiListFeed alloc]init];
+                
+                [feed setBingLiListFeedDic:dic];
+                
+                [data_array addObject:feed];
+            }
+            [wself.tableView reloadData];
+        }
+        
+    }];
+}
 
+
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return data_array.count;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 80;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString * identifier = @"identifier";
+    MedicalCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (cell == nil)
+    {
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"MedicalCell" owner:self options:nil] objectAtIndex:0];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    [cell setInfoWith:[data_array objectAtIndex:indexPath.row]];
+    
+    
+    return cell;
+}
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    BingLiListFeed * feed = [data_array objectAtIndex:indexPath.row];
+    LiuLanBingLiViewController * liulan = [[LiuLanBingLiViewController alloc] init];
+    liulan.feed = feed;
+    [self.navigationController pushViewController:liulan animated:YES];
+    
+}
+
+
+#pragma mark - PullTableViewDelegate
+- (void)pullTableViewDidTriggerRefresh:(PullTableView*)pullTableView
+{
+    currentPage = 1;
+    [self layOutlist];
+}
+- (void)pullTableViewDidTriggerLoadMore:(PullTableView*)pullTableView
+{
+    currentPage++;
+    [self layOutlist];
+}
+- (void)endPull{
+    _tableView.pullTableIsLoadingMore = NO;
+    _tableView.pullTableIsRefreshing = NO;
+    _tableView.pullLastRefreshDate = [NSDate date];
 }
 
 

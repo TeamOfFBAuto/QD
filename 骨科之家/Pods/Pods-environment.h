@@ -6,6 +6,12 @@
 // project.
 
 
+// ELCImagePickerController
+#define COCOAPODS_POD_AVAILABLE_ELCImagePickerController
+#define COCOAPODS_VERSION_MAJOR_ELCImagePickerController 0
+#define COCOAPODS_VERSION_MINOR_ELCImagePickerController 2
+#define COCOAPODS_VERSION_PATCH_ELCImagePickerController 0
+
 // JSONKit
 #define COCOAPODS_POD_AVAILABLE_JSONKit
 // This library does not follow semantic-versioning,

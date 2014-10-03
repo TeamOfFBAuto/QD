@@ -10,8 +10,11 @@
 #import "CreateMedicalCell.h"
 #import "UIImage+fixOrientation.h"
 #import "QiDiPopoverView.h"
+#import "imgUploadModel.h"
+#import "CreateMedicalFilesCell.h"
+#import "ChooseCaseTypeViewController.h"
 
-@interface CreatMedicalViewController ()<UITextViewDelegate>
+@interface CreatMedicalViewController ()<UITextViewDelegate,CreateMedicalFilesCellDelegate>
 {
     ///存放条件数据
     NSMutableArray * content_array;
@@ -24,6 +27,9 @@
     QiDiPopoverView * popOver;
     
     UITextField * groupName;
+    
+    ///存放完成的数据（视频、图片、录音）
+    NSMutableArray * data_array;
     
     
 }
@@ -55,10 +61,54 @@
     [self loadNavigation];
     
     content_array = [NSMutableArray arrayWithObjects:@"姓名",@"性别",@"就诊时间",@"诊断",@"病人手机号",@"家属手机号",@"治疗方案",@"病历号",@"身份证号",@"标记编号",nil];
+    data_array = [NSMutableArray array];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleWillShowKeyboard:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleWillHideKeyboard:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(uploadData:)
+                                                 name:@"uploadData"
+                                               object:nil];
+    
+}
+
+-(void)uploadData:(NSNotification *)notification
+{
+    NSLog(@"notification ---  %@",notification);
     
     
 }
+
+
+#pragma mark-显示收回键盘
+
+- (void)handleWillShowKeyboard:(NSNotification *)notification
+{
+    //获取键盘的高度
+    NSDictionary *userInfo = [notification userInfo];
+    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    int height = keyboardRect.size.height;
+    
+    CGRect rect = _mainTableView.frame;
+    rect.size.height = rect.size.height-height;
+    
+    _mainTableView.frame = rect;
+}
+
+- (void)handleWillHideKeyboard:(NSNotification *)notification
+{
+    _mainTableView.frame = CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT);
+}
+
 
 // 导航的设置
 - (void)loadNavigation
@@ -125,10 +175,12 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-// "提交"的点击事件
+/// "提交"的点击事件
 - (void)btnClick
 {
     NSLog(@"点击提交按钮");
+    ChooseCaseTypeViewController * chooseType = [[ChooseCaseTypeViewController alloc] init];
+    [self.navigationController pushViewController:chooseType animated:YES];
 }
 
 
@@ -152,7 +204,8 @@
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake((DEVICE_WIDTH-150)+37*i,80,27,28);
         button.tag = 1000+i;
-        [button addTarget:self action:@selector(doButton:) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(doButton:) forControlEvents:UIControlEventTouchDown];
+        [button addTarget:self action:@selector(doButtonEnd:) forControlEvents:UIControlEventTouchCancel];
         [button setImage:[UIImage imageNamed:[image_array objectAtIndex:i]] forState:UIControlStateNormal];
         [view addSubview:button];
     }
@@ -190,6 +243,13 @@
     
 }
 
+-(void)doButtonEnd:(UIButton *)sender
+{
+    if (sender.tag == 101) {
+        [self recordEndQiDi];
+    }
+}
+
 #pragma mark - 选择完文件后，输入介绍
 -(void)inputIntroduce
 {
@@ -224,7 +284,7 @@
     groupName.keyboardType = UIKeyboardTypeDefault;
     groupName.returnKeyType = UIReturnKeyGo;
     [groupName becomeFirstResponder];
-    groupName.tag = 101;
+    groupName.tag = 10000;
     groupName.delegate = self;
     [contaiterView addSubview:groupName];
     
@@ -263,13 +323,16 @@
     switch (sender.tag) {
         case DIALOG_Btn_TAG:///取消
         {
-            
+            [popOver dismiss];
+            [data_array removeLastObject];
         }
             
             break;
         case SUBMIT_BTN_TAG:///完成
         {
-            
+            NSMutableDictionary * dic = [data_array lastObject];
+            [dic setObject:groupName.text forKey:@"content"];
+            [_mainTableView reloadData];
         }
             
             break;
@@ -309,7 +372,17 @@
 }
 -(void)wavToAmr:(NSString *)_filePath  with:(NSString *)_fileName length:(CGFloat)length{
     [VoiceConverter wavToAmr:_filePath amrSavePath:[VoiceRecorderBaseVC getPathByFileName:[_fileName stringByAppendingString:@"wavToAmr"] ofType:@"amr"]];
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:_fileName,@"fid",_filePath,@"fileName",[NSNumber numberWithInt:(int)length],@"length", nil];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:_fileName,@"fid",_filePath,@"fileName",[NSNumber numberWithInt:(int)length],@"length", nil];
+//    NSDictionary *dic = (NSDictionary *)object;
+//    NSData *ImageData = [[NSData alloc] initWithContentsOfFile:[dic objectForKey:@"fileName"]];
+//    NSString *tempVoice = [NSString stringWithFormat:@"%@",[dic objectForKey:@"fid"]];
+//    NSString *voiceName = [tempVoice stringByAppendingString:@".amr"];
+    
+    NSMutableData * data = [NSMutableData dataWithContentsOfFile:[VoiceRecorderBaseVC getPathByFileName:_fileName ofType:@"amr"]];
+    [dic setObject:data forKey:@"fileData"];
+    [dic setObject:@"voice" forKey:@"type"];
+    [data_array addObject:dic];
+    
     NSLog(@"%@==%@",_filePath,_fileName);
     [self inputIntroduce];
 //    [self sureUpload:dic withType:SEND_Type_voice];
@@ -339,6 +412,17 @@
     
     UIImage *image = [[info objectForKey:UIImagePickerControllerOriginalImage] fixOrientation];
     [picker dismissViewControllerAnimated:YES completion:^{
+        
+        imgUploadModel * imageModel = [[imgUploadModel alloc] init];
+        UIImage *newImage = [image imageByScalingOrgSize:CGSIZE_SCALE_MAX];
+        NSData * aData = UIImageJPEGRepresentation(newImage, 1);
+        imageModel.imageName = [NSString stringWithFormat:@"%@.jpg",[UUID createUUID]];
+        imageModel.imageData = aData;
+        
+        NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:[UUID createUUID],@"fid",[NSNumber numberWithFloat:aData.length/1024],@"length",imageModel,@"fileData",@"image",@"type",nil];
+        
+        [data_array addObject:dic];
+        
         [self inputIntroduce];
     }];
     // 发送图片
@@ -353,7 +437,7 @@
 #pragma mark-tableviewdelegateAndDatesource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return 10 + data_array.count;
     
 }
 
@@ -363,9 +447,42 @@
     
 }
 
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
-    if (indexPath.row == 6)
+    if (indexPath.row < data_array.count)
+    {
+        NSDictionary * dic = [data_array objectAtIndex:indexPath.row];
+        
+        static NSString * cell1 = @"cell1";
+        CreateMedicalFilesCell * cell = [tableView dequeueReusableCellWithIdentifier:cell1];
+        if (cell == nil) {
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"CreateMedicalFilesCell" owner:self options:nil] objectAtIndex:0];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.delegate = self;
+        cell.content_textView.text = [dic objectForKey:@"content"];
+        cell.filesSize_label.text = [NSString stringWithFormat:@"%@k",[dic objectForKey:@"length"]];
+        
+        NSString * type = [dic objectForKey:@"type"];
+        if ([type isEqualToString:@"voice"])
+        {
+            
+        }else if ([type isEqualToString:@"image"])
+        {
+            imgUploadModel * model = [dic objectForKey:@"fileData"];
+            UIImage * image = [UIImage imageWithData:model.imageData];            
+            
+            cell.Files_imageView.image = image;
+            
+        }else if ([type isEqualToString:@"video"])
+        {
+            
+        }
+        
+        return cell;
+        
+    }else if (indexPath.row == 6+data_array.count)
     {
         static NSString * identifier = @"identifier";
         UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
@@ -408,7 +525,7 @@
             cell = [[CreateMedicalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        NSString * title = [content_array objectAtIndex:indexPath.row];
+        NSString * title = [content_array objectAtIndex:indexPath.row-data_array.count];
         cell.title_label.text = title;
         cell.input_textView.tag = indexPath.row + 100;
         cell.input_textView.delegate = self;
@@ -422,7 +539,7 @@
         
         float input_widht = DEVICE_WIDTH - 20 - aSize.width -10;
         
-//        CGSize input_tv_size = [SNTools returnStringHeightWith:cell.input_textView.text WithWidth:input_widht WithFont:15];
+        //        CGSize input_tv_size = [SNTools returnStringHeightWith:cell.input_textView.text WithWidth:input_widht WithFont:15];
         
         CGRect textViewFrame = CGRectMake(aSize.width+10,10,input_widht,25);
         cell.input_textView.frame = textViewFrame;
@@ -431,36 +548,126 @@
         
         return cell;
     }
+    
+    
+//    if (indexPath.row == 6)
+//    {
+//        static NSString * identifier = @"identifier";
+//        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+//        if (cell == nil)
+//        {
+//            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+//        }
+//        
+//        if (!treatment_case)
+//        {
+//            treatment_case = [[UITextView alloc] initWithFrame:CGRectMake(10,5,DEVICE_WIDTH-20,60)];
+//            treatment_case.tag = 100 + indexPath.row;
+//            treatment_case.textAlignment = NSTextAlignmentLeft;
+//            treatment_case.layer.cornerRadius = 5;
+//            treatment_case.font = [UIFont systemFontOfSize:15];
+//            treatment_case.delegate = self;
+//            treatment_case.layer.masksToBounds = YES;
+//            treatment_case.layer.borderColor = [UIColor grayColor].CGColor;
+//            treatment_case.layer.borderWidth = 0.5;
+//            [cell.contentView addSubview:treatment_case];
+//            
+//            
+//            placeHolder_treatment_case = [[UILabel alloc] initWithFrame:CGRectMake(10,5,200,20)];
+//            placeHolder_treatment_case.text = @"治疗方案";
+//            placeHolder_treatment_case.font = [UIFont systemFontOfSize:15];
+//            placeHolder_treatment_case.textAlignment = NSTextAlignmentLeft;
+//            placeHolder_treatment_case.textColor = [UIColor blackColor];
+//            [treatment_case addSubview:placeHolder_treatment_case];
+//        }
+//        
+//        return cell;
+//    }else
+//    {
+//        static NSString *identifier=@"cell";
+//        
+//        CreateMedicalCell *cell=[tableView dequeueReusableCellWithIdentifier:identifier];
+//        
+//        if (!cell)
+//        {
+//            cell = [[CreateMedicalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        }
+//        NSString * title = [content_array objectAtIndex:indexPath.row];
+//        cell.title_label.text = title;
+//        cell.input_textView.tag = indexPath.row + 100;
+//        cell.input_textView.delegate = self;
+//        
+//        CGSize aSize = [title sizeWithFont:[UIFont systemFontOfSize:16] constrainedToSize:CGSizeMake(MAXFLOAT, 30)];
+//        
+//        CGRect titleFrame = cell.title_label.frame;
+//        
+//        titleFrame.size.width = aSize.width;
+//        cell.title_label.frame = titleFrame;
+//        
+//        float input_widht = DEVICE_WIDTH - 20 - aSize.width -10;
+//        
+////        CGSize input_tv_size = [SNTools returnStringHeightWith:cell.input_textView.text WithWidth:input_widht WithFont:15];
+//        
+//        CGRect textViewFrame = CGRectMake(aSize.width+10,10,input_widht,25);
+//        cell.input_textView.frame = textViewFrame;
+//        
+//        cell.input_line_view.frame = CGRectMake(aSize.width+10,textViewFrame.origin.y+textViewFrame.size.height+2.5,input_widht+5,4);
+//        
+//        return cell;
+//    }
     return nil;
 
 }
 
 
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-
-    if (indexPath.row == 6) {
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row < data_array.count)
+    {
+        return 80;
+    }else if (indexPath.row == 6+data_array.count)
+    {
         return 90;
     }else
     {
         return 50;
     }
+
+//    if (indexPath.row == 6+data_array.count) {
+//        return 90;
+//    }else
+//    {
+//        return 50;
+//    }
+}
+
+#pragma mark - CreateMedicalFileCellDelegate
+-(void)deleteFilesTap:(CreateMedicalFilesCell *)cell
+{
+    NSIndexPath * indexPath = [_mainTableView indexPathForCell:cell];
+    
+    if (indexPath.row < data_array.count)
+    {
+        [data_array removeObjectAtIndex:indexPath.row];
+        [_mainTableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationLeft];
+    }
+    
+}
+
+#pragma mark - UITextFieldDelegate
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    return YES;
 }
 
 
 #pragma mark - UITextViewDelegate
 -(BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
-//    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:textView.tag-100 inSection:0];
-//    CreateMedicalCell * cell = (CreateMedicalCell *)[_mainTableView cellForRowAtIndexPath:indexPath];
-//    CGRect rect = [cell convertRect:cell.frame toView:_mainTableView];
-//    
-//    NSLog(@" -----------   %@",NSStringFromCGRect(rect));
-//    
-//    if (rect.origin.y > DEVICE_HEIGHT-220)
-//    {
-//        _mainTableView.contentOffset = CGPointMake(0,rect.origin.y);
-//    }
+    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:textView.tag-100 inSection:0];
+    [_mainTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
     return YES;
 }
 
@@ -483,6 +690,15 @@
     return YES;
 }
 
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"uploadData" object:nil];
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];    
+}
 
 - (void)didReceiveMemoryWarning
 {

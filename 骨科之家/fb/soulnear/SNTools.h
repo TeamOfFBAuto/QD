@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MBProgressHUD.h"
 
 @interface SNTools : NSObject
 
@@ -15,7 +16,8 @@
 
 ///弹出一个提示浮层，1.5秒后自动消失
 + (void)showMBProgressWithText:(NSString *)text addToView:(UIView *)aView;
-
+///弹出浮动层，不自动隐藏
++ (MBProgressHUD *)returnMBProgressWithText:(NSString *)text addToView:(UIView *)aView;
 ///返回一个NSUrl
 +(NSURL *)returnUrl:(NSString *)url;
 ///返回字符串宽度高度

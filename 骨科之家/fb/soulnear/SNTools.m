@@ -32,6 +32,17 @@
     [hud hide:YES afterDelay:1.5];
 }
 
++ (MBProgressHUD *)returnMBProgressWithText:(NSString *)text addToView:(UIView *)aView
+{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:aView animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.labelText = text;
+    hud.margin = 15.f;
+    hud.yOffset = 150.f;
+    hud.removeFromSuperViewOnHide = YES;
+    return hud;
+}
+
 +(NSURL *)returnUrl:(NSString *)url
 {
     return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_BASE_URL,url]];

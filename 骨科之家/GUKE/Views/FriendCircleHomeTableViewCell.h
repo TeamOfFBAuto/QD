@@ -13,9 +13,10 @@
 #import "CommentTableView.h"
 #import "FBCirclePicturesViews.h"
 
-
+@class FriendCircleHomeTableViewCell;
 @protocol FriendCircleHomeTableViewCellDelegate <NSObject>
 
+-(void)deleteBlogWithCell:(FriendCircleHomeTableViewCell *)cell;
 
 
 @end
@@ -42,6 +43,7 @@ typedef void(^CommentViewBlock)(NSString *);
 @property(nonatomic, copy)CommentViewBlock sendUserId;
 @property(nonatomic,strong)FBCirclePicturesViews * PictureViews;
 @property(nonatomic,strong)UIImageView * single_imageView;
+@property(nonatomic,strong)UIButton * delete_button;
 @property(nonatomic,weak)id<FriendCircleHomeTableViewCellDelegate>delegate;
 + (CGFloat)heightForCellWithPost:(UserArticleList *)post;
 @end

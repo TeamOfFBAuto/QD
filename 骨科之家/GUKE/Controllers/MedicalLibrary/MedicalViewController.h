@@ -14,5 +14,5 @@
 @interface MedicalViewController : UIViewController<MBProgressHUDDelegate>
 
 // 创建病历库的列表
-@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) PullTableView *tableView;
 @end

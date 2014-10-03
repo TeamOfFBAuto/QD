@@ -58,24 +58,10 @@
                 
             }
             
+            
         }
         
-//        if (wself.pageCount==0) {
-//            self.mybloc(1,@"没有数据");
-//        }else{
-//            self.mybloc(0,@"有数据");
-//            
-//        }
-//
-        
-        
-        
     }];
-    
-    
-    
-
-
 }
 
 

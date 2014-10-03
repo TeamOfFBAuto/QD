@@ -69,7 +69,10 @@
     myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT) style:UITableViewStylePlain];
     myTableView.delegate = self;
     myTableView.dataSource = self;
-    myTableView.separatorInset = UIEdgeInsetsZero;
+    if (IOS7_LATER) {
+        myTableView.separatorInset = UIEdgeInsetsZero;
+    }
+    
     myTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:myTableView];
     
