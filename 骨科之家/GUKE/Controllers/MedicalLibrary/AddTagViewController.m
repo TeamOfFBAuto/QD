@@ -21,7 +21,7 @@
 
 @implementation AddTagViewController
 @synthesize myTableView = _myTableView;
-
+@synthesize feed = _feed;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -168,17 +168,30 @@
     
     NSLog(@"给soulnear的数组%@",self.dataArray);
     
-    
+    NSString * tag_string = [self.dataArray componentsJoinedByString:@","];
   
-    
-    
-    
-    NSDictionary *dic_userinfo=@{@"BiaoqianArray": self.dataArray};
-    
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"BiaoqianArray" object:self userInfo:dic_userinfo];
 
+    __weak typeof(self)bself = self;
     
-
+    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"bingliId":_feed.bingliId,@"tag":tag_string};
+    
+    MBProgressHUD * hud = [SNTools returnMBProgressWithText:@"正在添加..." addToView:self.view];
+    hud.mode = MBProgressHUDModeDeterminate;
+    [AFRequestService responseData:BINGLI_TAG_ADD_URL andparameters:parameters andResponseData:^(id responseData) {
+        
+        NSDictionary * dict = (NSDictionary *)responseData;
+        NSString * code = [dict objectForKey:@"code"];
+        if ([code intValue]==0)//说明请求数据成功
+        {
+            hud.labelText = @"添加标签成功";
+            [hud hide:YES afterDelay:1.5];
+            
+            NSDictionary *dic_userinfo=@{@"BiaoqianArray":bself.dataArray};
+            
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"BiaoqianUpLoad" object:self userInfo:dic_userinfo];
+            [bself.navigationController popViewControllerAnimated:YES];
+        }
+    }];
 }
 
 

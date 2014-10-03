@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ChatVoiceRecorderVC.h"
 #import "VoiceConverter.h"
+#import "BingLiListFeed.h"
 
 @interface CreatMedicalViewController : SNViewController<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate>{
 
@@ -19,5 +20,7 @@
 @property(nonatomic,strong)UITableView *mainTableView;
 
 @property(nonatomic,strong)ChatVoiceRecorderVC * recorderVC;
+
+@property(nonatomic,strong)BingLiListFeed * feed;
 
 @end

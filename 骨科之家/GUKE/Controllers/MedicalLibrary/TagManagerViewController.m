@@ -16,11 +16,14 @@
 @implementation TagManagerViewController
 @synthesize myTableView = _myTableView;
 @synthesize myFeed = _myFeed;
+@synthesize data_array = _data_array;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.aTitle = @"标签";
+    
+    _data_array = [NSMutableArray array];
     
     UIBarButtonItem * spaceButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     spaceButton.width = IOS7_OR_LATER ? -5:5;
@@ -47,11 +50,21 @@
     
     UIView * vvv = [[UIView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,0)];
     _myTableView.tableFooterView = vvv;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(BiaoqianUpLoad:) name:@"BiaoqianUpLoad" object:nil];
+}
+
+#pragma mark - 数据有更新，重新请求
+-(void)BiaoqianUpLoad:(NSNotification *)notification
+{
+    [self getBiaoQianData];
+    
 }
 
 -(void)addTagTap:(UIButton *)button
 {
     AddTagViewController * add = [[AddTagViewController alloc] init];
+    add.feed = _myFeed;
     [self.navigationController pushViewController:add animated:YES];
 }
 
@@ -117,8 +130,34 @@
             [bself.myTableView reloadData];
         }
     }];
+}
+
+#pragma mark - 获取标签数据
+-(void)getBiaoQianData
+{
+    __weak typeof(self)bself = self;
     
+    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"bingliId":_myFeed.bingliId};
     
+    [AFRequestService responseData:BINGLI_TAG_LIST_URL andparameters:parameters andResponseData:^(id responseData) {
+        
+        NSDictionary * dict = (NSDictionary *)responseData;
+        NSString * code = [dict objectForKey:@"code"];
+        NSLog(@"dict --=-=--   %@",dict);
+        if ([code intValue]==0)//说明请求数据成功
+        {
+            [bself.myFeed.tag_array removeAllObjects];
+            NSArray * array = [dict objectForKey:@"taglist"];
+            if ([array isKindOfClass:[NSArray class]])
+            {
+                for (NSDictionary * aDic in array) {
+                    TagListFeed * feed = [[TagListFeed alloc] initWithDic:aDic];
+                    [bself.myFeed.tag_array addObject:feed];
+                }
+                [bself.myTableView reloadData];
+            }
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

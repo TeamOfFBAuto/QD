@@ -38,6 +38,7 @@
 @end
 
 @implementation CreatMedicalViewController
+@synthesize feed = _feed;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -59,6 +60,8 @@
 {
     [super viewDidLoad];
     [self loadNavigation];
+    
+    _feed = [[BingLiListFeed alloc] init];
     
     content_array = [NSMutableArray arrayWithObjects:@"姓名",@"性别",@"就诊时间",@"诊断",@"病人手机号",@"家属手机号",@"治疗方案",@"病历号",@"身份证号",@"标记编号",nil];
     data_array = [NSMutableArray array];
@@ -180,6 +183,7 @@
 {
     NSLog(@"点击提交按钮");
     ChooseCaseTypeViewController * chooseType = [[ChooseCaseTypeViewController alloc] init];
+    chooseType.feed = _feed;
     [self.navigationController pushViewController:chooseType animated:YES];
 }
 
@@ -190,6 +194,7 @@
     CGRect viewFrame = CGRectMake(0,0,DEVICE_WIDTH,120);
     UIView * view = [[UIView alloc] initWithFrame:viewFrame];
     UITextView * text_view = [[UITextView alloc] initWithFrame:CGRectMake(10,10,DEVICE_WIDTH-20,60)];
+    text_view.tag = 1000;
     text_view.textAlignment = NSTextAlignmentLeft;
     text_view.textColor = [UIColor lightGrayColor];
     text_view.font = [UIFont systemFontOfSize:14];
@@ -333,6 +338,7 @@
             NSMutableDictionary * dic = [data_array lastObject];
             [dic setObject:groupName.text forKey:@"content"];
             [_mainTableView reloadData];
+            [popOver dismiss];
         }
             
             break;
@@ -511,7 +517,7 @@
         return cell;
     }else
     {
-        static NSString *identifier=@"cell";
+        NSString *identifier=[NSString stringWithFormat:@"%d",indexPath.row];
         
         CreateMedicalCell *cell=[tableView dequeueReusableCellWithIdentifier:identifier];
         
@@ -534,8 +540,6 @@
         
         float input_widht = DEVICE_WIDTH - 20 - aSize.width -10;
         
-        //        CGSize input_tv_size = [SNTools returnStringHeightWith:cell.input_textView.text WithWidth:input_widht WithFont:15];
-        
         CGRect textViewFrame = CGRectMake(aSize.width+10,10,input_widht,25);
         cell.input_textView.frame = textViewFrame;
         
@@ -544,73 +548,6 @@
         return cell;
     }
     
-    
-//    if (indexPath.row == 6)
-//    {
-//        static NSString * identifier = @"identifier";
-//        UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-//        if (cell == nil)
-//        {
-//            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-//        }
-//        
-//        if (!treatment_case)
-//        {
-//            treatment_case = [[UITextView alloc] initWithFrame:CGRectMake(10,5,DEVICE_WIDTH-20,60)];
-//            treatment_case.tag = 100 + indexPath.row;
-//            treatment_case.textAlignment = NSTextAlignmentLeft;
-//            treatment_case.layer.cornerRadius = 5;
-//            treatment_case.font = [UIFont systemFontOfSize:15];
-//            treatment_case.delegate = self;
-//            treatment_case.layer.masksToBounds = YES;
-//            treatment_case.layer.borderColor = [UIColor grayColor].CGColor;
-//            treatment_case.layer.borderWidth = 0.5;
-//            [cell.contentView addSubview:treatment_case];
-//            
-//            
-//            placeHolder_treatment_case = [[UILabel alloc] initWithFrame:CGRectMake(10,5,200,20)];
-//            placeHolder_treatment_case.text = @"治疗方案";
-//            placeHolder_treatment_case.font = [UIFont systemFontOfSize:15];
-//            placeHolder_treatment_case.textAlignment = NSTextAlignmentLeft;
-//            placeHolder_treatment_case.textColor = [UIColor blackColor];
-//            [treatment_case addSubview:placeHolder_treatment_case];
-//        }
-//        
-//        return cell;
-//    }else
-//    {
-//        static NSString *identifier=@"cell";
-//        
-//        CreateMedicalCell *cell=[tableView dequeueReusableCellWithIdentifier:identifier];
-//        
-//        if (!cell)
-//        {
-//            cell = [[CreateMedicalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        }
-//        NSString * title = [content_array objectAtIndex:indexPath.row];
-//        cell.title_label.text = title;
-//        cell.input_textView.tag = indexPath.row + 100;
-//        cell.input_textView.delegate = self;
-//        
-//        CGSize aSize = [title sizeWithFont:[UIFont systemFontOfSize:16] constrainedToSize:CGSizeMake(MAXFLOAT, 30)];
-//        
-//        CGRect titleFrame = cell.title_label.frame;
-//        
-//        titleFrame.size.width = aSize.width;
-//        cell.title_label.frame = titleFrame;
-//        
-//        float input_widht = DEVICE_WIDTH - 20 - aSize.width -10;
-//        
-////        CGSize input_tv_size = [SNTools returnStringHeightWith:cell.input_textView.text WithWidth:input_widht WithFont:15];
-//        
-//        CGRect textViewFrame = CGRectMake(aSize.width+10,10,input_widht,25);
-//        cell.input_textView.frame = textViewFrame;
-//        
-//        cell.input_line_view.frame = CGRectMake(aSize.width+10,textViewFrame.origin.y+textViewFrame.size.height+2.5,input_widht+5,4);
-//        
-//        return cell;
-//    }
     return nil;
 
 }
@@ -661,8 +598,6 @@
 #pragma mark - UITextViewDelegate
 -(BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
-//    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:textView.tag-100 inSection:0];
-//    [_mainTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:YES];
     return YES;
 }
 
@@ -683,6 +618,73 @@
     }
     
     return YES;
+}
+
+-(void)textViewDidChange:(UITextView *)textView
+{
+    
+    if (textView.tag == 1000)///病例说明
+    {
+        _feed.memo = textView.text;
+        
+        return;
+    }
+    
+    switch (textView.tag-100-data_array.count) {
+        case 0:///姓名
+        {
+            _feed.psnname = textView.text;
+        }
+            break;
+        case 1:///性别
+        {
+            _feed.sex = textView.text;
+        }
+            break;
+        case 2:///就诊时间
+        {
+            _feed.jiuzhen = textView.text;
+        }
+            break;
+        case 3:///诊断
+        {
+            _feed.zhenduan = textView.text;
+        }
+            break;
+        case 4:///病人手机号
+        {
+            _feed.mobile = textView.text;
+        }
+            break;
+        case 5:///家属手机号
+        {
+            _feed.relateMobile = textView.text;
+        }
+            break;
+        case 6:///治疗方案
+        {
+            _feed.fangan = textView.text;
+        }
+            break;
+        case 7:///病历号
+        {
+            _feed.binglihao = textView.text;
+        }
+            break;
+        case 8:///身份证号
+        {
+            _feed.idno = textView.text;
+        }
+            break;
+        case 9:///标记编号
+        {
+            _feed.bianma = textView.text;
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 

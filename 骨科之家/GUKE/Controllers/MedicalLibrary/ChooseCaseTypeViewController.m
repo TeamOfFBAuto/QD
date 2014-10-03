@@ -17,6 +17,7 @@
 
 @implementation ChooseCaseTypeViewController
 @synthesize myTableView = _myTableView;
+@synthesize feed = _feed;
 
 - (void)viewDidLoad {
     [super viewDidLoad];

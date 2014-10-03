@@ -24,7 +24,6 @@
     self.reportDate = [[UILabel alloc] initWithFrame:CGRectZero];
     self.reportTime = [[UILabel alloc] initWithFrame:CGRectZero];
     self.fDContentView = [[FriendCircleDetailContentView alloc] initWithFrame:CGRectZero];
-    
     [self.contentView addSubview:self.reportTime];
     [self.contentView addSubview:self.reportDate];
     [self addSubview:self.fDContentView];

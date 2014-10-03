@@ -11,8 +11,16 @@
 #import "MyLabel.h"
 #import "FBCirclePicturesViews.h"
 
+@protocol  FriendCircleDetailContentViewDelegate<NSObject>
+
+
+@end
+
+
 @interface FriendCircleDetailContentView : UIView<UITableViewDataSource,UITableViewDelegate,MyLabelDelegate>
 @property(nonatomic, strong)UITableView *tableView;
 @property(nonatomic, strong)NSMutableArray *contentDataArray;
+@property(nonatomic,assign)id<FriendCircleDetailContentViewDelegate>delegate;
 + (CGFloat)heightForCellWithPost:(NSMutableArray *)dataArray;
+
 @end

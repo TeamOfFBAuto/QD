@@ -19,4 +19,6 @@
 
 @property(nonatomic,strong)BingLiListFeed * myFeed;
 
+@property(nonatomic,strong)NSMutableArray * data_array;
+
 @end

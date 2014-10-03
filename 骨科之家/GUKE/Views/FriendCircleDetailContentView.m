@@ -10,6 +10,7 @@
 #import "UserArticleList.h"
 #import "Interface.h"
 #import "UIImageView+WebCache.h"
+#import "ShowImagesViewController.h"
 
 
 #define IMG_TAG 99999
@@ -42,37 +43,48 @@
 
 - (void)setContentDataArray:(NSMutableArray *)contentDataArray
 {
+
     _contentDataArray = nil;
     _contentDataArray = contentDataArray;
     
     CGFloat height = 0.0;
     for (UserArticleList *model in _contentDataArray) {
-        
+        [temp_array removeAllObjects];
         if ([model.photo isEqualToString:@""]||model.photo == nil) {
             NSString *temp = [NSString stringWithFormat:@"%@",model.shareUrl];
-            NSLog(@"--------------%@",temp);
+            //            NSLog(@"--------------%@",temp);
             if ([temp isEqualToString:@"0"] ||temp == nil || [temp isEqualToString: @""]){
-                height = height + [SingleInstance customFontHeightFont:model.context andFontSize:15 andLineWidth:250]+20;
+                height = height + [SingleInstance customFontHeightFont:model.context andFontSize:15 andLineWidth:250]+15;
             }else{
-                height = height + [SingleInstance customFontHeightFont:model.shareUrl andFontSize:15 andLineWidth:250]+20+30;
+                height = height + [SingleInstance customFontHeightFont:model.shareUrl andFontSize:15 andLineWidth:250]+20+15;
             }
-            
+            temp_array = [NSMutableArray arrayWithArray:model.attachlistArray];
         }
         else{
-            double imgHeight = SHARE_IMAGE_HEIGHT;
-            if (([model.imageWidth floatValue]/([model.imageHeight floatValue]+0.01))>1) {
-                imgHeight = [model.imageHeight floatValue]*(SHARE_IMAGE_WHDTH/([model.imageWidth floatValue]+0.01));
-            }else{
-                imgHeight = SHARE_IMAGE_HEIGHT;
-            }
+            [temp_array addObject:model.photo];
+            
             if (model.context == nil || model.context.length == 0 || [model.context isEqualToString:@" "] ) {
-                height = height+imgHeight+40;
+                height = height+20;
             }else{
-                height = height+[SingleInstance customFontHeightFont:model.context andFontSize:15 andLineWidth:250]+imgHeight+40;
+                height = height+[SingleInstance customFontHeightFont:model.context andFontSize:15 andLineWidth:250]+20;
             }
         }
+        
+        float imgHeight = 0;
+        
+        if (temp_array.count)
+        {
+            int i = temp_array.count/3;
+            
+            int j = temp_array.count%3?1:0;
+            
+            imgHeight = 75*(i+j)+2.5*(j + i - 1)+20;
+        }
+        
+        height+= imgHeight;
     }
-    self.tableView.frame = CGRectMake(0, 0, 235, height);
+
+    self.tableView.frame = CGRectMake(0, 0, 235, height+20);
     [self.tableView reloadData];
 }
 
@@ -121,33 +133,6 @@
             cell.shareImg.frame = CGRectZero;
             
             temp_array = [NSMutableArray arrayWithArray:articleModel.attachlistArray];
-            
-            /*
-            
-            if (articleModel.attachlistArray.count)
-            {
-                int i = articleModel.attachlistArray.count/3;
-                
-                int j = articleModel.attachlistArray.count%3?1:0;
-                
-                float height = 75*(i+j)+2.5*(j + i - 1);
-                
-                cell.PictureViews.frame = CGRectMake(5,cell.content.frame.size.height+cell.content.frame.origin.y+10,231,height);
-                
-                [cell.PictureViews setimageArr:articleModel.attachlistArray withSize:75 isjuzhong:NO];
-                [cell.PictureViews setthebloc:^(NSInteger index) {
-                    
-//                    ShowImagesViewController *showBigVC=[[ShowImagesViewController alloc]init];
-//                    showBigVC.allImagesUrlArray=_post.attachlistArray;
-//                    
-//                    showBigVC.currentPage = index-1;
-//                    showBigVC.hidesBottomBarWhenPushed = YES;
-//                    UIViewController *VCtest=(UIViewController *)self.delegate;
-//                    [VCtest.navigationController pushViewController:showBigVC animated:YES];
-                }];
-            }
-            
-            */
         }
         else{
             /*
@@ -171,21 +156,6 @@
                 }
 
             }
-            
-            [cell.shareImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_BASE_URL,articleModel.photo]] placeholderImage:[UIImage imageNamed:@"imgError.png"]];
-            cell.shareImg.tag = imgTag;
-            [_shareImageEnlarge addObject:cell];
-            imgTag ++;
-
-            cell.shareImg.userInteractionEnabled = YES;
-            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(TapImageClick:)];
-            tap.numberOfTapsRequired = 1;
-            [cell.shareImg addGestureRecognizer:tap];
-            
-            cell.shareImg.backgroundColor = [UIColor clearColor];
-            cell.shareImg.contentMode = UIViewContentModeScaleAspectFit;
-            cell.shareImg.clipsToBounds = YES;
-            
             */
             
             [temp_array addObject:articleModel.photo];
@@ -206,18 +176,16 @@
             [cell.PictureViews setimageArr:articleModel.attachlistArray withSize:75 isjuzhong:NO];
             [cell.PictureViews setthebloc:^(NSInteger index) {
                 
-                //                    ShowImagesViewController *showBigVC=[[ShowImagesViewController alloc]init];
-                //                    showBigVC.allImagesUrlArray=_post.attachlistArray;
-                //
-                //                    showBigVC.currentPage = index-1;
-                //                    showBigVC.hidesBottomBarWhenPushed = YES;
-                //                    UIViewController *VCtest=(UIViewController *)self.delegate;
-                //                    [VCtest.navigationController pushViewController:showBigVC animated:YES];
+                ShowImagesViewController *showBigVC=[[ShowImagesViewController alloc]init];
+                showBigVC.allImagesUrlArray=articleModel.attachlistArray;
+                showBigVC.currentPage = index-1;
+                UIViewController *VCtest=(UIViewController *)self.delegate;
+                [VCtest.navigationController pushViewController:showBigVC animated:YES];
             }];
-            imgHeight += 10;
+            imgHeight += 20;
         }
         
-        cell.backView.frame = CGRectMake(0, 3, 232,cell.content.frame.size.height + cell.content.frame.origin.y+imgHeight+10);
+        cell.backView.frame = CGRectMake(0, 3, 232,cell.content.frame.size.height + cell.content.frame.origin.y+imgHeight);
     }
     else{
         cell.contentShare.frame = CGRectMake(0, 23, 232, 28);
@@ -315,12 +283,9 @@
         
         int j = temp_array.count%3?1:0;
         
-        imgHeight = 75*(i+j)+2.5*(j + i - 1);
+        imgHeight = 75*(i+j)+2.5*(j + i - 1) + 30;
     }
-    
-    
     return height + imgHeight;
-    
 }
 + (CGFloat)heightForCellWithPost:(NSMutableArray *)dataArray
 {
@@ -363,11 +328,13 @@
             
             int j = tempArray.count%3?1:0;
             
-            imgHeight = 75*(i+j)+2.5*(j + i - 1);
+            imgHeight = 75*(i+j)+2.5*(j + i - 1)+20;
         }
         
-        height+=20+imgHeight;
+        height+= imgHeight;
     }
+    
+    
     return height+10;
 }
 

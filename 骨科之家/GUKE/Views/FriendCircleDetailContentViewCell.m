@@ -41,7 +41,7 @@
     
     [self.backView addSubview:self.PictureViews];
     [self.contentView addSubview:self.backView];
-    [self.contentView addSubview:self.content];
+    [self.backView addSubview:self.content];
     [self.contentView addSubview:self.shareImg];
     [self.contentView addSubview:self.contentShare];
     [self.contentView addSubview:self.urlLabel];

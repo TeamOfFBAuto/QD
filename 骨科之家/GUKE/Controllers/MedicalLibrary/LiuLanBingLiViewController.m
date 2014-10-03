@@ -10,6 +10,8 @@
 #import "LiuLanSectionView.h"
 #import "InfoFileTableViewCell.h"
 #import "TagManagerViewController.h"
+#import "TSActionSheet.h"
+#import "PostMoodViewController.h"
 
 @interface LiuLanBingLiViewController ()
 
@@ -23,6 +25,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.aTitle = @"浏览病历";
+    
+    UIBarButtonItem * spaceButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spaceButton.width = IOS7_OR_LATER ? -5:5;
+    
+    UIButton * right_button = [UIButton buttonWithType:UIButtonTypeCustom];
+    right_button.frame = CGRectMake(0,0,50,30);
+    [right_button setImage:[UIImage imageNamed:@"guke_ic_write_right"] forState:UIControlStateNormal];
+    [right_button addTarget:self action:@selector(showActionSheet:forEvent:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem * right_item = [[UIBarButtonItem alloc] initWithCustomView:right_button];
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:spaceButton,right_item,nil];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     _myFeed = [[BingLiListFeed alloc] init];
     _myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT) style:UITableViewStylePlain];
@@ -40,6 +54,32 @@
     [self loadBingliDetailData];
 }
 
+#pragma mark - 分享按钮
+-(void) showActionSheet:(id)sender forEvent:(UIEvent*)event
+{
+    [self.view endEditing:YES];
+    TSActionSheet *actionSheet = [[TSActionSheet alloc] init];
+    NSString *share1 = @"分享到诊疗圈";
+    NSString *share2 = @"分享到讨论组";
+    NSString *edit = @"编辑病历";
+    NSString * delete = @"删除病历";
+    [actionSheet addButtonWithTitle:share1 icon:@"guke_ic_share_article" block:^{
+        
+    }];
+    [actionSheet addButtonWithTitle:share2 icon:@"guke_ic_share_group" block:^{
+    }];
+    [actionSheet addButtonWithTitle:edit icon:@"guke_ic_edit" block:^{
+        
+    }];
+    [actionSheet addButtonWithTitle:delete icon:@"guke_ic_delete" block:^{
+        
+    }];
+    actionSheet.cornerRadius = 0;
+    
+    [actionSheet showWithTouch:event];
+}
+
+#pragma mark - 获取病历详细信息
 -(void)loadBingliDetailData
 {
     NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"bingliId":_feed.bingliId};
@@ -59,6 +99,15 @@
         }
     }];
 }
+
+#pragma mark - 删除病历
+-(void)deleteBingLi
+{
+    
+    
+    
+}
+
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BingLiListFeed.h"
 
 @interface AddTagViewController : SNViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 {
@@ -16,6 +17,7 @@
 
 @property(nonatomic,strong)UITableView * myTableView;
 
+@property(nonatomic,strong)BingLiListFeed * feed;
 
 @property(nonatomic,strong)NSMutableArray *dataArray;
 

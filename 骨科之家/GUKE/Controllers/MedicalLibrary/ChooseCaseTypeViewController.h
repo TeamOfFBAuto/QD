@@ -9,6 +9,7 @@
  **选择病历分类
  */
 #import <UIKit/UIKit.h>
+#import "BingLiListFeed.h"
 
 @interface ChooseCaseTypeViewController : SNViewController<UITableViewDataSource,UITableViewDelegate>
 {
@@ -16,5 +17,7 @@
 }
 
 @property(nonatomic,strong)UITableView * myTableView;
+
+@property(nonatomic,strong)BingLiListFeed * feed;
 
 @end

@@ -13,9 +13,10 @@
 #import "UserIfo.h"
 //#import "RTLabel.h"
 #import "MyLabel.h"
+#import "FriendCircleDetailContentView.h"
 
 
-@interface FriendCircleDetailViewController : UITableViewController<UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,HPGrowingTextViewDelegate,MBProgressHUDDelegate,MyLabelDelegate>
+@interface FriendCircleDetailViewController : UITableViewController<UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,HPGrowingTextViewDelegate,MBProgressHUDDelegate,MyLabelDelegate,FriendCircleDetailContentViewDelegate>
 
 - (instancetype)initWithModel:(NSString *)userId;
 @end
