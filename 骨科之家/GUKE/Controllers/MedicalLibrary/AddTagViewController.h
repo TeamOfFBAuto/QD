@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddTagViewController : SNViewController<UITableViewDataSource,UITableViewDelegate>
+@interface AddTagViewController : SNViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 {
     
 }
@@ -17,6 +17,6 @@
 @property(nonatomic,strong)UITableView * myTableView;
 
 
-
+@property(nonatomic,strong)NSMutableArray *dataArray;
 
 @end
