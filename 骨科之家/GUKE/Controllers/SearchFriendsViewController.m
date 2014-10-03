@@ -40,6 +40,7 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     userArray = [[NSMutableArray alloc]init];
     self.view.backgroundColor = [UIColor whiteColor];
     UIView *bgNavi = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 130, 44)];
@@ -75,13 +76,7 @@
 }
 - (void)creatUI
 {
-    if (IOS7_LATER) {
-        head_bg = [[UIView alloc]initWithFrame:CGRectMake(0, 64, viewSize.width, 40)];
-        
-    }
-    else{
-        head_bg = [[UIView alloc]initWithFrame:CGRectMake(0, 0, viewSize.width, 40)];
-    }
+    head_bg = [[UIView alloc]initWithFrame:CGRectMake(0, 0, viewSize.width, 40)];
     [head_bg setBackgroundColor:[UIColor colorWithPatternImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"home_head@2x" ofType:@"png"]]]];
     
     UIButton *right_searchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -118,7 +113,7 @@
 - (void)creatTable
 {
     if (IOS7_LATER) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,head_bg.frame.size.height+head_bg.frame.origin.y ,viewSize.width, viewSize.height - head_bg.frame.size.height-head_bg.frame.origin.y-64) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0,head_bg.frame.size.height+head_bg.frame.origin.y ,SCREEN_WIDTH, SCREEN_HEIGHT - head_bg.frame.size.height-head_bg.frame.origin.y) style:UITableViewStylePlain];
         
     }
     else{

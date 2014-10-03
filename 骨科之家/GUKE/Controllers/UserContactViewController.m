@@ -1205,6 +1205,7 @@
             vc.recvId = [NSNumber numberWithInt:[model.contactId intValue]];
             vc.recvName = model.contactUsername;
             vc.recvFirstName = model.contactName;
+            NSLog(@"%@===%@====%@ === %@",vc.recvId,vc.recvName,vc.recvFirstName,vc.recvId);
         }
         // 群组聊天
         else if ([model.contactType isEqualToString:ORDINARY_GROUP_CODE]){
@@ -1214,6 +1215,7 @@
                 vc.recvId = [NSNumber numberWithInt:[model.contactId intValue]];
                 vc.recvName = model.contactUsername;
                 vc.recvFirstName = model.contactName;
+                NSLog(@"%@===%@====%@ === %@",vc.recvId,vc.recvName,vc.recvFirstName,vc.recvId);
             }
             else if ([model.groupType isEqualToString:GROUPTYPE_SYSTEM_CODE]){
                 vc.type = VChatType_pGroup;

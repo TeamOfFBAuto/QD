@@ -545,7 +545,6 @@ static NSString *commentId = 0;
         
         // 保存cell
         [cellDic setObject:cell forKey:[NSString stringWithFormat:@"%d",indexPath.row-1]];
-        
         cell.favorite.tag = FAVORIT_DEFAULT_TAG +indexPath.row - 1;
         [cell.favorite addTarget:self action:@selector(addFavorite:) forControlEvents:UIControlEventTouchUpInside];
         // 赞的图标点击事件
@@ -630,12 +629,6 @@ static NSString *commentId = 0;
             height = USER_ICON_WHDTH +[SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250]+REPORT_TIME_HEIGHT+40 + shareHeight + commentHeight + imgHeight;
         }else{
             double imgHeight = SHARE_IMAGE_HEIGHT;
-            
-//            if (([articleModel.imageWidth floatValue]/[articleModel.imageHeight floatValue])>1) {
-//                imgHeight = [articleModel.imageHeight floatValue]*(SHARE_IMAGE_WHDTH/[articleModel.imageWidth floatValue]);
-//            }else{
-//                imgHeight = SHARE_IMAGE_HEIGHT;
-//            }
             
             if (articleModel.context == nil || articleModel.context.length == 0 || [articleModel.context isEqualToString:@" "]){
                  height = USER_ICON_WHDTH+imgHeight+REPORT_TIME_HEIGHT+40 + shareHeight + commentHeight-16 ;

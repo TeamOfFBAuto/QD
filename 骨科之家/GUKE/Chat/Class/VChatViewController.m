@@ -762,6 +762,7 @@
     model.sendType = type;
     model.creatDate = [GetDateFormater getDate:DATE_FORMAT withDate:[NSDate date]];
     model.firstname = GET_U_NAME;
+    NSLog(@"%@",GET_U_NAME);
     model.typeId = [_selfTypeDic objectForKey:@"typeId"];
     model.isGroupArticle = [_selfTypeDic objectForKey:@"isGroupArticle"];
     model.recvId = [_selfTypeDic objectForKey:@"recvId"];
@@ -886,7 +887,7 @@
 }
 - (void)messageRequestFinish:(ASIHTTPRequest *)request{
     NSDictionary *dic = [[[[NSString alloc] initWithData:request.responseData encoding:NSUTF8StringEncoding] autorelease] JSONValue];
-    
+    NSLog(@"%@",dic);
     NSUInteger codeNum = [[dic objectForKey:CKEY] integerValue];
     VChatModel *model = [request.userInfo objectForKey:@"model"];
     if (request.responseStatusCode == 200 && codeNum == CODE_SUCCESS){

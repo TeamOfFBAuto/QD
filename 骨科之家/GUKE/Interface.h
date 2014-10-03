@@ -176,7 +176,7 @@ alpha:(a)]
 #define GET_USER_ID [[NSUserDefaults standardUserDefaults] objectForKey:U_ID]
 #define GET_S_ID [[NSUserDefaults standardUserDefaults] objectForKey:ACCESS_TOKEN_K]
 #define GET_U_NAME [[NSUserDefaults standardUserDefaults] objectForKey:U_NAME]
-#define GET_GROUP_ID [[NSUserDefaults standardUserDefaults] objectForKey:U_NAME]
+//#define GET_GROUP_ID [[NSUserDefaults standardUserDefaults] objectForKey:U_NAME]
 #define IS_AUTOLOG [[[NSUserDefaults standardUserDefaults] objectForKey:@"autoLogin"] boolValue]
 #define TABLE_HEIGHT [[[NSUserDefaults standardUserDefaults] objectForKey:@"tableHeight"] floatValue]
 /*

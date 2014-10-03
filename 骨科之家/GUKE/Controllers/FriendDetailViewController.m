@@ -828,8 +828,9 @@
            
         {
             // 跳转到主界面
-            AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-            [appDelegate showControlView:Root_contact];
+            [self getFriendDetail];
+//            AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+//            [appDelegate showControlView:Root_contact];
         }
             break;
         case ALERT_ADDERROR_TAG:
@@ -881,6 +882,7 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+// 得到好友的详情
 - (void)getFriendDetail
 {
     [HUD show:YES];

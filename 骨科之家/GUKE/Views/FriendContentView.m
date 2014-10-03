@@ -65,7 +65,7 @@
     if ([_articleModel.isShare isEqualToString:ISNOT_SHARE_CODE]) {
         self.isShareLabel = NO;
         // 发表的内容
-        [self.contact setText:[NSString _859ToUTF8:_articleModel.context]];
+        [self.contact setText:_articleModel.context];
         self.contact.textColor = [UIColor blackColor];
         self.contact.backgroundColor = [UIColor clearColor];
         self.contact.userInteractionEnabled = NO;
