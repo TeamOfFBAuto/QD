@@ -10,6 +10,8 @@
 #import "UserArticleList.h"
 #import "Interface.h"
 #import "UIImageView+WebCache.h"
+
+
 #define IMG_TAG 99999
 @implementation FriendCircleDetailContentView
 {
@@ -17,12 +19,14 @@
     NSMutableArray *_shareImageEnlarge;
     UIView *background;
     int imgTagSave;
+    NSMutableArray * temp_array;
 }
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
+        temp_array = [NSMutableArray array];
         self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
@@ -108,11 +112,45 @@
         cell.content.frame = CGRectMake(5, 2, 230,[SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250]+10);
         cell.backView.frame = CGRectMake(0, 3, 232, [SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250]+10);
         
+
+        [temp_array removeAllObjects];
+        
         // 设置分享的图片
-        if ([articleModel.photo isEqualToString:@""]||articleModel.photo == nil) {
+        if ([articleModel.photo isEqualToString:@""]||articleModel.photo == nil)
+        {
             cell.shareImg.frame = CGRectZero;
+            
+            temp_array = [NSMutableArray arrayWithArray:articleModel.attachlistArray];
+            
+            /*
+            
+            if (articleModel.attachlistArray.count)
+            {
+                int i = articleModel.attachlistArray.count/3;
+                
+                int j = articleModel.attachlistArray.count%3?1:0;
+                
+                float height = 75*(i+j)+2.5*(j + i - 1);
+                
+                cell.PictureViews.frame = CGRectMake(5,cell.content.frame.size.height+cell.content.frame.origin.y+10,231,height);
+                
+                [cell.PictureViews setimageArr:articleModel.attachlistArray withSize:75 isjuzhong:NO];
+                [cell.PictureViews setthebloc:^(NSInteger index) {
+                    
+//                    ShowImagesViewController *showBigVC=[[ShowImagesViewController alloc]init];
+//                    showBigVC.allImagesUrlArray=_post.attachlistArray;
+//                    
+//                    showBigVC.currentPage = index-1;
+//                    showBigVC.hidesBottomBarWhenPushed = YES;
+//                    UIViewController *VCtest=(UIViewController *)self.delegate;
+//                    [VCtest.navigationController pushViewController:showBigVC animated:YES];
+                }];
+            }
+            
+            */
         }
         else{
+            /*
             
             if (([articleModel.imageWidth floatValue]/([articleModel.imageHeight floatValue]+0.01))>1) {
                 if (articleModel.context == nil || articleModel.context.length == 0 || [articleModel.context isEqualToString:@" "] ) {
@@ -134,8 +172,6 @@
 
             }
             
-            
-//            cell.shareImg.frame =  CGRectMake(0, cell.content.frame.size.height + cell.content.frame.origin.y, SHARE_IMAGE_WHDTH, SHARE_IMAGE_HEIGHT);
             [cell.shareImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_BASE_URL,articleModel.photo]] placeholderImage:[UIImage imageNamed:@"imgError.png"]];
             cell.shareImg.tag = imgTag;
             [_shareImageEnlarge addObject:cell];
@@ -150,8 +186,38 @@
             cell.shareImg.contentMode = UIViewContentModeScaleAspectFit;
             cell.shareImg.clipsToBounds = YES;
             
+            */
             
+            [temp_array addObject:articleModel.photo];
         }
+        
+        float imgHeight = 0.0f;
+        
+        if (temp_array.count)
+        {
+            int i = temp_array.count/3;
+            
+            int j = temp_array.count%3?1:0;
+            
+            imgHeight = 75*(i+j)+2.5*(j + i - 1);
+            
+            cell.PictureViews.frame = CGRectMake(5,cell.content.frame.size.height+cell.content.frame.origin.y+10,231,imgHeight);
+            
+            [cell.PictureViews setimageArr:articleModel.attachlistArray withSize:75 isjuzhong:NO];
+            [cell.PictureViews setthebloc:^(NSInteger index) {
+                
+                //                    ShowImagesViewController *showBigVC=[[ShowImagesViewController alloc]init];
+                //                    showBigVC.allImagesUrlArray=_post.attachlistArray;
+                //
+                //                    showBigVC.currentPage = index-1;
+                //                    showBigVC.hidesBottomBarWhenPushed = YES;
+                //                    UIViewController *VCtest=(UIViewController *)self.delegate;
+                //                    [VCtest.navigationController pushViewController:showBigVC animated:YES];
+            }];
+            imgHeight += 10;
+        }
+        
+        cell.backView.frame = CGRectMake(0, 3, 232,cell.content.frame.size.height + cell.content.frame.origin.y+imgHeight+10);
     }
     else{
         cell.contentShare.frame = CGRectMake(0, 23, 232, 28);
@@ -221,62 +287,86 @@
         articleModel = (UserArticleList *)_contentDataArray[indexPath.row];
     }
     
+    [temp_array removeAllObjects];
+    
     CGFloat height = 0.0f;
-    if ([articleModel.photo isEqualToString:@""]||articleModel.photo == nil) {
-        NSString *temp = [NSString stringWithFormat:@"%@",articleModel.shareUrl];
-        NSLog(@"--------------%@",temp);
-        if ([temp isEqualToString:@"0"] ||temp == nil || [temp isEqualToString: @""]){
-            height = height + [SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250]+15;
-        }else{
-            height = height + [SingleInstance customFontHeightFont:articleModel.shareUrl andFontSize:15 andLineWidth:250]+20+15;
-        }
-    }else{
-        double imgHeight = SHARE_IMAGE_HEIGHT;
-        
-        if (([articleModel.imageWidth floatValue]/([articleModel.imageHeight floatValue]+0.01))>1) {
-            imgHeight = [articleModel.imageHeight floatValue]*(SHARE_IMAGE_WHDTH/([articleModel.imageWidth floatValue]+0.01));
-        }else{
-            imgHeight = SHARE_IMAGE_HEIGHT;
-        }
-
-        
-        if (articleModel.context == nil || articleModel.context.length == 0 || [articleModel.context isEqualToString:@" "] ) {
-            height = height+imgHeight+20;
-        }else{
-            height = height+[SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250]+imgHeight+20;
-        }
-        
+    if ([articleModel.photo isEqualToString:@""]||articleModel.photo == nil)
+    {
+        temp_array = [NSMutableArray arrayWithArray:articleModel.attachlistArray];
+                
+    }else
+    {
+        [temp_array addObject:articleModel.photo];
     }
-    return height;
+    
+    
+    NSString *temp = [NSString stringWithFormat:@"%@",articleModel.shareUrl];
+    if ([temp isEqualToString:@"0"] ||temp == nil || [temp isEqualToString: @""]){
+        height = height + [SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250]+15;
+    }else{
+        height = height + [SingleInstance customFontHeightFont:articleModel.shareUrl andFontSize:15 andLineWidth:250]+20+15;
+    }
+    
+    float imgHeight = 0;
+    
+    if (temp_array.count)
+    {
+        int i = temp_array.count/3;
+        
+        int j = temp_array.count%3?1:0;
+        
+        imgHeight = 75*(i+j)+2.5*(j + i - 1);
+    }
+    
+    
+    return height + imgHeight;
     
 }
 + (CGFloat)heightForCellWithPost:(NSMutableArray *)dataArray
 {
     CGFloat height = 0.0;
+    NSMutableArray * tempArray = [NSMutableArray array];
     for (UserArticleList *model in dataArray) {
-        
+        [tempArray removeAllObjects];
         if ([model.photo isEqualToString:@""]||model.photo == nil) {
             NSString *temp = [NSString stringWithFormat:@"%@",model.shareUrl];
-            NSLog(@"--------------%@",temp);
+//            NSLog(@"--------------%@",temp);
             if ([temp isEqualToString:@"0"] ||temp == nil || [temp isEqualToString: @""]){
                 height = height + [SingleInstance customFontHeightFont:model.context andFontSize:15 andLineWidth:250]+15;
             }else{
                 height = height + [SingleInstance customFontHeightFont:model.shareUrl andFontSize:15 andLineWidth:250]+20+15;
             }
+            tempArray = [NSMutableArray arrayWithArray:model.attachlistArray];
         }
         else{
-            double imgHeight = SHARE_IMAGE_HEIGHT;
-            if (([model.imageWidth floatValue]/([model.imageHeight floatValue]+0.01))>1) {
-                imgHeight = [model.imageHeight floatValue]*(SHARE_IMAGE_WHDTH/([model.imageWidth floatValue]+0.01));
-            }else{
-                imgHeight = SHARE_IMAGE_HEIGHT;
-            }
+//            double imgHeight = SHARE_IMAGE_HEIGHT;
+//            if (([model.imageWidth floatValue]/([model.imageHeight floatValue]+0.01))>1) {
+//                imgHeight = [model.imageHeight floatValue]*(SHARE_IMAGE_WHDTH/([model.imageWidth floatValue]+0.01));
+//            }else{
+//                imgHeight = SHARE_IMAGE_HEIGHT;
+//            }
+            
+            [tempArray addObject:model.photo];
+    
             if (model.context == nil || model.context.length == 0 || [model.context isEqualToString:@" "] ) {
-                height = height+imgHeight+20;
+                height = height+20;
             }else{
-                height = height+[SingleInstance customFontHeightFont:model.context andFontSize:15 andLineWidth:250]+imgHeight+20;
+                height = height+[SingleInstance customFontHeightFont:model.context andFontSize:15 andLineWidth:250]+20;
             }
         }
+        
+        float imgHeight = 0;
+        
+        if (tempArray.count)
+        {
+            int i = tempArray.count/3;
+            
+            int j = tempArray.count%3?1:0;
+            
+            imgHeight = 75*(i+j)+2.5*(j + i - 1);
+        }
+        
+        height+=20+imgHeight;
     }
     return height+10;
 }

@@ -34,6 +34,7 @@
 #import "FriendCircleDetailViewController.h"
 #import "MJRefresh.h"
 #import "dateAndContent.h"
+#import "UserArticleListAttachListModel.h"
 
 #define USER_ARTI_LIST @"user_article_list"
 #define USER_ARTU_LIST_PERSONAL @"user_article_list_personal"
@@ -255,6 +256,7 @@ static NSString *commentId = 0;
     NSDictionary *parameters = @{@"userId": [NSString stringWithFormat:@"%@",GET_USER_ID],@"sid":GET_S_ID,@"articleType":[NSString stringWithFormat:@"%d",1],@"dstUserId":[NSString stringWithFormat:@"%@",_userId],@"pageSize":[NSString stringWithFormat:@"%d",REFRESH_COUNT],@"page":[NSString stringWithFormat:@"%d",_refreshPage]};
     [AFRequestService responseData:USER_ARTICLE_LIST andparameters:parameters andResponseData:^(NSData *responseData) {
         NSDictionary *articleDict = (NSDictionary *)responseData;
+        NSLog(@"articleDict -----   %@",articleDict);
         NSInteger codeNum = [[articleDict objectForKey:@"code"] integerValue];
         if (codeNum == CODE_SUCCESS) {
         NSArray *articleLists = [articleDict valueForKeyPath:@"articlelist"];
@@ -278,6 +280,17 @@ static NSString *commentId = 0;
             userArticleModel.username = [articleList valueForKeyPath:@"username"];
             userArticleModel.imageHeight = [articleList valueForKey:@"height"];
             userArticleModel.imageWidth = [articleList valueForKey:@"width"];
+            
+            
+            NSArray * attachlistarray = [articleList objectForKey:@"attachlist"];
+            if ([attachlistarray isKindOfClass:[NSArray class]])
+            {
+                for (NSDictionary * dicc in attachlistarray)
+                {
+                    UserArticleListAttachListModel * aModel = [[UserArticleListAttachListModel alloc] initWithDic:dicc];
+                    [userArticleModel.attachlistArray addObject:aModel];
+                }
+            }
             
             NSMutableArray *commentArray = [articleList valueForKeyPath:@"commentlist"];
             for (NSDictionary *commentlist in commentArray) {
