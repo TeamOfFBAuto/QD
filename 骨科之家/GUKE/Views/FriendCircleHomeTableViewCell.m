@@ -142,17 +142,22 @@ static const NSMutableArray *subjectArry;
     if (_post != post) {
         _post = post;
     }
-    // 显示连接的类型
-
-    
+    if (_post.fromWeixin.length == 0) {
+        self.urlLabel.text = @"分享了一个链接";
+    }
+    else if([_post.fromWeixin isEqualToString:SOURCE_FROME_CASE]){
+        self.urlLabel.text = @"分享了一个病例";
+    }
+    else if([_post.fromWeixin isEqualToString:SOURCE_FROME_MATERIAL]){
+         self.urlLabel.text = @"分享了一个资料";
+    }
     
     // 标注当前用户是否已进行评论
     BOOL flag = NO;
-    for (contentAndGood * model in _post.goodArray) {
-        if ([model.userId isEqualToString:GET_USER_ID]) {
-            flag = YES;
-        }
+    if ([post.isGood isEqualToString:@"1"]) {
+        flag = YES;
     }
+    
     if (flag) {
         [self.favorite setTitle:LOCALIZATION(@"button_cancel")forState:UIControlStateNormal];
     }
@@ -178,7 +183,7 @@ static const NSMutableArray *subjectArry;
     }
     
     // 设置发表的内容
-    _ContentView.articleModel = _post;
+    self.ContentView.articleModel = _post;
     
     // 显示赞
     if ([_post.goodArray count] > 0) {

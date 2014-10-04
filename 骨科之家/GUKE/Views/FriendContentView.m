@@ -34,25 +34,36 @@
         imgTag = IMG_TAG;
         _shareImageEnlarge = [[NSMutableArray alloc] init];
         // 说说内容
-        _contact = [[MyLabel alloc]initWithFrame:CGRectZero];
+        _contact = [[UILabel alloc]initWithFrame:CGRectZero];
         _contact.font = [UIFont systemFontOfSize:13.5f];
         _contact.backgroundColor = [UIColor clearColor];
+        _contact.userInteractionEnabled = YES;
         
         _contact.layer.borderWidth = 0;
         _contact.layer.borderColor = [[UIColor clearColor] CGColor];
         
-        // 说说图片
-        self.shareImg = [[UIImageView alloc]initWithFrame:CGRectZero];
-        self.shareImg.backgroundColor = [UIColor clearColor];
-        self.shareImg.userInteractionEnabled = YES;
-        self.shareImg.contentMode = UIViewContentModeScaleAspectFit;
-        self.shareImg.clipsToBounds = YES;
-        [self addSubview:_contact];
-        [self addSubview:_shareImg];
+        _shareComment = [[UILabel alloc]initWithFrame:CGRectZero];
+        _shareComment.font = [UIFont systemFontOfSize:13.5f];
+        _shareComment.backgroundColor = [UIColor clearColor];
         
-        UIView *tempView = [[UIView alloc] initWithFrame:CGRectMake(52, 4, SCREEN_WIDTH, 2)];
-        tempView.backgroundColor = [UIColor whiteColor];
-        [self addSubview:tempView];
+        _shareComment.layer.borderWidth = 0;
+        _shareComment.layer.borderColor = [[UIColor clearColor] CGColor];
+        
+        _shareContext = [[MyLabel alloc]initWithFrame:CGRectZero];
+        _shareContext.font = [UIFont systemFontOfSize:13.5f];
+        _shareContext.backgroundColor = [UIColor clearColor];
+        
+        _shareContext.layer.borderWidth = 0;
+        _shareContext.layer.borderColor = [[UIColor clearColor] CGColor];
+        
+        
+        [_contact addSubview:_shareComment];
+        [_contact addSubview:_shareContext];
+        [self addSubview:_contact];
+        
+        _tempView = [[UIView alloc] initWithFrame:CGRectMake(52, 4, SCREEN_WIDTH, 2)];
+        _tempView.backgroundColor = [UIColor whiteColor];
+        [_contact addSubview:_tempView];
     }
     return self;
 }
@@ -61,46 +72,22 @@
     self.shareImg.image = nil;
     _articleModel = nil;
     _articleModel = articleModel;
-    // 不是分享的链接
+    // 内容不是分享
     if ([_articleModel.isShare isEqualToString:ISNOT_SHARE_CODE]) {
         self.isShareLabel = NO;
         // 发表的内容
-        [self.contact setText:_articleModel.context];
-        self.contact.textColor = [UIColor blackColor];
-        self.contact.backgroundColor = [UIColor clearColor];
-        self.contact.userInteractionEnabled = NO;
-        // 如果不含图片在内
-        if ([_articleModel.photo isEqualToString:@""]|| _articleModel.photo == nil) {
-            self.shareImg.frame =  CGRectZero;
-            self.shareImg.hidden = YES;
-        }
-        // 包含图片
-        else{
-            self.shareImg.hidden = NO;
-            [self.shareImg sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_BASE_URL,_articleModel.photo]] placeholderImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"imgError@2x" ofType:@"png"]]];
-            self.shareImg.contentMode = UIViewContentModeScaleAspectFit;
-            // 图片的放大
-            self.shareImg.tag = imgTag;
-            [_shareImageEnlarge addObject:self.shareImg];
-            imgTag ++;
-            self.shareImg.userInteractionEnabled = YES;
-            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(TapImageClick:)];
-            tap.numberOfTapsRequired = 1;
-            [self.shareImg addGestureRecognizer:tap];
-            
-        }
+        [self.shareContext setText:_articleModel.context];
+        self.shareContext.textColor = [UIColor blackColor];
+        self.shareContext.backgroundColor = [UIColor clearColor];
+        self.shareContext.userInteractionEnabled = NO;
+         self.contact.userInteractionEnabled = NO;
     }
-    // 是分享的链接
+    // 是分享的来源
     else if([_articleModel.isShare isEqualToString:IS_SHARE_CODE]){
         self.isShareLabel = YES;
-        self.shareImg.frame = CGRectZero;
-        self.shareImg.hidden = YES;
         NSString *shareUrl = @"";
         NSString *temp = [NSString stringWithFormat:@"%@",_articleModel.shareUrl];
-        if ([temp isEqualToString:@"0"] ||temp == nil || [temp isEqualToString: @""]) {
-            shareUrl = @"此分享链接不存在";
-        }
-        else{
+        if (_articleModel.fromWeixin.length == 0 && temp.length >0) {
             NSError *error;
             NSString *regulaStr = @"((http[s]{0,1}|ftp)://[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)|(www.[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)";
             NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regulaStr
@@ -111,26 +98,37 @@
             for (NSTextCheckingResult *match in arrayOfAllMatches)
             {
                 NSString* substringForMatch = [temp substringWithRange:match.range];
-                //                    shareUrl = [NSString stringWithFormat:@"<a href='%@'>%@</a>",substringForMatch,temp];
                 shareUrl = [NSString stringWithFormat:@"%@",substringForMatch];
             }
-            
         }
-        [self.contact setText:shareUrl];
-        self.contact.textAlignment = NSTextAlignmentLeft;
-        self.contact.delegate = self;
-        [self.contact setVerticalAlignment:VerticalAlignmentMiddle];
-        self.contact.textColor = GETColor(149, 149, 149);
-        self.contact.backgroundColor = GETColor(238, 238, 238);
-        self.contact.userInteractionEnabled = YES;
+        else if([_articleModel.fromWeixin isEqualToString:SOURCE_FROME_CASE]){
+            shareUrl = _articleModel.context;
+        }
+        else if ([_articleModel.fromWeixin isEqualToString:SOURCE_FROME_MATERIAL]){
+            shareUrl = _articleModel.context;
+        }
+        self.shareComment.text = _articleModel.shareComment;
+        [self.shareContext setText:shareUrl];
+        self.shareContext.textAlignment = NSTextAlignmentLeft;
+        self.shareContext.delegate = self;
+        [self.shareContext setVerticalAlignment:VerticalAlignmentMiddle];
+        self.shareContext.textColor = GETColor(149, 149, 149);
+        self.shareContext.backgroundColor = GETColor(238, 238, 238);
+        self.shareContext.userInteractionEnabled = YES;
     }
     else{
         return;
     }
-    
-}
 
+}
+// 跳转到
+- (void)skipToCasePage:(UITapGestureRecognizer *)gester{
+    NSLog(@"%d",gester.view.tag);
+}
 - (void)myLabel:(MyLabel *)myLabel touchesWtihTag:(NSInteger)tag {
+    
+    
+    
     if (myLabel.text.length>4) {
         NSString *string = [myLabel.text substringWithRange:NSMakeRange(0, 4)];
         if ([string isEqualToString:@"http"]) {
@@ -147,38 +145,31 @@
     // 判断分享的链接
     if ([_articleModel.isShare isEqualToString:ISNOT_SHARE_CODE]) {
         // 发表的内容
-        self.contact.frame = CGRectMake(USER_ICON_WHDTH + 15, 5, 250,[SingleInstance customFontHeightFont:_articleModel.context andFontSize:15 andLineWidth:250]+10);
-        // 如果不含图片在内
-        if ([_articleModel.photo isEqualToString:@""]||_articleModel.photo == nil) {
-            self.shareImg.frame =  CGRectZero;
-            self.shareImg.hidden = YES;
-        }
-        // 包含图片
-        else{
-            self.shareImg.hidden = NO;
-            if (([_articleModel.imageWidth floatValue]/([_articleModel.imageHeight floatValue]+0.01))>1) {
-                if (_articleModel.context == nil || _articleModel.context.length == 0 || [_articleModel.context isEqualToString:@" "]) {
-                    self.shareImg.frame =  CGRectMake(USER_ICON_WHDTH + 10 + 10, 5, SHARE_IMAGE_WHDTH, [_articleModel.imageHeight floatValue]*(SHARE_IMAGE_WHDTH/([_articleModel.imageWidth floatValue]+0.01)));
-                }else{
-                    self.shareImg.frame =  CGRectMake(USER_ICON_WHDTH + 10 + 10, self.contact.frame.size.height + self.contact.frame.origin.y+5, SHARE_IMAGE_WHDTH, [_articleModel.imageHeight floatValue]*(SHARE_IMAGE_WHDTH/([_articleModel.imageWidth floatValue]+0.01)));
-                }
+        self.shareComment.frame =CGRectZero;
+        self.shareContext.frame = CGRectMake(0, self.shareComment.frame.origin.y + self.shareComment.frame.size.height, 250,[SingleInstance customFontHeightFont:_articleModel.context andFontSize:15 andLineWidth:250]);
+        self.contact.frame = CGRectMake(USER_ICON_WHDTH + 15, 5, 250,self.shareContext.frame.size.height + self.shareContext.frame.origin.y);
+       
 
-            }else{
-                if (_articleModel.context == nil || _articleModel.context.length == 0 || [_articleModel.context isEqualToString:@" "]) {
-                    self.shareImg.frame = CGRectMake(USER_ICON_WHDTH + 10 + 10, 5, [_articleModel.imageWidth floatValue]*(SHARE_IMAGE_HEIGHT/([_articleModel.imageHeight floatValue]+0.01)), SHARE_IMAGE_HEIGHT);
-                }else{
-                    self.shareImg.frame = CGRectMake(USER_ICON_WHDTH + 10 + 10, self.contact.frame.size.height + self.contact.frame.origin.y+5, [_articleModel.imageWidth floatValue]*(SHARE_IMAGE_HEIGHT/([_articleModel.imageHeight floatValue]+0.01)), SHARE_IMAGE_HEIGHT);
-                }
-
-            }
-        }
     }
     else if([_articleModel.isShare isEqualToString:IS_SHARE_CODE]){
-        self.shareImg.frame =  CGRectZero;
-        self.shareImg.hidden = YES;
-        self.contact.frame = CGRectMake(USER_ICON_WHDTH + 10 + 10, 5, 250,[SingleInstance customFontHeightFont:_articleModel.context andFontSize:15 andLineWidth:250]+10);
+          NSString *temp = [NSString stringWithFormat:@"%@",_articleModel.shareUrl];
+        if (_articleModel.fromWeixin.length == 0 && temp.length >0) {
+           
+            // 发表的内容
+            self.shareComment.frame = CGRectZero;
+            self.shareContext.frame = CGRectMake(0, self.shareComment.frame.origin.y + self.shareComment.frame.size.height, 250,[SingleInstance customFontHeightFont:_articleModel.context andFontSize:15 andLineWidth:250] + 5);
+            self.tempView.frame = CGRectMake(0, self.shareContext.frame.origin.y - 1, SCREEN_WIDTH, 3);
+            self.contact.frame = CGRectMake(USER_ICON_WHDTH + 15, 5, 250,self.shareContext.frame.size.height + self.shareContext.frame.origin.y + 5);
+        }
+        else {
+            // 发表的内容
+            self.shareComment.frame = CGRectMake(0, 0, 250,[SingleInstance customFontHeightFont:_articleModel.shareComment andFontSize:15 andLineWidth:250] );
+            self.shareContext.frame = CGRectMake(0, self.shareComment.frame.origin.y + self.shareComment.frame.size.height + 5, 250,[SingleInstance customFontHeightFont:_articleModel.context andFontSize:15 andLineWidth:250] + 5 );
+            self.tempView.frame = CGRectMake(0, self.shareContext.frame.origin.y - 1, SCREEN_WIDTH, 3);
+            self.contact.frame = CGRectMake(USER_ICON_WHDTH + 15, 5, 250,self.shareContext.frame.size.height + self.shareContext.frame.origin.y + 5);
+        }
+        
     }
-    
     
     
 }
