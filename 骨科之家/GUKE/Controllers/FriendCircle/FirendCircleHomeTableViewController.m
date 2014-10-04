@@ -350,9 +350,14 @@ static NSString *commentId = 0;
             userArticleModel.context = [NSString _859ToUTF8:[articleList valueForKeyPath:@"context"]];
             userArticleModel.createDate = [NSString _859ToUTF8:[articleList valueForKeyPath:@"createDate"]];
             userArticleModel.deleteFlag = [NSString _859ToUTF8:[articleList valueForKeyPath:@"deleteFlag"]];
-            userArticleModel.isShare = [NSString _859ToUTF8:[articleList valueForKeyPath:@"isShare"]];
+            userArticleModel.isShare = [NSString _859ToUTF8:[articleList valueForKeyPath:@"isShare"]];// 0 非分享 1是分享
             userArticleModel.photo = [NSString _859ToUTF8:[articleList valueForKeyPath:@"photo"]];
             userArticleModel.shareUrl = [NSString _859ToUTF8:[articleList valueForKeyPath:@"shareUrl"]];
+            userArticleModel.isGood = [NSString _859ToUTF8:[articleList valueForKeyPath:@"isGood"]];// 当前用户是够已点赞
+            userArticleModel.fromWeixin = [NSString _859ToUTF8:[articleList valueForKeyPath:@"fromWeixin"]];// 分享来源；0：分享链接；1：分享微信；2：分享病历库；3：分享资料库"
+            userArticleModel.shareComment = [NSString _859ToUTF8:[articleList valueForKeyPath:@"shareComment"]];
+            // 分享链接时的评论
+            userArticleModel.sourceId = [NSString _859ToUTF8:[articleList valueForKeyPath:@"sourceId"]];
             userArticleModel.userId = [NSString _859ToUTF8:[articleList valueForKeyPath:@"userId"]];
             userArticleModel.username = [NSString _859ToUTF8:[articleList valueForKeyPath:@"username"]];
             userArticleModel.imageHeight = [NSString _859ToUTF8:[articleList valueForKey:@"height"]];
@@ -506,7 +511,7 @@ static NSString *commentId = 0;
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         if (IOS7_LATER) {
-            [cell setSeparatorInset:UIEdgeInsetsMake(0, 320, 0, 0)];
+            [cell setSeparatorInset:UIEdgeInsetsMake(0, SCREEN_WIDTH, 0, 0)];
             
         }
         
@@ -537,14 +542,14 @@ static NSString *commentId = 0;
         }
         
         cell.delegate = self;
-        
         cell.single_imageView.image = nil;
         cell.PictureViews.frame = CGRectZero;
         cell.single_imageView.frame = CGRectZero;
-        
-        
+//        cell.PictureViews.backgroundColor = [UIColor redColor];
+//        cell.single_imageView.backgroundColor = [UIColor orangeColor];
         // 保存cell
         [cellDic setObject:cell forKey:[NSString stringWithFormat:@"%d",indexPath.row-1]];
+        
         cell.favorite.tag = FAVORIT_DEFAULT_TAG +indexPath.row - 1;
         [cell.favorite addTarget:self action:@selector(addFavorite:) forControlEvents:UIControlEventTouchUpInside];
         // 赞的图标点击事件

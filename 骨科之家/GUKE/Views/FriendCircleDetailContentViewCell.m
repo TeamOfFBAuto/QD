@@ -29,7 +29,7 @@
     self.urlLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     self.urlLabel.text = @"分享了一个链接";
     self.urlLabel.textAlignment = NSTextAlignmentLeft;
-    self.urlLabel.backgroundColor = [UIColor clearColor];
+    self.urlLabel.backgroundColor = [UIColor whiteColor];
     self.urlLabel.textColor = [UIColor blackColor];
     self.urlLabel.font = [UIFont systemFontOfSize:13.0f];
     self.urlLabel.hidden = YES;
@@ -51,7 +51,7 @@
 {
     [super layoutSubviews];
     self.content.font = [UIFont systemFontOfSize:13.0f];
-    self.urlLabel.frame = CGRectMake(5, 9, 232, 15);
+    self.urlLabel.frame = CGRectMake(0, 0, 255, 25);
 }
 
 

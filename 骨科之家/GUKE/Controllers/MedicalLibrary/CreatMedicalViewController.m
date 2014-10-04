@@ -23,6 +23,12 @@
     ///治疗方案默认文字
     UILabel * placeHolder_treatment_case;
     
+    UILabel * placeHolder_shuoming;
+    
+    ///存放所有textView
+    NSMutableArray * textView_array;
+    
+    NSArray * _voiceLeftImageArr;
     ///弹出框
     QiDiPopoverView * popOver;
     
@@ -31,7 +37,7 @@
     ///存放完成的数据（视频、图片、录音）
     NSMutableArray * data_array;
     
-    
+    MBProgressHUD * hud;
     
     //视频相关
     
@@ -85,20 +91,41 @@
     [super viewDidLoad];
     [self loadNavigation];
     
-    _feed = [[BingLiListFeed alloc] init];
+    textView_array = [NSMutableArray array];
+    
+    for (int i = 0;i < 10;i++)
+    {
+        UITextView * textView = [[UITextView alloc] initWithFrame:CGRectMake(65,15,150,25)];
+        textView.font = [UIFont systemFontOfSize:15];
+        textView.contentInset = UIEdgeInsetsZero;
+        textView.textColor = [UIColor blackColor];
+        textView.delegate = self;
+        textView.tag = 100+i;
+        [textView_array addObject:textView];
+    }
+    
+    if (!_feed) {
+        _feed = [[BingLiListFeed alloc] init];
+        _feed.attach_array = [NSMutableArray array];
+    }
     
     content_array = [NSMutableArray arrayWithObjects:@"姓名",@"性别",@"就诊时间",@"诊断",@"病人手机号",@"家属手机号",@"治疗方案",@"病历号",@"身份证号",@"标记编号",nil];
     data_array = [NSMutableArray array];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(handleWillShowKeyboard:)
-                                                 name:UIKeyboardWillShowNotification
-                                               object:nil];
+    _voiceLeftImageArr = [[NSArray alloc] initWithObjects:
+                          [UIImage imageNamed:@"voice_L1.png"],
+                          [UIImage imageNamed:@"voice_L2.png"],
+                          [UIImage imageNamed:@"voice_L3.png"],nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(handleWillHideKeyboard:)
-                                                 name:UIKeyboardWillHideNotification
-                                               object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(handleWillShowKeyboard:)
+//                                                 name:UIKeyboardWillShowNotification
+//                                               object:nil];
+//    
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(handleWillHideKeyboard:)
+//                                                 name:UIKeyboardWillHideNotification
+//                                               object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(uploadData:)
@@ -121,8 +148,8 @@
 
 -(void)uploadData:(NSNotification *)notification
 {
-    NSLog(@"notification ---  %@",notification);
-    
+    NSLog(@"notification ---  %@",notification.userInfo);
+
     
 }
 
@@ -139,7 +166,6 @@
     
     CGRect rect = _mainTableView.frame;
     rect.size.height = rect.size.height-height;
-    
     _mainTableView.frame = rect;
 }
 
@@ -231,12 +257,27 @@
     UIView * view = [[UIView alloc] initWithFrame:viewFrame];
     UITextView * text_view = [[UITextView alloc] initWithFrame:CGRectMake(10,10,DEVICE_WIDTH-20,60)];
     text_view.tag = 1000;
+    text_view.delegate = self;
     text_view.textAlignment = NSTextAlignmentLeft;
     text_view.textColor = [UIColor lightGrayColor];
     text_view.font = [UIFont systemFontOfSize:14];
     text_view.layer.borderColor = [UIColor blueColor].CGColor;
     text_view.layer.borderWidth = 0.5;
     [view addSubview:text_view];
+    
+    placeHolder_shuoming = [[UILabel alloc] initWithFrame:CGRectMake(10,5,200,20)];
+    placeHolder_shuoming.text = @"病历说明";
+    placeHolder_shuoming.font = [UIFont systemFontOfSize:15];
+    placeHolder_shuoming.textAlignment = NSTextAlignmentLeft;
+    placeHolder_shuoming.textColor = [UIColor blackColor];
+    [text_view addSubview:placeHolder_shuoming];
+    
+    if (_feed.memo.length > 0)
+    {
+        text_view.text = _feed.memo;
+        placeHolder_shuoming.text = @"";
+    }
+    
     
     NSArray * image_array = [NSArray arrayWithObjects:@"guke_ic_addcamera",@"guke_ic_addvoice.png",@"guke_ic_addvideo.png",@"guke_ic_addphoto.png",nil];
     
@@ -330,7 +371,7 @@
     contaiterView.backgroundColor = [UIColor blackColor];
     
     UILabel *groupNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, 150, 40)];
-    groupNameLabel.text = LOCALIZATION(@"chat_groupname");
+    groupNameLabel.text = @"文件描述";
     groupNameLabel.textColor = [UIColor whiteColor];
     groupNameLabel.backgroundColor = [UIColor clearColor];
     groupNameLabel.font = [UIFont systemFontOfSize:16];
@@ -391,14 +432,29 @@
         case DIALOG_Btn_TAG:///取消
         {
             [popOver dismiss];
-            [data_array removeLastObject];
+            [_feed.attach_array removeLastObject];
         }
             
             break;
         case SUBMIT_BTN_TAG:///完成
         {
-            NSMutableDictionary * dic = [data_array lastObject];
-            [dic setObject:groupName.text forKey:@"content"];
+            
+            id object = [_feed.attach_array lastObject];
+            if ([object isKindOfClass:[NSMutableDictionary class]])///语音
+            {
+                [(NSMutableDictionary *)object setObject:groupName.text forKey:@"content"];
+                
+            }else if ([object isKindOfClass:[imgUploadModel class]])
+            {
+                ((imgUploadModel *)object).imageName = groupName.text;
+            }else if ([object isKindOfClass:[VideoUploadModel class]])
+            {
+                ((VideoUploadModel *)object).fileName = groupName.text;
+            }
+            
+            
+//            NSMutableDictionary * dic = [_feed.attach_array lastObject];
+//            [dic setObject:groupName.text forKey:@"content"];
             [_mainTableView reloadData];
             [popOver dismiss];
         }
@@ -432,7 +488,9 @@
 #pragma mark - 录音方法
 #pragma mark record 开始录音
 #pragma mark ---------record delegate
-- (void)VoiceRecorderBaseVCRecordFinish:(NSString *)_filePath fileName:(NSString *)_fileName withVoiceLenth:(CGFloat)length{
+- (void)VoiceRecorderBaseVCRecordFinish:(NSString *)_filePath fileName:(NSString *)_fileName withVoiceLenth:(CGFloat)length
+{
+    
     int a =(int) length;
     if (a > 0) {
         [self wavToAmr:_filePath with:_fileName length:length];
@@ -444,8 +502,7 @@
     
     NSMutableData * data = [NSMutableData dataWithContentsOfFile:[VoiceRecorderBaseVC getPathByFileName:[_fileName stringByAppendingString:@"wavToAmr"] ofType:@"amr"]];
     [dic setObject:data forKey:@"fileData"];
-    [dic setObject:@"voice" forKey:@"type"];
-    [data_array addObject:dic];
+    [_feed.attach_array addObject:dic];
     
     NSLog(@"%@==%@",_filePath,_fileName);
     [self inputIntroduce];
@@ -493,9 +550,9 @@
             imageModel.imageName = [NSString stringWithFormat:@"%@.jpg",[UUID createUUID]];
             imageModel.imageData = aData;
             
-            NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:[UUID createUUID],@"fid",[NSNumber numberWithFloat:aData.length/1024],@"length",imageModel,@"fileData",@"image",@"type",nil];
+//            NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:[UUID createUUID],@"fid",[NSNumber numberWithFloat:aData.length/1024],@"length",imageModel,@"fileData",@"image",@"type",nil];
             
-            [data_array addObject:dic];
+            [_feed.attach_array addObject:imageModel];
             
             [self inputIntroduce];
         }];
@@ -526,8 +583,8 @@
     if ([compatiblePresets containsObject:_mp4Quality])
         
     {
-        _alert = [[UIAlertView alloc] init];
-        [_alert setTitle:@"Waiting.."];
+//        _alert = [[UIAlertView alloc] init];
+//        [_alert setTitle:@"Waiting.."];
         
         UIActivityIndicatorView* activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         activity.frame = CGRectMake(140,
@@ -536,7 +593,9 @@
                                     CGRectGetHeight(_alert.frame));
         [_alert addSubview:activity];
         [activity startAnimating];
-        [_alert show];
+//        [_alert show];
+        
+        hud = [SNTools returnMBProgressWithText:@"正在压缩..." addToView:self.view];
         
         _startDate = [NSDate date];
         
@@ -596,7 +655,9 @@
 //压缩完成
 - (void) convertFinish
 {
-    [_alert dismissWithClickedButtonIndex:0 animated:YES];
+//    [_alert dismissWithClickedButtonIndex:0 animated:YES];
+    [hud hide:YES];
+
     CGFloat duration = [[NSDate date] timeIntervalSinceDate:_startDate];
     _alert = [[UIAlertView alloc] initWithTitle:@"干的漂亮"
                                         message:[NSString stringWithFormat:@"压缩成功 消耗%.2f秒 路径 :%@ ", duration,_mp4Path]
@@ -607,9 +668,22 @@
     NSLog(@"压缩文件输出路径 :%@",_mp4Path);
     
     
-    [_alert show];
+   // [_alert show];
     
     _hasMp4 = YES;
+    
+
+    NSMutableData * data = [NSMutableData dataWithContentsOfFile:_mp4Path];
+    
+    VideoUploadModel * model = [[VideoUploadModel alloc] init];
+    model.fileData = data;
+    model.filePath = _mp4Path;
+    
+//     NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:[UUID createUUID],@"fid",[NSNumber numberWithFloat:data.length/1024],@"length",model,@"fileData",@"video",@"type",nil];
+    
+    [_feed.attach_array addObject:model];
+    
+    [self inputIntroduce];
 }
 
 
@@ -623,7 +697,7 @@
 #pragma mark-tableviewdelegateAndDatesource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10 + data_array.count;
+    return 10 + _feed.attach_array.count;
     
 }
 
@@ -636,9 +710,9 @@
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (indexPath.row < data_array.count)
+    if (indexPath.row < _feed.attach_array.count)
     {
-        NSDictionary * dic = [data_array objectAtIndex:indexPath.row];
+        NSDictionary * dic = [_feed.attach_array objectAtIndex:indexPath.row];
         
         static NSString * cell1 = @"cell1";
         CreateMedicalFilesCell * cell = [tableView dequeueReusableCellWithIdentifier:cell1];
@@ -647,28 +721,52 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegate = self;
-        cell.content_textView.text = [dic objectForKey:@"content"];
-        cell.filesSize_label.text = [NSString stringWithFormat:@"%@k",[dic objectForKey:@"length"]];
         
-        NSString * type = [dic objectForKey:@"type"];
-        if ([type isEqualToString:@"voice"])
+        id object = [_feed.attach_array objectAtIndex:indexPath.row];
+        
+        if ([object isKindOfClass:[NSDictionary class]])///语音
         {
+            NSDictionary * aDic = (NSDictionary *)object;
             
-        }else if ([type isEqualToString:@"image"])
+            if ([aDic objectForKey:@"fileurl"])
+            {
+                cell.Files_imageView.image = [UIImage imageNamed:@"guke_type_btn_zhantie_press"];
+                
+                cell.content_textView.text = ((VideoUploadModel *)object).fileName;
+                cell.filesSize_label.text = [NSString stringWithFormat:@"%d k",((VideoUploadModel *)object).fileData.length/1024];
+                
+            }else
+            {
+                cell.imageVoiceIcon.frame = CGRectMake(8, 5, 20,33/27*20);
+                cell.imageVoiceIcon.image = [UIImage imageNamed:@"voice_L0.png"];
+                cell.Files_imageView.frame = CGRectMake(30,20, 60, 30);
+                [cell.Files_imageView setImage:[UIImage imageNamed:@"task_voice"]];
+                
+                cell.content_textView.text = [(NSMutableDictionary *)object objectForKey:@"content"];
+                cell.filesSize_label.text = [NSString stringWithFormat:@"%@ k",[(NSMutableDictionary *)object objectForKey:@"length"]];
+            }
+            
+        }else if ([object isKindOfClass:[imgUploadModel class]])///图片
         {
-            imgUploadModel * model = [dic objectForKey:@"fileData"];
-            UIImage * image = [UIImage imageWithData:model.imageData];            
+            imgUploadModel * model = (imgUploadModel*)object;
+            UIImage * image = [UIImage imageWithData:model.imageData];
             
             cell.Files_imageView.image = image;
             
-        }else if ([type isEqualToString:@"video"])
-        {
+            cell.content_textView.text = model.imageName;
+            cell.filesSize_label.text = [NSString stringWithFormat:@"%d k",model.imageData.length/1024];
             
+        }else if ([object isKindOfClass:[VideoUploadModel class]])///视频
+        {
+            cell.Files_imageView.image = [UIImage imageNamed:@"guke_type_btn_zhantie_press"];
+            
+            cell.content_textView.text = ((VideoUploadModel *)object).fileName;
+            cell.filesSize_label.text = [NSString stringWithFormat:@"%d k",((VideoUploadModel *)object).fileData.length/1024];
         }
         
         return cell;
         
-    }else if (indexPath.row == 6+data_array.count)
+    }else if (indexPath.row == 6+_feed.attach_array.count)
     {
         static NSString * identifier = @"identifier";
         UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
@@ -677,33 +775,63 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         }
         
-        if (!treatment_case)
+//        if (!treatment_case)
+//        {
+//            treatment_case = [[UITextView alloc] initWithFrame:CGRectMake(10,5,DEVICE_WIDTH-20,60)];
+//            treatment_case.tag = 100 + indexPath.row;
+//            treatment_case.text = _feed.fangan;
+//            treatment_case.textAlignment = NSTextAlignmentLeft;
+//            treatment_case.layer.cornerRadius = 5;
+//            treatment_case.font = [UIFont systemFontOfSize:15];
+//            treatment_case.delegate = self;
+//            treatment_case.layer.masksToBounds = YES;
+//            treatment_case.layer.borderColor = [UIColor grayColor].CGColor;
+//            treatment_case.layer.borderWidth = 0.5;
+//            [cell.contentView addSubview:treatment_case];
+//            
+//            
+//            placeHolder_treatment_case = [[UILabel alloc] initWithFrame:CGRectMake(10,5,200,20)];
+//            placeHolder_treatment_case.text = @"治疗方案";
+//            placeHolder_treatment_case.font = [UIFont systemFontOfSize:15];
+//            placeHolder_treatment_case.textAlignment = NSTextAlignmentLeft;
+//            placeHolder_treatment_case.textColor = [UIColor blackColor];
+//            [treatment_case addSubview:placeHolder_treatment_case];
+//        }
+        
+        for (UIView * view in cell.contentView.subviews) {
+            [view removeFromSuperview];
+        }
+        
+        
+        UITextView * textView = [textView_array objectAtIndex:indexPath.row - _feed.attach_array.count];
+        textView.frame = CGRectMake(10,5,DEVICE_WIDTH-20,60);
+        textView.layer.masksToBounds = YES;
+        textView.layer.borderColor = [UIColor grayColor].CGColor;
+        textView.layer.borderWidth = 0.5;
+        
+        if (!placeHolder_treatment_case)
         {
-            treatment_case = [[UITextView alloc] initWithFrame:CGRectMake(10,5,DEVICE_WIDTH-20,60)];
-            treatment_case.tag = 100 + indexPath.row;
-            treatment_case.textAlignment = NSTextAlignmentLeft;
-            treatment_case.layer.cornerRadius = 5;
-            treatment_case.font = [UIFont systemFontOfSize:15];
-            treatment_case.delegate = self;
-            treatment_case.layer.masksToBounds = YES;
-            treatment_case.layer.borderColor = [UIColor grayColor].CGColor;
-            treatment_case.layer.borderWidth = 0.5;
-            [cell.contentView addSubview:treatment_case];
-            
-            
             placeHolder_treatment_case = [[UILabel alloc] initWithFrame:CGRectMake(10,5,200,20)];
             placeHolder_treatment_case.text = @"治疗方案";
             placeHolder_treatment_case.font = [UIFont systemFontOfSize:15];
             placeHolder_treatment_case.textAlignment = NSTextAlignmentLeft;
             placeHolder_treatment_case.textColor = [UIColor blackColor];
-            [treatment_case addSubview:placeHolder_treatment_case];
+            [textView addSubview:placeHolder_treatment_case];
         }
+        
+        if (_feed.fangan.length)
+        {
+            textView.text = _feed.fangan;
+            placeHolder_treatment_case.text = @"";
+        }
+        
+        [cell.contentView addSubview:textView];
+        
         
         return cell;
     }else
     {
-        NSString *identifier=[NSString stringWithFormat:@"%d",indexPath.row];
-        
+        static NSString * identifier = @"cell";
         CreateMedicalCell *cell=[tableView dequeueReusableCellWithIdentifier:identifier];
         
         if (!cell)
@@ -711,10 +839,22 @@
             cell = [[CreateMedicalCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        NSString * title = [content_array objectAtIndex:indexPath.row-data_array.count];
+        
+        
+        for (UIView * view in cell.contentView.subviews)
+        {
+            if ([view isKindOfClass:[UITextView class]]) {
+                [view removeFromSuperview];
+            }
+        }
+        
+        UITextView * textView = [textView_array objectAtIndex:indexPath.row - _feed.attach_array.count];
+        [cell.contentView addSubview:textView];
+        
+        NSString * title = [content_array objectAtIndex:indexPath.row-_feed.attach_array.count];
         cell.title_label.text = title;
-        cell.input_textView.tag = indexPath.row + 100;
-        cell.input_textView.delegate = self;
+//        cell.input_textView.tag = indexPath.row + 100;
+//        cell.input_textView.delegate = self;
         
         CGSize aSize = [title sizeWithFont:[UIFont systemFontOfSize:16] constrainedToSize:CGSizeMake(MAXFLOAT, 30)];
         
@@ -726,9 +866,66 @@
         float input_widht = DEVICE_WIDTH - 20 - aSize.width -10;
         
         CGRect textViewFrame = CGRectMake(aSize.width+10,10,input_widht,25);
-        cell.input_textView.frame = textViewFrame;
+        textView.frame = textViewFrame;
         
         cell.input_line_view.frame = CGRectMake(aSize.width+10,textViewFrame.origin.y+textViewFrame.size.height+2.5,input_widht+5,4);
+        
+        switch (indexPath.row-_feed.attach_array.count)
+        {
+            case 0:///姓名
+            {
+                textView.text = _feed.psnname;
+            }
+                break;
+            case 1:///性别
+            {
+                textView.text = _feed.sex;
+            }
+                break;
+            case 2:///就诊时间
+            {
+                textView.text = _feed.jiuzhen;
+            }
+                break;
+            case 3:///诊断
+            {
+                textView.text = _feed.zhenduan;
+            }
+                break;
+            case 4:///病人手机号
+            {
+                textView.text = _feed.mobile;
+            }
+                break;
+            case 5:///家属手机号
+            {
+                textView.text = _feed.relateMobile;
+            }
+                break;
+            case 6:///治疗方案
+            {
+                textView.text = _feed.fangan;
+            }
+                break;
+            case 7:///病历号
+            {
+                textView.text = _feed.binglihao;
+            }
+                break;
+            case 8:///身份证号
+            {
+                textView.text = _feed.idno;
+            }
+                break;
+            case 9:///标记编号
+            {
+                textView.text = _feed.bianma;
+            }
+                break;
+                
+            default:
+                break;
+        }
         
         return cell;
     }
@@ -741,10 +938,10 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row < data_array.count)
+    if (indexPath.row < _feed.attach_array.count)
     {
         return 80;
-    }else if (indexPath.row == 6+data_array.count)
+    }else if (indexPath.row == 6+_feed.attach_array.count)
     {
         return 90;
     }else
@@ -752,12 +949,6 @@
         return 50;
     }
 
-//    if (indexPath.row == 6+data_array.count) {
-//        return 90;
-//    }else
-//    {
-//        return 50;
-//    }
 }
 
 #pragma mark - CreateMedicalFileCellDelegate
@@ -765,10 +956,11 @@
 {
     NSIndexPath * indexPath = [_mainTableView indexPathForCell:cell];
     
-    if (indexPath.row < data_array.count)
+    if (indexPath.row < _feed.attach_array.count)
     {
-        [data_array removeObjectAtIndex:indexPath.row];
+        [_feed.attach_array removeObjectAtIndex:indexPath.row];
         [_mainTableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationLeft];
+        [_mainTableView reloadData];
     }
     
 }
@@ -795,11 +987,23 @@
         return NO;
     }
     
-    if (textView.text.length > 0) {
-        placeHolder_treatment_case.text = @"";
-    }else
-    {
-        placeHolder_treatment_case.text = @"治疗方案";
+    if (textView.tag == 106) {
+        if (textView.text.length > 0)
+        {
+            placeHolder_treatment_case.text = @"";
+        }else
+        {
+            placeHolder_treatment_case.text = @"治疗方案";
+        }
+    }
+    
+    if (textView.tag == 1000) {
+        if (textView.text.length > 0) {
+            placeHolder_shuoming.text = @"";
+        }else
+        {
+            placeHolder_shuoming.text = @"病历说明";
+        }
     }
     
     return YES;
@@ -815,7 +1019,7 @@
         return;
     }
     
-    switch (textView.tag-100-data_array.count) {
+    switch (textView.tag-100) {
         case 0:///姓名
         {
             _feed.psnname = textView.text;

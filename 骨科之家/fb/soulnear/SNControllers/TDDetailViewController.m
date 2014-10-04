@@ -133,11 +133,15 @@
 
     __block typeof(upLoad_request) request = upLoad_request;
     
+    __weak typeof(self) bself = self;
+    
     [request setCompletionBlock:^{
         
         NSDictionary * allDic = [upLoad_request.responseString JSONValue];
         
         NSLog(@"aldii ---  %@",allDic);
+        
+        [bself getCommentData];
         
     }];
     

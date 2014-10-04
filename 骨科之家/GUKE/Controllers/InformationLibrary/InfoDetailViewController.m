@@ -11,7 +11,7 @@
 #import "interface.h"
 #import "InformationDetailModel.h"
 #import "InfoFileTableViewCell.h"
-@interface InfoDetailViewController ()<UITableViewDataSource, UITableViewDelegate,MBProgressHUDDelegate>
+@interface InfoDetailViewController ()<UITableViewDataSource, UITableViewDelegate,MBProgressHUDDelegate,InfoFileTableViewCellDelegate>
 {
     MBProgressHUD *HUD;
     
@@ -263,9 +263,24 @@
 {
     static NSString *cellName = @"infoFileCell";
     InfoFileTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellName];
-    if (cell == nil) {
-        cell = [[InfoFileTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName];
+    if (!cell) {
+        __weak typeof(self)wself=self;
+
+        cell = [[InfoFileTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName thebloc:^(NSString *playfilepath) {
+            [wself playVideWithString:playfilepath];
+
+        }];
+        
+        cell.delegate=self;
+        
+        
+        
+        
+        
     }
+
+
+   
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.fileDic = [_detailModel.attachlist objectAtIndex:indexPath.row];
     return cell;
@@ -276,7 +291,24 @@
 
 }
 
+#pragma mark---播放视频
 
+-(void)playVideWithString:(NSString *)thestrUrl{
+    
+    
+    
+    
+    
+    
+    NSURL *videoUrl=[NSURL URLWithString:thestrUrl];
+    MPMoviePlayerViewController *movieVc=[[MPMoviePlayerViewController alloc]initWithContentURL:videoUrl];
+    //弹出播放器
+    [self presentMoviePlayerViewControllerAnimated:movieVc];
+}
+
+
+
+#pragma mark--播放视频方法结束
 -(void)creatHUD:(NSString *)hud{
     if (!HUD) {
         HUD = [[MBProgressHUD alloc] initWithView:self.view] ;

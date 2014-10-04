@@ -11,4 +11,7 @@
 @interface InfoDetailViewController : UIViewController
 // 自定义初始化方法(传入model值)
 - (instancetype)initWithModel:(InformationModel *)model;
+@property(nonatomic,strong)MPMoviePlayerController *moviePlayer;
+
+
 @end

@@ -209,11 +209,11 @@
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
         [manager POST:requestURL parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            
+            NSLog(@" ----------   %@",[operation.responseString JSONValue]);
             getdata(responseObject);
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            
+            NSLog(@"error ------  %@",error);
         }];
     }
     else{
@@ -233,8 +233,15 @@
 
                 
                         [formData appendPartWithFileData:ImageData name:[NSString stringWithFormat:@"attach%d",i] fileName:voiceName mimeType:@"audio/amr"];
-                    }
-                    else{
+                    }else if ([object isKindOfClass:[VideoUploadModel class]])
+                    {
+                        NSData * videoData = ((VideoUploadModel *)object).fileData;
+                        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+                        NSString *imgName = [NSString stringWithFormat:@"%@",((VideoUploadModel *)object).fileName];
+                        imgName = [imgName stringByAppendingString:@".mp4"];
+                        [formData appendPartWithFileData:videoData name:[NSString stringWithFormat:@"attach%d",i] fileName:imgName mimeType:@"video/mp4"];
+                        
+                    }else{
                         NSData *ImageData = ((imgUploadModel *)object).imageData;
                         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
                         

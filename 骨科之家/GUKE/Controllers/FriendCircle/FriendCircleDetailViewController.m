@@ -213,7 +213,7 @@ static NSString *commentId = 0;
     bgNavi.backgroundColor = [UIColor clearColor];
     bgNavi.userInteractionEnabled = YES;
     
-    UIImageView *logoView = [[UIImageView alloc]initWithImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"return_unis_logo@2x" ofType:@"png"]]];
+    UIImageView *logoView = [[UIImageView alloc]initWithImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"guke_top_logo_arrow@2x" ofType:@"png"]]];
     
     logoView.backgroundColor = [UIColor clearColor];
     logoView.frame = CGRectMake(0, 0, 44, 44);
@@ -273,9 +273,14 @@ static NSString *commentId = 0;
             userArticleModel.context = [NSString _859ToUTF8:[articleList valueForKeyPath:@"context"]];
             userArticleModel.createDate = [NSString _859ToUTF8:[articleList valueForKeyPath:@"createDate"]];
             userArticleModel.deleteFlag = [NSString _859ToUTF8:[articleList valueForKeyPath:@"deleteFlag"]];
-            userArticleModel.isShare = [NSString _859ToUTF8:[articleList valueForKeyPath:@"isShare"]];
+            userArticleModel.isShare = [NSString _859ToUTF8:[articleList valueForKeyPath:@"isShare"]];// 0 非分享 1是分享
             userArticleModel.photo = [NSString _859ToUTF8:[articleList valueForKeyPath:@"photo"]];
             userArticleModel.shareUrl = [NSString _859ToUTF8:[articleList valueForKeyPath:@"shareUrl"]];
+            userArticleModel.isGood = [NSString _859ToUTF8:[articleList valueForKeyPath:@"isGood"]];// 当前用户是够已点赞
+            userArticleModel.fromWeixin = [NSString _859ToUTF8:[articleList valueForKeyPath:@"fromWeixin"]];// 分享来源；0：分享链接；1：分享微信；2：分享病历库；3：分享资料库"
+            userArticleModel.shareComment = [NSString _859ToUTF8:[articleList valueForKeyPath:@"shareComment"]];
+            // 分享链接时的评论
+            userArticleModel.sourceId = [NSString _859ToUTF8:[articleList valueForKeyPath:@"sourceId"]];
             userArticleModel.userId = [NSString _859ToUTF8:[articleList valueForKeyPath:@"userId"]];
             userArticleModel.username = [NSString _859ToUTF8:[articleList valueForKeyPath:@"username"]];
             userArticleModel.imageHeight = [NSString _859ToUTF8:[articleList valueForKey:@"height"]];
@@ -439,6 +444,7 @@ static NSString *commentId = 0;
             cell.reportDate.frame = CGRectMake(10, 2, 40, 20);
             
             cell.postArray = ((dateAndContent *)[dicKeyArray objectAtIndex:indexPath.row-1]).array;
+            // 高大上的
             cell.fDContentView.delegate = self;
         }
         

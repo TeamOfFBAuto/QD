@@ -21,6 +21,7 @@
 #import "UIImage+fixOrientation.h"
 #import "UUID.h"
 #import "SNViewController.h"
+#import "VideoUploadModel.h"
 
 //#define IMAGE_BASE_URL @"http://thunisoa.931.com/upload/"// 图片的链接固定部分
 //
@@ -114,6 +115,10 @@ alpha:(a)]
 #define BINGLI_LIST @"binglilist.php"
 #pragma mark - 病例正文
 #define BINGLI_DETAIL_URL @"bingli.php"
+#pragma mark - 发表或修改病历
+#define WRITE_BINGLI_URL @"binglinew.php"
+#pragma mark - 删除病历
+#define BINGLI_DELETE_URL @"binglidel.php"
 #pragma mark - 病例分类列表
 #define BINGLI_TYPE_LIST_URL @"binglifenleilist.php"
 #pragma mark - 获取病历标签列表
@@ -122,6 +127,13 @@ alpha:(a)]
 #define BINGLI_TAG_DELETE_URL @"binglitagdel.php"
 #pragma mark - 新增病例库标签
 #define BINGLI_TAG_ADD_URL @"binglitagnew.php"
+#pragma mark - 病历分享到讨论组
+///病历分享到讨论组
+#define BINGLI_SHARE_GROUPS_URL @"binglisharegroup.php"
+
+
+
+
 #pragma mark - 删除朋友圈文章
 #define DELETE_BLOG_URL @"userarticledel.php"
 
@@ -153,6 +165,11 @@ alpha:(a)]
 /*是否为分享*/
 #define IS_SHARE_CODE @"1"
 #define ISNOT_SHARE_CODE @"0"
+// 分享来源
+#define SOURCE_FROME_URL @"0"
+#define SOURCE_FROME_WECHAT @"1"
+#define SOURCE_FROME_CASE @"2"
+#define SOURCE_FROME_MATERIAL @"3"
 // 视图的TAG宏定义
 #define SEARCH_BTN_TAG 201
 #define ADD_BTN_TAG 202

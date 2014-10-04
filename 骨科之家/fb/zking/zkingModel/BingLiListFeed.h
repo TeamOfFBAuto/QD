@@ -39,43 +39,43 @@
 
 
 @interface BingLiListFeed : NSObject
-
+///病历id
 @property(nonatomic,strong)NSString * bingliId;
-
+///用户id
 @property(nonatomic,strong)NSString * userId;
-
+///姓名
 @property(nonatomic,strong)NSString * psnname;
-
+///性别
 @property(nonatomic,strong)NSString * sex;
-
+///诊断
 @property(nonatomic,strong)NSString * zhenduan;
-
+///病人手机
 @property(nonatomic,strong)NSString * mobile;
-
+///家属手机号
 @property(nonatomic,strong)NSString * relateMobile;
-
+///治疗方案
 @property(nonatomic,strong)NSString * fangan;
-
+///病历号
 @property(nonatomic,strong)NSString * binglihao;
-
+///类别id
 @property(nonatomic,strong)NSString * leibieId;
-
+///身份证号
 @property(nonatomic,strong)NSString * idno;
-
+///就诊时间
 @property(nonatomic,strong)NSString * jiuzhen;
-
+///标记编码
 @property(nonatomic,strong)NSString * bianma;
-
+///备注说明
 @property(nonatomic,strong)NSString * memo;
-
+///分类id
 @property(nonatomic,strong)NSString * fenleiId;
-
+///创建时间
 @property(nonatomic,strong)NSString * createDate;
-
+///类别名称
 @property(nonatomic,strong)NSString * leibiename;
-
+///f分类名称
 @property(nonatomic,strong)NSString * fenleiname;
-
+///上传用户名
 @property(nonatomic,strong)NSString * firstname;
 
 ///文件数据
