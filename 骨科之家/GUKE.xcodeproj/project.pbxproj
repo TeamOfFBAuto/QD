@@ -53,7 +53,7 @@
 		19960CAA196A80D6000121AA /* ContactsListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19960B70196A80D6000121AA /* ContactsListCell.m */; };
 		19960CAB196A80D6000121AA /* ContactsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19960B72196A80D6000121AA /* ContactsListViewController.m */; };
 		19960CAC196A80D6000121AA /* GrouplistsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19960B74196A80D6000121AA /* GrouplistsTableViewCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		19960CAD196A80D6000121AA /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19960B76196A80D6000121AA /* GroupsViewController.m */; };
+		19960CAD196A80D6000121AA /* SNGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19960B76196A80D6000121AA /* SNGroupsViewController.m */; };
 		19960CAE196A80D6000121AA /* HttpRequsetFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 19960B78196A80D6000121AA /* HttpRequsetFactory.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		19960CAF196A80D6000121AA /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 19960B7A196A80D6000121AA /* ImageCache.m */; };
 		19960CB0196A80D6000121AA /* LatestListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 19960B7C196A80D6000121AA /* LatestListModel.m */; };
@@ -851,6 +851,9 @@
 		561A868E19DDCD6B00CC8674 /* CreateMedicalFilesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 561A868C19DDCD6B00CC8674 /* CreateMedicalFilesCell.m */; };
 		561A868F19DDCD6B00CC8674 /* CreateMedicalFilesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 561A868D19DDCD6B00CC8674 /* CreateMedicalFilesCell.xib */; };
 		561A869219DDDDB900CC8674 /* ChooseCaseTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 561A869119DDDDB900CC8674 /* ChooseCaseTypeViewController.m */; };
+		5621320019DFF45C00B3F8C1 /* ShareCircleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 562131FE19DFF45C00B3F8C1 /* ShareCircleViewController.m */; };
+		5621320119DFF45C00B3F8C1 /* ShareCircleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 562131FF19DFF45C00B3F8C1 /* ShareCircleViewController.xib */; };
+		5621320419E000EC00B3F8C1 /* SNGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5621320319E000EC00B3F8C1 /* SNGroupsViewController.m */; };
 		5630B97A19DB2AEA00DCFE1B /* UserArticleListAttachListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5630B97919DB2AEA00DCFE1B /* UserArticleListAttachListModel.m */; };
 		5630B97D19DBAD4E00DCFE1B /* FBCirclePicturesViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 5630B97C19DBAD4E00DCFE1B /* FBCirclePicturesViews.m */; };
 		5630B98119DBF35A00DCFE1B /* ShowImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5630B98019DBF35A00DCFE1B /* ShowImagesViewController.m */; };
@@ -1044,7 +1047,7 @@
 		19960B73196A80D6000121AA /* GrouplistsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrouplistsTableViewCell.h; sourceTree = "<group>"; };
 		19960B74196A80D6000121AA /* GrouplistsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrouplistsTableViewCell.m; sourceTree = "<group>"; };
 		19960B75196A80D6000121AA /* GroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsViewController.h; sourceTree = "<group>"; };
-		19960B76196A80D6000121AA /* GroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsViewController.m; sourceTree = "<group>"; };
+		19960B76196A80D6000121AA /* SNGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNGroupsViewController.m; sourceTree = "<group>"; };
 		19960B77196A80D6000121AA /* HttpRequsetFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpRequsetFactory.h; sourceTree = "<group>"; };
 		19960B78196A80D6000121AA /* HttpRequsetFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpRequsetFactory.m; sourceTree = "<group>"; };
 		19960B79196A80D6000121AA /* ImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCache.h; sourceTree = "<group>"; };
@@ -2032,6 +2035,11 @@
 		561A868D19DDCD6B00CC8674 /* CreateMedicalFilesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateMedicalFilesCell.xib; sourceTree = "<group>"; };
 		561A869019DDDDB900CC8674 /* ChooseCaseTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseCaseTypeViewController.h; sourceTree = "<group>"; };
 		561A869119DDDDB900CC8674 /* ChooseCaseTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseCaseTypeViewController.m; sourceTree = "<group>"; };
+		562131FD19DFF45C00B3F8C1 /* ShareCircleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareCircleViewController.h; sourceTree = "<group>"; };
+		562131FE19DFF45C00B3F8C1 /* ShareCircleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareCircleViewController.m; sourceTree = "<group>"; };
+		562131FF19DFF45C00B3F8C1 /* ShareCircleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareCircleViewController.xib; sourceTree = "<group>"; };
+		5621320219E000EC00B3F8C1 /* SNGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNGroupsViewController.h; sourceTree = "<group>"; };
+		5621320319E000EC00B3F8C1 /* SNGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNGroupsViewController.m; sourceTree = "<group>"; };
 		5630B97819DB2AEA00DCFE1B /* UserArticleListAttachListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserArticleListAttachListModel.h; sourceTree = "<group>"; };
 		5630B97919DB2AEA00DCFE1B /* UserArticleListAttachListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserArticleListAttachListModel.m; sourceTree = "<group>"; };
 		5630B97B19DBAD4E00DCFE1B /* FBCirclePicturesViews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBCirclePicturesViews.h; sourceTree = "<group>"; };
@@ -2446,7 +2454,7 @@
 				19960B73196A80D6000121AA /* GrouplistsTableViewCell.h */,
 				19960B74196A80D6000121AA /* GrouplistsTableViewCell.m */,
 				19960B75196A80D6000121AA /* GroupsViewController.h */,
-				19960B76196A80D6000121AA /* GroupsViewController.m */,
+				19960B76196A80D6000121AA /* SNGroupsViewController.m */,
 				19960B77196A80D6000121AA /* HttpRequsetFactory.h */,
 				19960B78196A80D6000121AA /* HttpRequsetFactory.m */,
 				19960B79196A80D6000121AA /* ImageCache.h */,
@@ -4135,6 +4143,11 @@
 				565DAE4B19DA7A7F00C3924D /* TDListViewController.m */,
 				565DAE5519DA86C500C3924D /* TDDetailViewController.h */,
 				565DAE5619DA86C500C3924D /* TDDetailViewController.m */,
+				562131FD19DFF45C00B3F8C1 /* ShareCircleViewController.h */,
+				562131FE19DFF45C00B3F8C1 /* ShareCircleViewController.m */,
+				562131FF19DFF45C00B3F8C1 /* ShareCircleViewController.xib */,
+				5621320219E000EC00B3F8C1 /* SNGroupsViewController.h */,
+				5621320319E000EC00B3F8C1 /* SNGroupsViewController.m */,
 			);
 			path = SNControllers;
 			sourceTree = "<group>";
@@ -4577,6 +4590,7 @@
 				3E7BAE4B19D18F35002E28A1 /* guke_set_usercheck@2x.png in Resources */,
 				3E7BAE2219D18F35002E28A1 /* guke_icon_word@2x.png in Resources */,
 				E39E4D8D19DA04F500AEA2F6 /* btn_grid_cell_selected@2x.png in Resources */,
+				5621320119DFF45C00B3F8C1 /* ShareCircleViewController.xib in Resources */,
 				199C00CB195AAD1D00F74F7C /* ic_more_item_top_pressed.9@2x.png in Resources */,
 				19960CE8196A80D6000121AA /* voice_L0@2x.png in Resources */,
 				3E7BADBF19D18F35002E28A1 /* guke_cal_current@2x.png in Resources */,
@@ -5158,6 +5172,7 @@
 				3EE1043719A497E50029EC5C /* SetUpTableViewCellOne.m in Sources */,
 				199CFD9C195AA50200F74F7C /* RadioButton.m in Sources */,
 				5675CAF419D9EBE000FB975F /* NewsDetailCell.m in Sources */,
+				5621320419E000EC00B3F8C1 /* SNGroupsViewController.m in Sources */,
 				840BB22319D7AB30000A4725 /* AFURLSessionManager.m in Sources */,
 				199C0173195AD88600F74F7C /* CachatTableViewCell.m in Sources */,
 				19960CAE196A80D6000121AA /* HttpRequsetFactory.m in Sources */,
@@ -5205,7 +5220,7 @@
 				561A868E19DDCD6B00CC8674 /* CreateMedicalFilesCell.m in Sources */,
 				1957C5E01978F71100043F19 /* CommentCollectionView.m in Sources */,
 				E3DF643819DAB1A400D05E6F /* GEGORefreshTableHeaderView.m in Sources */,
-				19960CAD196A80D6000121AA /* GroupsViewController.m in Sources */,
+				19960CAD196A80D6000121AA /* SNGroupsViewController.m in Sources */,
 				3EBCF9A219B56AFD00D76C37 /* FriendCircleDetailContentViewCell.m in Sources */,
 				199964A4195D82C5006C84CC /* ApkVersion.m in Sources */,
 				3951C91719D11CC10040B07E /* FMDatabaseQueue.m in Sources */,
@@ -5378,6 +5393,7 @@
 				1954B75919DEE5A00056A971 /* BiaoQianBottomView.m in Sources */,
 				19960D05196A80D6000121AA /* SBJsonStreamWriterAccumulator.m in Sources */,
 				19960D4D196A80D7000121AA /* ChatRecorderView.m in Sources */,
+				5621320019DFF45C00B3F8C1 /* ShareCircleViewController.m in Sources */,
 				E39E4D5119DA04DE00AEA2F6 /* ITTCalendarView.m in Sources */,
 				3E67F49919D3CE89001B0880 /* InformationDetailModel.m in Sources */,
 			);

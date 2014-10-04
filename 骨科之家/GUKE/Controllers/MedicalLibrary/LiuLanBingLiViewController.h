@@ -20,4 +20,6 @@
 
 @property(nonatomic,strong)BingLiListFeed * myFeed;
 
+@property(nonatomic,strong)NSString * theId;
+
 @end

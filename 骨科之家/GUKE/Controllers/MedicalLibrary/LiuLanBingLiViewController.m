@@ -13,6 +13,8 @@
 #import "TSActionSheet.h"
 #import "PostMoodViewController.h"
 #import "CreatMedicalViewController.h"
+#import "ShareCircleViewController.h"
+#import "SNGroupsViewController.h"
 
 @interface LiuLanBingLiViewController ()
 
@@ -26,6 +28,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.aTitle = @"浏览病历";
+    
+    if (_feed.bingliId.length && ![_feed.bingliId isKindOfClass:[NSNull class]])
+    {
+        self.theId = _feed.bingliId;
+    }
     
     UIBarButtonItem * spaceButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     spaceButton.width = IOS7_OR_LATER ? -5:5;
@@ -66,9 +73,19 @@
     NSString *edit = @"编辑病历";
     NSString * delete = @"删除病历";
     [actionSheet addButtonWithTitle:share1 icon:@"guke_ic_share_article" block:^{
-        
+        ShareCircleViewController * share = [[ShareCircleViewController alloc] initWithNibName:@"ShareCircleViewController" bundle:nil];
+        share.share_content = _feed.zhenduan;
+        share.theId = _feed.bingliId;
+        share.type = @"2";
+        [bself.navigationController pushViewController:share animated:YES];
     }];
     [actionSheet addButtonWithTitle:share2 icon:@"guke_ic_share_group" block:^{
+        
+        SNGroupsViewController * list = [[SNGroupsViewController alloc] init];
+        list.theId = _feed.bingliId;
+        list.type = @"0";
+        [bself.navigationController pushViewController:list animated:YES];
+        
     }];
     [actionSheet addButtonWithTitle:edit icon:@"guke_ic_edit" block:^{
         
@@ -78,7 +95,7 @@
         
     }];
     [actionSheet addButtonWithTitle:delete icon:@"guke_ic_delete" block:^{
-        
+        [bself deleteBingli];
     }];
     actionSheet.cornerRadius = 0;
     
@@ -101,8 +118,7 @@
         
         if ([code intValue]==0)//说明请求数据成功
         {
-            [wself.myFeed setBingLiListFeedDic:[dict objectForKey:@"bingli"]];
-            [wself.myTableView reloadData];
+            [wself.navigationController popViewControllerAnimated:YES];
         }
     }];
     
@@ -111,7 +127,7 @@
 #pragma mark - 获取病历详细信息
 -(void)loadBingliDetailData
 {
-    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"bingliId":_feed.bingliId};
+    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"bingliId":_theId};
     
     __weak typeof(self)wself=self;
     
@@ -128,15 +144,6 @@
         }
     }];
 }
-
-#pragma mark - 删除病历
--(void)deleteBingLi
-{
-    
-    
-    
-}
-
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

@@ -238,7 +238,8 @@
                         NSData * videoData = ((VideoUploadModel *)object).fileData;
                         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
                         NSString *imgName = [NSString stringWithFormat:@"%@",((VideoUploadModel *)object).fileName];
-                        [formData appendPartWithFileData:videoData name:[NSString stringWithFormat:@"attach%d",i] fileName:imgName mimeType:@"mp4"];
+                        imgName = [imgName stringByAppendingString:@".mp4"];
+                        [formData appendPartWithFileData:videoData name:[NSString stringWithFormat:@"attach%d",i] fileName:imgName mimeType:@"video/mp4"];
                         
                     }else{
                         NSData *ImageData = ((imgUploadModel *)object).imageData;

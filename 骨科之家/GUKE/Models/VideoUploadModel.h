@@ -15,3 +15,12 @@
 @property(nonatomic,strong)NSString * filePath;
 
 @end
+
+
+
+
+
+
+
+
+

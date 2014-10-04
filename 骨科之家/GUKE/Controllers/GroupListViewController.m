@@ -58,6 +58,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = [UIColor whiteColor];
     [self navigation];
     [self creatTable];
@@ -276,6 +277,9 @@
     if (cell == nil) {
         cell = [[[NSBundle mainBundle]loadNibNamed:@"GroupListTableViewCell" owner:self options:nil]lastObject];
     }
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
     if (indexPath.row == [groupList count]) {
         cell.groupNameLabel.text = [NSString stringWithFormat:LOCALIZATION(@"chat_allgroupfooter"),[groupList count]];
         cell.groupNameLabel.textAlignment = NSTextAlignmentCenter;

@@ -127,6 +127,13 @@ alpha:(a)]
 #define BINGLI_TAG_DELETE_URL @"binglitagdel.php"
 #pragma mark - 新增病例库标签
 #define BINGLI_TAG_ADD_URL @"binglitagnew.php"
+#pragma mark - 病历分享到讨论组
+///病历分享到讨论组
+#define BINGLI_SHARE_GROUPS_URL @"binglisharegroup.php"
+
+
+
+
 #pragma mark - 删除朋友圈文章
 #define DELETE_BLOG_URL @"userarticledel.php"
 

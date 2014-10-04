@@ -724,17 +724,27 @@
         
         id object = [_feed.attach_array objectAtIndex:indexPath.row];
         
-        if ([object isKindOfClass:[NSMutableDictionary class]])///语音
+        if ([object isKindOfClass:[NSDictionary class]])///语音
         {
-            cell.imageVoiceIcon.frame = CGRectMake(8, 5, 20,33/27*20);
-            cell.imageVoiceIcon.image = [UIImage imageNamed:@"voice_L0.png"];
-            cell.Files_imageView.frame = CGRectMake(30,20, 60, 30);
-            [cell.Files_imageView setImage:[UIImage imageNamed:@"task_voice"]];
+            NSDictionary * aDic = (NSDictionary *)object;
             
-            
-        
-            cell.content_textView.text = [(NSMutableDictionary *)object objectForKey:@"content"];
-            cell.filesSize_label.text = [NSString stringWithFormat:@"%@ k",[(NSMutableDictionary *)object objectForKey:@"length"]];
+            if ([aDic objectForKey:@"fileurl"])
+            {
+                cell.Files_imageView.image = [UIImage imageNamed:@"guke_type_btn_zhantie_press"];
+                
+                cell.content_textView.text = ((VideoUploadModel *)object).fileName;
+                cell.filesSize_label.text = [NSString stringWithFormat:@"%d k",((VideoUploadModel *)object).fileData.length/1024];
+                
+            }else
+            {
+                cell.imageVoiceIcon.frame = CGRectMake(8, 5, 20,33/27*20);
+                cell.imageVoiceIcon.image = [UIImage imageNamed:@"voice_L0.png"];
+                cell.Files_imageView.frame = CGRectMake(30,20, 60, 30);
+                [cell.Files_imageView setImage:[UIImage imageNamed:@"task_voice"]];
+                
+                cell.content_textView.text = [(NSMutableDictionary *)object objectForKey:@"content"];
+                cell.filesSize_label.text = [NSString stringWithFormat:@"%@ k",[(NSMutableDictionary *)object objectForKey:@"length"]];
+            }
             
         }else if ([object isKindOfClass:[imgUploadModel class]])///图片
         {
