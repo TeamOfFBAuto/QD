@@ -34,7 +34,6 @@
         
         [self.dataArray addObject:_string];
     }
-
     
     self.aTitle = @"添加标签";
     _myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT-88) style:UITableViewStylePlain];
@@ -72,6 +71,8 @@
    [ cell setFbRegistCellType:FbRegistCellTypeNormal placeHolderText:[self.dataArray objectAtIndex:indexPath.row]  str_img:@"" fbregistbloc:^(int tag, NSInteger indexpathofrow, NSString *stringtext) {
        
          [_weakself changewordwithstr:stringtext indexpathrow:indexpathofrow];
+       
+       NSLog(@"stringtext ----  %@",stringtext);
        
    } row:indexPath.row];
     
@@ -162,11 +163,18 @@
 
 -(void)doCommitButton{
 
-    
     NSLog(@"点击提交按钮");
 
-    
     NSLog(@"给soulnear的数组%@",self.dataArray);
+    
+    NSMutableArray * tempArray = [NSMutableArray arrayWithArray:self.dataArray];
+    
+    for (NSString * string in tempArray)
+    {
+        if ([string hasPrefix:@"标签"]) {
+            [self.dataArray removeObject:string];
+        }
+    }
     
     NSString * tag_string = [self.dataArray componentsJoinedByString:@","];
   

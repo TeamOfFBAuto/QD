@@ -152,10 +152,13 @@
     {
         [parameters setObject:_feed.fenleiId forKey:@"fenleiId"];
     }
+    if (_feed.memo.length)
+    {
+        [parameters setObject:_feed.memo forKey:@"memo"];
+    }
     
     if (_delete_array.count)
     {
-        
         NSString * delete_id = [_delete_array componentsJoinedByString:@","];
         [parameters setObject:delete_id forKey:@"removeAttachIds"];
     }

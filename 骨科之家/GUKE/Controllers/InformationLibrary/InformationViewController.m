@@ -120,7 +120,7 @@
 - (void)loadNewInformationBtn
 {
     UIButton *NewInformationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    NewInformationBtn.frame = CGRectMake(20, SCREEN_HEIGHT-40, SCREEN_WIDTH-40, 30);
+    NewInformationBtn.frame = CGRectMake(20, SCREEN_HEIGHT-40-64, SCREEN_WIDTH-40, 30);
     NewInformationBtn.layer.cornerRadius = 5.0f;
     NewInformationBtn.backgroundColor = GETColor(39, 207, 104);
     [NewInformationBtn setTitle:@"新建资料" forState:UIControlStateNormal];

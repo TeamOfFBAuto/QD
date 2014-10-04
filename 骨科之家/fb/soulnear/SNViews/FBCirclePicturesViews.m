@@ -79,8 +79,21 @@
         imageView.clipsToBounds = YES;
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         imageView.backgroundColor = [UIColor grayColor];
-        UserArticleListAttachListModel * model = [array objectAtIndex:i];
-        [imageView sd_setImageWithURL:[SNTools returnUrl:model.fileurl] placeholderImage:nil];
+        
+        id object = [array objectAtIndex:i];
+        
+        NSString * image_url = @"";
+        
+        if ([object isKindOfClass:[UserArticleListAttachListModel class]])
+        {
+            image_url = ((UserArticleListAttachListModel*)object).fileurl;
+        }else
+        {
+            image_url = [array objectAtIndex:i];
+        }
+        
+//        UserArticleListAttachListModel * model = [array objectAtIndex:i];
+        [imageView sd_setImageWithURL:[SNTools returnUrl:image_url] placeholderImage:nil];
         
         [self addSubview:imageView];
         

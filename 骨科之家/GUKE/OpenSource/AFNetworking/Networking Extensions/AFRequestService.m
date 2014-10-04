@@ -207,10 +207,10 @@
     
     if (!dataArray.count)
     {
-        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
         [manager POST:requestURL parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@" ----------   %@",[operation.responseString JSONValue]);
+//            NSLog(@" ----------   %@",[operation.responseString JSONValue]);
             getdata(responseObject);
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -283,7 +283,7 @@
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
         [manager POST:requestURL parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@" ----------   %@",[operation.responseString JSONValue]);
+//            NSLog(@" ----------   %@",[operation.responseString JSONValue]);
             [myProgressHUD hide:YES];
             getdata(responseObject);
             
@@ -331,13 +331,16 @@
                 
                 if ([object isKindOfClass:[NSDictionary class]])
                 {
+                    if (![((NSDictionary *)object).allKeys containsObject:@"fileurl"])
+                    {
+                        NSDictionary *dic = (NSDictionary *)object;
+                        NSData *ImageData = [[NSData alloc] initWithContentsOfFile:[dic objectForKey:@"fileName"]];
+                        NSString *tempVoice = [NSString stringWithFormat:@"%@",[dic objectForKey:@"fid"]];
+                        NSString *voiceName = [tempVoice stringByAppendingString:@".amr"];
+                        
+                        [formData appendPartWithFileData:ImageData name:[NSString stringWithFormat:@"attach%d",i] fileName:voiceName mimeType:@"audio/amr"];
+                    }
                     
-                    NSDictionary *dic = (NSDictionary *)object;
-                    NSData *ImageData = [[NSData alloc] initWithContentsOfFile:[dic objectForKey:@"fileName"]];
-                    NSString *tempVoice = [NSString stringWithFormat:@"%@",[dic objectForKey:@"fid"]];
-                    NSString *voiceName = [tempVoice stringByAppendingString:@".amr"];
-                    
-                    [formData appendPartWithFileData:ImageData name:[NSString stringWithFormat:@"attach%d",i] fileName:voiceName mimeType:@"audio/amr"];
                 }else if ([object isKindOfClass:[VideoUploadModel class]])
                 {
                     NSData * videoData = ((VideoUploadModel *)object).fileData;

@@ -46,7 +46,7 @@ static UserCenter *instance;
     NSString *response = [[NSString alloc] initWithData:request.responseData encoding:NSUTF8StringEncoding];
     SSRCAutorelease(response);
     
-    NSDictionary *dic = [response JSONValue];
+    NSDictionary *dic = [request.responseString objectFromJSONString ];
     //    [self getContactLists:(nsmutabled)];
     NSLog(@"请求返回:%@",dic);
     if (request.responseStatusCode == 200 && [[NSString stringWithFormat:@"%@",[dic objectForKey:CKEY]]isEqualToString:SUC_CKEY]){

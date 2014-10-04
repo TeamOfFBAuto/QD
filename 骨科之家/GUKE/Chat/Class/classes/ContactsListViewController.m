@@ -259,7 +259,7 @@
 - (void)finish:(ASIHTTPRequest *)request{
     NSString *response = [[NSString alloc] initWithData:request.responseData encoding:NSUTF8StringEncoding];
     SSRCAutorelease(response);
-    NSDictionary *dic = [response JSONValue];
+    NSDictionary *dic = [request.responseString objectFromJSONString ];
     if (request.responseStatusCode == 200 && [[NSString stringWithFormat:@"%@",[dic objectForKey:CKEY]]isEqualToString:SUC_CKEY]){
         NSArray *contactslistarr = [ContactsItem contactsItemMake:[dic objectForKey:@"userlist"]];
          self.dataSoureArr = [self partitionObjects:contactslistarr collationStringSelector:@selector(getItemIndexKeyForKeyName)];
