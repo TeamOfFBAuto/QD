@@ -8,7 +8,7 @@
 
 #import "LiuLanBingLiViewController.h"
 #import "LiuLanSectionView.h"
-#import "InfoFileTableViewCell.h"
+//#import "InfoFileTableViewCell.h"
 #import "TagManagerViewController.h"
 #import "TSActionSheet.h"
 #import "PostMoodViewController.h"
@@ -263,10 +263,30 @@
     }else
     {
         static NSString *cellName = @"infoFileCell";
+        __weak typeof(self)wself=self;
+
         InfoFileTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellName];
         if (cell == nil) {
-            cell = [[InfoFileTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName];
+            
+            
+            cell = [[InfoFileTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellName thebloc:^(NSString *playfilepath) {
+                [wself playVideWithString:playfilepath];
+                
+            }];
+            
+            cell.delegate=self;
+
+            
+            
         }
+        
+        
+        
+        
+        
+        
+
+        
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.fileDic = [_myFeed.attach_array objectAtIndex:indexPath.row-5];
         return cell;
@@ -275,6 +295,22 @@
     return nil;
 }
 
+
+#pragma mark---播放视频
+
+-(void)playVideWithString:(NSString *)thestrUrl{
+
+         NSURL *videoUrl=[NSURL URLWithString:thestrUrl];
+        MPMoviePlayerViewController *movieVc=[[MPMoviePlayerViewController alloc]initWithContentURL:videoUrl];
+        //弹出播放器
+      [self presentMoviePlayerViewControllerAnimated:movieVc];
+    
+
+}
+
+
+
+#pragma mark--播放视频方法结束
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 1)
