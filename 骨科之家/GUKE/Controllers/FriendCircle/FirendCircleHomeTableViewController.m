@@ -542,11 +542,10 @@ static NSString *commentId = 0;
         }
         
         cell.delegate = self;
+        cell.ContentView.delegate = self;
         cell.single_imageView.image = nil;
         cell.PictureViews.frame = CGRectZero;
         cell.single_imageView.frame = CGRectZero;
-//        cell.PictureViews.backgroundColor = [UIColor redColor];
-//        cell.single_imageView.backgroundColor = [UIColor orangeColor];
         // 保存cell
         [cellDic setObject:cell forKey:[NSString stringWithFormat:@"%d",indexPath.row-1]];
         
@@ -631,14 +630,14 @@ static NSString *commentId = 0;
                 imgHeight = 75*(i+j)+2.5*(j + i - 1);
             }
             
-            height = USER_ICON_WHDTH +[SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250]+REPORT_TIME_HEIGHT+40 + shareHeight + commentHeight + imgHeight;
+            height = USER_ICON_WHDTH +[SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250] +[SingleInstance customFontHeightFont:articleModel.shareComment andFontSize:15 andLineWidth:250] +REPORT_TIME_HEIGHT+40 + shareHeight + commentHeight + imgHeight;
         }else{
             double imgHeight = SHARE_IMAGE_HEIGHT;
             
             if (articleModel.context == nil || articleModel.context.length == 0 || [articleModel.context isEqualToString:@" "]){
                  height = USER_ICON_WHDTH+imgHeight+REPORT_TIME_HEIGHT+40 + shareHeight + commentHeight-16 ;
             }else{
-                height = USER_ICON_WHDTH +[SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250]+imgHeight+REPORT_TIME_HEIGHT+40 + shareHeight + commentHeight ;
+                height = USER_ICON_WHDTH +[SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250] +[SingleInstance customFontHeightFont:articleModel.shareComment andFontSize:15 andLineWidth:250] +imgHeight+REPORT_TIME_HEIGHT+40 + shareHeight + commentHeight ;
             }
 
         }

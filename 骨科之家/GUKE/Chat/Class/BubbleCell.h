@@ -87,6 +87,8 @@ typedef void(^PhotoTapBlock)(NSString *);
 @property (nonatomic,strong)UIImageView *pictureImageView;
 @end
 #pragma mark----------------shareSource-------------
+
+
 @interface BubbleSubShareCell : BubbleCell{
     UIImageView *_pictureImageView;
 }

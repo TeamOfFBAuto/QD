@@ -14,7 +14,8 @@
 #import "HPGrowingTextView.h"
 #import "FriendCircleHomeTableViewCell.h"
 #import "ELCImagePickerController.h"
-@interface FirendCircleHomeTableViewController : UITableViewController<UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,HPGrowingTextViewDelegate,MBProgressHUDDelegate,MBButtonMenuViewControllerDelegate,RTLabelDelegate,UITextViewDelegate,FriendCircleHomeTableViewCellDelegate,ELCImagePickerControllerDelegate>
+#import "FriendContentView.h"
+@interface FirendCircleHomeTableViewController : UITableViewController<UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,HPGrowingTextViewDelegate,MBProgressHUDDelegate,MBButtonMenuViewControllerDelegate,RTLabelDelegate,UITextViewDelegate,FriendCircleHomeTableViewCellDelegate,ELCImagePickerControllerDelegate,FriendContentViewDelegate>
 @property (nonatomic, strong) MBButtonMenuViewController *menu1;// UIActionSheet1
 @property (nonatomic, strong) MBButtonMenuViewController *menu2;// UIActionSheet2
 @end
