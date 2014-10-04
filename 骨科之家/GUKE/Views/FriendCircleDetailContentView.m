@@ -11,6 +11,7 @@
 #import "Interface.h"
 #import "UIImageView+WebCache.h"
 #import "ShowImagesViewController.h"
+#import "LiuLanBingLiViewController.h"
 
 
 #define IMG_TAG 99999
@@ -189,19 +190,22 @@
                 //                    shareUrl = [NSString stringWithFormat:@"<a href='%@'>%@</a>",substringForMatch,temp];
                 shareUrl = [NSString stringWithFormat:@"%@",substringForMatch];
             }
-            
+             cell.contentShare.delegate = self;
         }
         else if([articleModel.fromWeixin isEqualToString:SOURCE_FROME_CASE]){
             cell.urlLabel.text = @"分享了一个病例";
             cell.contentShare.tag = [articleModel.sourceId integerValue];
             shareUrl = articleModel.context;
+            UITapGestureRecognizer *tapCase = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(skipToCase:)];
+            tapCase.view.tag = [articleModel.sourceId integerValue];
+            [cell.contentShare addGestureRecognizer:tapCase];
         }
         else if([articleModel.fromWeixin isEqualToString:SOURCE_FROME_CASE]){
             cell.urlLabel.text = @"分享了一个资料";
             cell.contentShare.tag = [articleModel.sourceId integerValue];
             shareUrl = articleModel.context;
         }
-        cell.contentShare.delegate = self;
+       
         [cell.contentShare setText:shareUrl];
         cell.contentShare.textAlignment = NSTextAlignmentLeft;
         [cell.contentShare setVerticalAlignment:VerticalAlignmentMiddle];
@@ -217,17 +221,22 @@
     return cell;
     
 }
-
+// 跳转到病例页面
+- (void)skipToCase:(UITapGestureRecognizer *)gesture{
+        LiuLanBingLiViewController *bingli = [[LiuLanBingLiViewController alloc]init];
+        bingli.theId = [NSString stringWithFormat:@"%d",gesture.view.tag];
+        UIViewController *VCtest=(UIViewController *)self.delegate;
+        [VCtest.navigationController pushViewController:bingli animated:YES];
+}
 - (void)myLabel:(MyLabel *)myLabel touchesWtihTag:(NSInteger)tag {
-    NSLog(@"%@===%d",myLabel.text,myLabel.tag);
-    if (myLabel.text.length>4) {
-        NSString *string = [myLabel.text substringWithRange:NSMakeRange(0, 4)];
-        if ([string isEqualToString:@"http"]) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",myLabel.text]]];
-        }else{
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",myLabel.text]]];
+        if (myLabel.text.length>4) {
+            NSString *string = [myLabel.text substringWithRange:NSMakeRange(0, 4)];
+            if ([string isEqualToString:@"http"]) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",myLabel.text]]];
+            }else{
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",myLabel.text]]];
+            }
         }
-    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath

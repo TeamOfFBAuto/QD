@@ -169,7 +169,7 @@ alpha:(a)]
 #define SOURCE_FROME_URL @"0"
 #define SOURCE_FROME_WECHAT @"1"
 #define SOURCE_FROME_CASE @"2"
-#define SOURCE_FROME_MATERIAL @"3"
+#define SOURCE_FROME_MATERIAL @"3" 
 // 视图的TAG宏定义
 #define SEARCH_BTN_TAG 201
 #define ADD_BTN_TAG 202
