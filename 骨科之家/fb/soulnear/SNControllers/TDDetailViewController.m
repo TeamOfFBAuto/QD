@@ -137,7 +137,7 @@
     
     [request setCompletionBlock:^{
         
-        NSDictionary * allDic = [upLoad_request.responseString JSONValue];
+        NSDictionary * allDic = [upLoad_request.responseString objectFromJSONString];
         
         NSLog(@"aldii ---  %@",allDic);
         

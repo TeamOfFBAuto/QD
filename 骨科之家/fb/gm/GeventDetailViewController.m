@@ -8,6 +8,21 @@
 
 #import "GeventDetailViewController.h"
 
+
+#import "PartnerConfig.h"
+#import "DataSigner.h"
+#import "AlixPayResult.h"
+#import "DataVerifier.h"
+#import "AlixPayOrder.h"
+
+
+
+
+#import "AlixLibService.h"
+
+
+//#import "AlixLibService.h"
+
 @interface GeventDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
@@ -120,11 +135,95 @@
         NSLog(@"取消报名");
     }else if (sender.tag == 12){//支付费用
         NSLog(@"支付费用");
+        
+        
+        [self PayForAli];
+        
+        
+        
+        
     }
 }
 
 
+#pragma mark---支付宝相关
 
+-(void)PayForAli{
+
+    NSString *appScheme = @"gukezhuanjia";
+    NSString* orderInfo = [self getOrderInfo:2];
+    NSString* signedStr = [self doRsa:orderInfo];
+    
+    NSLog(@"%@",signedStr);
+    
+    NSString *orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
+                             orderInfo, signedStr, @"RSA"];
+    
+    [AlixLibService payOrder:orderString AndScheme:appScheme seletor:nil target:self];
+
+
+}
+
+
+-(NSString*)getOrderInfo:(int)index
+{
+    /*
+     *点击获取prodcut实例并初始化订单信息
+     */
+//    Product *product = [_products objectAtIndex:index];
+    AlixPayOrder *order = [[AlixPayOrder alloc] init];
+    order.partner = PartnerID;
+    order.seller = SellerID;
+    
+    order.tradeNO = [self generateTradeNO]; //订单ID（由商家自行制定）
+    order.productName = @"productName"; //商品标题
+    order.productDescription = @"discription"; //商品描   述
+    order.amount = [NSString stringWithFormat:@"998"]; //商品价格
+   order.notifyURL =  @"http%3A%2F%2Fwwww.xxx.com"; //回调URL
+    
+    return [order description];
+}
+
+- (NSString *)generateTradeNO
+{
+    const int N = 15;
+    
+    NSString *sourceString = @"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    NSMutableString *result = [[NSMutableString alloc] init] ;
+    srand(time(0));
+    for (int i = 0; i < N; i++)
+    {
+        unsigned index = rand() % [sourceString length];
+        NSString *s = [sourceString substringWithRange:NSMakeRange(index, 1)];
+        [result appendString:s];
+    }
+    return result;
+}
+
+-(NSString*)doRsa:(NSString*)orderInfo
+{
+    id<DataSigner> signer;
+    signer = CreateRSADataSigner(PartnerPrivKey);
+    NSString *signedString = [signer signString:orderInfo];
+    
+    
+    
+    NSLog(@"private==%@",signedString);
+    return signedString;
+    
+    
+}
+
+
+-(void)aliresault{
+
+    NSLog(@"阿里回调");
+
+}
+
+
+
+#pragma mark--支付宝相关结束
 
 
 
