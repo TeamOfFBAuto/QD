@@ -98,13 +98,13 @@
     
     
     if (_selectedEanable) {
-        self.gridButton.selected = self.selected;              
+//        self.gridButton.selected = self.selected;
         [self.gridButton setTitleColor:[UIColor blackColor]forState:UIControlStateNormal];
         
         
     }
     else {
-        self.gridButton.selected = FALSE;
+//        self.gridButton.selected = FALSE;
         [self.gridButton setTitleColor:[UIColor blackColor]forState:UIControlStateNormal];
         
     }
@@ -131,9 +131,16 @@
         if ([dateStrDelete_ isEqualToString:btnStr]) {
             
             NSLog(@"???????????%@",btnStr);
-            
-            [self.gridButton setBackgroundColor:[UIColor redColor]];
             self.gridButton.userInteractionEnabled = NO;
+            
+            if ([[dic objectForKey:@"eventStatus"]intValue]) {//1为已报名
+                [self.gridButton setBackgroundColor:[UIColor greenColor]];
+            }else{
+                [self.gridButton setBackgroundColor:[UIColor redColor]];
+                break;
+            }
+            
+            
         }else{
             self.gridButton.userInteractionEnabled = YES;
         }

@@ -11,6 +11,7 @@
 #import "Interface.h"
 #import "UIImageView+WebCache.h"
 #import "ShowImagesViewController.h"
+#import "LiuLanBingLiViewController.h"
 
 
 #define IMG_TAG 99999
@@ -113,15 +114,17 @@
     // 判断分享的链接
     NSString *temp = [NSString stringWithFormat:@"%@",articleModel.shareUrl];
     NSLog(@"--------------%@",temp);
-    if ([temp isEqualToString:@"0"] ||temp == nil || [temp isEqualToString: @""]){
-        
+    // 不是分享的链接
+    //if ([temp isEqualToString:@"0"] ||temp == nil || [temp isEqualToString: @""]){
+        if ([articleModel.isShare isEqualToString:ISNOT_SHARE_CODE] ){
         // 发表的内容
         cell.contentShare.frame = CGRectZero;
         cell.content.text = articleModel.context;
+        cell.content.userInteractionEnabled = YES;
         cell.content.lineBreakMode = NSLineBreakByWordWrapping;
         cell.content.numberOfLines = 0;
         cell.urlLabel.hidden = YES;
-        cell.content.frame = CGRectMake(5, 2, 230,[SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250]+10);
+        cell.content.frame = CGRectMake(5, 2, 255,[SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250]+10);
         cell.backView.frame = CGRectMake(0, 3, 255, [SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250]+10);
         
 
@@ -135,28 +138,6 @@
             temp_array = [NSMutableArray arrayWithArray:articleModel.attachlistArray];
         }
         else{
-            /*
-            
-            if (([articleModel.imageWidth floatValue]/([articleModel.imageHeight floatValue]+0.01))>1) {
-                if (articleModel.context == nil || articleModel.context.length == 0 || [articleModel.context isEqualToString:@" "] ) {
-                    cell.shareImg.frame =  CGRectMake(5, 8,SHARE_IMAGE_WHDTH, [articleModel.imageHeight floatValue]*(SHARE_IMAGE_WHDTH/([articleModel.imageWidth floatValue]+0.01)));
-                    cell.backView.frame = CGRectMake(0, 3, 232, 5+[articleModel.imageHeight floatValue]*(SHARE_IMAGE_WHDTH/([articleModel.imageWidth floatValue]+0.01))+5);
-                }else{
-                    cell.shareImg.frame =  CGRectMake(5, cell.content.frame.size.height + cell.content.frame.origin.y,SHARE_IMAGE_WHDTH, [articleModel.imageHeight floatValue]*(SHARE_IMAGE_WHDTH/([articleModel.imageWidth floatValue]+0.01)));
-                    cell.backView.frame = CGRectMake(0, 3, 232, cell.content.frame.size.height + cell.content.frame.origin.y+[articleModel.imageHeight floatValue]*(SHARE_IMAGE_WHDTH/([articleModel.imageWidth floatValue]+0.01))+3);
-                }
-
-            }else{
-                if (articleModel.context == nil || articleModel.context.length == 0 || [articleModel.context isEqualToString:@" "] ){
-                    cell.shareImg.frame = CGRectMake(5, 8, [articleModel.imageWidth floatValue]*(SHARE_IMAGE_HEIGHT/([articleModel.imageHeight floatValue]+0.01)), SHARE_IMAGE_HEIGHT);
-                    cell.backView.frame = CGRectMake(0, 3, 232, 5+SHARE_IMAGE_HEIGHT+5);
-                }else{
-                    cell.shareImg.frame = CGRectMake(5, cell.content.frame.size.height + cell.content.frame.origin.y,[articleModel.imageWidth floatValue]*(SHARE_IMAGE_HEIGHT/([articleModel.imageHeight floatValue]+0.01)), SHARE_IMAGE_HEIGHT);
-                    cell.backView.frame = CGRectMake(0, 3, 232, cell.content.frame.size.height + cell.content.frame.origin.y+SHARE_IMAGE_HEIGHT+3);
-                }
-
-            }
-            */
             
             [temp_array addObject:articleModel.photo];
         }
@@ -187,19 +168,15 @@
         
         cell.backView.frame = CGRectMake(0, 3, 255,cell.content.frame.size.height + cell.content.frame.origin.y+imgHeight);
     }
+    // 是分享
     else{
         cell.contentShare.frame = CGRectMake(0, 23, 232, 28);
-        cell.backView.frame = CGRectMake(0, 3, 232, 48);
-        //cell.contentShare.numberOfLines = 0;
+        cell.backView.frame = CGRectMake(0, 3, 255, 48);
         NSString *shareUrl = @"";
         NSString *temp = [NSString stringWithFormat:@"%@",articleModel.shareUrl];
         cell.contentShare.text = temp;
-        NSLog(@"--------------%@",temp);
-        if ([temp isEqualToString:@"0"] ||temp == nil || [temp isEqualToString: @""]){
-            shareUrl = @"此连接错误";
-        }
-        else{
-            
+        if (articleModel.fromWeixin.length == 0  &&temp.length >0 ) {
+            cell.urlLabel.text = @"分享了一个链接";
             NSError *error;
             NSString *regulaStr = @"((http[s]{0,1}|ftp)://[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)|(www.[a-zA-Z0-9\\.\\-]+\\.([a-zA-Z]{2,4})(:\\d+)?(/[a-zA-Z0-9\\.\\-~!@#$%^&*+?:_/=<>]*)?)";
             NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regulaStr
@@ -213,9 +190,22 @@
                 //                    shareUrl = [NSString stringWithFormat:@"<a href='%@'>%@</a>",substringForMatch,temp];
                 shareUrl = [NSString stringWithFormat:@"%@",substringForMatch];
             }
-            
+             cell.contentShare.delegate = self;
         }
-        cell.contentShare.delegate = self;
+        else if([articleModel.fromWeixin isEqualToString:SOURCE_FROME_CASE]){
+            cell.urlLabel.text = @"分享了一个病例";
+            cell.contentShare.tag = [articleModel.sourceId integerValue];
+            shareUrl = articleModel.context;
+            UITapGestureRecognizer *tapCase = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(skipToCase:)];
+            tapCase.view.tag = [articleModel.sourceId integerValue];
+            [cell.contentShare addGestureRecognizer:tapCase];
+        }
+        else if([articleModel.fromWeixin isEqualToString:SOURCE_FROME_CASE]){
+            cell.urlLabel.text = @"分享了一个资料";
+            cell.contentShare.tag = [articleModel.sourceId integerValue];
+            shareUrl = articleModel.context;
+        }
+       
         [cell.contentShare setText:shareUrl];
         cell.contentShare.textAlignment = NSTextAlignmentLeft;
         [cell.contentShare setVerticalAlignment:VerticalAlignmentMiddle];
@@ -231,16 +221,22 @@
     return cell;
     
 }
-
+// 跳转到病例页面
+- (void)skipToCase:(UITapGestureRecognizer *)gesture{
+        LiuLanBingLiViewController *bingli = [[LiuLanBingLiViewController alloc]init];
+        bingli.theId = [NSString stringWithFormat:@"%d",gesture.view.tag];
+        UIViewController *VCtest=(UIViewController *)self.delegate;
+        [VCtest.navigationController pushViewController:bingli animated:YES];
+}
 - (void)myLabel:(MyLabel *)myLabel touchesWtihTag:(NSInteger)tag {
-    if (myLabel.text.length>4) {
-        NSString *string = [myLabel.text substringWithRange:NSMakeRange(0, 4)];
-        if ([string isEqualToString:@"http"]) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",myLabel.text]]];
-        }else{
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",myLabel.text]]];
+        if (myLabel.text.length>4) {
+            NSString *string = [myLabel.text substringWithRange:NSMakeRange(0, 4)];
+            if ([string isEqualToString:@"http"]) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",myLabel.text]]];
+            }else{
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://%@",myLabel.text]]];
+            }
         }
-    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -268,8 +264,8 @@
     }
     
     
-    NSString *temp = [NSString stringWithFormat:@"%@",articleModel.shareUrl];
-    if ([temp isEqualToString:@"0"] ||temp == nil || [temp isEqualToString: @""]){
+    //NSString *temp = [NSString stringWithFormat:@"%@",articleModel.shareUrl];
+    if ([articleModel.isShare isEqualToString:ISNOT_SHARE_CODE] ){
         height = height + [SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250]+15;
     }else{
         height = height + [SingleInstance customFontHeightFont:articleModel.shareUrl andFontSize:15 andLineWidth:250]+20+15;
@@ -295,8 +291,7 @@
         [tempArray removeAllObjects];
         if ([model.photo isEqualToString:@""]||model.photo == nil) {
             NSString *temp = [NSString stringWithFormat:@"%@",model.shareUrl];
-//            NSLog(@"--------------%@",temp);
-            if ([temp isEqualToString:@"0"] ||temp == nil || [temp isEqualToString: @""]){
+            if ([model.isShare isEqualToString:ISNOT_SHARE_CODE]){
                 height = height + [SingleInstance customFontHeightFont:model.context andFontSize:15 andLineWidth:250]+15;
             }else{
                 height = height + [SingleInstance customFontHeightFont:model.shareUrl andFontSize:15 andLineWidth:250]+20+15;
@@ -304,12 +299,6 @@
             tempArray = [NSMutableArray arrayWithArray:model.attachlistArray];
         }
         else{
-//            double imgHeight = SHARE_IMAGE_HEIGHT;
-//            if (([model.imageWidth floatValue]/([model.imageHeight floatValue]+0.01))>1) {
-//                imgHeight = [model.imageHeight floatValue]*(SHARE_IMAGE_WHDTH/([model.imageWidth floatValue]+0.01));
-//            }else{
-//                imgHeight = SHARE_IMAGE_HEIGHT;
-//            }
             
             [tempArray addObject:model.photo];
     

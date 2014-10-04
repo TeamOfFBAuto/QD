@@ -54,7 +54,11 @@
 #define REFRESH_COUNT 5
 @interface FriendContentView : UIView<UIActionSheetDelegate,MyLabelDelegate>
 @property(nonatomic, assign)UIImage *shareImage;
-@property (nonatomic, strong)MyLabel *contact;
+@property (nonatomic, strong)UILabel *contact;
+@property (nonatomic, strong)UILabel *shareComment;
+@property (nonatomic, strong)UIView *tempView;
+@property (nonatomic, strong)UIView *maskView;
+@property (nonatomic, strong)MyLabel *shareContext;
 @property(nonatomic, strong)UIImageView *shareImg;
 @property(nonatomic, strong)UserArticleList *articleModel;
 @property(nonatomic, assign)BOOL isShareLabel;

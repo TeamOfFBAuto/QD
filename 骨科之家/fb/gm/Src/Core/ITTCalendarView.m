@@ -12,6 +12,8 @@
 #import "ITTCalDay.h"
 #import "ITTCalendarViewHeaderView.h"
 
+#import "GeventSingleModel.h"
+
 #define MARGIN_LEFT                              10
 #define MARGIN_TOP                               9
 #define PADDING_VERTICAL                         5
@@ -83,7 +85,7 @@
 #pragma mark - private methods
 - (void)initParameters
 {
-    _gridSize = CGSizeMake(40, 50);
+    _gridSize = CGSizeMake(40, 45);
     _date = [[NSDate date] retain];    
     _calMonth = [[ITTCalMonth alloc] initWithDate:_date];            
     _selectedDay = [[_calMonth firstDay] retain];
@@ -465,7 +467,9 @@
     }
     if (!hasSelectedDay) {
     }
-    self.gridScrollView.contentSize = CGSizeMake(maxWidth, maxHeight + 5);        
+    
+    self.gridScrollView.contentSize = CGSizeMake(maxWidth, maxHeight + 5 + 100);//frame高为381
+    
     /*
      * layout grid view after selected month on calendar view
      */
@@ -489,47 +493,51 @@
         }
     }
     
-    NSLog(@"-----------------%f",maxHeight);
+    NSLog(@"-----------------???????------%f",maxHeight);    //229  275  183   249 299 199
     
-    if (maxHeight >275) {
-        if (!_down2Line) {//倒数第二条线
-            _down2Line = [[UIView alloc]initWithFrame:CGRectMake(10, 274, 300, 0.5)];
+    
+    if (maxHeight == 249) {
+        if (_down2Line) {
+            
+        }else{
+            _down2Line = [[UIView alloc]initWithFrame:CGRectMake(10,252, 300, 0.5)];
             _down2Line.backgroundColor = [UIColor grayColor];
             _down2Line.alpha = 0.5;
             [self.gridScrollView addSubview:_down2Line];
         }
-        if (!_downLine) {//倒数第一条线
-            _downLine = [[UIView alloc]initWithFrame:CGRectMake(10, 274+55, 300, 0.5)];
+        
+        if (_downLine) {
+            _downLine.alpha = 0;
+        }
+    }else if (maxHeight == 199){
+        if (_downLine) {
+            _downLine.alpha = 0;
+            
+        }
+        if (_down2Line) {
+            _down2Line.alpha = 0;
+        }
+    }else if (maxHeight == 299){
+        if (_down2Line) {
+            _down2Line.alpha = 0.5;
+        }else{
+            _down2Line = [[UIView alloc]initWithFrame:CGRectMake(10, 252, 300, 0.5)];
+            _down2Line.backgroundColor = [UIColor grayColor];
+            _down2Line.alpha = 0.5;
+            [self.gridScrollView addSubview:_down2Line];
+        }
+        
+        
+        if (_downLine) {
+            _downLine.alpha = 0.5;
+        }else{
+            _downLine = [[UIView alloc]initWithFrame:CGRectMake(10, 303, 300, 0.5)];
             _downLine.backgroundColor = [UIColor grayColor];
             _downLine.alpha = 0.5;
             [self.gridScrollView addSubview:_downLine];
         }
-        
-    }else if (maxHeight <275 && maxHeight>220){//最小219 中间274 最大329
-        if (!_down2Line) {
-            _down2Line = [[UIView alloc]initWithFrame:CGRectMake(10, 274, 300, 0.5)];
-            _down2Line.backgroundColor = [UIColor grayColor];
-            _down2Line.alpha = 0.5;
-            [self.gridScrollView addSubview:_down2Line];
-        }
-        
-        if (_downLine) {
-            [_downLine removeFromSuperview];
-            _downLine = nil;
-        }
-        
-    }else if (maxHeight < 220){
-        if (_downLine) {
-            [_downLine removeFromSuperview];
-            _downLine = nil;
-        }
-        
-        if (_down2Line) {
-            [_down2Line removeFromSuperview];
-            _down2Line = nil;
-        }
-        
     }
+    
     
     
     if (!_label1) {
@@ -623,46 +631,124 @@
     return (self.alpha > 0);
 }
 
+
+
+#pragma mark  -  请求网络数据
+-(void)networkWithDate:(NSString *)theDate isNext:(BOOL)next{
+    
+    
+    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"eventDate":theDate};
+    
+    
+    [AFRequestService responseData:CALENDAR_ACTIVITIES andparameters:parameters andResponseData:^(id responseData) {
+        
+        NSDictionary * dict = (NSDictionary *)responseData;
+        NSString * code = [dict objectForKey:@"code"];
+        if ([code intValue]==0)//说明请求数据成功
+        {
+            NSLog(@"loadSuccess");
+            
+            NSLog(@"%@",dict);
+            
+            if ([dict isKindOfClass:[NSDictionary class]]) {
+                NSArray *dataArray = [dict objectForKey:@"eventlist"];
+                NSMutableArray *dicArray = [NSMutableArray arrayWithCapacity:1];
+                for (NSDictionary *dic in dataArray) {
+                    [dicArray addObject:dic];
+                }
+                
+                GeventSingleModel *singelModel = [GeventSingleModel sharedManager];
+                singelModel.eventDateDicArray = dicArray;
+                NSLog(@"%d",singelModel.eventDateDicArray.count);
+                
+                
+                
+                //翻页===========
+                UIViewAnimationTransition options;
+                if (next){
+                    options = UIViewAnimationTransitionCurlUp;
+                }
+                else {
+                    options = UIViewAnimationTransitionCurlDown;
+                }
+                _calendarHeaderView.nextMonthButton.enabled = FALSE;
+                _calendarHeaderView.previousMonthButton.enabled = FALSE;
+                
+                [UIView animateWithDuration:0.3 animations:^{
+                    [UIView setAnimationTransition:options forView:self.gridScrollView cache:TRUE];
+                    if (next) {
+                        self.calMonth = [_calMonth nextMonth];
+                        
+                        ITTDINFO(@"self.calmonth %@", self.calMonth);
+                        
+                    }
+                    else {
+                        
+                        self.calMonth = [_calMonth previousMonth];
+                        
+                        
+                    }
+                } completion:^(BOOL finished)
+                 {
+                     if (finished)
+                     {
+                         _calendarHeaderView.nextMonthButton.enabled = TRUE;
+                         _calendarHeaderView.previousMonthButton.enabled = TRUE;
+                     }
+                 }];
+                //====================
+                
+                
+            }
+            
+            
+            
+            
+        }else{
+            NSLog(@"%d",[code intValue]);
+        }
+    }];
+}
+
+
+
+
 - (void)animationChangeMonth:(BOOL)next
 {
-//    CATransition *animation = [CATransition animation];
-//    animation.type = kCATransitionPush;
-//    if (next)
-//    {
-//        animation.subtype = kCATransitionFromLeft;
-//        [self.gridScrollView.layer addAnimation:animation forKey:@"NextMonth"];        
-//    }
-//    else
-//    {
-//        animation.subtype = kCATransitionFromRight;
-//        [self.gridScrollView.layer addAnimation:animation forKey:@"PreviousMonth"];                
-//    }
-    UIViewAnimationTransition options;
-    if (next){
-        options = UIViewAnimationTransitionCurlUp;          
-    }
-    else {      
-        options = UIViewAnimationTransitionCurlDown;        
-    }
-    _calendarHeaderView.nextMonthButton.enabled = FALSE;
-    _calendarHeaderView.previousMonthButton.enabled = FALSE;    
-    [UIView animateWithDuration:0.3 animations:^{
-        [UIView setAnimationTransition:options forView:self.gridScrollView cache:TRUE]; 
-        if (next) {
-            self.calMonth = [_calMonth nextMonth];     
-            ITTDINFO(@"self.calmonth %@", self.calMonth);
+    
+    
+    if (next) {
+        NSLog(@"%@",self.calMonth);
+        NSUInteger year = [self.calMonth getYear];
+        NSUInteger month = [self.calMonth getMonth] + 1;
+        NSUInteger day = 1;
+        if (month > 12)
+        {
+            year++;
+            month = 1;
         }
-        else {
-            self.calMonth = [_calMonth previousMonth];                 
+        
+        [self networkWithDate:[NSString stringWithFormat:@"%d-%d-%d",year,month,day] isNext:next];
+    }else{
+        NSUInteger year = [self.calMonth getYear];
+        NSUInteger month = [self.calMonth getMonth] - 1;
+        NSUInteger day = 1;
+        if (month < 1)
+        {
+            year--;
+            month = 12;
         }
-    } completion:^(BOOL finished)
-     {
-         if (finished) 
-         {
-             _calendarHeaderView.nextMonthButton.enabled = TRUE;
-             _calendarHeaderView.previousMonthButton.enabled = TRUE;                
-         }
-     }];
+        [self networkWithDate:[NSString stringWithFormat:@"%d-%d-%d",year,month,day] isNext:next];
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
 
 - (void)layoutSubviews
