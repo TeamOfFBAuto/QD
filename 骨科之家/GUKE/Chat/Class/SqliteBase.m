@@ -63,8 +63,8 @@
                            
                            @"uid",//自己发送的标识
                            @"userId",//发送人id
-                           
-                           
+                           @"shareSource",
+                           @"shareId",
                            @"isRead",
                            @"issend",
                            nil];
@@ -98,7 +98,7 @@
     //NSLog(@"sqlinsert --- 语句:%@",sqlinsert);
     // 更新数据库中的数据
     if ([table isEqualToString:TABLE_HD]) {
-        sqlupdata = [NSString stringWithFormat:@"UPDATE %@ SET %@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ? ,%@ = ?  WHERE %@ = ? AND %@ = ?",
+        sqlupdata = [NSString stringWithFormat:@"UPDATE %@ SET %@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ? ,%@ = ?,%@ = ? ,%@ = ?  WHERE %@ = ? AND %@ = ?",
                      TABLE_HD,
                      @"context",
                      @"attachId",
@@ -118,7 +118,8 @@
                      @"uid",//自己发送的标识
                      @"userId",
                      @"issend",
-                     
+                     @"shareSource",
+                     @"shareId",
                      @"ukey",//用户自身标识 ---根据用户缓存数据
                      @"articleId"
                      ];
@@ -164,14 +165,15 @@
                 NSString *issend = model.isSend?model.isSend:@"";// 标注声音文件是否已读
                 NSString *uid = model.uid?model.uid:@"";
                 NSString *userid = model.userId?model.userId:@"";
-
+                NSString *shareSource = model.shareSource?model.shareSource:@"";
+                NSString *shareId = model.shareId?model.shareId:@"";
                 
                 NSString *sqlQue = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE %@ = ? AND %@ = ?",table,@"ukey",@"articleId"];
                 FMResultSet *set = [dataBase executeQuery:sqlQue,ukey,articleId];
                 
                 if ([set next]) {
                    // 数据有在，则更新
-                    res = [dataBase executeUpdate:sqlupdata,context,attachId,filename,fileurl,voiceLength,createDate,firstUsername,firstname,icon,iconUpdateTime,isGroupArticle,recvId,typeId,uid,userid,issend,ukey,articleId];
+                    res = [dataBase executeUpdate:sqlupdata,context,attachId,filename,fileurl,voiceLength,createDate,firstUsername,firstname,icon,iconUpdateTime,isGroupArticle,recvId,typeId,uid,userid,issend,shareSource,shareId,ukey,articleId];
                     if (res) {
                         NSLog(@"update suc");
                     }else{
@@ -179,7 +181,7 @@
                     }
                 }else{
                     // 数据不在，则插入
-                    res = [dataBase executeUpdate:sqlinsert,ukey,articleId,context,attachId,filename,fileurl,voiceLength,createDate,firstUsername,firstname,icon,iconUpdateTime,isGroupArticle,recvId,typeId,uid,userid,isRead,issend];
+                    res = [dataBase executeUpdate:sqlinsert,ukey,articleId,context,attachId,filename,fileurl,voiceLength,createDate,firstUsername,firstname,icon,iconUpdateTime,isGroupArticle,recvId,typeId,uid,userid,shareSource,shareId,isRead,issend];
                     if (res) {
                         NSLog(@"插入数据成");
                     }else{
@@ -286,6 +288,9 @@
         NSString *issend = [set stringForColumn:@"issend"];
         NSInteger isPlayed = [[set stringForColumn:@"isRead"] integerValue];
         
+        NSString *shareSource = [set stringForColumn:@"shareSource"];
+        NSString *shareId = [set stringForColumn:@"shareId"];
+        
         NSString *uid = [set stringForColumn:@"uid"];
         
         
@@ -301,6 +306,8 @@
         model.recvId = recvId;
         model.typeId = typeId;
         model.isSend = issend;
+        model.shareSource = shareSource;
+        model.shareId = shareId;
         model.uid = uid;
         
         // 判断文件的类型

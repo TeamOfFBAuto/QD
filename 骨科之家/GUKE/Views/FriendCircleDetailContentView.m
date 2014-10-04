@@ -12,6 +12,7 @@
 #import "UIImageView+WebCache.h"
 #import "ShowImagesViewController.h"
 #import "LiuLanBingLiViewController.h"
+#import "InfoDetailViewController.h"
 
 
 #define IMG_TAG 99999
@@ -200,10 +201,13 @@
             tapCase.view.tag = [articleModel.sourceId integerValue];
             [cell.contentShare addGestureRecognizer:tapCase];
         }
-        else if([articleModel.fromWeixin isEqualToString:SOURCE_FROME_CASE]){
+        else if([articleModel.fromWeixin isEqualToString:SOURCE_FROME_MATERIAL]){
             cell.urlLabel.text = @"分享了一个资料";
             cell.contentShare.tag = [articleModel.sourceId integerValue];
             shareUrl = articleModel.context;
+            UITapGestureRecognizer *tapCase = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(skipToMaterial:)];
+            tapCase.view.tag = [articleModel.sourceId integerValue];
+            [cell.contentShare addGestureRecognizer:tapCase];
         }
        
         [cell.contentShare setText:shareUrl];
@@ -227,6 +231,15 @@
         bingli.theId = [NSString stringWithFormat:@"%d",gesture.view.tag];
         UIViewController *VCtest=(UIViewController *)self.delegate;
         [VCtest.navigationController pushViewController:bingli animated:YES];
+}
+// 跳转到资料库页面
+- (void)skipToMaterial:(UITapGestureRecognizer *)gesture{
+    
+    InformationModel *model = [[InformationModel alloc]init];
+    model.infoId = [NSString stringWithFormat:@"%d",gesture.view.tag];
+    InfoDetailViewController *ziliao = [[InfoDetailViewController alloc]initWithModel:model];
+    UIViewController *VCtest=(UIViewController *)self.delegate;
+    [VCtest.navigationController pushViewController:ziliao animated:YES];
 }
 - (void)myLabel:(MyLabel *)myLabel touchesWtihTag:(NSInteger)tag {
         if (myLabel.text.length>4) {

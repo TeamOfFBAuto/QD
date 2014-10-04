@@ -34,6 +34,9 @@
 
 @property (nonatomic,retain) NSString *uid;//客服端对应的唯一标识  自己定义的
 
+// 分享到讨论组的信息
+@property (nonatomic,retain) NSString *shareSource;// 分享来源，0：无，1：资料库，2：病历库
+@property (nonatomic,retain) NSString *shareId;// 分享来源id
 
 
 //发送文本类型
@@ -53,8 +56,10 @@
 
 //发送对象类型
 @property (nonatomic,retain) NSString *typeId;//消息分类 ，群聊，私聊之类的
+@property (nonatomic,retain) NSString *typeName;// 公开信类型名称
 @property (nonatomic,retain) NSString *isGroupArticle;
 @property (nonatomic,retain) NSString *recvId;
+@property (nonatomic,retain) NSString *recvFirstname;
 
 
 @property (nonatomic,assign) SEND_TYPE sendType;//文件的类型

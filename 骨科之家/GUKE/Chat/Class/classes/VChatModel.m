@@ -59,6 +59,7 @@
     if (datas && datas.count) {
         for (id dic in datas) {
             if ([dic isKindOfClass:[NSDictionary class]]) {
+                NSLog(@"%@",dic);
                 VChatModel *model = [[[self class] alloc] init];
                 id articleId = [dic objectForKey:@"articleId"];
                 
@@ -76,22 +77,22 @@
                 model.iconUpdateTime = [dic objectForKey:@"iconUpdateTime"];
                 
                 model.creatDate = [dic objectForKey:@"createDate"];
-                
-                
-                
                 model.typeId = [dic objectForKey:@"typeId"];
                 model.isGroupArticle = [dic objectForKey:@"isGroupArticle"];
                 model.recvId = [dic objectForKey:@"recvId"];
-                id attachlist = [dic objectForKey:@"attachlist"];
+                // 分享标记
+                model.shareSource = [dic objectForKey:@"shareSource"];
+                model.shareId = [dic objectForKey:@"shareId"];
                 
+                id attachlist = [dic objectForKey:@"attachlist"];
                 model.attachlist = [NSMutableArray array];
+                
                 if (attachlist && [attachlist isKindOfClass:[NSArray class]]) {
                     for (id att in attachlist) {
-                        
-                     
                         if ([att isKindOfClass:[NSDictionary class]]) {
                             NSLog(@"attt --%@",att);
                             VChatAttachModel *attmodel = [[VChatAttachModel alloc] init];
+                            NSLog(@"%@",att);
                             attmodel.attachId = [att objectForKey:@"attachId"];
                             attmodel.filename = [att objectForKey:@"filename"];
                             attmodel.fileurl = [att objectForKey:@"fileurl"];
@@ -111,6 +112,7 @@
                 
                 
                 if ([model.attachlist count]) {
+                    // 取第一个附件
                     VChatAttachModel *fir = [model.attachlist firstObject];
                     NSString *attach1 = fir.filename;
                     if (attach1) {
@@ -118,8 +120,11 @@
                             model.sendType = SEND_Type_voice;
                             
                             
-                        }else{
-                            model.sendType = SEND_Type_photo;
+                        }else if([attach1 hasSuffix:@".mp4"]){
+                            model.sendType = SEND_Type_video;
+                        }
+                        else{
+                             model.sendType = SEND_Type_photo;
                         }
                     }else{
                         model.sendType = SEND_Type_other;

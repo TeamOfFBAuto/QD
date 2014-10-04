@@ -250,6 +250,9 @@
     VChatModel *model = [_dataSoureArr objectAtIndex:indexPath.row];
     CGFloat height = 0.0f;
     // 自适应高度
+    if (model.shareSource.length == 0) {
+        
+    
     if (model.sendType == SEND_Type_content) {
         height = [BubbleSubTextCell heightForViewWithObject:[self.dataSoureArr objectAtIndex:indexPath.row]];
     }else if (model.sendType == SEND_Type_voice){
@@ -257,16 +260,24 @@
     }else if (model.sendType == SEND_Type_photo){
         height = [BubbleSubImageCell heightForViewWithObject:[self.dataSoureArr objectAtIndex:indexPath.row]];
     }
+}
+    else {
+        height = [BubbleSubShareCell heightForViewWithObject:[self.dataSoureArr objectAtIndex:indexPath.row]];
+    }
     return  height;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataSoureArr.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *bubbleCell00 = @"bubbleCell00";// 分享来源的cell
     static NSString *bubbleCell01 = @"bubbleCell01";
     static NSString *bubbleCell02 = @"bubbleCell02";
     static NSString *bubbleCell03 = @"bubbleCell03";
+   
     VChatModel *model = [_dataSoureArr objectAtIndex:indexPath.row];
+    NSLog(@"%@",model.shareSource);
+    if(model.shareSource.length == 0){
     // 绑定文本内容
     if (model.sendType == SEND_Type_content) {
         BubbleSubTextCell *cell = [tableView dequeueReusableCellWithIdentifier:bubbleCell01];
@@ -330,8 +341,30 @@
         };
         [cell fillViewWithObject:[self.dataSoureArr objectAtIndex:indexPath.row]];
         return cell;
-    }else{
-        
+    }
+    else{
+        return nil;
+    }
+   }
+    else{
+        BubbleSubShareCell *cell = [tableView dequeueReusableCellWithIdentifier:bubbleCell00];
+        if (!cell) {
+            cell = [[BubbleSubShareCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:bubbleCell00];
+            cell.delegate = self;
+            SSRCAutorelease(cell);
+        }
+        cell.block = ^(NSString *str)
+        {
+            FriendDetailViewController *fdvc = [[FriendDetailViewController alloc] initWithUserId:str];
+            FriendIfo *model = [[FriendIfo alloc]init];
+            model.dstUserId = str;
+            model.dstUser = [UserInfoDB selectFeildString:@"username" andcuId:GET_USER_ID anduserId:str];
+            fdvc.friendModel = model;
+            [self.navigationController pushViewController:fdvc animated:YES];
+            [fdvc release];
+        };
+        [cell fillViewWithObject:[self.dataSoureArr objectAtIndex:indexPath.row]];
+        return cell;
     }
     return nil;
 }
@@ -1046,7 +1079,6 @@
 - (void)finish:(ASIHTTPRequest *)request{
     [self endPull];
     NSDictionary *dic = [[[[NSString alloc] initWithData:request.responseData encoding:NSUTF8StringEncoding] autorelease] JSONValue];
-    NSLog(@"%@",dic);
     NSUInteger codeNum = [[dic objectForKey:CKEY] integerValue];
     if (request.responseStatusCode == 200 && codeNum == CODE_SUCCESS){
         id articlelist = [dic objectForKey:@"articlelist"];

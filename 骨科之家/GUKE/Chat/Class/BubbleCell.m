@@ -76,6 +76,7 @@
 #import "UserInfoDB.h"
 #import "VChatViewController.h"
 #import "SqliteBase.h"
+#import "SingleInstance.h"
 
 @implementation BubbleCell
 
@@ -858,6 +859,227 @@
         return;
     }
 
+}
+- (void)resendThePicMessegae:(id)sender{
+    
+}
+@end
+// =========share==========
+@interface BubbleSubShareCell(){
+    UIImageView *_pictureMaskImageView;
+    UIActivityIndicatorView *_loadActivityIndicatorView;
+    UILabel *_sourceLable;
+    UILabel *_contextLable;
+}
+@property(nonatomic,strong)UILabel *sourceLable;
+@property(nonatomic,strong)UILabel *contextLable;
+@end
+@implementation BubbleSubShareCell
+@synthesize sourceLable =_sourceLable;
+@synthesize contextLable =_contextLable;
+- (void)dealloc{
+    [_pictureImageView sd_setImageWithURL:nil];
+    [_pictureImageView release];
+    [_pictureMaskImageView release];
+    [_loadActivityIndicatorView release];
+    [super dealloc];
+}
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        // Initialization code
+        [self buildCell];
+    }
+    return self;
+}
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    [super setSelected:selected animated:animated];
+    
+}
+-(void)prepareForReuse{
+    [super prepareForReuse];
+    _pictureImageView.image = nil;
+    
+    _pictureMaskImageView.frame = CGRectZero;
+    _pictureMaskImageView.alpha = 0.0f;
+    
+    [self.contentView viewWithTag:101].frame = CGRectZero;
+    [self.contentView viewWithTag:101].alpha = 0.0f;
+    
+    _loadActivityIndicatorView.frame = CGRectZero;
+    _loadActivityIndicatorView.alpha = 0;
+    [_loadActivityIndicatorView stopAnimating];
+}
+-(void)layoutSubviews{
+    [super layoutSubviews];
+    [self  bubble];
+}
+-(void)buildCell{
+    _pictureImageView = [[UIImageView alloc] init];
+    _pictureImageView.layer.cornerRadius = 2;
+    _pictureImageView.layer.masksToBounds = YES;
+    _pictureImageView.userInteractionEnabled = YES;
+    _pictureImageView.backgroundColor = [UIColor clearColor];
+    [_bubbleImageView addSubview:_pictureImageView];
+    
+    
+    _sourceLable = [[UILabel alloc]initWithFrame:CGRectZero];
+    _sourceLable.layer.cornerRadius = 2;
+    [_bubbleImageView addSubview:_sourceLable];
+    
+    _contextLable = [[UILabel alloc]initWithFrame:CGRectZero];
+    _contextLable.backgroundColor = [UIColor clearColor];
+    [_bubbleImageView addSubview:_contextLable];
+    
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(skipTOcaseAnd:)];
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longClickImage:)];
+    longPress.allowableMovement = 0.6;
+    [_bubbleImageView addGestureRecognizer:tap];
+    [_bubbleImageView addGestureRecognizer:longPress];
+    [tap release];
+    [longPress release];
+    
+    _pictureMaskImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    _pictureMaskImageView.layer.cornerRadius = 2;
+    _pictureMaskImageView.layer.backgroundColor = RGBA(100, 100, 100, .8).CGColor;
+    _pictureMaskImageView.layer.masksToBounds = YES;
+    
+    [_senderFaildImageView addTarget:self action:@selector(resendThePicMessegae:) forControlEvents:UIControlEventTouchUpInside];
+    
+    _loadActivityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    _loadActivityIndicatorView.frame = CGRectZero;
+    _loadActivityIndicatorView.alpha = 0;
+    _loadActivityIndicatorView.color = RGBA(14, 14, 14, .8);
+    [_bubbleImageView addSubview:_loadActivityIndicatorView];
+}
+// 初始化布局
+- (void)bubble{
+     NSString *url = [[[self.object attachlist] firstObject] fileurl];
+if([url hasSuffix:@".jpg"]){
+    float width_image = 0.0f ;//有可能是从网络端获取的
+    float height_image = 0.0f;
+    UIImage *image = _pictureImageView.image;
+    if (!image) {
+        width_image = PHOTO_GALLERY_SIZE_WIDTH;
+        height_image = PHOTO_GALLERY_SIZE_HEIGHT;
+    }else{
+        width_image = image.size.width;if (width_image == 0) width_image = 1;
+        height_image = image.size.height;if (height_image == 0) height_image = 1;
+    }
+    //初始化的时候显示的高宽比例
+    //得出缩放系数
+    float margin = 0.0f;
+    margin = height_image/PHOTO_GALLERY_SIZE_WIDTH>width_image/PHOTO_GALLERY_SIZE_HEIGHT?height_image/PHOTO_GALLERY_SIZE_WIDTH:width_image/PHOTO_GALLERY_SIZE_HEIGHT;//取其较大的一个
+    CGFloat space_image_bublle = 5.0f;
+    if (margin>1.0f) {
+        _pictureImageView.frame = CGRectMake(space_image_bublle + ANGLE_LENTH, space_image_bublle, width_image/margin, height_image/margin);
+    }else{
+        _pictureImageView.frame = CGRectMake(space_image_bublle + ANGLE_LENTH, space_image_bublle, width_image, height_image);
+    }
+        
+    _bubbleImageView.frame = CGRectMake(SPACE_LEFT + HEAD_WIDTH + HEADER_BUBBLE_DIS,[BubbleCell heightForIdateMarginUpOffset:TEST_IDATE]+THEBUBLLE_FOLLOWINGOFFSET, _pictureImageView.bounds.size.width + space_image_bublle * 2 + ANGLE_LENTH+SPACE_IMAGE_BUBBLE_SHADOW_RIGHT, _pictureImageView.bounds.size.height + space_image_bublle * 2 + SPACE_IMAGE_BUBBLE_SHADOW);
+    if (_isSelfSendGlo) {
+        //头像从右边开始
+        _pictureImageView.frame = CGRectMake(space_image_bublle, space_image_bublle, _pictureImageView.bounds.size.width, _pictureImageView.bounds.size.height);
+        
+        _bubbleImageView.frame = CGRectMake(320 - (SPACE_LEFT + HEAD_WIDTH + HEADER_BUBBLE_DIS) - _bubbleImageView.frame.size.width, _bubbleImageView.frame.origin.y, _bubbleImageView.frame.size.width, _bubbleImageView.frame.size.height);
+        
+    }
+         }
+else{
+    CGSize resultSize=[SingleInstance customFontHeight:[self.object context] andFontSize:18 andLineWidth:BUBBLE_LABLE_WIGHT];
+    CGRect content_r = CGRectMake(THEFONT_NEAR_OFFSET, THEFONTUPDOWNOFFSET-3, resultSize.width, resultSize.height);
+    
+    CGFloat upMargin = [BubbleCell heightForIdateMarginUpOffset:_isShowDate];
+    CGFloat bu_h =(resultSize.height+THEFONTUPDOWNOFFSET*2) - 5;
+    CGFloat bubble_h = bu_h>BUBBLE_MIN_HEIGHT?bu_h:BUBBLE_MIN_HEIGHT;
+    
+    CGRect bubble_r = CGRectMake(SPACE_LEFT  + HEAD_WIDTH + HEADER_BUBBLE_DIS, upMargin + THEBUBLLE_FOLLOWINGOFFSET, resultSize.width + THEFONT_NEAR_OFFSET + THEFONT_FAR_OFFSET, bubble_h);
+    
+    if (_isSelfSendGlo) {
+        content_r.origin.x = THEFONT_FAR_OFFSET;
+        bubble_r.origin.x = 320 - (SPACE_LEFT + HEAD_WIDTH + HEADER_BUBBLE_DIS) -bubble_r.size.width;
+    }
+    _contextLable.frame = content_r;
+    _bubbleImageView.frame = bubble_r;
+}
+    _sourceLable.frame = CGRectMake(320 - (SPACE_LEFT + HEAD_WIDTH + HEADER_BUBBLE_DIS) - _bubbleImageView.frame.size.width, _bubbleImageView.frame.origin.y + _bubbleImageView.frame.size.height, _bubbleImageView.frame.size.width, 20);
+    [self layoutSuperBefor];
+}
+#pragma mark-----
+-(void)fillViewWithObject:(id)object{
+    [super fillViewWithObject:object];
+    
+    if ([[object attachlist] count]) {
+        NSString *url = [[[object attachlist] firstObject] fileurl];
+        if([url hasSuffix:@".jpg"]){
+        
+        UIImage *image;
+        if (_isSelfSendGlo) {
+            image = [object imgData];
+        }
+        else{
+            image = [UIImage imageNamed:@"imgErrorTwo@2x.png"];
+        }
+        if ([[object isSend] isEqualToString:ISNOSENT]) {
+            [_pictureImageView setImage:[UIImage imageWithContentsOfFile:[[[object attachlist] lastObject] filename]]];
+        }
+        else{
+            [_pictureImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",GLOBAL_URL_FILEGET,url]] placeholderImage:image completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                [self bubble];
+            }];
+        }
+    }
+    }
+    else{
+        _contextLable.text = [object context];
+        
+    }
+}
+- (void)requestStart{
+    _loadActivityIndicatorView.alpha = 1;
+    _loadActivityIndicatorView.frame = CGRectMake(0, 0, 20, 20);
+    _loadActivityIndicatorView.center = _pictureImageView.center;
+    [_loadActivityIndicatorView startAnimating];
+}
+- (void)requestOver{
+    _loadActivityIndicatorView.alpha = 0;
+    _loadActivityIndicatorView.frame = CGRectZero;
+    [_loadActivityIndicatorView stopAnimating];
+    [self bubble];
+}
++(CGFloat)heightForViewWithObject:(id)object{
+    return PHOTO_GALLERY_SIZE_HEIGHT+2*5+[BubbleCell heightForIdateMarginUpOffset:TEST_IDATE] +THEBUBLLE_FOLLOWINGOFFSET+SPACE_IMAGE_BUBBLE_SHADOW+ HEAD_CELL_SPACE_DOWN;
+}
+// 图片点击事件
+- (void)clickImage:(id)sender{
+//    if (self.delegate && [self.delegate respondsToSelector:@selector(pageExcBubbleClickImage:)]) {
+//        [self.delegate pageExcBubbleClickImage:self];
+//    }
+}
+- (void)longClickImage:(UILongPressGestureRecognizer *)gesture{
+    if (_isSelfSendGlo) {
+        if(UIGestureRecognizerStateBegan == gesture.state) {
+            if (self.delegate && [self.delegate respondsToSelector:@selector(longPageExcBubbClickImage:)]) {
+                [self.delegate longPageExcBubbClickImage:[self object]];
+            }
+        }
+        
+        if(UIGestureRecognizerStateChanged == gesture.state) {
+            return;
+        }
+        
+        if(UIGestureRecognizerStateEnded == gesture.state) {
+            return;
+        }
+    }
+    else{
+        return;
+    }
+    
 }
 - (void)resendThePicMessegae:(id)sender{
     
