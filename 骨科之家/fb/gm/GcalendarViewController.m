@@ -28,16 +28,6 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     
-    
-//    if (_calendarView.appear)
-//    {
-//        [_calendarView hide];
-//    }
-//    else
-//    {
-//        [_calendarView showInView:self.view];
-//    }
-    
     [self loadNavigation];
     
     NSDate *date = [NSDate date];
@@ -45,7 +35,9 @@
     NSInteger interval = [zone secondsFromGMTForDate: date];
     NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
     NSString *ldateStr = [[NSString stringWithFormat:@"%@",localeDate]substringToIndex:10];
+    
     NSLog(@"===============%@",ldateStr);
+    
     [self networkWithDate:ldateStr];
     
     
@@ -59,32 +51,6 @@
 
 
 
-//- (void)calendarViewDidSelectDay:(ITTCalendarView*)calendarView calDay:(ITTCalDay*)calDay
-//{
-//    NSArray *selectedDates = calendarView.selectedDateArray;
-//    if (calendarView.allowsMultipleSelection)
-//    {
-//        for (NSDate *date in selectedDates)
-//        {
-//            NSLog(@"selected date %@", [self stringFromFomate:date formate:@"yyyy-MM-dd"]);
-//        }
-//    }
-//    else
-//    {
-//        ITTDINFO(@"selected date %@", [self stringFromFomate:calendarView.selectedDate formate:@"yyyy-MM-dd"]);
-//    }
-//}
-//
-//- (NSString*) stringFromFomate:(NSDate*) date formate:(NSString*)formate
-//{
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//    [formatter setDateFormat:formate];
-//    NSString *str = [formatter stringFromDate:date];
-//    
-//    
-//    return str;
-//}
-
 
 
 
@@ -93,7 +59,7 @@
 -(void)networkWithDate:(NSString *)theDate{
     
     
-    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"eventDate":@"2014-9-30"};
+    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"eventDate":theDate};
     
     
     [AFRequestService responseData:CALENDAR_ACTIVITIES andparameters:parameters andResponseData:^(id responseData) {
@@ -103,6 +69,7 @@
         if ([code intValue]==0)//说明请求数据成功
         {
             NSLog(@"loadSuccess");
+            
             NSLog(@"%@",dict);
             
             if ([dict isKindOfClass:[NSDictionary class]]) {
@@ -148,10 +115,34 @@
 - (void)calendarViewDidSelectDay:(ITTCalendarView*)calendarView calDay:(ITTCalDay*)calDay{
     
     NSLog(@"--------- %@",calDay);
+    NSLog(@"%d",[calDay getDay]);
+    NSLog(@"%d",[calDay getMonth]);
+    NSLog(@"%d",[calDay getYear]);
     
-    GcalendarDetailViewController *gdvc = [[GcalendarDetailViewController alloc]init];
-    gdvc.calDay = calDay;
-    [self.navigationController pushViewController:gdvc animated:YES];
+    NSString *calDayStr = [NSString stringWithFormat:@"%d-%d-%d",[calDay getYear],[calDay getMonth],[calDay getDay]];
+    
+    
+    
+    
+    for (NSDictionary *dic in [GeventSingleModel sharedManager].eventDateDicArray) {
+        
+        NSLog(@"%@",dic);
+        NSString *dateStr = [dic objectForKey:@"eventDate"];
+        
+        NSLog(@"%@",dateStr);
+        
+        if ([calDayStr isEqualToString:dateStr]) {
+            GcalendarDetailViewController *gdvc = [[GcalendarDetailViewController alloc]init];
+            gdvc.calDay = calDay;
+            [self.navigationController pushViewController:gdvc animated:YES];
+        }
+        
+        
+        
+    }
+    
+    
+    
 }
 
 //- (void)calendarViewDidSelectPeriodType:(ITTCalendarView*)calendarView periodType:(PeriodType)periodType{

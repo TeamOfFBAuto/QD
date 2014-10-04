@@ -917,6 +917,8 @@
 		E3076A8419D9D4B400333B7E /* GcalendarDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3076A8319D9D4B400333B7E /* GcalendarDetailViewController.m */; };
 		E33D677319DA7B9E0070D207 /* tixiang-jiantou-16_26@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33D677219DA7B9E0070D207 /* tixiang-jiantou-16_26@2x.png */; };
 		E33D677519DA7C400070D207 /* tixiang-jiantouLeft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33D677419DA7C400070D207 /* tixiang-jiantouLeft@2x.png */; };
+		E361729119E02ADA002F2D4F /* GeventModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E361729019E02ADA002F2D4F /* GeventModel.m */; };
+		E361729419E031DA002F2D4F /* GeventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E361729319E031DA002F2D4F /* GeventDetailViewController.m */; };
 		E39E4D4F19DA04DE00AEA2F6 /* ITTCalendarGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D2D19DA04DE00AEA2F6 /* ITTCalendarGridView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E39E4D5019DA04DE00AEA2F6 /* ITTCalendarScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D2F19DA04DE00AEA2F6 /* ITTCalendarScrollView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E39E4D5119DA04DE00AEA2F6 /* ITTCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D3119DA04DE00AEA2F6 /* ITTCalendarView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -2154,6 +2156,10 @@
 		E3076A8319D9D4B400333B7E /* GcalendarDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GcalendarDetailViewController.m; sourceTree = "<group>"; };
 		E33D677219DA7B9E0070D207 /* tixiang-jiantou-16_26@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tixiang-jiantou-16_26@2x.png"; sourceTree = "<group>"; };
 		E33D677419DA7C400070D207 /* tixiang-jiantouLeft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tixiang-jiantouLeft@2x.png"; sourceTree = "<group>"; };
+		E361728F19E02ADA002F2D4F /* GeventModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeventModel.h; sourceTree = "<group>"; };
+		E361729019E02ADA002F2D4F /* GeventModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeventModel.m; sourceTree = "<group>"; };
+		E361729219E031DA002F2D4F /* GeventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeventDetailViewController.h; sourceTree = "<group>"; };
+		E361729319E031DA002F2D4F /* GeventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeventDetailViewController.m; sourceTree = "<group>"; };
 		E39E4D2B19DA04DE00AEA2F6 /* Enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enum.h; sourceTree = "<group>"; };
 		E39E4D2C19DA04DE00AEA2F6 /* ITTCalendarGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalendarGridView.h; sourceTree = "<group>"; };
 		E39E4D2D19DA04DE00AEA2F6 /* ITTCalendarGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTCalendarGridView.m; sourceTree = "<group>"; };
@@ -4227,6 +4233,10 @@
 				E30769C319D9C5A200333B7E /* GcalendarViewController.m */,
 				E3076A8219D9D4B400333B7E /* GcalendarDetailViewController.h */,
 				E3076A8319D9D4B400333B7E /* GcalendarDetailViewController.m */,
+				E361729219E031DA002F2D4F /* GeventDetailViewController.h */,
+				E361729319E031DA002F2D4F /* GeventDetailViewController.m */,
+				E361728F19E02ADA002F2D4F /* GeventModel.h */,
+				E361729019E02ADA002F2D4F /* GeventModel.m */,
 			);
 			path = gm;
 			sourceTree = "<group>";
@@ -5123,6 +5133,7 @@
 				19BC02EF19AC7282008EBA22 /* addNewContact.m in Sources */,
 				5675CAE219D9C05100FB975F /* IndustryNewsController.m in Sources */,
 				199CFE17195AA53900F74F7C /* UIButton+AFNetworking.m in Sources */,
+				E361729419E031DA002F2D4F /* GeventDetailViewController.m in Sources */,
 				3EC2DFF519B99BF300B42351 /* WindowCustom.m in Sources */,
 				565DAE4C19DA7A7F00C3924D /* TDListViewController.m in Sources */,
 				19960D48196A80D6000121AA /* amrFileCodec.mm in Sources */,
@@ -5187,6 +5198,7 @@
 				561A868819DD74C000CC8674 /* SendPostsImageScrollView.m in Sources */,
 				19960CB2196A80D6000121AA /* StatusModel.m in Sources */,
 				19309EEE1990E7DF007561D9 /* FirendCircleHomeTableViewController.m in Sources */,
+				E361729119E02ADA002F2D4F /* GeventModel.m in Sources */,
 				19960D15196A80D6000121AA /* UIImage+MultiFormat.m in Sources */,
 				19960D4C196A80D7000121AA /* VoiceConverter.mm in Sources */,
 				19960CB4196A80D6000121AA /* VChatModel.m in Sources */,

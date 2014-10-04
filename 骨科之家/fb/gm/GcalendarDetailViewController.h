@@ -11,9 +11,10 @@
 #import <UIKit/UIKit.h>
 #import "ITTCalDay.h"
 #import "GRefreshTableView.h"
+#import "GeventModel.h"
 
 
-@interface GcalendarDetailViewController : UIViewController<UITableViewDataSource,RefreshDelegate>
+@interface GcalendarDetailViewController : SNViewController<UITableViewDataSource,RefreshDelegate,UITableViewDelegate>
 {
     RefreshTableView *_tableView;
 }
