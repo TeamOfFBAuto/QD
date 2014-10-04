@@ -142,6 +142,8 @@ static const NSMutableArray *subjectArry;
     if (_post != post) {
         _post = post;
     }
+    // 显示连接的类型
+
     
     
     // 标注当前用户是否已进行评论
