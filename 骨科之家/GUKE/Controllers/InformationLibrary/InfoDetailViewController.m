@@ -76,6 +76,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
+    if(IOS7_LATER){
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
     [self loadNavigation];
     [self getArticleList];
 }
@@ -162,7 +166,7 @@
 - (void)loadInfoDetailView
 {
     _InfoDetailView = [[UIScrollView alloc] init];
-    _InfoDetailView.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64);
+    _InfoDetailView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64);
     _InfoDetailView.backgroundColor = [UIColor whiteColor];
     _InfoDetailView.scrollEnabled = YES;
     [self.view addSubview:_InfoDetailView];
