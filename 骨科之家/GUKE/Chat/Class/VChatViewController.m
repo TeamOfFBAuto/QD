@@ -276,7 +276,6 @@
     static NSString *bubbleCell03 = @"bubbleCell03";
    
     VChatModel *model = [_dataSoureArr objectAtIndex:indexPath.row];
-    NSLog(@"%@",model.shareSource);
     if(model.shareSource.length == 0){
     // 绑定文本内容
     if (model.sendType == SEND_Type_content) {
@@ -346,6 +345,7 @@
         return nil;
     }
    }
+    // 分享来自资料库和病例库
     else{
         BubbleSubShareCell *cell = [tableView dequeueReusableCellWithIdentifier:bubbleCell00];
         if (!cell) {
