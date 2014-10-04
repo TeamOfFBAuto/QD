@@ -58,7 +58,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.edgesForExtendedLayout = UIRectEdgeNone;
+    if (IOS7_LATER) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+    
     self.aTitle = @"群组";
     self.view.backgroundColor = [UIColor whiteColor];
     [self creatTable];
@@ -308,6 +311,9 @@
         
         if ([self.type isEqualToString:@"0"]) {
             [self shareBingliWith:model.groupId];
+        }else if ([self.type isEqualToString:@"1"])
+        {
+            [self shareZiLiaoKuWith:model.groupId];
         }
     }
     
@@ -339,6 +345,25 @@
     NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"bingliId":self.theId,@"typeId":PUSH_GPCHAT,@"isGroupArticle":@"1",@"recvId":groupId};
     
     [AFRequestService responseData:BINGLI_SHARE_GROUPS_URL andparameters:parameters andResponseData:^(id responseData) {
+        
+        NSDictionary * dict = (NSDictionary *)responseData;
+        NSLog(@"dict -------  %@",dict);
+        NSString * code = [dict objectForKey:@"code"];
+        if ([code intValue]==0)//说明请求数据成功
+        {
+            [bself.navigationController popViewControllerAnimated:YES];
+        }
+    }];
+}
+
+///分享病历库到讨论组
+-(void)shareZiLiaoKuWith:(NSString *)groupId
+{
+    __weak typeof(self)bself = self;
+    
+    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"infoId":self.theId,@"typeId":PUSH_GPCHAT,@"isGroupArticle":@"1",@"recvId":groupId};
+    
+    [AFRequestService responseData:ZILIAOKU_SHARE_GROUPS_URL andparameters:parameters andResponseData:^(id responseData) {
         
         NSDictionary * dict = (NSDictionary *)responseData;
         NSLog(@"dict -------  %@",dict);

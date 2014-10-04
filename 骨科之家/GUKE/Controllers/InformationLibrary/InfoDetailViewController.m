@@ -11,6 +11,9 @@
 #import "interface.h"
 #import "InformationDetailModel.h"
 #import "InfoFileTableViewCell.h"
+#import "ShareCircleViewController.h"
+#import "TSActionSheet.h"
+#import "SNGroupsViewController.h"
 @interface InfoDetailViewController ()<UITableViewDataSource, UITableViewDelegate,MBProgressHUDDelegate,InfoFileTableViewCellDelegate>
 {
     MBProgressHUD *HUD;
@@ -80,9 +83,54 @@
     if(IOS7_LATER){
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
+    
+    
+    UIBarButtonItem * spaceButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    spaceButton.width = IOS7_OR_LATER ? -15:5;
+    
+    UIButton * right_button = [UIButton buttonWithType:UIButtonTypeCustom];
+    right_button.frame = CGRectMake(0,0,50,30);
+    [right_button setImage:[UIImage imageNamed:@"guke_ic_share"] forState:UIControlStateNormal];
+    [right_button addTarget:self action:@selector(showActionSheet:forEvent:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem * right_item = [[UIBarButtonItem alloc] initWithCustomView:right_button];
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:spaceButton,right_item,nil];
+    
     [self loadNavigation];
     [self getArticleList];
 }
+
+#pragma mark - 分享按钮
+-(void) showActionSheet:(id)sender forEvent:(UIEvent*)event
+{
+    [self.view endEditing:YES];
+    __weak typeof(self)bself = self;
+    TSActionSheet *actionSheet = [[TSActionSheet alloc] init];
+    NSString *share1 = @"分享到诊疗圈";
+    NSString *share2 = @"分享到讨论组";
+    [actionSheet addButtonWithTitle:share1 icon:@"guke_ic_share_article" block:^{
+        ShareCircleViewController * share = [[ShareCircleViewController alloc] initWithNibName:@"ShareCircleViewController" bundle:nil];
+        share.share_content = [NSString _859ToUTF8:_detailModel.content];
+        share.theId = self.model.infoId;
+        share.type = @"3";
+        [bself.navigationController pushViewController:share animated:YES];
+    }];
+    [actionSheet addButtonWithTitle:share2 icon:@"guke_ic_share_group" block:^{
+        
+        SNGroupsViewController * list = [[SNGroupsViewController alloc] init];
+        list.theId = self.model.infoId;
+        list.type = @"1";
+        [bself.navigationController pushViewController:list animated:YES];
+        
+    }];
+    
+    actionSheet.cornerRadius = 0;
+    
+    [actionSheet showWithTouch:event];
+}
+
+
+
 
 // 获取"资料正文"数据
 - (void)getArticleList
@@ -92,6 +140,7 @@
     NSDictionary *parameters = @{@"userId": GET_USER_ID,@"sid": GET_S_ID,@"infoId":[NSString stringWithFormat:@"%@",self.model.infoId]};
     
     [AFRequestService responseData:@"info.php" andparameters:parameters andResponseData:^(NSData *responseData) {
+        
         NSDictionary *articleDict = (NSDictionary *)responseData;
         NSInteger codeNum = [[articleDict objectForKey:@"code"]integerValue];
         if(codeNum == CODE_SUCCESS){

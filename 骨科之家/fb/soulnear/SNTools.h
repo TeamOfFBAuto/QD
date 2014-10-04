@@ -22,8 +22,10 @@
 +(NSURL *)returnUrl:(NSString *)url;
 ///返回字符串宽度高度
 +(CGSize)returnStringHeightWith:(NSString *)string WithWidth:(float)theWidht WithFont:(int)aFont;
-
-
+///判断是否为声音
++(BOOL)judgeFileSuffixVoice:(NSString *)string;
+///判断是否为图片
++(BOOL)judgeFileSuffixImage:(NSString *)string;
 
 
 

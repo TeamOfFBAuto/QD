@@ -45,7 +45,7 @@
 {
     [super layoutSubviews];
     
-    _fileTypeName.frame = CGRectMake(120, 10, 40, 15);
+    _fileTypeName.frame = CGRectMake(120, 10,150, 15);
     _fileTypeName.backgroundColor = [UIColor whiteColor];
     _fileTypeName.font = [UIFont systemFontOfSize:14.0f];
     _fileTypeName.textAlignment = NSTextAlignmentLeft;
@@ -58,7 +58,7 @@
     
 //
     if ([self judgeFileSuffixVoice]) {
-        _fileTypeName.text = @"语音";
+        _fileTypeName.text = [NSString _859ToUTF8:[self.fileDic objectForKey:@"filename"]];
         voiceImageView.frame = CGRectMake(8, 5, 20, 33/27*20);
         voiceImageView.image = [UIImage imageNamed:@"voice_L0.png"];
         _voiceLeftImageArr = [[NSArray alloc] initWithObjects:
@@ -71,7 +71,7 @@
         tap.numberOfTapsRequired = 1;
         [_imageVoiceIcon addGestureRecognizer:tap];
     }else if ([self judgeFileSuffixImage]){
-        _fileTypeName.text = @"照片";
+        _fileTypeName.text = [NSString _859ToUTF8:[self.fileDic objectForKey:@"filename"]];
         _imgFileImage.frame = CGRectMake(30, 5, 60, 60);
         _imgFileImage.userInteractionEnabled = YES;
         _imgFileImage.contentMode = UIViewContentModeScaleAspectFit;
@@ -81,7 +81,7 @@
         tap.numberOfTapsRequired = 1;
         [_imgFileImage addGestureRecognizer:tap];
     }else{
-        _fileTypeName.text = @"视频";
+        _fileTypeName.text = [NSString _859ToUTF8:[self.fileDic objectForKey:@"filename"]];
         _videoFileImage.frame = CGRectMake(30, 5, 60, 60);
         _videoFileImage.userInteractionEnabled = YES;
         _videoFileImage.contentMode = UIViewContentModeScaleAspectFit;

@@ -10,8 +10,20 @@
 #import "ChatVoiceRecorderVC.h"
 #import "VoiceConverter.h"
 #import "BingLiListFeed.h"
+#import "CreateMedicalFilesCell.h"
 
-@interface CreatMedicalViewController : SNViewController<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate>{
+@interface PlayVoice : AVAudioPlayer
+{
+    
+}
+
+@property(nonatomic,strong)CreateMedicalFilesCell * aCell;
+
+@end
+
+
+
+@interface CreatMedicalViewController : SNViewController<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate,AVAudioPlayerDelegate,AVAudioSessionDelegate>{
 
 
 
@@ -22,5 +34,7 @@
 @property(nonatomic,strong)ChatVoiceRecorderVC * recorderVC;
 
 @property(nonatomic,strong)BingLiListFeed * feed;
+
+@property(nonatomic,strong)PlayVoice *player;
 
 @end

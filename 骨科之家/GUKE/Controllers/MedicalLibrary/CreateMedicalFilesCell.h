@@ -15,6 +15,7 @@
 
 @optional
 -(void)deleteFilesTap:(CreateMedicalFilesCell *)cell;
+-(void)filesImageViewTap:(CreateMedicalFilesCell *)cell;
 
 @end
 
@@ -27,7 +28,7 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *Files_imageView;
 
-@property(nonatomic,strong)UIImageView * imageVoiceIcon;
+@property (strong, nonatomic) IBOutlet UIImageView *voiceIcon;
 
 @property (strong, nonatomic) IBOutlet UITextView *content_textView;
 

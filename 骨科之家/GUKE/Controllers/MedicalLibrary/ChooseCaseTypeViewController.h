@@ -20,4 +20,6 @@
 
 @property(nonatomic,strong)BingLiListFeed * feed;
 
+@property(nonatomic,strong)NSMutableArray * delete_array;
+
 @end

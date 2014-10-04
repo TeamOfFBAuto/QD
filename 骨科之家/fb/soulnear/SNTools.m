@@ -56,7 +56,25 @@
 }
 
 
+// 判断文件的后缀名是否是声音文件
++(BOOL)judgeFileSuffixVoice:(NSString *)string
+{
+    if ([[string pathExtension]isEqualToString:@"amr"] || [[string pathExtension]isEqualToString:@"wma"] || [[string pathExtension]isEqualToString:@"mp3"]){
+        return YES;
+    }else{
+        return NO;
+    }
+}
 
+// 判断文件的后缀名是否是图片文件
++(BOOL)judgeFileSuffixImage:(NSString *)string
+{
+    if ([[string pathExtension]isEqualToString:@"jpg"] || [[string pathExtension]isEqualToString:@"JPG"] || [[string pathExtension]isEqualToString:@"png"] || [[string pathExtension]isEqualToString:@"PNG"] || [[string pathExtension]isEqualToString:@"gif"] || [[string pathExtension]isEqualToString:@"GIF"]) {
+        return YES;
+    }else{
+        return NO;
+    }
+}
 
 
 @end

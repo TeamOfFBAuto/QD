@@ -131,7 +131,9 @@ alpha:(a)]
 ///病历分享到讨论组
 #define BINGLI_SHARE_GROUPS_URL @"binglisharegroup.php"
 
-
+#pragma mark - 资料库分享到讨论组
+///资料库分享到讨论组
+#define ZILIAOKU_SHARE_GROUPS_URL @"infosharegroup.php"
 
 
 #pragma mark - 删除朋友圈文章
