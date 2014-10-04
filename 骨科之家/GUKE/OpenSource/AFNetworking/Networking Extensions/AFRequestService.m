@@ -210,7 +210,7 @@
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
         [manager POST:requestURL parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@" ----------   %@",[operation.responseString JSONValue]);
+//            NSLog(@" ----------   %@",[operation.responseString JSONValue]);
             getdata(responseObject);
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -283,7 +283,7 @@
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
         [manager POST:requestURL parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@" ----------   %@",[operation.responseString JSONValue]);
+//            NSLog(@" ----------   %@",[operation.responseString JSONValue]);
             [myProgressHUD hide:YES];
             getdata(responseObject);
             
