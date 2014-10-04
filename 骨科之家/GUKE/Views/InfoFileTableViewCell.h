@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef void(^InfoFileTableViewCellBloc)(NSString *playfilepath);
+
+@protocol InfoFileTableViewCellDelegate <NSObject>
+
+-(void)playVideWithString:(NSString *)thestrUrl;
+@end
+
 #import "VoicePlayCenter.h"
+
+
 @interface InfoFileTableViewCell : UITableViewCell<VoicePlayCenterDelegate, UIActionSheetDelegate>
 {
     // 图片文件图片
@@ -35,4 +44,11 @@
     
 }
 @property (nonatomic, strong)NSDictionary *fileDic;
+
+@property(nonatomic,copy)InfoFileTableViewCellBloc mybloc;
+
+@property(nonatomic,assign)id<InfoFileTableViewCellDelegate>delegate;
+
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier thebloc:(InfoFileTableViewCellBloc)habloc;
+
 @end

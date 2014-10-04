@@ -11,9 +11,10 @@
 #import "UIImageView+WebCache.h"
 @implementation InfoFileTableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier thebloc:(InfoFileTableViewCellBloc)habloc{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    _mybloc=habloc;
+
     if (self) {
         [self initSubview];
     }
@@ -97,10 +98,42 @@
 }
 
 // 播放视频
+-(void)setInfoFileTableViewCellBloc:(InfoFileTableViewCellBloc)thebloc{
+    
+    
+    
+
+    _mybloc=thebloc;
+
+}
+
+
 - (void)playVideoClick
 {
-    NSLog(@"播放视频");
+    
+    
+   
+    NSLog(@"播放视频withdic====%@",self.fileDic);
+    
+    
+    
+    
+    
+    NSString *thestr=[NSString stringWithFormat:@"%@%@",IMAGE_BASE_URL,[self.fileDic objectForKey:@"fileurl"]] ;
+    
+    
+    NSLog(@"url==%@",thestr);
+//    _mybloc(thestr);
+    
+    [self.delegate playVideWithString:thestr];
+    
+
+    
+    
 }
+
+
+
 
 // 查看图片
 - (void)imageBigClick

@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "BingLiListFeed.h"
 
-@interface LiuLanBingLiViewController : SNViewController<UITableViewDataSource,UITableViewDelegate>
+#import "InfoFileTableViewCell.h"
+
+@interface LiuLanBingLiViewController : SNViewController<UITableViewDataSource,UITableViewDelegate,InfoFileTableViewCellDelegate>
 {
     
 }
@@ -19,5 +21,7 @@
 @property(nonatomic,strong)BingLiListFeed * feed;
 
 @property(nonatomic,strong)BingLiListFeed * myFeed;
+
+@property(nonatomic,strong)MPMoviePlayerController *moviePlayer;
 
 @end
