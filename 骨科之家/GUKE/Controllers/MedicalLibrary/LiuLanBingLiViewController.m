@@ -12,6 +12,7 @@
 #import "TagManagerViewController.h"
 #import "TSActionSheet.h"
 #import "PostMoodViewController.h"
+#import "CreatMedicalViewController.h"
 
 @interface LiuLanBingLiViewController ()
 
@@ -58,6 +59,7 @@
 -(void) showActionSheet:(id)sender forEvent:(UIEvent*)event
 {
     [self.view endEditing:YES];
+    __weak typeof(self)bself = self;
     TSActionSheet *actionSheet = [[TSActionSheet alloc] init];
     NSString *share1 = @"分享到诊疗圈";
     NSString *share2 = @"分享到讨论组";
@@ -70,6 +72,10 @@
     }];
     [actionSheet addButtonWithTitle:edit icon:@"guke_ic_edit" block:^{
         
+        CreatMedicalViewController * create = [[CreatMedicalViewController alloc] init];
+        create.feed = _myFeed;
+        [bself.navigationController pushViewController:create animated:YES];
+        
     }];
     [actionSheet addButtonWithTitle:delete icon:@"guke_ic_delete" block:^{
         
@@ -77,6 +83,29 @@
     actionSheet.cornerRadius = 0;
     
     [actionSheet showWithTouch:event];
+}
+
+#pragma mark - 删除改病历
+-(void)deleteBingli
+{
+    
+    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"bingliId":_feed.bingliId};
+    
+    __weak typeof(self)wself=self;
+    
+    [AFRequestService responseData:BINGLI_DELETE_URL andparameters:parameters andResponseData:^(id responseData) {
+        
+        NSDictionary * dict = (NSDictionary *)responseData;
+        NSLog(@"dict ------  %@",dict);
+        NSString * code=[NSString stringWithFormat:@"%@",[dict objectForKey:@"code"]];
+        
+        if ([code intValue]==0)//说明请求数据成功
+        {
+            [wself.myFeed setBingLiListFeedDic:[dict objectForKey:@"bingli"]];
+            [wself.myTableView reloadData];
+        }
+    }];
+    
 }
 
 #pragma mark - 获取病历详细信息

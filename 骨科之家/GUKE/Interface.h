@@ -21,6 +21,7 @@
 #import "UIImage+fixOrientation.h"
 #import "UUID.h"
 #import "SNViewController.h"
+#import "VideoUploadModel.h"
 
 //#define IMAGE_BASE_URL @"http://thunisoa.931.com/upload/"// 图片的链接固定部分
 //
@@ -114,6 +115,10 @@ alpha:(a)]
 #define BINGLI_LIST @"binglilist.php"
 #pragma mark - 病例正文
 #define BINGLI_DETAIL_URL @"bingli.php"
+#pragma mark - 发表或修改病历
+#define WRITE_BINGLI_URL @"binglinew.php"
+#pragma mark - 删除病历
+#define BINGLI_DELETE_URL @"binglidel.php"
 #pragma mark - 病例分类列表
 #define BINGLI_TYPE_LIST_URL @"binglifenleilist.php"
 #pragma mark - 获取病历标签列表

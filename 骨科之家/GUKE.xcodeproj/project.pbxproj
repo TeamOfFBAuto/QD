@@ -857,6 +857,7 @@
 		5630B98419DBF3B500DCFE1B /* QBShowImagesScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5630B98319DBF3B500DCFE1B /* QBShowImagesScrollView.m */; };
 		5630B98B19DC07A400DCFE1B /* CreateMedicalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5630B98919DC07A400DCFE1B /* CreateMedicalCell.m */; };
 		5630B99219DC374900DCFE1B /* MedicalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5630B99119DC374900DCFE1B /* MedicalModel.m */; };
+		563845D719DF31E5004C236A /* VideoUploadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 563845D619DF31E5004C236A /* VideoUploadModel.m */; };
 		563D756219DE6CFC00095CC7 /* MedicalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 563D756019DE6CFC00095CC7 /* MedicalCell.m */; };
 		563D756319DE6CFC00095CC7 /* MedicalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 563D756119DE6CFC00095CC7 /* MedicalCell.xib */; };
 		563D756619DE8B1300095CC7 /* LiuLanBingLiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 563D756519DE8B1300095CC7 /* LiuLanBingLiViewController.m */; };
@@ -2043,6 +2044,8 @@
 		5630B98919DC07A400DCFE1B /* CreateMedicalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateMedicalCell.m; sourceTree = "<group>"; };
 		5630B99019DC374900DCFE1B /* MedicalModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedicalModel.h; sourceTree = "<group>"; };
 		5630B99119DC374900DCFE1B /* MedicalModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedicalModel.m; sourceTree = "<group>"; };
+		563845D519DF31E5004C236A /* VideoUploadModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoUploadModel.h; sourceTree = "<group>"; };
+		563845D619DF31E5004C236A /* VideoUploadModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoUploadModel.m; sourceTree = "<group>"; };
 		563D755F19DE6CFC00095CC7 /* MedicalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedicalCell.h; sourceTree = "<group>"; };
 		563D756019DE6CFC00095CC7 /* MedicalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedicalCell.m; sourceTree = "<group>"; };
 		563D756119DE6CFC00095CC7 /* MedicalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MedicalCell.xib; sourceTree = "<group>"; };
@@ -3322,6 +3325,8 @@
 				3E67F49819D3CE89001B0880 /* InformationDetailModel.m */,
 				3E6BA41D19D507A400A891EB /* imgUploadModel.h */,
 				3E6BA41E19D507A400A891EB /* imgUploadModel.m */,
+				563845D519DF31E5004C236A /* VideoUploadModel.h */,
+				563845D619DF31E5004C236A /* VideoUploadModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -5167,6 +5172,7 @@
 				3E37846E199092150000F8FF /* InferiorsTableViewCell.m in Sources */,
 				19A069471970C6D000830898 /* GroupIfo.m in Sources */,
 				198F8A441961653800B3F09C /* QiDiPopoverView.m in Sources */,
+				563845D719DF31E5004C236A /* VideoUploadModel.m in Sources */,
 				E39E4D6019DA04DE00AEA2F6 /* ITTCalMonth.m in Sources */,
 				197ABFF71973EE9E00FC6A24 /* contentAndGood.m in Sources */,
 				565DAE6119DAAE8000C3924D /* TDDetailCell.m in Sources */,
@@ -5453,7 +5459,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "f2794893-6f40-4d34-b2ae-54d0f5e6cf98";
+				PROVISIONING_PROFILE = "663bce84-31f1-462e-a50d-ebbe7bacfbf5";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -5489,7 +5495,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "f2794893-6f40-4d34-b2ae-54d0f5e6cf98";
+				PROVISIONING_PROFILE = "663bce84-31f1-462e-a50d-ebbe7bacfbf5";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -5515,7 +5521,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = GUKE;
-				PROVISIONING_PROFILE = "f2794893-6f40-4d34-b2ae-54d0f5e6cf98";
+				PROVISIONING_PROFILE = "663bce84-31f1-462e-a50d-ebbe7bacfbf5";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
@@ -5543,7 +5549,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = GUKE;
-				PROVISIONING_PROFILE = "f2794893-6f40-4d34-b2ae-54d0f5e6cf98";
+				PROVISIONING_PROFILE = "663bce84-31f1-462e-a50d-ebbe7bacfbf5";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";

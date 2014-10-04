@@ -12,6 +12,8 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    
+    [self.Files_imageView addSubview:self.imageVoiceIcon];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

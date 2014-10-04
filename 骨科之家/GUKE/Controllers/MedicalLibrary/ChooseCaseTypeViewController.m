@@ -46,6 +46,7 @@
         
         NSDictionary * dict = (NSDictionary *)responseData;
         NSString * code = [dict objectForKey:@"code"];
+        NSLog(@"病历分类数据 --- - %@",dict);
         if ([code intValue]==0)//说明请求数据成功
         {
             NSArray * array = [dict objectForKey:@"fenleilist"];
@@ -85,10 +86,102 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"uploadData" object:[[data_array objectAtIndex:indexPath.row] objectForKey:@"fenleiId"]];
+    _feed.fenleiId = [[data_array objectAtIndex:indexPath.row] objectForKey:@"fenleiId"];
+    NSDictionary * dic = [NSDictionary dictionaryWithObjectsAndKeys:[[data_array objectAtIndex:indexPath.row] objectForKey:@"fenleiId"],@"typeId",nil];
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"uploadData" object:dic];
+    
+//    [self.navigationController popViewControllerAnimated:YES];
+    
+    
+    [self upLoadBingLi];
 }
+
+
+-(void)upLoadBingLi
+{
+//    NSMutableDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"bingliId":_feed.bingliId,@"psname":_feed.psnname,@"sex":_feed.sex,@"jiuzhen":_feed.jiuzhen,@"zhenduan":_feed.zhenduan,@"mobile":_feed.mobile,@"relateMobile":_feed.relateMobile,@"fangan":_feed.fangan,@"binglihao":_feed.binglihao,@"leibieId":_feed.leibieId,@"idno":_feed.idno,@"bianma":_feed.bianma,@"memo":_feed.memo,@"fenleiId":_feed.fenleiId};
+    
+    NSMutableDictionary * parameters = [NSMutableDictionary dictionary];
+    [parameters setObject:GET_U_ID forKey:@"userId"];
+    [parameters setObject:GET_S_ID forKey:@"sid"];
+    
+    if (_feed.bingliId.length)
+    {
+        [parameters setObject:_feed.bingliId forKey:@"bingliId"];
+    }
+    
+    if (_feed.psnname.length)
+    {
+        [parameters setObject:_feed.psnname forKey:@"psnname"];
+    }
+    if (_feed.sex.length)
+    {
+        [parameters setObject:_feed.sex forKey:@"sex"];
+    }
+    if (_feed.jiuzhen.length)
+    {
+        [parameters setObject:_feed.jiuzhen forKey:@"jiuzhen"];
+    }
+    if (_feed.zhenduan.length)
+    {
+        [parameters setObject:_feed.zhenduan forKey:@"zhenduan"];
+    }
+    if (_feed.mobile.length)
+    {
+        [parameters setObject:_feed.mobile forKey:@"mobile"];
+    }
+    if (_feed.fangan.length)
+    {
+        [parameters setObject:_feed.fangan forKey:@"fangan"];
+    }
+    if (_feed.binglihao.length)
+    {
+        [parameters setObject:_feed.binglihao forKey:@"binglihao"];
+    }
+    if (_feed.idno.length)
+    {
+        [parameters setObject:_feed.idno forKey:@"idno"];
+    }
+    if (_feed.bianma.length)
+    {
+        [parameters setObject:_feed.bianma forKey:@"bianma"];
+    }
+    if (_feed.fenleiId.length)
+    {
+        [parameters setObject:_feed.fenleiId forKey:@"fenleiId"];
+    }
+    
+    
+    
+    
+    __weak typeof(self)wself=self;
+    
+//    [AFRequestService responseData:WRITE_BINGLI_URL andparameters:parameters andResponseData:^(id responseData) {
+//        
+//        NSDictionary * dict = (NSDictionary *)responseData;
+//        NSLog(@"dict ------  %@",dict);
+//        NSString * code=[NSString stringWithFormat:@"%@",[dict objectForKey:@"code"]];
+//        
+//        if ([code intValue]==0)//说明请求数据成功
+//        {
+//        }
+//    }];
+    
+    
+    [AFRequestService responseDataWithImage:WRITE_BINGLI_URL andparameters:parameters andDataArray:_feed.attach_array andfieldType:@"attach1" andfileName:@"attach1.jpg" andResponseData:^(NSData *responseData) {
+        
+        NSDictionary * dict = (NSDictionary *)responseData;
+        NSLog(@"dict -------   %@",dict);
+        
+        
+    }];
+    
+    
+    
+    
+}
+
 
 
 

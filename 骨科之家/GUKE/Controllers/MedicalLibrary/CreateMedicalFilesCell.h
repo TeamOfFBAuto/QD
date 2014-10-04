@@ -27,6 +27,8 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *Files_imageView;
 
+@property(nonatomic,strong)UIImageView * imageVoiceIcon;
+
 @property (strong, nonatomic) IBOutlet UITextView *content_textView;
 
 @property (strong, nonatomic) IBOutlet UILabel *filesSize_label;
