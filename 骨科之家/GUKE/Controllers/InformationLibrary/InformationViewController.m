@@ -55,6 +55,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if(IOS7_LATER){
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
     [self loadNavigation];
     [self loadUITableView];
     [self loadNewInformationBtn];
