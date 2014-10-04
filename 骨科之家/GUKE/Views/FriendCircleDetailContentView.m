@@ -155,7 +155,7 @@
             
             cell.PictureViews.frame = CGRectMake(5,cell.content.frame.size.height+cell.content.frame.origin.y+10,231,imgHeight);
             
-            [cell.PictureViews setimageArr:articleModel.attachlistArray withSize:75 isjuzhong:NO];
+            [cell.PictureViews setimageArr:temp_array withSize:75 isjuzhong:NO];
             [cell.PictureViews setthebloc:^(NSInteger index) {
                 
                 ShowImagesViewController *showBigVC=[[ShowImagesViewController alloc]init];

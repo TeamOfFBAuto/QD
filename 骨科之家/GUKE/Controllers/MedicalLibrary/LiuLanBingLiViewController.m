@@ -128,7 +128,7 @@
 -(void)loadBingliDetailData
 {
     NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"bingliId":_theId};
-    
+    NSLog(@"theId -----  %@",_theId);
     __weak typeof(self)wself=self;
     
     [AFRequestService responseData:BINGLI_DETAIL_URL andparameters:parameters andResponseData:^(id responseData) {
@@ -159,18 +159,18 @@
         return 50;
     }else if (indexPath.row == 2)
     {
-        CGSize bl_height = [SNTools returnStringHeightWith:[NSString stringWithFormat:@"病历号：%@",self.feed.binglihao] WithWidth:240 WithFont:14];
+        CGSize bl_height = [SNTools returnStringHeightWith:[NSString stringWithFormat:@"病历号：%@",self.myFeed.binglihao] WithWidth:240 WithFont:14];
         
-        CGSize zd_height = [SNTools returnStringHeightWith:[NSString stringWithFormat:@"诊断：%@",self.feed.zhenduan] WithWidth:240 WithFont:14];
+        CGSize zd_height = [SNTools returnStringHeightWith:[NSString stringWithFormat:@"诊断：%@",self.myFeed.zhenduan] WithWidth:240 WithFont:14];
         
         return bl_height.height+zd_height.height+30;
     }else if (indexPath.row == 3)
     {
-        CGSize size = [SNTools returnStringHeightWith:self.feed.fangan WithWidth:240 WithFont:14];
+        CGSize size = [SNTools returnStringHeightWith:self.myFeed.fangan WithWidth:240 WithFont:14];
         return size.height+20;
     }else if (indexPath.row == 4)
     {
-        CGSize size = [SNTools returnStringHeightWith:self.feed.memo WithWidth:240 WithFont:14];
+        CGSize size = [SNTools returnStringHeightWith:self.myFeed.memo WithWidth:240 WithFont:14];
         return size.height + 20;
     }else
     {
@@ -199,7 +199,7 @@
         
         if (indexPath.row == 0) {
             LiuLanSectionView * aView = [[[NSBundle mainBundle] loadNibNamed:@"LiuLanSectionView" owner:self options:nil] objectAtIndex:0];
-            [aView setContentWithFenLei:_feed.fenleiname Date:_feed.jiuzhen UserName:_feed.psnname Sex:_feed.sex];
+            [aView setContentWithFenLei:_myFeed.fenleiname Date:_myFeed.jiuzhen UserName:_myFeed.psnname Sex:_myFeed.sex];
             [cell.contentView addSubview:aView];
         }else if (indexPath.row == 1)
         {
@@ -219,42 +219,45 @@
             
         }else if (indexPath.row == 2)
         {
-            CGSize bl_height = [SNTools returnStringHeightWith:self.feed.binglihao WithWidth:240 WithFont:14];
-            CGSize zd_height = [SNTools returnStringHeightWith:self.feed.zhenduan WithWidth:240 WithFont:14];
+            CGSize bl_height = [SNTools returnStringHeightWith:self.myFeed.binglihao WithWidth:240 WithFont:14];
+            CGSize zd_height = [SNTools returnStringHeightWith:self.myFeed.zhenduan WithWidth:240 WithFont:14];
             
             UILabel * binglihao = [[UILabel alloc] initWithFrame:CGRectMake(10,10,DEVICE_WIDTH-20,bl_height.height)];
-            binglihao.text = [NSString stringWithFormat:@"病历号：%@",_feed.binglihao];
+            binglihao.text = [NSString stringWithFormat:@"病历号：%@",_myFeed.binglihao];
             binglihao.textAlignment = NSTextAlignmentLeft;
             binglihao.textColor = [UIColor blackColor];
             binglihao.font = [UIFont systemFontOfSize:14];
             [cell.contentView addSubview:binglihao];
             
             UILabel * zhenduan = [[UILabel alloc] initWithFrame:CGRectMake(10,20+bl_height.height,DEVICE_WIDTH-20,zd_height.height)];
-            zhenduan.text = [NSString stringWithFormat:@"诊断：%@",_feed.zhenduan];
+            zhenduan.text = [NSString stringWithFormat:@"诊断：%@",_myFeed.zhenduan];
             zhenduan.textAlignment = NSTextAlignmentLeft;
+            zhenduan.numberOfLines = 0;
             zhenduan.textColor = [UIColor blackColor];
             zhenduan.font = [UIFont systemFontOfSize:14];
             [cell.contentView addSubview:zhenduan];
             
         }else if (indexPath.row == 3)
         {
-            CGSize size = [SNTools returnStringHeightWith:self.feed.fangan WithWidth:240 WithFont:14];
+            CGSize size = [SNTools returnStringHeightWith:self.myFeed.fangan WithWidth:240 WithFont:14];
             
             UILabel * zhiliaofangan = [[UILabel alloc] initWithFrame:CGRectMake(10,10,DEVICE_WIDTH-20,size.height)];
-            zhiliaofangan.text = [NSString stringWithFormat:@"治疗方案：%@",_feed.fangan];
+            zhiliaofangan.text = [NSString stringWithFormat:@"治疗方案：%@",_myFeed.fangan];
             zhiliaofangan.textAlignment = NSTextAlignmentLeft;
             zhiliaofangan.textColor = [UIColor blackColor];
+            zhiliaofangan.numberOfLines = 0;
             zhiliaofangan.font = [UIFont systemFontOfSize:14];
             [cell.contentView addSubview:zhiliaofangan];
             
         }else if (indexPath.row == 4)
         {
-            CGSize size = [SNTools returnStringHeightWith:self.feed.memo WithWidth:240 WithFont:14];
+            CGSize size = [SNTools returnStringHeightWith:self.myFeed.memo WithWidth:240 WithFont:14];
             
             UILabel * binglishuoming = [[UILabel alloc] initWithFrame:CGRectMake(10,10,DEVICE_WIDTH-20,size.height)];
-            binglishuoming.text = [NSString stringWithFormat:@"病例说明：%@",_feed.fangan];
+            binglishuoming.text = [NSString stringWithFormat:@"病例说明：%@",_myFeed.memo];
             binglishuoming.textAlignment = NSTextAlignmentLeft;
             binglishuoming.textColor = [UIColor blackColor];
+            binglishuoming.numberOfLines = 0;
             binglishuoming.font = [UIFont systemFontOfSize:14];
             [cell.contentView addSubview:binglishuoming];
         }

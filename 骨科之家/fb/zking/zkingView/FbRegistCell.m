@@ -29,6 +29,9 @@
         [self addSubview:_inputField];
         
         
+        [_inputField addTarget:self action:@selector(textFieldTextDidChangeOneCI:) forControlEvents:UIControlEventEditingChanged];
+        
+        
         _imgLine=[[UIImageView alloc]initWithFrame:CGRectMake(10, 32, 300, 5)];
         _imgLine.image=[UIImage imageNamed:@"guke_searchbgline.png"];
         //        _imgLine.frame=CGRectMake(0, 40, 320, 1);
@@ -157,10 +160,16 @@
 
 {
     
-    _mybloc(102,_rowofindexpath,[NSString stringWithFormat:@"%@%@",field.text,string]);
+//    _mybloc(102,_rowofindexpath,[NSString stringWithFormat:@"%@%@",field.text,string]);
     
     return YES;
 }
+
+-(void)textFieldTextDidChangeOneCI:(UITextField *)texField
+{
+    _mybloc(102,_rowofindexpath,texField.text);
+}
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;

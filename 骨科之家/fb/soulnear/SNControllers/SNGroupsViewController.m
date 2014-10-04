@@ -342,7 +342,7 @@
 {
     __weak typeof(self)bself = self;
     
-    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"bingliId":self.theId,@"typeId":PUSH_GPCHAT,@"isGroupArticle":@"1",@"recvId":groupId};
+    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"bingliId":self.theId,@"typeId":@"0",@"isGroupArticle":@"1",@"recvId":groupId};
     
     [AFRequestService responseData:BINGLI_SHARE_GROUPS_URL andparameters:parameters andResponseData:^(id responseData) {
         
@@ -361,7 +361,7 @@
 {
     __weak typeof(self)bself = self;
     
-    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"infoId":self.theId,@"typeId":PUSH_GPCHAT,@"isGroupArticle":@"1",@"recvId":groupId};
+    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"infoId":self.theId,@"typeId":@"0",@"isGroupArticle":@"1",@"recvId":groupId};
     
     [AFRequestService responseData:ZILIAOKU_SHARE_GROUPS_URL andparameters:parameters andResponseData:^(id responseData) {
         
