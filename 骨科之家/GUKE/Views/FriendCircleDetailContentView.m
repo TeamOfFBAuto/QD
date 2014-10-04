@@ -122,7 +122,7 @@
         cell.content.numberOfLines = 0;
         cell.urlLabel.hidden = YES;
         cell.content.frame = CGRectMake(5, 2, 230,[SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250]+10);
-        cell.backView.frame = CGRectMake(0, 3, 232, [SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250]+10);
+        cell.backView.frame = CGRectMake(0, 3, 255, [SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250]+10);
         
 
         [temp_array removeAllObjects];
@@ -185,7 +185,7 @@
             imgHeight += 20;
         }
         
-        cell.backView.frame = CGRectMake(0, 3, 232,cell.content.frame.size.height + cell.content.frame.origin.y+imgHeight);
+        cell.backView.frame = CGRectMake(0, 3, 255,cell.content.frame.size.height + cell.content.frame.origin.y+imgHeight);
     }
     else{
         cell.contentShare.frame = CGRectMake(0, 23, 232, 28);
