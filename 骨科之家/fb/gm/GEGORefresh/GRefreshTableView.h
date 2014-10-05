@@ -43,4 +43,6 @@
 -(void)showRefreshHeader:(BOOL)animated;//代码出发刷新
 - (void)finishReloadigData;
 
+@property (nonatomic,retain)NSMutableArray *dataArray;//数据源
+
 @end

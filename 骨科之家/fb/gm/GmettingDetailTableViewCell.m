@@ -76,6 +76,21 @@
             
             
         }
+        
+        
+        
+        NSDate *date = [NSDate date];
+        NSTimeZone *zone = [NSTimeZone systemTimeZone];
+        NSInteger interval = [zone secondsFromGMTForDate: date];
+        NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
+        NSString *localeDateStr = [[NSString stringWithFormat:@"%@",localeDate]substringToIndex:10];
+        if ([theModel.userExists intValue] >[localeDateStr intValue]) {
+            isLabel.text = @"已结束";
+        }
+        
+        
+        
+        
         [self.contentView addSubview:isLabel];
         
         
