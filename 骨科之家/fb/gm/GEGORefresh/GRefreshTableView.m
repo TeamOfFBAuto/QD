@@ -116,7 +116,18 @@
         self.isReloadData = NO;
     }
     
-    [self reloadData];
+    @try {
+        
+        [self reloadData];
+        
+    }
+    @catch (NSException *exception) {
+        
+        NSLog(@"%@",exception);
+    }
+    @finally {
+        
+    }
     //如果有更多数据，重新设置footerview  frame
     if (self.isHaveMoreData)
     {
