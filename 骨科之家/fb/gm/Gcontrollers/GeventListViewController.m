@@ -1,24 +1,25 @@
 //
-//  GcalendarDetailViewController.m
+//  GeventListViewController.m
 //  GUKE
 //
-//  Created by gaomeng on 14-9-30.
+//  Created by gaomeng on 14-10-5.
 //  Copyright (c) 2014年 qidi. All rights reserved.
 //
 
-#import "GcalendarDetailViewController.h"
+#import "GeventListViewController.h"
 
 #import "GeventDetailViewController.h"
 
-@interface GcalendarDetailViewController ()
+@interface GeventListViewController ()
 {
     int _page;//第几页
     int _pageCapacity;//一页请求几条数据
     NSArray *_dataArray;//数据源
 }
+
 @end
 
-@implementation GcalendarDetailViewController
+@implementation GeventListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,8 +29,8 @@
     
     self.aTitle = @"会议日程";
     
-    _tableView = [[RefreshTableView alloc]init];
-    _tableView.frame = CGRectMake(0, 64, 320, 568-64);
+    _tableView = [[RefreshTableView alloc]initWithFrame:CGRectMake(0, 64, 320, 568-64)];
+    _tableView.separatorColor = [UIColor clearColor];
     
     _tableView.refreshDelegate = self;//用refreshDelegate替换UITableViewDelegate
     _tableView.dataSource = self;
@@ -147,7 +148,7 @@
         height = 65;
         
     }else{
-        height = 100;
+        height = 50;
     }
     
     return height;
@@ -193,7 +194,6 @@
         [view removeFromSuperview];
     }
     
-    
     if (indexPath.row == 0) {
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(15,17, 320, 40)];
         NSString *weekDay = nil;
@@ -229,21 +229,39 @@
         
         [cell.contentView addSubview:label];
         
+        UIView *fenLine = [[UIView alloc]initWithFrame:CGRectMake(0, 64, 320, 1)];
+        fenLine.backgroundColor = RGB(205, 205, 205);
+        [cell.contentView addSubview:fenLine];
+        
+        
+        
+        
     }else{
-        
-        
-        UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 17, 290, 70)];
-        titleLabel.font = [UIFont systemFontOfSize:17];
-        titleLabel.numberOfLines = 3;
+        //活动名称
+        UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 15, 270, 20)];
+        titleLabel.font = [UIFont systemFontOfSize:16];
+        titleLabel.textColor = RGB(127, 126, 126);
+        titleLabel.numberOfLines = 1;
         GeventModel *m = _dataArray[indexPath.row - 1];
         titleLabel.text = [NSString _859ToUTF8:m.eventTitle];
         [cell.contentView addSubview:titleLabel];
-     
+        
+        //是否报名
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(15, 20, 10, 10)];
+        if ([m.userExists intValue] == 0) {
+            view.backgroundColor = RGB(255, 204, 204);
+        }else if ([m.userExists intValue] == 1){
+            view.backgroundColor = RGB(137, 192, 136);
+        }
+        [cell.contentView addSubview:view];
+        
+        
+        //分割线
+        UIView *fenLine = [[UIView alloc]initWithFrame:CGRectMake(0, 49, 320, 1)];
+        fenLine.backgroundColor = RGB(242, 242, 242);
+        [cell.contentView addSubview:fenLine];
         
     }
-    
-    
-    
     
     
     return cell;
@@ -252,15 +270,6 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return _dataArray.count+1;
 }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -279,17 +288,6 @@
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     return [UIView new];
@@ -299,9 +297,6 @@
 {
     return 0.01f;
 }
-
-
-
 
 
 @end

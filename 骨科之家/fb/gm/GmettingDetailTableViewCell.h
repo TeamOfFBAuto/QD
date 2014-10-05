@@ -6,6 +6,8 @@
 //  Copyright (c) 2014年 qidi. All rights reserved.
 //
 
+
+//活动详情自定义cell
 #import <UIKit/UIKit.h>
 #import "GeventModel.h"
 @class GeventDetailViewController;

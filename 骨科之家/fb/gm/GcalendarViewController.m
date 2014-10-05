@@ -10,9 +10,9 @@
 
 #import "ITTBaseDataSourceImp.h"
 
-#import "GcalendarDetailViewController.h"
-
 #import "GeventSingleModel.h"
+
+#import "GeventListViewController.h"
 
 @interface GcalendarViewController ()
 {
@@ -118,8 +118,21 @@
     NSLog(@"%d",[calDay getDay]);
     NSLog(@"%d",[calDay getMonth]);
     NSLog(@"%d",[calDay getYear]);
+    NSString *monthStr = nil;
+    NSString *dayStr = nil;
+    if ([calDay getMonth]<10) {
+        monthStr = [NSString stringWithFormat:@"0%d",[calDay getMonth]];
+    }else{
+        monthStr = [NSString stringWithFormat:@"%d",[calDay getMonth]];
+    }
+    if ([calDay getDay]<10) {
+        dayStr = [NSString stringWithFormat:@"0%d",[calDay getDay]];
+        
+    }else{
+        dayStr = [NSString stringWithFormat:@"%d",[calDay getDay]];
+    }
     
-    NSString *calDayStr = [NSString stringWithFormat:@"%d-%d-%d",[calDay getYear],[calDay getMonth],[calDay getDay]];
+    NSString *calDayStr = [NSString stringWithFormat:@"%d-%@-%@",[calDay getYear],monthStr,dayStr];
     
     
     
@@ -129,12 +142,16 @@
         NSLog(@"%@",dic);
         NSString *dateStr = [dic objectForKey:@"eventDate"];
         
-        NSLog(@"%@",dateStr);
+        NSLog(@"单例中的时间 dateStr:%@",dateStr);
+        NSLog(@"日历中的时间 calDayStr:%@",calDayStr);
         
         if ([calDayStr isEqualToString:dateStr]) {
-            GcalendarDetailViewController *gdvc = [[GcalendarDetailViewController alloc]init];
+            
+            GeventListViewController *gdvc = [[GeventListViewController alloc]init];
             gdvc.calDay = calDay;
+            
             [self.navigationController pushViewController:gdvc animated:YES];
+            break;
         }
         
         

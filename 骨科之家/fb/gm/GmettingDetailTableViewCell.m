@@ -44,12 +44,23 @@
         cNumLimintLabel.textColor = RGB(168,168,168);
         cNumLimintLabel.text = [NSString _859ToUTF8:theModel.userLimit];
         
-        //已报名
-        
         
         [self.contentView addSubview:titleLabel];
         [self.contentView addSubview:numLimitLabel];
         [self.contentView addSubview:cNumLimintLabel];
+        
+        
+        //是否报名
+    
+        UILabel *isLabel = [[UILabel alloc]initWithFrame:CGRectMake(260, 21, 60, 17)];
+        isLabel.font = [UIFont systemFontOfSize:15];
+        isLabel.textColor = RGB(72, 158, 181);
+        if ([theModel.userExists intValue] == 0) {
+            isLabel.text = @"未报名";
+        }else if ([theModel.userExists intValue] == 1){
+            isLabel.text = @"已报名";
+        }
+        [self.contentView addSubview:isLabel];
         
         
         height = CGRectGetMaxY(numLimitLabel.frame)+20;

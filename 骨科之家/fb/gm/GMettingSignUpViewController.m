@@ -36,7 +36,7 @@
     }
     
     
-    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568-64) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -81,7 +81,7 @@
     }else if (indexPath.row == 3){
         height = 65;
     }else if (indexPath.row == 4){
-        height = 300;
+        height = 200;
         
     }
     return height;
@@ -154,7 +154,13 @@
         btn.layer.cornerRadius = 4;
         [btn addTarget:self action:@selector(tijiaoBtnClicked) forControlEvents:UIControlEventTouchUpInside];
         [btn setTitle:@"提交" forState:UIControlStateNormal];
-        [btn setFrame:CGRectMake(15, 45, 290, 40)];
+        if (iPhone5) {
+            [btn setFrame:CGRectMake(15, 150, 290, 40)];
+        }else{
+            [btn setFrame:CGRectMake(15, 45, 290, 40)];
+        }
+        
+        
         [cell.contentView addSubview:btn];
         
     }
