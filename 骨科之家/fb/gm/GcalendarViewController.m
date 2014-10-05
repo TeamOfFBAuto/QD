@@ -20,10 +20,28 @@
 {
     ITTCalendarView *_calendarView;
     MBProgressHUD *_hud;
+    
+    
 }
 @end
 
+
+
+
+
+
 @implementation GcalendarViewController
+
+
+-(void)dealloc{
+    
+    _calendarView.dataSource = nil;
+    _calendarView.delegate = nil;
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"GMJOINSUCCESS" object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"GMESCSUCCESS" object:nil];
+    NSLog(@"%s",__FUNCTION__);
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,6 +62,9 @@
     
     
     
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(prepareNetData) name:@"GMJOINSUCCESS" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(prepareNetData) name:@"GMESCSUCCESS" object:nil];
+    
     
     
     [self networkWithDate:ldateStr];
@@ -58,7 +79,16 @@
 }
 
 
-
+-(void)prepareNetData{
+    NSDate *date = [NSDate date];
+    NSTimeZone *zone = [NSTimeZone systemTimeZone];
+    NSInteger interval = [zone secondsFromGMTForDate: date];
+    NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
+    NSString *ldateStr = [[NSString stringWithFormat:@"%@",localeDate]substringToIndex:10];
+    
+    NSLog(@"===============%@",ldateStr);
+    [self networkWithDate:ldateStr];
+}
 
 
 

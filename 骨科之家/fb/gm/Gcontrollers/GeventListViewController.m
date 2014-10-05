@@ -21,14 +21,19 @@
 
 @implementation GeventListViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+-(void)dealloc{
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    NSLog(@"%s",__FUNCTION__);
+}
+
+
+-(void)viewWillAppear:(BOOL)animated{
     
-    self.aTitle = @"会议日程";
-    
+    if (_tableView) {
+        _tableView = nil;
+        _tableView.dataSource = nil;
+        _tableView.refreshDelegate = nil;
+    }
     _tableView = [[RefreshTableView alloc]initWithFrame:CGRectMake(0, 64, 320, 568-64)];
     _tableView.separatorColor = [UIColor clearColor];
     
@@ -40,6 +45,30 @@
     _pageCapacity = 20;
     
     [_tableView showRefreshHeader:YES];//进入界面先刷新数据
+}
+
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    
+    
+    self.aTitle = @"会议日程";
+    
+//    _tableView = [[RefreshTableView alloc]initWithFrame:CGRectMake(0, 64, 320, 568-64)];
+//    _tableView.separatorColor = [UIColor clearColor];
+//    
+//    _tableView.refreshDelegate = self;//用refreshDelegate替换UITableViewDelegate
+//    _tableView.dataSource = self;
+//    [self.view addSubview:_tableView];
+//    
+//    _page = 1;
+//    _pageCapacity = 20;
+//    
+//    [_tableView showRefreshHeader:YES];//进入界面先刷新数据
     
     
     
@@ -52,6 +81,25 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+//通知方法
+-(void)notificationMethod{
+    [_tableView removeFromSuperview];
+    _tableView.refreshDelegate = nil;
+    _tableView.dataSource = nil;
+    
+    _tableView = [[RefreshTableView alloc]initWithFrame:CGRectMake(0, 64, 320, 568-64)];
+    _tableView.separatorColor = [UIColor clearColor];
+    
+    _tableView.refreshDelegate = self;//用refreshDelegate替换UITableViewDelegate
+    _tableView.dataSource = self;
+    [self.view addSubview:_tableView];
+    
+    _page = 1;
+    _pageCapacity = 20;
+    
+    [_tableView showRefreshHeader:YES];//进入界面先刷新数据
+}
 
 
 
@@ -162,9 +210,14 @@
 
 - (void)loadNewData
 {
+    
+    
     _page = 1;
     
+    
     [self prepareNetData];
+    
+    
 }
 
 - (void)loadMoreData
@@ -301,6 +354,18 @@
 {
     return 0.01f;
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @end

@@ -18,6 +18,15 @@
 
 @implementation GMettingSignUpViewController
 
+
+
+-(void)dealloc{
+    
+    NSLog(@"%s",__FUNCTION__);
+}
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -69,9 +78,6 @@
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:tableView];
     
-   
-    
-    
     
     
     
@@ -81,8 +87,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 
 
 
@@ -245,10 +249,12 @@
             
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"GMJOINSUCCESS" object:nil];
+            
             NSLog(@"loadSuccess");
             NSLog(@"%@",dict);
             
-            UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"报名成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"报名成功,请支付费用" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             al.tag = 100;
             [al show];
             
@@ -275,7 +281,7 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (alertView.tag == 100) {
         if (buttonIndex == 0) {
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            [self.navigationController popViewControllerAnimated:YES];
         }
     }
 }
