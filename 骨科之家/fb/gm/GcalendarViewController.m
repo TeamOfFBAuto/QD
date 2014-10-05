@@ -14,9 +14,12 @@
 
 #import "GeventListViewController.h"
 
+#import "MBProgressHUD.h"
+
 @interface GcalendarViewController ()
 {
     ITTCalendarView *_calendarView;
+    MBProgressHUD *_hud;
 }
 @end
 
@@ -38,6 +41,11 @@
     
     NSLog(@"===============%@",ldateStr);
     
+    
+    
+    
+    
+    
     [self networkWithDate:ldateStr];
     
     
@@ -57,7 +65,8 @@
 
 //请求网络数据
 -(void)networkWithDate:(NSString *)theDate{
-    
+    _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    _hud.labelText = @"正在加载";
     
     NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"eventDate":theDate};
     
@@ -68,6 +77,9 @@
         NSString * code = [dict objectForKey:@"code"];
         if ([code intValue]==0)//说明请求数据成功
         {
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
             NSLog(@"loadSuccess");
             
             NSLog(@"%@",dict);
@@ -102,6 +114,11 @@
             
             
         }else{
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"加载失败,请重新加载" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [al show];
+            
             NSLog(@"%d",[code intValue]);
         }
     }];

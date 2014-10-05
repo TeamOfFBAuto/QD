@@ -189,6 +189,8 @@
     
     NSLog(@"%s",__FUNCTION__);
     
+    _hud =  [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    _hud.labelText = @"正在提交";
     [self netWorking];
     
     
@@ -241,7 +243,7 @@
         if ([code intValue]==0)//说明请求数据成功
         {
             
-//            [self hudWasHidden:_hud];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             
             NSLog(@"loadSuccess");
             NSLog(@"%@",dict);
@@ -252,7 +254,7 @@
             
         }else{
             
-//            [self hudWasHidden:_hud];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             
             NSLog(@"erroCode:%@",code);
             NSString *erroCodeStr = nil;

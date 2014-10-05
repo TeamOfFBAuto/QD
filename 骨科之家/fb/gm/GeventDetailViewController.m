@@ -10,6 +10,8 @@
 #import "GMettingSignUpViewController.h"
 #import "UILabel+GautoMatchedText.h"
 
+#import "MBProgressHUD.h"
+
 
 #import "PartnerConfig.h"
 #import "DataSigner.h"
@@ -28,6 +30,7 @@
 @interface GeventDetailViewController ()<UITableViewDataSource,UITableViewDelegate,UIWebViewDelegate,UIAlertViewDelegate>
 {
     GmettingDetailTableViewCell *_tmpCell;
+    MBProgressHUD *_hud;
 }
 @end
 
@@ -65,6 +68,9 @@
 -(void)prepareNetData{
     
     
+    _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    _hud.labelText = @"正在加载";
+    
     NSString *eventIdStr = self.dataModel.eventId;
     
     
@@ -77,6 +83,10 @@
         NSDictionary *eventDic = [dict objectForKey:@"event"];
         if ([code intValue]==0)//说明请求数据成功
         {
+            
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
             NSLog(@"loadSuccess");
             
             NSLog(@"查看活动  %@",dict);
@@ -100,6 +110,9 @@
             
             
         }else{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"加载失败，请重新加载" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [al show];
             NSLog(@"%d",[code intValue]);
         }
     }];
@@ -165,6 +178,9 @@
         
     }else if (sender.tag == 11){//取消报名
         NSLog(@"取消报名");
+        
+        _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        _hud.labelText = @"正在取消";
         
         [self eventquitNetWork];
         
@@ -285,12 +301,16 @@
             
             NSLog(@"%@",dict);
             
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
             UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"取消成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             al.tag = 101;
             [al show];
             
             
         }else{
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             
             NSLog(@"%d",[code intValue]);
             UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
