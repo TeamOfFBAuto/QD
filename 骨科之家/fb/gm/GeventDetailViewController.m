@@ -41,7 +41,7 @@
     
     NSLog(@"%s",__FUNCTION__);
     
-    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568-64) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     [self.view addSubview:tableView];
@@ -97,12 +97,12 @@
         UILabel *numLimitLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, CGRectGetMaxY(titleLabel.frame)+5, 65, 17)];
         numLimitLabel.font = [UIFont systemFontOfSize:15];
         numLimitLabel.textColor = RGB(168,168,168);
-        numLimitLabel.text = @"限定名额";
+        numLimitLabel.text = @"限定名额：";
         UILabel *cNumLimintLabel  = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(numLimitLabel.frame)+5, numLimitLabel.frame.origin.y, 10, 17)];
         cNumLimintLabel.textColor = RGB(168,168,168);
         cNumLimintLabel.text = [NSString _859ToUTF8:self.dataModel.userLimit];
         
-        //
+        //已报名
         
         
         [cell.contentView addSubview:titleLabel];
@@ -110,15 +110,26 @@
         [cell.contentView addSubview:cNumLimintLabel];
         
     }else if (indexPath.row == 1){//会议时间
-        
+        //会议时间
         UILabel *meettingTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 20, 65, 20)];
-        meettingTimeLabel.text = @"会议时间";
-        UILabel *cMeettingTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(meettingTimeLabel.frame)+5, meettingTimeLabel.frame.origin.y, 65, 20)];
+        meettingTimeLabel.font = [UIFont systemFontOfSize:15];
+        meettingTimeLabel.text = @"会议时间：";
+        meettingTimeLabel.textColor = RGB(98, 97, 97);
+        
+        UILabel *cMeettingTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(meettingTimeLabel.frame)+5, meettingTimeLabel.frame.origin.y, 150, 20)];
+        cMeettingTimeLabel.textColor = RGB(168,168,168);
+        cMeettingTimeLabel.font = [UIFont systemFontOfSize:15];
         cMeettingTimeLabel.text = self.dataModel.eventTime;
         
+        //报名截止
         UILabel *meetingEndTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 43, 65, 20)];
-        meetingEndTimeLabel.text = @"报名截止";
-        UILabel *cMeetingEndTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(meetingEndTimeLabel.frame)+5, meetingEndTimeLabel.frame.origin.y, 65, 20)];
+        meetingEndTimeLabel.text = @"报名截止：";
+        meetingEndTimeLabel.font = [UIFont systemFontOfSize:15];
+        meetingEndTimeLabel.textColor = RGB(98, 97, 97);
+        
+        UILabel *cMeetingEndTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(meetingEndTimeLabel.frame)+5, meetingEndTimeLabel.frame.origin.y, 100, 20)];
+        cMeetingEndTimeLabel.font = [UIFont systemFontOfSize:15];
+        cMeetingEndTimeLabel.textColor = RGB(168,168,168);
         cMeetingEndTimeLabel.text = self.dataModel.endTime;
         [cell.contentView addSubview:meettingTimeLabel];
         [cell.contentView addSubview:cMeettingTimeLabel];
@@ -126,6 +137,50 @@
         [cell.contentView addSubview:cMeetingEndTimeLabel];
         
     }else if (indexPath.row == 2){//活动地点
+        //活动地点
+        UILabel *addressLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 20, 65, 20)];
+        addressLabel.textColor = RGB(98, 97, 97);
+        addressLabel.font = [UIFont systemFontOfSize:15];
+        addressLabel.text = @"活动地点：";
+        
+        UILabel *cAddressLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(addressLabel.frame)+5, addressLabel.frame.origin.y, 200, 20)];
+        cAddressLabel.font = [UIFont systemFontOfSize:15];
+        cAddressLabel.textColor = RGB(168,168,168);
+        cAddressLabel.text = [NSString _859ToUTF8:self.dataModel.address ];
+        [cAddressLabel setMatchedFrame4LabelWithOrigin:CGPointMake(CGRectGetMaxX(addressLabel.frame)+5, addressLabel.frame.origin.y) width:200];
+        [cell.contentView addSubview:addressLabel];
+        [cell.contentView addSubview:cAddressLabel];
+        
+        //会议费用
+        UILabel *feeLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, CGRectGetMaxY(cAddressLabel.frame)+5, 65, 20)];
+        feeLabel.textColor = RGB(98, 97, 97);
+        feeLabel.font = [UIFont systemFontOfSize:15];
+        feeLabel.text = @"会议费用：";
+        
+        UILabel *cFeeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(feeLabel.frame)+5, feeLabel.frame.origin.y, 200, 20)];
+        cFeeLabel.textColor = RGB(168, 168, 168);
+        cFeeLabel.text = [[NSString _859ToUTF8:self.dataModel.fee]stringByAppendingString:@"元"];
+        
+        [cell.contentView addSubview:feeLabel];
+        [cell.contentView addSubview:cFeeLabel];
+        
+        
+        //联系电话
+        UILabel *phoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, CGRectGetMaxY(feeLabel.frame)+5, 65, 20)];
+        phoneLabel.font = [UIFont systemFontOfSize:15];
+        phoneLabel.textColor = RGB(72, 158, 181);
+        phoneLabel.text = @"联系电话：";
+        
+        UILabel *cPhoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(phoneLabel.frame)+5, phoneLabel.frame.origin.y, 200, 20)];
+        cPhoneLabel.font = [UIFont systemFontOfSize:15];
+        cPhoneLabel.textColor = RGB(72, 158, 181);
+        cPhoneLabel.text = [NSString _859ToUTF8:self.dataModel.phone];
+        
+        [cell.contentView addSubview:phoneLabel];
+        [cell.contentView addSubview:cPhoneLabel];
+        
+        
+        
         
     }else if (indexPath.row == 3) {//会议议程以及报名
         
