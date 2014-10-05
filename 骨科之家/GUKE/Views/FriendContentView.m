@@ -7,6 +7,8 @@
 //
 
 #import "FriendContentView.h"
+#import "LiuLanBingLiViewController.h"
+#import "InfoDetailViewController.h"
 #define IMG_TAG 99999
 @implementation FriendContentView
 {
@@ -38,21 +40,18 @@
         _contact.font = [UIFont systemFontOfSize:13.5f];
         _contact.backgroundColor = [UIColor clearColor];
         _contact.userInteractionEnabled = YES;
-        
         _contact.layer.borderWidth = 0;
         _contact.layer.borderColor = [[UIColor clearColor] CGColor];
         
         _shareComment = [[UILabel alloc]initWithFrame:CGRectZero];
         _shareComment.font = [UIFont systemFontOfSize:13.5f];
         _shareComment.backgroundColor = [UIColor clearColor];
-        
         _shareComment.layer.borderWidth = 0;
         _shareComment.layer.borderColor = [[UIColor clearColor] CGColor];
         
         _shareContext = [[MyLabel alloc]initWithFrame:CGRectZero];
         _shareContext.font = [UIFont systemFontOfSize:13.5f];
         _shareContext.backgroundColor = [UIColor clearColor];
-        
         _shareContext.layer.borderWidth = 0;
         _shareContext.layer.borderColor = [[UIColor clearColor] CGColor];
         
@@ -100,17 +99,27 @@
                 NSString* substringForMatch = [temp substringWithRange:match.range];
                 shareUrl = [NSString stringWithFormat:@"%@",substringForMatch];
             }
+             self.shareContext.delegate = self;
         }
         else if([_articleModel.fromWeixin isEqualToString:SOURCE_FROME_CASE]){
             shareUrl = _articleModel.context;
+            shareUrl = articleModel.context;
+            UITapGestureRecognizer *tapCase = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(skipToCase:)];
+            [self.shareContext addGestureRecognizer:tapCase];
+            tapCase.view.tag = [articleModel.sourceId integerValue];
+            
         }
         else if ([_articleModel.fromWeixin isEqualToString:SOURCE_FROME_MATERIAL]){
             shareUrl = _articleModel.context;
+            shareUrl = articleModel.context;
+            UITapGestureRecognizer *tapCase = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(skipToMaterial:)];
+            [self.shareContext addGestureRecognizer:tapCase];
+            tapCase.view.tag = [articleModel.sourceId integerValue];
         }
         self.shareComment.text = _articleModel.shareComment;
         [self.shareContext setText:shareUrl];
         self.shareContext.textAlignment = NSTextAlignmentLeft;
-        self.shareContext.delegate = self;
+       
         [self.shareContext setVerticalAlignment:VerticalAlignmentMiddle];
         self.shareContext.textColor = GETColor(149, 149, 149);
         self.shareContext.backgroundColor = GETColor(238, 238, 238);
@@ -120,6 +129,24 @@
         return;
     }
 
+}
+
+
+// 跳转到病例页面
+- (void)skipToCase:(UITapGestureRecognizer *)gesture{
+    LiuLanBingLiViewController *bingli = [[LiuLanBingLiViewController alloc]init];
+    bingli.theId = [NSString stringWithFormat:@"%d",gesture.view.tag];
+    UIViewController *VCtest=(UIViewController *)self.delegate;
+    [VCtest.navigationController pushViewController:bingli animated:YES];
+}
+// 跳转到资料库页面
+- (void)skipToMaterial:(UITapGestureRecognizer *)gesture{
+    
+    InformationModel *model = [[InformationModel alloc]init];
+    model.infoId = [NSString stringWithFormat:@"%d",gesture.view.tag];
+    InfoDetailViewController *ziliao = [[InfoDetailViewController alloc]initWithModel:model];
+    UIViewController *VCtest=(UIViewController *)self.delegate;
+    [VCtest.navigationController pushViewController:ziliao animated:YES];
 }
 // 跳转到
 - (void)skipToCasePage:(UITapGestureRecognizer *)gester{
@@ -146,7 +173,7 @@
     if ([_articleModel.isShare isEqualToString:ISNOT_SHARE_CODE]) {
         // 发表的内容
         self.shareComment.frame =CGRectZero;
-        self.shareContext.frame = CGRectMake(0, self.shareComment.frame.origin.y + self.shareComment.frame.size.height, 250,[SingleInstance customFontHeightFont:_articleModel.context andFontSize:15 andLineWidth:250]);
+        self.shareContext.frame = CGRectMake(0, 0, 250,[SingleInstance customFontHeightFont:_articleModel.context andFontSize:15 andLineWidth:250]);
         self.contact.frame = CGRectMake(USER_ICON_WHDTH + 15, 5, 250,self.shareContext.frame.size.height + self.shareContext.frame.origin.y);
        
 
@@ -157,16 +184,17 @@
            
             // 发表的内容
             self.shareComment.frame = CGRectZero;
-            self.shareContext.frame = CGRectMake(0, self.shareComment.frame.origin.y + self.shareComment.frame.size.height, 250,[SingleInstance customFontHeightFont:_articleModel.context andFontSize:15 andLineWidth:250] + 5);
+            self.shareContext.frame = CGRectMake(0, 0, 250,[SingleInstance customFontHeightFont:_articleModel.context andFontSize:15 andLineWidth:250] + 5);
             self.tempView.frame = CGRectMake(0, self.shareContext.frame.origin.y - 1, SCREEN_WIDTH, 3);
             self.contact.frame = CGRectMake(USER_ICON_WHDTH + 15, 5, 250,self.shareContext.frame.size.height + self.shareContext.frame.origin.y + 5);
         }
         else {
             // 发表的内容
             self.shareComment.frame = CGRectMake(0, 0, 250,[SingleInstance customFontHeightFont:_articleModel.shareComment andFontSize:15 andLineWidth:250] );
+//            self.shareComment.frame = CGRectZero;
             self.shareContext.frame = CGRectMake(0, self.shareComment.frame.origin.y + self.shareComment.frame.size.height + 5, 250,[SingleInstance customFontHeightFont:_articleModel.context andFontSize:15 andLineWidth:250] + 5 );
             self.tempView.frame = CGRectMake(0, self.shareContext.frame.origin.y - 1, SCREEN_WIDTH, 3);
-            self.contact.frame = CGRectMake(USER_ICON_WHDTH + 15, 5, 250,self.shareContext.frame.size.height + self.shareContext.frame.origin.y + 5);
+            self.contact.frame = CGRectMake(USER_ICON_WHDTH + 15, 5, 250,self.shareContext.frame.size.height + self.shareContext.frame.origin.y + 15);
         }
         
     }
@@ -183,7 +211,7 @@
         if (articleModel.context == nil || articleModel.context.length == 0 || [articleModel.context isEqualToString:@" "]){
             contentHeight = 0;
         }else{
-            contentHeight = [SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250]+10;
+            contentHeight = [SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250]+20;
         }
         // 如果不含图片在内
         if ([articleModel.photo isEqualToString:@""]||articleModel.photo == nil) {
@@ -200,7 +228,16 @@
         }
     }
     else if([articleModel.isShare isEqualToString:IS_SHARE_CODE]){
-        contentHeight = [SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250]+10;
+        
+         NSString *temp = [NSString stringWithFormat:@"%@",articleModel.shareUrl];
+        if (articleModel.fromWeixin.length == 0 && temp.length >0) {
+            contentHeight = [SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250]+10;
+            
+        }
+        else {
+            // 发表的内容
+           contentHeight = [SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250]+10 + [SingleInstance customFontHeightFont:articleModel.shareComment andFontSize:15 andLineWidth:250];
+        }
     }
     
     return contentHeight + imgHeight ;

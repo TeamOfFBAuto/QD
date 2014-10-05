@@ -12,8 +12,6 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    
-    [self.Files_imageView addSubview:self.imageVoiceIcon];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -21,6 +19,8 @@
 
     // Configure the view for the selected state
 }
+
+
 
 - (IBAction)deleteButtonTap:(id)sender {
     
@@ -31,6 +31,11 @@
 }
 
 - (IBAction)filesImageViewTap:(id)sender {
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(filesImageViewTap:)]) {
+        [_delegate filesImageViewTap:self];
+    }
+    
 }
 
 

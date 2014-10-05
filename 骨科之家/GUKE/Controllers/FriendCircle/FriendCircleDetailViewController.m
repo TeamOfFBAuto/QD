@@ -444,7 +444,6 @@ static NSString *commentId = 0;
             cell.reportDate.frame = CGRectMake(10, 2, 40, 20);
             
             cell.postArray = ((dateAndContent *)[dicKeyArray objectAtIndex:indexPath.row-1]).array;
-            // 高大上的
             cell.fDContentView.delegate = self;
         }
         

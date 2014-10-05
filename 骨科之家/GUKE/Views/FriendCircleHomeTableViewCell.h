@@ -12,7 +12,6 @@
 #import "CommentView.h"
 #import "CommentTableView.h"
 #import "FBCirclePicturesViews.h"
-
 @class FriendCircleHomeTableViewCell;
 @protocol FriendCircleHomeTableViewCellDelegate <NSObject>
 

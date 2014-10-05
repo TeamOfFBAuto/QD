@@ -16,6 +16,7 @@ typedef enum{
 	SEND_Type_content = 0,
 	SEND_Type_photo,
 	SEND_Type_voice,
+    SEND_Type_video,
     SEND_Type_other,
 } SEND_TYPE;
 

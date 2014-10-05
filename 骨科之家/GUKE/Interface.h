@@ -131,7 +131,9 @@ alpha:(a)]
 ///病历分享到讨论组
 #define BINGLI_SHARE_GROUPS_URL @"binglisharegroup.php"
 
-
+#pragma mark - 资料库分享到讨论组
+///资料库分享到讨论组
+#define ZILIAOKU_SHARE_GROUPS_URL @"infosharegroup.php"
 
 
 #pragma mark - 删除朋友圈文章
@@ -165,11 +167,15 @@ alpha:(a)]
 /*是否为分享*/
 #define IS_SHARE_CODE @"1"
 #define ISNOT_SHARE_CODE @"0"
-// 分享来源
-#define SOURCE_FROME_URL @"0"
-#define SOURCE_FROME_WECHAT @"1"
-#define SOURCE_FROME_CASE @"2"
-#define SOURCE_FROME_MATERIAL @"3"
+// 诊疗圈分享来源
+#define SOURCE_FROME_URL @"0"// 分享的链接
+#define SOURCE_FROME_WECHAT @"1"// 分享自微信
+#define SOURCE_FROME_CASE @"2" // 分享自病例库
+#define SOURCE_FROME_MATERIAL @"3" // 分享自资料库
+// 讨论组分享来源
+#define SOURCE_GROUP_NONE @"0" // 无分享来源
+#define SOURCE_GROUP_MATERIAL @"1" // 分享自资料库
+#define  SOURCE_GROUP_CASE @"2" //分享自病例库
 // 视图的TAG宏定义
 #define SEARCH_BTN_TAG 201
 #define ADD_BTN_TAG 202

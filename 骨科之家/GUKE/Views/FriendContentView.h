@@ -52,8 +52,13 @@
 #define SAME2_TAG 999999
 // 每次请求刷新的条数
 #define REFRESH_COUNT 5
+@protocol  FriendContentViewDelegate<NSObject>
+
+
+@end
 @interface FriendContentView : UIView<UIActionSheetDelegate,MyLabelDelegate>
 @property(nonatomic, assign)UIImage *shareImage;
+@property(nonatomic,assign)id<FriendContentViewDelegate>delegate;
 @property (nonatomic, strong)UILabel *contact;
 @property (nonatomic, strong)UILabel *shareComment;
 @property (nonatomic, strong)UIView *tempView;

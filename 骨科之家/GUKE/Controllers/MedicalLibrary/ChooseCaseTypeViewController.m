@@ -18,6 +18,7 @@
 @implementation ChooseCaseTypeViewController
 @synthesize myTableView = _myTableView;
 @synthesize feed = _feed;
+@synthesize delete_array = _delete_array;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -151,8 +152,16 @@
     {
         [parameters setObject:_feed.fenleiId forKey:@"fenleiId"];
     }
+    if (_feed.memo.length)
+    {
+        [parameters setObject:_feed.memo forKey:@"memo"];
+    }
     
-    
+    if (_delete_array.count)
+    {
+        NSString * delete_id = [_delete_array componentsJoinedByString:@","];
+        [parameters setObject:delete_id forKey:@"removeAttachIds"];
+    }
     
     
     __weak typeof(self)wself=self;
@@ -169,17 +178,16 @@
 //    }];
     
     
-    [AFRequestService responseDataWithImage:WRITE_BINGLI_URL andparameters:parameters andDataArray:_feed.attach_array andfieldType:@"attach1" andfileName:@"attach1.jpg" andResponseData:^(NSData *responseData) {
+    [AFRequestService bingliresponseDataWithImage:WRITE_BINGLI_URL andparameters:parameters andDataArray:_feed.attach_array andfieldType:@"attach1" andfileName:@"attach1.jpg" andResponseData:^(NSData *responseData) {
         
         NSDictionary * dict = (NSDictionary *)responseData;
         NSLog(@"dict -------   %@",dict);
         
-        
+        if ([[dict objectForKey:@"code"]intValue] == 0)
+        {
+            [wself.navigationController popViewControllerAnimated:YES];
+        }
     }];
-    
-    
-    
-    
 }
 
 

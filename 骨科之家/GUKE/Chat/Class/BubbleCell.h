@@ -66,7 +66,7 @@ typedef void(^PhotoTapBlock)(NSString *);
 
 @end
 
-//文本发送
+#pragma mark----------------context---------------
 @interface BubbleSubTextCell : BubbleCell
 @end
 
@@ -86,7 +86,14 @@ typedef void(^PhotoTapBlock)(NSString *);
 }
 @property (nonatomic,strong)UIImageView *pictureImageView;
 @end
+#pragma mark----------------shareSource-------------
 
+
+@interface BubbleSubShareCell : BubbleCell{
+    UIImageView *_pictureImageView;
+}
+@property (nonatomic,strong)UIImageView *pictureImageView;
+@end
 //代理协议 回调
 @protocol BubbleCellDelegate <NSObject>
 @optional

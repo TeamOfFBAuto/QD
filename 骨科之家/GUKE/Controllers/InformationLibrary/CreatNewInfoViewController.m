@@ -203,7 +203,7 @@
     
     UILabel *label = [[UILabel alloc] init];
     label.frame = CGRectMake(10, 0, 200, 40);
-    label.text = @"附件: （图片、语音)";
+    label.text = @"附件: （图片、语音、视频)";
     [_fileView addSubview:label];
     
     BlockButton *btn = [[BlockButton alloc] init];
@@ -274,7 +274,7 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+#pragma mark - 提交
 // "提交"的点击事件
 - (void)btnClick
 {

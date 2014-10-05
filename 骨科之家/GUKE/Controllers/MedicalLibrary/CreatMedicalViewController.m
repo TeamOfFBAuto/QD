@@ -13,8 +13,22 @@
 #import "imgUploadModel.h"
 #import "CreateMedicalFilesCell.h"
 #import "ChooseCaseTypeViewController.h"
+#import <MediaPlayer/MediaPlayer.h>
+#import "VoicePlayCenter.h"
 
-@interface CreatMedicalViewController ()<UITextViewDelegate,CreateMedicalFilesCellDelegate>
+
+@interface PlayVoice ()
+
+@end
+
+@implementation PlayVoice
+@synthesize aCell = _aCell;
+
+
+@end
+
+
+@interface CreatMedicalViewController ()<UITextViewDelegate,CreateMedicalFilesCellDelegate,UIActionSheetDelegate,VoicePlayCenterDelegate>
 {
     ///存放条件数据
     NSMutableArray * content_array;
@@ -34,10 +48,24 @@
     
     UITextField * groupName;
     
+    UIView * background ;
+    UIImageView * imgSaveView;
+    
+    ///播放录音
+    VoicePlayCenter * voicePlayCenter;
+    
+    ///删除文件的id
+    NSMutableArray * delete_array;
+    
     ///存放完成的数据（视频、图片、录音）
     NSMutableArray * data_array;
     
     MBProgressHUD * hud;
+    ///播放本地视频
+    MPMoviePlayerViewController * _moviePlayerController;
+    
+    ///判断当前是否有声音正在播放
+    BOOL isAnimationVoice;
     
     //视频相关
     
@@ -92,6 +120,7 @@
     [self loadNavigation];
     
     textView_array = [NSMutableArray array];
+    delete_array = [NSMutableArray array];
     
     for (int i = 0;i < 10;i++)
     {
@@ -117,15 +146,15 @@
                           [UIImage imageNamed:@"voice_L2.png"],
                           [UIImage imageNamed:@"voice_L3.png"],nil];
     
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(handleWillShowKeyboard:)
-//                                                 name:UIKeyboardWillShowNotification
-//                                               object:nil];
-//    
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(handleWillHideKeyboard:)
-//                                                 name:UIKeyboardWillHideNotification
-//                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleWillShowKeyboard:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleWillHideKeyboard:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(uploadData:)
@@ -158,20 +187,12 @@
 
 - (void)handleWillShowKeyboard:(NSNotification *)notification
 {
-    //获取键盘的高度
-    NSDictionary *userInfo = [notification userInfo];
-    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
-    CGRect keyboardRect = [aValue CGRectValue];
-    int height = keyboardRect.size.height;
-    
-    CGRect rect = _mainTableView.frame;
-    rect.size.height = rect.size.height-height;
-    _mainTableView.frame = rect;
+    _mainTableView.contentSize = CGSizeMake(0,_mainTableView.contentSize.height+226);
 }
 
 - (void)handleWillHideKeyboard:(NSNotification *)notification
 {
-    _mainTableView.frame = CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT);
+    _mainTableView.contentSize = CGSizeMake(0,_mainTableView.contentSize.height-226);
 }
 
 
@@ -224,7 +245,6 @@
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:rightView];
     self.navigationItem.rightBarButtonItem = rightItem;
     
-    
     //主tableview
     
     _mainTableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, DEVICE_WIDTH, DEVICE_HEIGHT) style:UITableViewStylePlain];
@@ -239,13 +259,15 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+#pragma mark - 提交按钮方法
 /// "提交"的点击事件
 - (void)btnClick
 {
     NSLog(@"点击提交按钮");
     ChooseCaseTypeViewController * chooseType = [[ChooseCaseTypeViewController alloc] init];
     chooseType.feed = _feed;
+    chooseType.delete_array = [NSMutableArray arrayWithArray:delete_array];
+//    [delete_array removeAllObjects];
     [self.navigationController pushViewController:chooseType animated:YES];
 }
 
@@ -730,15 +752,35 @@
             
             if ([aDic objectForKey:@"fileurl"])
             {
-                cell.Files_imageView.image = [UIImage imageNamed:@"guke_type_btn_zhantie_press"];
-                
-                cell.content_textView.text = ((VideoUploadModel *)object).fileName;
-                cell.filesSize_label.text = [NSString stringWithFormat:@"%d k",((VideoUploadModel *)object).fileData.length/1024];
+                NSString * url = [aDic objectForKey:@"fileurl"];
+                if([SNTools judgeFileSuffixVoice:url])///声音
+                {
+                    cell.voiceIcon.frame = CGRectMake(38,25, 20,33/27*20);
+                    cell.voiceIcon.image = [UIImage imageNamed:@"voice_L0.png"];
+                    cell.Files_imageView.frame = CGRectMake(30,20, 60, 30);
+                    [cell.Files_imageView setImage:[UIImage imageNamed:@"task_voice"]];
+                    
+                    cell.content_textView.text = [NSString _859ToUTF8:[aDic objectForKey:@"filename"]];
+                    cell.filesSize_label.text = [NSString stringWithFormat:@"%.2f k",[[aDic objectForKey:@"filesize"] intValue]/1024.00];
+                    
+                }else if ([SNTools judgeFileSuffixImage:url])
+                {
+                    [cell.Files_imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_BASE_URL,[aDic objectForKey:@"previewurl"]]] placeholderImage:[UIImage imageNamed:@"guke_image_loading"]];
+                    
+                    cell.content_textView.text = [NSString _859ToUTF8:[aDic objectForKey:@"filename"]];
+                    cell.filesSize_label.text = [NSString stringWithFormat:@"%.2f k",[[aDic objectForKey:@"filesize"] intValue]/1024.00];
+                    
+                }else///视频
+                {
+                    [cell.Files_imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_BASE_URL,[aDic objectForKey:@"previewurl"]]] placeholderImage:[UIImage imageNamed:@"guke_image_loading"]];
+                    cell.content_textView.text = [NSString _859ToUTF8:[aDic objectForKey:@"filename"]];
+                    cell.filesSize_label.text = [NSString stringWithFormat:@"%.2f k",[[aDic objectForKey:@"filesize"] intValue]/1024.00];
+                }
                 
             }else
             {
-                cell.imageVoiceIcon.frame = CGRectMake(8, 5, 20,33/27*20);
-                cell.imageVoiceIcon.image = [UIImage imageNamed:@"voice_L0.png"];
+                cell.voiceIcon.frame = CGRectMake(38, 25, 20,33/27*20);
+                cell.voiceIcon.image = [UIImage imageNamed:@"voice_L0.png"];
                 cell.Files_imageView.frame = CGRectMake(30,20, 60, 30);
                 [cell.Files_imageView setImage:[UIImage imageNamed:@"task_voice"]];
                 
@@ -952,18 +994,258 @@
 }
 
 #pragma mark - CreateMedicalFileCellDelegate
+#pragma mark - 删除操作
 -(void)deleteFilesTap:(CreateMedicalFilesCell *)cell
 {
     NSIndexPath * indexPath = [_mainTableView indexPathForCell:cell];
     
     if (indexPath.row < _feed.attach_array.count)
     {
+        id object = [_feed.attach_array objectAtIndex:indexPath.row];
+        
+        if ([object isKindOfClass:[NSDictionary class]])///语音
+        {
+            NSDictionary * aDic = (NSDictionary *)object;
+            
+            if ([aDic.allKeys containsObject:@"fileurl"])
+            {
+                
+                [delete_array addObject:[aDic objectForKey:@"attachId"]];
+            }
+        }
+        
         [_feed.attach_array removeObjectAtIndex:indexPath.row];
-        [_mainTableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationLeft];
         [_mainTableView reloadData];
     }
     
 }
+#pragma mark - 查看文件操作
+-(void)filesImageViewTap:(CreateMedicalFilesCell *)cell
+{
+    NSIndexPath * indexPath = [_mainTableView indexPathForCell:cell];
+    
+    if (indexPath.row < _feed.attach_array.count)
+    {
+        id object = [_feed.attach_array objectAtIndex:indexPath.row];
+        
+        if ([object isKindOfClass:[NSDictionary class]])///语音
+        {
+            NSDictionary * aDic = (NSDictionary *)object;
+            
+            if ([aDic objectForKey:@"fileurl"])
+            {
+                NSString * url = [aDic objectForKey:@"fileurl"];
+                if([SNTools judgeFileSuffixVoice:url])///声音
+                {
+                    PlayerModel * model = [[PlayerModel alloc] init];
+                    model.fileId = url;
+                    [self playNetWorkVoiceWith:model WithCell:cell];
+                    
+                }else if ([SNTools judgeFileSuffixImage:url])
+                {
+
+                    [self playNetworkPhotoWith:[NSString stringWithFormat:@"%@%@",IMAGE_BASE_URL,url]];
+                }else///视频
+                {
+                    [self playVideWithString:[NSString stringWithFormat:@"%@%@",IMAGE_BASE_URL,url]];
+                }
+            }else///本地声音
+            {
+                [self playLocalVoiceWithPath:[(NSMutableDictionary *)object objectForKey:@"fileName"] WithCell:cell];
+            }
+        }else if ([object isKindOfClass:[imgUploadModel class]])///图片
+        {
+            imgUploadModel * model = (imgUploadModel*)object;
+            UIImage * image = [UIImage imageWithData:model.imageData];
+            
+            [self playLoacalPhotoWithData:image];
+            
+        }else if ([object isKindOfClass:[VideoUploadModel class]])///视频
+        {
+            VideoUploadModel * model = (VideoUploadModel *)object;
+            [self playButtonTappedWihtPath:model.filePath];
+        }
+    }
+}
+
+#pragma mark - 播放声音
+///播放网络语音
+-(void)playNetWorkVoiceWith:(PlayerModel *)model WithCell:(CreateMedicalFilesCell*)cell
+{
+    if (isAnimationVoice) {
+        return;
+    }
+    
+    NSLog(@"点击播放录音的按钮！");
+    [self startVoicePlayWithCell:cell];
+    
+    __weak typeof(self)bself = self;
+    
+    voicePlayCenter = [[VoicePlayCenter alloc] init];
+    voicePlayCenter.playDelegate = self;// 播放声音的代理方法
+    [voicePlayCenter downloadPlayVoice:model];
+    voicePlayCenter.block = ^()
+    {
+        [bself stopVocicePlayWithCell:cell];
+    };
+}
+///播放本地语音
+-(void)playLocalVoiceWithPath:(NSString *)path WithCell:(CreateMedicalFilesCell*)cell
+{
+    if (isAnimationVoice) {
+        return;
+    }
+    
+    [self startVoicePlayWithCell:cell];
+    
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    self.player = [[PlayVoice alloc] initWithData:data error:nil];
+    self.player.delegate = self;
+    self.player.aCell = cell;
+    [self.player prepareToPlay];
+    [self.player play];
+    self.player.volume = 1;
+}
+
+#pragma mark player delegate
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
+    if (player == self.player) {
+        [self.player.aCell.voiceIcon stopAnimating];
+    }
+   self.player = nil;
+}
+- (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError *)error
+{
+    if (player == self.player) {
+        [self.player.aCell.voiceIcon stopAnimating];
+    }
+    self.player = nil;
+}
+
+#pragma mark - 查看图片
+///查看本地图片
+-(void)playLoacalPhotoWithData:(UIImage *)data
+{
+    [self TapImageClickWith:data];
+}
+
+///查看网络图片
+-(void)playNetworkPhotoWith:(NSString *)imageUrl
+{
+    [self TapImageClickWith:imageUrl];
+}
+
+#pragma mark - "分享图片"的放大以及保存 -
+- (void)TapImageClickWith:(id)image_url
+{
+    //创建灰色透明背景，使其背后内容不可操作
+    background = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    
+    [background setBackgroundColor:[UIColor blackColor]];
+    
+    //创建显示图像视图
+    imgSaveView = [[UIImageView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height/2-[UIScreen mainScreen].bounds.size.height/2, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    
+    
+    if ([image_url isKindOfClass:[NSString class]])
+    {
+        [imgSaveView sd_setImageWithURL:[NSURL URLWithString:(NSString *)image_url]];
+    }else
+    {
+        imgSaveView.image = (UIImage *)image_url;
+    }
+    
+    
+    imgSaveView.contentMode = UIViewContentModeScaleAspectFit;
+    imgSaveView.userInteractionEnabled = YES;
+    [background addSubview:imgSaveView];
+    [self shakeToShow:imgSaveView];//放大过程中的动画
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(suoxiao)];
+    tap.numberOfTapsRequired = 1;
+    [imgSaveView addGestureRecognizer:tap];
+    UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] init];
+    [longPressGestureRecognizer addTarget:self action:@selector(gestureRecognizerHandle:)];
+    [longPressGestureRecognizer setMinimumPressDuration:1.0f];
+    [longPressGestureRecognizer setAllowableMovement:50.0];
+    longPressGestureRecognizer.minimumPressDuration = 0.5;
+    [imgSaveView addGestureRecognizer:longPressGestureRecognizer];
+    
+    [self.view.window.rootViewController.view addSubview:background];
+}
+
+-(void)suoxiao
+{
+    [background removeFromSuperview];
+}
+
+-(void)gestureRecognizerHandle:(UILongPressGestureRecognizer *)_longpress
+{
+    if (_longpress.state == UIGestureRecognizerStateCancelled) {
+        return;
+    }
+    [self handleLongTouch];
+    
+}
+
+//*************放大过程中出现的缓慢动画*************
+- (void) shakeToShow:(UIView*)aView{
+    CAKeyframeAnimation* animation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+    animation.duration = 0.3;
+    
+    NSMutableArray *values = [NSMutableArray array];
+    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.1, 0.1, 1.0)]];
+    [values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(1.0, 1.0, 1.0)]];
+    animation.values = values;
+    [aView.layer addAnimation:animation forKey:nil];
+}
+
+- (void)handleLongTouch {
+    UIActionSheet* sheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"保存图片", nil];
+    sheet.cancelButtonIndex = sheet.numberOfButtons - 1;
+    [sheet showInView:background];
+    
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (actionSheet.numberOfButtons - 1 == buttonIndex) {
+        return;
+    }
+    NSString* title = [actionSheet buttonTitleAtIndex:buttonIndex];
+    if ([title isEqualToString:@"保存图片"]) {
+        UIImageWriteToSavedPhotosAlbum(imgSaveView.image, nil, nil,nil);
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"存储图片成功"
+                                                        message:@"您已将图片存储于照片库中，打开照片程序即可查看。"
+                                                       delegate:self
+                                              cancelButtonTitle:LOCALIZATION(@"dialog_ok")
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+
+
+#pragma mark - 播放视频
+///播放本地视频
+-(void)playButtonTappedWihtPath:(NSString *)path
+{
+    NSURL *url = [NSURL fileURLWithPath:path];
+    //视频播放对象
+    MPMoviePlayerViewController *movieVc=[[MPMoviePlayerViewController alloc]initWithContentURL:url];
+    //        //弹出播放器
+    [self presentMoviePlayerViewControllerAnimated:movieVc];
+}
+
+///播放网络视频
+-(void)playVideWithString:(NSString *)thestrUrl{
+    NSLog(@"url --------   %@",thestrUrl);
+    NSURL *videoUrl=[NSURL URLWithString:thestrUrl];
+    MPMoviePlayerViewController *movieVc=[[MPMoviePlayerViewController alloc]initWithContentURL:videoUrl];
+    //弹出播放器
+    [self presentMoviePlayerViewControllerAnimated:movieVc];
+}
+
+
 
 #pragma mark - UITextFieldDelegate
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField
@@ -1075,6 +1357,27 @@
             break;
     }
 }
+
+
+#pragma mark - 播放录音动画
+// 开始播放背景（动画）
+-(void)startVoicePlayWithCell:(CreateMedicalFilesCell*)cell
+{
+    
+    cell.voiceIcon.animationImages = _voiceLeftImageArr;
+    cell.voiceIcon.animationDuration = 1;
+    isAnimationVoice = YES;
+    [cell.voiceIcon startAnimating];
+}
+
+// 停止播放背景
+-(void)stopVocicePlayWithCell:(CreateMedicalFilesCell*)cell
+{
+    isAnimationVoice = NO;
+    [cell.voiceIcon stopAnimating];
+    cell.voiceIcon.image = [UIImage imageNamed:@"voice_L0.png"];
+}
+
 
 
 -(void)dealloc

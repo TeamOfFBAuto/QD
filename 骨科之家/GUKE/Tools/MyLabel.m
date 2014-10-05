@@ -22,7 +22,6 @@
         self.layer.borderWidth = 0;
         self.layer.borderColor = [[UIColor clearColor] CGColor];
         [self setBackgroundColor:[UIColor clearColor]];
-//        [self setTextColor:COLOR(59,136,195,1.0)];
         [self setUserInteractionEnabled:YES];
         [self setNumberOfLines:0];
     }
@@ -52,7 +51,7 @@
 
 - (CGRect)textRectForBounds:(CGRect)bounds limitedToNumberOfLines:(NSInteger)numberOfLines {
     CGRect textRect = [super textRectForBounds:bounds limitedToNumberOfLines:numberOfLines];
-    textRect.origin.x += 5;
+    textRect.origin.x += 1;
     switch (self.verticalAlignment) {
         case VerticalAlignmentTop:
             textRect.origin.y = bounds.origin.y;

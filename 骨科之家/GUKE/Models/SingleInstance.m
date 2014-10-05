@@ -60,6 +60,21 @@
     CGFloat height = sizeText.height;
     return height;
 }
+// 自适应高度
++ (CGSize)customFontHeight:(NSString *)content andFontSize:(CGFloat)fontSize andLineWidth:(CGFloat)width
+{
+    UIFont *font = [UIFont fontWithName:@"Arial" size:fontSize];
+    NSDictionary *dic=[NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName,nil];
+    CGSize sizeText = CGSizeMake(0, 0);
+    if (IOS7_LATER) {
+        sizeText = [content boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:dic context:nil].size;
+    }
+    else{
+        CGSize size = CGSizeMake(width,MAXFLOAT);
+        sizeText = [content sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
+    }
+    return sizeText;
+}
 // 时间处理函数
 + (NSString *)handleDate:(NSString *)createDate
 {

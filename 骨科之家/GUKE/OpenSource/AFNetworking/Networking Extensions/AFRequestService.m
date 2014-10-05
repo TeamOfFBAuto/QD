@@ -205,11 +205,12 @@
     myProgressHUD.labelText = @"正在上传，请等待";
     [myProgressHUD show:YES];
     
-    if (!dataArray.count) {
-        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
+    if (!dataArray.count)
+    {
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
         [manager POST:requestURL parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSLog(@" ----------   %@",[operation.responseString JSONValue]);
+//            NSLog(@" ----------   %@",[operation.responseString JSONValue]);
             getdata(responseObject);
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -263,5 +264,119 @@
             
         }
 }
+
+///病例库上传多文件
++ (void)bingliresponseDataWithImage:(NSString *)requestURL andparameters:(NSMutableDictionary *)parameters andDataArray:(NSMutableArray *)dataArray andfieldType:(NSString *)typeName andfileName:(NSString *)name andResponseData:(getDataBlock)getdata
+{
+    AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc]initWithBaseURL:[NSURL URLWithString:BASE_URL]];
+    // 上传进度
+    MBProgressHUD *myProgressHUD = [[MBProgressHUD alloc] initWithWindow:[[[UIApplication sharedApplication] delegate] window]];
+    myProgressHUD.mode = MBProgressHUDModeIndeterminate;
+    myProgressHUD.animationType = MBProgressHUDAnimationZoom;
+    [[[[UIApplication sharedApplication] delegate] window] addSubview:myProgressHUD];
+    [[[[UIApplication sharedApplication] delegate] window] bringSubviewToFront:myProgressHUD];
+    myProgressHUD.labelText = @"正在上传，请等待";
+    [myProgressHUD show:YES];
+    
+    if (!dataArray.count)
+    {
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+        [manager POST:requestURL parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//            NSLog(@" ----------   %@",[operation.responseString JSONValue]);
+            [myProgressHUD hide:YES];
+            getdata(responseObject);
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"error ------  %@",error);
+            [myProgressHUD hide:YES];
+        }];
+    }
+    else{
+        __block int j = 0;
+        
+        for (id object in dataArray) {
+            j++;
+            
+            if ([object isKindOfClass:[NSDictionary class]])
+            {
+                NSDictionary *dic = (NSDictionary *)object;
+                
+                if (![dic.allKeys containsObject:@"fileurl"])
+                {
+                    [parameters setObject:[dic objectForKey:@"content"] forKey:[NSString stringWithFormat:@"filename%d",j]];
+                    NSLog(@"voicefileName ------  %@",[dic objectForKey:@"content"]);
+                }
+            }else if ([object isKindOfClass:[VideoUploadModel class]])
+            {
+                NSString *imgName = [NSString stringWithFormat:@"%@",((VideoUploadModel *)object).fileName];
+                [parameters setObject:imgName forKey:[NSString stringWithFormat:@"filename%d",j]];
+                NSLog(@"videofileName ------  %@",imgName);
+                
+            }else if([object isKindOfClass:[imgUploadModel class]])
+            {
+                NSString *imgName = [NSString stringWithFormat:@"%@",((imgUploadModel *)object).imageName];
+                [parameters setObject:imgName forKey:[NSString stringWithFormat:@"filename%d",j]];
+                NSLog(@"imagefileName ------  %@ ---  %@",imgName,[NSString stringWithFormat:@"filename%d",j]);
+            }
+        }
+        
+        __block int i = 0;
+        
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+        [manager POST:requestURL parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+            
+            for (id object in dataArray) {
+                i++;
+                
+                if ([object isKindOfClass:[NSDictionary class]])
+                {
+                    if (![((NSDictionary *)object).allKeys containsObject:@"fileurl"])
+                    {
+                        NSDictionary *dic = (NSDictionary *)object;
+                        NSData *ImageData = [[NSData alloc] initWithContentsOfFile:[dic objectForKey:@"fileName"]];
+                        NSString *tempVoice = [NSString stringWithFormat:@"%@",[dic objectForKey:@"fid"]];
+                        NSString *voiceName = [tempVoice stringByAppendingString:@".amr"];
+                        
+                        [formData appendPartWithFileData:ImageData name:[NSString stringWithFormat:@"attach%d",i] fileName:voiceName mimeType:@"audio/amr"];
+                    }
+                    
+                }else if ([object isKindOfClass:[VideoUploadModel class]])
+                {
+                    NSData * videoData = ((VideoUploadModel *)object).fileData;
+                    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+                    NSString *imgName = [NSString stringWithFormat:@"%@",((VideoUploadModel *)object).fileName];
+                    imgName = [imgName stringByAppendingString:@".mp4"];
+                    [formData appendPartWithFileData:videoData name:[NSString stringWithFormat:@"attach%d",i] fileName:imgName mimeType:@"video/mp4"];
+                    
+                }else if([object isKindOfClass:[imgUploadModel class]])
+                {
+                    
+                    
+                    NSData *ImageData = ((imgUploadModel *)object).imageData;
+                    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+                    
+                    NSString *imgName = [NSString stringWithFormat:@"%@",((imgUploadModel *)object).imageName];
+                    [parameters setObject:imgName forKey:[NSString stringWithFormat:@"filename%d.jpg",i]];
+                    [formData appendPartWithFileData:ImageData name:[NSString stringWithFormat:@"attach%d",i] fileName:[NSString stringWithFormat:@"%@.jpg",[UUID createUUID]] mimeType:@"image/jpeg"];
+                    [parameters setObject:[NSString stringWithFormat:@"filename%d",i] forKey:imgName];
+                    
+                }
+            }
+            
+        } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [myProgressHUD hide:YES];
+            if (i == dataArray.count) {
+                getdata(responseObject);
+            }
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [myProgressHUD hide:YES];
+        }];
+        
+    }
+}
+
+
 
 @end

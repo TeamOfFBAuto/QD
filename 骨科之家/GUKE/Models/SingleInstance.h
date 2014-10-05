@@ -28,5 +28,7 @@
 + (CGFloat)customHeight:(NSInteger)memberCount andcount:(NSInteger)count andsingleHeight:(CGFloat)height;
 
 + (CGFloat)customFontHeightFont:(NSString *)content andFontSize:(CGFloat)fontSize andLineWidth:(CGFloat)width;
+
++ (CGSize)customFontHeight:(NSString *)content andFontSize:(CGFloat)fontSize andLineWidth:(CGFloat)width;
 - (void)playVoice;
 @end
