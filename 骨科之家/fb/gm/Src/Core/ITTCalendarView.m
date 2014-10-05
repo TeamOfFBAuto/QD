@@ -1125,7 +1125,7 @@
              */
             selectedEnable = [self isSelectedAtRow:index.row column:index.column];
             BOOL selected = (!selectedEnable && [self isGridViewSelectedEnableAtRow:index.row column:index.column]);
-            [self setSelectedAtRow:index.row column:index.column selected:selected];
+//            [self setSelectedAtRow:index.row column:index.column selected:selected];
             if (!_allowsMultipleSelection) {
                 [self resetSelectedIndicesMatrix];
                 selectedEnable = selectedEnable & [self isGridViewSelectedEnableAtRow:index.row column:index.column];
