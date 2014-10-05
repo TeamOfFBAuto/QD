@@ -941,6 +941,7 @@
 		E361729119E02ADA002F2D4F /* GeventModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E361729019E02ADA002F2D4F /* GeventModel.m */; };
 		E361729419E031DA002F2D4F /* GeventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E361729319E031DA002F2D4F /* GeventDetailViewController.m */; };
 		E389ED0B19E04195007D3A03 /* GMettingSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E389ED0A19E04195007D3A03 /* GMettingSignUpViewController.m */; };
+		E389ED4319E0E7FD007D3A03 /* UILabel+GautoMatchedText.m in Sources */ = {isa = PBXBuildFile; fileRef = E389ED4119E0E7FD007D3A03 /* UILabel+GautoMatchedText.m */; };
 		E39E4D4F19DA04DE00AEA2F6 /* ITTCalendarGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D2D19DA04DE00AEA2F6 /* ITTCalendarGridView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E39E4D5019DA04DE00AEA2F6 /* ITTCalendarScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D2F19DA04DE00AEA2F6 /* ITTCalendarScrollView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E39E4D5119DA04DE00AEA2F6 /* ITTCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D3119DA04DE00AEA2F6 /* ITTCalendarView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -2193,6 +2194,8 @@
 		E361729319E031DA002F2D4F /* GeventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeventDetailViewController.m; sourceTree = "<group>"; };
 		E389ED0919E04195007D3A03 /* GMettingSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMettingSignUpViewController.h; sourceTree = "<group>"; };
 		E389ED0A19E04195007D3A03 /* GMettingSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMettingSignUpViewController.m; sourceTree = "<group>"; };
+		E389ED4119E0E7FD007D3A03 /* UILabel+GautoMatchedText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+GautoMatchedText.m"; sourceTree = "<group>"; };
+		E389ED4219E0E7FD007D3A03 /* UILabel+GautoMatchedText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+GautoMatchedText.h"; sourceTree = "<group>"; };
 		E39E4D2B19DA04DE00AEA2F6 /* Enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enum.h; sourceTree = "<group>"; };
 		E39E4D2C19DA04DE00AEA2F6 /* ITTCalendarGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalendarGridView.h; sourceTree = "<group>"; };
 		E39E4D2D19DA04DE00AEA2F6 /* ITTCalendarGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTCalendarGridView.m; sourceTree = "<group>"; };
@@ -4295,6 +4298,8 @@
 		E30769C119D9C57100333B7E /* gm */ = {
 			isa = PBXGroup;
 			children = (
+				E389ED4119E0E7FD007D3A03 /* UILabel+GautoMatchedText.m */,
+				E389ED4219E0E7FD007D3A03 /* UILabel+GautoMatchedText.h */,
 				E3DF642C19DAB1A400D05E6F /* GEGORefresh */,
 				E39E4D6119DA04F500AEA2F6 /* GImages */,
 				E39E4D2919DA04DE00AEA2F6 /* Src */,
@@ -5269,6 +5274,7 @@
 				19B7DA0C19E08EC1004B7621 /* SBJsonParser.m in Sources */,
 				1958D95C1975714B00578A10 /* PostMoodViewController.m in Sources */,
 				3E46C15919D2BC0000403A42 /* CreatMedicalViewController.m in Sources */,
+				E389ED4319E0E7FD007D3A03 /* UILabel+GautoMatchedText.m in Sources */,
 				199196F0195C13560050C393 /* TSPopoverTouchView.m in Sources */,
 				199BE9C6198B672000049C6C /* RTLabel.m in Sources */,
 				19960CF3196A80D6000121AA /* ASIDownloadCache.m in Sources */,
@@ -5549,11 +5555,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = "${SRCROOT}/**";
 				ONLY_ACTIVE_ARCH = YES;
-
 				PROVISIONING_PROFILE = "f2794893-6f40-4d34-b2ae-54d0f5e6cf98";
-
-				PROVISIONING_PROFILE = "db5d35fa-89e9-42b3-ad18-97734e7f3484";
-
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -5591,11 +5593,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = "${SRCROOT}/**";
 				ONLY_ACTIVE_ARCH = YES;
-
 				PROVISIONING_PROFILE = "f2794893-6f40-4d34-b2ae-54d0f5e6cf98";
-
-				PROVISIONING_PROFILE = "db5d35fa-89e9-42b3-ad18-97734e7f3484";
-
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -5620,11 +5618,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = GUKE;
-
 				PROVISIONING_PROFILE = "f2794893-6f40-4d34-b2ae-54d0f5e6cf98";
-
-				PROVISIONING_PROFILE = "db5d35fa-89e9-42b3-ad18-97734e7f3484";
-
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
@@ -5651,11 +5645,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = GUKE;
-
 				PROVISIONING_PROFILE = "f2794893-6f40-4d34-b2ae-54d0f5e6cf98";
-
-				PROVISIONING_PROFILE = "db5d35fa-89e9-42b3-ad18-97734e7f3484";
-
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";

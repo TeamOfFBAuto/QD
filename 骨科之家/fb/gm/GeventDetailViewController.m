@@ -8,6 +8,7 @@
 
 #import "GeventDetailViewController.h"
 #import "GMettingSignUpViewController.h"
+#import "UILabel+GautoMatchedText.h"
 
 
 #import "PartnerConfig.h"
@@ -35,11 +36,10 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     
-    [self loadNavigation];
-    
     NSLog(@"%@",[NSString _859ToUTF8:self.dataModel.eventTitle]);
+    self.aTitle = @"会议日程";
     
-    
+    NSLog(@"%s",__FUNCTION__);
     
     UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568-64) style:UITableViewStylePlain];
     tableView.delegate = self;
@@ -68,7 +68,7 @@
     if (indexPath.row == 3) {
         height = 300;
     }else{
-        height = 50;
+        height = 300;
     }
     return height;
 }
@@ -85,7 +85,49 @@
         [view removeFromSuperview];
     }
     
-    if (indexPath.row == 3) {
+    if (indexPath.row == 0) {//会议名称
+        
+        //会议名称
+        UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 20, 230, 30)];
+        titleLabel.textColor = RGB(72, 158, 181);
+        titleLabel.text = [NSString _859ToUTF8:self.dataModel.eventTitle];
+        [titleLabel setMatchedFrame4LabelWithOrigin:CGPointMake(20, 20) width:230];
+        
+        //限定名额
+        UILabel *numLimitLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, CGRectGetMaxY(titleLabel.frame)+5, 65, 17)];
+        numLimitLabel.font = [UIFont systemFontOfSize:15];
+        numLimitLabel.textColor = RGB(168,168,168);
+        numLimitLabel.text = @"限定名额";
+        UILabel *cNumLimintLabel  = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(numLimitLabel.frame)+5, numLimitLabel.frame.origin.y, 10, 17)];
+        cNumLimintLabel.textColor = RGB(168,168,168);
+        cNumLimintLabel.text = [NSString _859ToUTF8:self.dataModel.userLimit];
+        
+        //
+        
+        
+        [cell.contentView addSubview:titleLabel];
+        [cell.contentView addSubview:numLimitLabel];
+        [cell.contentView addSubview:cNumLimintLabel];
+        
+    }else if (indexPath.row == 1){//会议时间
+        
+        UILabel *meettingTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 20, 65, 20)];
+        meettingTimeLabel.text = @"会议时间";
+        UILabel *cMeettingTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(meettingTimeLabel.frame)+5, meettingTimeLabel.frame.origin.y, 65, 20)];
+        cMeettingTimeLabel.text = self.dataModel.eventTime;
+        
+        UILabel *meetingEndTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 43, 65, 20)];
+        meetingEndTimeLabel.text = @"报名截止";
+        UILabel *cMeetingEndTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(meetingEndTimeLabel.frame)+5, meetingEndTimeLabel.frame.origin.y, 65, 20)];
+        cMeetingEndTimeLabel.text = self.dataModel.endTime;
+        [cell.contentView addSubview:meettingTimeLabel];
+        [cell.contentView addSubview:cMeettingTimeLabel];
+        [cell.contentView addSubview:meetingEndTimeLabel];
+        [cell.contentView addSubview:cMeetingEndTimeLabel];
+        
+    }else if (indexPath.row == 2){//活动地点
+        
+    }else if (indexPath.row == 3) {//会议议程以及报名
         
         NSArray *titleArray = @[@"报名",@"取消报名",@"支付费用"];
         
@@ -234,44 +276,7 @@
 
 
 
-// 导航的设置
-- (void)loadNavigation
-{
-    UIView *bgNavi = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 190, 44)];
-    bgNavi.backgroundColor = [UIColor clearColor];
-    bgNavi.userInteractionEnabled = YES;
-    
-    UIImageView *logoView = [[UIImageView alloc]initWithImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"guke_top_logo_arrow@2x" ofType:@"png"]]];
-    
-    logoView.backgroundColor = [UIColor clearColor];
-    logoView.frame = CGRectMake(0, 4, 36, 36);
-    
-    logoView.contentMode = UIViewContentModeScaleAspectFit;
-    logoView.userInteractionEnabled = YES;
-    
-    UILabel *loginLabel = [[UILabel alloc]initWithFrame:CGRectMake(44, 7, 160, 30)];
-    loginLabel.text = @"会议日程";
-    loginLabel.textColor = [UIColor whiteColor];
-    loginLabel.backgroundColor = [UIColor clearColor];
-    loginLabel.font = [UIFont systemFontOfSize:16];
-    [bgNavi addSubview:logoView];
-    [bgNavi addSubview:loginLabel];
-    loginLabel = nil;
-    
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(gPoPu)];
-    tap.numberOfTapsRequired = 1;
-    tap.numberOfTouchesRequired = 1;
-    [logoView addGestureRecognizer:tap];
-    tap = nil;
-    
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithCustomView:bgNavi];
-    self.navigationItem.leftBarButtonItem = leftItem;
-}
 
-
--(void)gPoPu{
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 
 

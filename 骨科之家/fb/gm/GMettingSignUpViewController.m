@@ -20,13 +20,27 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    [self loadNavigation];
     
     
-    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, 320, 568-64) style:UITableViewStylePlain];
+    self.aTitle = @"会议报名";
+    
+    
+    for (int i = 0; i<4; i++) {
+        UILabel *contentLable = [[UILabel alloc]initWithFrame:CGRectMake(65, 45, 100, 20)];
+        contentLable.backgroundColor = [UIColor redColor];
+        [self.contentLabelArray addObject:contentLable];
+    }
+    
+    
+    
+    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568-64) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     [self.view addSubview:tableView];
+    
+   
+    
+    
     
     
     
@@ -54,16 +68,16 @@
     
     CGFloat height = 0;
     
-    if (indexPath == 0) {
-        height = 100;
+    if (indexPath.row == 0) {
+        height = 90;
     }else if (indexPath.row == 1){
-        height = 75;
+        height = 65;
     }else if (indexPath.row == 2){
-        height = 75;
+        height = 65;
     }else if (indexPath.row == 3){
-        height = 75;
+        height = 65;
     }else if (indexPath.row == 4){
-        height = 350;
+        height = 300;
         
     }
     return height;
@@ -81,76 +95,83 @@
         [view removeFromSuperview];
     }
     
+    //自定义view
     UIView *ccView = [[UIView alloc]initWithFrame:CGRectMake(15, 0, 290, 75)];
-    UIView *shuView = [[UIView alloc]initWithFrame:CGRectMake(0, 65, 1, 10)];
-    shuView.backgroundColor = RGB(29, 153, 174);
-    UIView *hengview = [[UIView alloc]initWithFrame:CGRectMake(0, 74, 1, 290)];
+    //横线
+    UIView *hengview = [[UIView alloc]initWithFrame:CGRectMake(0, 65, 290, 1)];
     hengview.backgroundColor = RGB(29, 153, 174);
-    UIView *shuView1 = [[UIView alloc]initWithFrame:CGRectMake(289, 65, 1, 10)];
+    //竖线
+    UIView *shuView = [[UIView alloc]initWithFrame:CGRectMake(0, 55, 1, 10)];
+    shuView.backgroundColor = RGB(29, 153, 174);
+    //竖线
+    UIView *shuView1 = [[UIView alloc]initWithFrame:CGRectMake(289, 55, 1, 10)];
     shuView1.backgroundColor  = RGB(29, 153, 174);
+    //titilelabel
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(11, 45, 60, 20)];
+    titleLabel.textColor = RGB(169, 168, 168);
+    titleLabel.font  =[ UIFont systemFontOfSize:17];
+    
+    ccView.userInteractionEnabled = YES;
     
     [ccView addSubview:shuView];
     [ccView addSubview:hengview];
     [ccView addSubview:shuView1];
+    [ccView addSubview:titleLabel];
+    
     
     
     if (indexPath.row == 0) {
         
+        UITextField *contentLabel = [[UITextField alloc]initWithFrame:CGRectMake(70, 45, 200, 20)];
+        contentLabel.backgroundColor = [UIColor redColor];
+        [ccView addSubview:contentLabel];
+        [self.contentLabelArray addObject:contentLabel];
+        [cell.contentView addSubview:ccView];
+        ccView.frame = CGRectMake(15, 23, 290, 75);
+        titleLabel.text = @"姓名";
+        
+    }else if (indexPath.row == 1){
+        
+        UITextField *contentLabel = [[UITextField alloc]initWithFrame:CGRectMake(70, 45, 200, 20)];
+        contentLabel.backgroundColor = [UIColor redColor];
+        [ccView addSubview:contentLabel];
+        [cell.contentView addSubview:ccView];
+        titleLabel.text = @"手机号";
+    }else if (indexPath.row == 2){
+        UITextField *contentLabel = [[UITextField alloc]initWithFrame:CGRectMake(70, 45, 200, 20)];
+        contentLabel.backgroundColor = [UIColor redColor];
+        [ccView addSubview:contentLabel];
+        [cell.contentView addSubview:ccView];
+        titleLabel.text = @"邮箱";
+    }else if (indexPath.row == 3){
+        UITextField *contentLabel = [[UITextField alloc]initWithFrame:CGRectMake(70, 45, 200, 20)];
+        contentLabel.backgroundColor = [UIColor redColor];
+        [ccView addSubview:contentLabel];
+        [cell.contentView addSubview:ccView];
+        titleLabel.text= @"QQ";
+    }else if (indexPath.row == 4){
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setBackgroundColor:RGB(35, 178, 95)];
+        btn.layer.cornerRadius = 4;
+        [btn addTarget:self action:@selector(tijiaoBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+        [btn setTitle:@"提交" forState:UIControlStateNormal];
+        [btn setFrame:CGRectMake(15, 45, 290, 40)];
+        [cell.contentView addSubview:btn];
+        
     }
     
+
     
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }
 
 
 
-
-
-
-
-
-
-
-
-// 导航的设置
-- (void)loadNavigation
-{
-    UIView *bgNavi = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 190, 44)];
-    bgNavi.backgroundColor = [UIColor clearColor];
-    bgNavi.userInteractionEnabled = YES;
-    
-    UIImageView *logoView = [[UIImageView alloc]initWithImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"guke_top_logo_arrow@2x" ofType:@"png"]]];
-    
-    logoView.backgroundColor = [UIColor clearColor];
-    logoView.frame = CGRectMake(0, 4, 36, 36);
-    
-    logoView.contentMode = UIViewContentModeScaleAspectFit;
-    logoView.userInteractionEnabled = YES;
-    
-    UILabel *loginLabel = [[UILabel alloc]initWithFrame:CGRectMake(44, 7, 160, 30)];
-    loginLabel.text = @"会议报名";
-    loginLabel.textColor = [UIColor whiteColor];
-    loginLabel.backgroundColor = [UIColor clearColor];
-    loginLabel.font = [UIFont systemFontOfSize:16];
-    [bgNavi addSubview:logoView];
-    [bgNavi addSubview:loginLabel];
-    loginLabel = nil;
-    
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(gPoPu)];
-    tap.numberOfTapsRequired = 1;
-    tap.numberOfTouchesRequired = 1;
-    [logoView addGestureRecognizer:tap];
-    tap = nil;
-    
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithCustomView:bgNavi];
-    self.navigationItem.leftBarButtonItem = leftItem;
-}
-
-
--(void)gPoPu{
-    [self.navigationController popViewControllerAnimated:YES];
+//提交按钮点击
+-(void)tijiaoBtnClicked{
+    NSLog(@"%s",__FUNCTION__);
 }
 
 

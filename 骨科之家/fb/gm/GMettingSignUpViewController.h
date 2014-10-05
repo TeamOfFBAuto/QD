@@ -12,7 +12,7 @@
 #import <UIKit/UIKit.h>
 
 @interface GMettingSignUpViewController : SNViewController
-
+@property(nonatomic,strong)NSMutableArray *contentLabelArray;
 
 
 
