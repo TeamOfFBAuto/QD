@@ -115,13 +115,7 @@
         NSLog(@"取消报名");
     }else if (sender.tag == 12){//支付费用
         NSLog(@"支付费用");
-        
-        
         [self PayForAli];
-        
-        
-        
-        
     }
 }
 
@@ -156,9 +150,9 @@
     order.seller = SellerID;
     
     order.tradeNO = [self generateTradeNO]; //订单ID（由商家自行制定）
-    order.productName = @"productName"; //商品标题
+    order.productName = self.dataModel.eventTitle; //商品标题
     order.productDescription = @"discription"; //商品描   述
-    order.amount = [NSString stringWithFormat:@"998"]; //商品价格
+    order.amount = [NSString stringWithFormat:@"%@",self.dataModel.fee]; //商品价格
    order.notifyURL =  @"http%3A%2F%2Fwwww.xxx.com"; //回调URL
     
     return [order description];
@@ -198,6 +192,10 @@
 -(void)aliresault{
 
     NSLog(@"阿里回调");
+    
+    
+    
+    
 
 }
 

@@ -28,10 +28,33 @@
     self.aTitle = @"会议报名";
     
     
-    self.contentLabelArray = [NSMutableArray arrayWithCapacity:4];
+    self.contentLabelArray = [NSMutableArray arrayWithCapacity:6];
     
-    for (int i = 0; i<4; i++) {
-        UITextField *contentLabel = [[UITextField alloc]initWithFrame:CGRectMake(60, 45, 200, 20)];
+    for (int i = 0; i<6; i++) {
+        UITextField *contentLabel = [[UITextField alloc]initWithFrame:CGRectMake(10, 30, 200, 20)];
+        contentLabel.font = [UIFont systemFontOfSize:15];
+        switch (i) {
+            case 0:
+                contentLabel.placeholder = @"请输入姓名";
+                break;
+            case 1:
+                contentLabel.placeholder = @"请输入电话";
+                break;
+            case 2:
+                contentLabel.placeholder = @"请输入邮箱";
+                break;
+            case 3:
+                contentLabel.placeholder = @"请输入单位";
+                break;
+            case 4:
+                contentLabel.placeholder = @"请输入专业";
+                break;
+            case 5:
+                contentLabel.placeholder = @"请输入职称";
+                break;
+            default:
+                break;
+        }
         [self.contentLabelArray addObject:contentLabel];
     }
     
@@ -63,7 +86,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return 5;
+    return 7;
 }
 
 
@@ -72,17 +95,18 @@
     
     CGFloat height = 0;
     
-    if (indexPath.row == 0) {
-        height = 90;
-    }else if (indexPath.row == 1){
-        height = 65;
-    }else if (indexPath.row == 2){
-        height = 65;
-    }else if (indexPath.row == 3){
-        height = 65;
-    }else if (indexPath.row == 4){
-        height = 200;
-        
+//    if (indexPath.row == 0) {
+//        height = 90;
+//    }else if (indexPath.row == 1){
+//        height = 65;
+//    }else if (indexPath.row == 6){
+//        height = 200;
+//    }else{
+//        height = 65;
+//    }
+    height = 50;
+    if (indexPath.row == 6) {
+        height = 100;
     }
     return height;
 }
@@ -100,73 +124,63 @@
     }
     
     //自定义view
-    UIView *ccView = [[UIView alloc]initWithFrame:CGRectMake(15, 0, 290, 75)];
+    UIView *ccView = [[UIView alloc]initWithFrame:CGRectMake(15, 0, 290, 50)];
     //横线
-    UIView *hengview = [[UIView alloc]initWithFrame:CGRectMake(0, 65, 290, 1)];
+    UIView *hengview = [[UIView alloc]initWithFrame:CGRectMake(0, 49, 290, 1)];
     hengview.backgroundColor = RGB(29, 153, 174);
     //竖线
-    UIView *shuView = [[UIView alloc]initWithFrame:CGRectMake(0, 55, 1, 10)];
+    UIView *shuView = [[UIView alloc]initWithFrame:CGRectMake(0, 40, 1, 10)];
     shuView.backgroundColor = RGB(29, 153, 174);
     //竖线
-    UIView *shuView1 = [[UIView alloc]initWithFrame:CGRectMake(289, 55, 1, 10)];
+    UIView *shuView1 = [[UIView alloc]initWithFrame:CGRectMake(289, 40, 1, 10)];
     shuView1.backgroundColor  = RGB(29, 153, 174);
-    //titilelabel
-    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(11, 45, 60, 20)];
-    titleLabel.textColor = RGB(169, 168, 168);
-    titleLabel.font  =[ UIFont systemFontOfSize:17];
     
     ccView.userInteractionEnabled = YES;
     
     [ccView addSubview:shuView];
     [ccView addSubview:hengview];
     [ccView addSubview:shuView1];
-    [ccView addSubview:titleLabel];
     
     
     
     if (indexPath.row == 0) {
         
-        
         [ccView addSubview:self.contentLabelArray[0]];
         [cell.contentView addSubview:ccView];
-        ccView.frame = CGRectMake(15, 23, 290, 75);
-        titleLabel.text = @"姓名";
         
     }else if (indexPath.row == 1){
-        
-        
         [ccView addSubview:self.contentLabelArray[1]];
         [cell.contentView addSubview:ccView];
-        titleLabel.text = @"手机号";
     }else if (indexPath.row == 2){
         
         [ccView addSubview:self.contentLabelArray[2]];
         [cell.contentView addSubview:ccView];
-        titleLabel.text = @"邮箱";
     }else if (indexPath.row == 3){
         
         [ccView addSubview:self.contentLabelArray[3]];
         [cell.contentView addSubview:ccView];
-        titleLabel.text= @"QQ";
     }else if (indexPath.row == 4){
+        [ccView addSubview:self.contentLabelArray[4]];
+        [cell.contentView addSubview:ccView];
+        
+    }else if (indexPath.row == 5){
+        [ccView addSubview:self.contentLabelArray[5]];
+        [cell.contentView addSubview:ccView];
+    }else if (indexPath.row == 6){
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setBackgroundColor:RGB(35, 178, 95)];
         btn.layer.cornerRadius = 4;
         [btn addTarget:self action:@selector(tijiaoBtnClicked) forControlEvents:UIControlEventTouchUpInside];
         [btn setTitle:@"提交" forState:UIControlStateNormal];
         if (iPhone5) {
-            [btn setFrame:CGRectMake(15, 150, 290, 40)];
+            [btn setFrame:CGRectMake(15, 50, 290, 40)];
         }else{
-            [btn setFrame:CGRectMake(15, 45, 290, 40)];
+            [btn setFrame:CGRectMake(15, 50, 290, 40)];
         }
-        
-        
         [cell.contentView addSubview:btn];
-        
     }
     
 
-    
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
@@ -187,26 +201,42 @@
 
 
 
+#pragma mark - 报名的网络请求方法
+
 //请求网络数据
 -(void)netWorking{
    
+    //姓名
     UILabel *nameLabel = self.contentLabelArray[0];
     NSString *userNameStr = nameLabel.text;
     
+    //电话
     UILabel *phoneLabel = self.contentLabelArray[1];
     NSString *phoneStr = phoneLabel.text;
     
+    //邮箱
     UILabel *emailLabel = self.contentLabelArray[2];
     NSString *emailStr = emailLabel.text;
     
-    UILabel *qqLabel = self.contentLabelArray[3];
-    NSString *qqStr = qqLabel.text;
+    //单位
+    UILabel *companyLabel = self.contentLabelArray[3];
+    NSString *companyStr = companyLabel.text;
     
+    //专业
+    UILabel *deptLabel = self.contentLabelArray[4];
+    NSString *deptStr = deptLabel.text;
+    
+    //职称
+    UILabel *positionLabel = self.contentLabelArray[5];
+    NSString *positionStr = positionLabel.text;
+    
+    
+    //活动id
     NSString *eventIdStr = self.dataModel.eventId;
     
     
     
-    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"eventId":eventIdStr,@"username":userNameStr,@"mobile":phoneStr,@"email":emailStr};
+    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"eventId":eventIdStr,@"username":userNameStr,@"mobile":phoneStr,@"email":emailStr,@"company":companyStr,@"dept":deptStr,@"position":positionStr};
     
     [AFRequestService responseData:CALENDAR_EVENTJOIN andparameters:parameters andResponseData:^(id responseData) {
         
