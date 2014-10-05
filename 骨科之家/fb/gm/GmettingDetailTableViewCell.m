@@ -174,9 +174,9 @@
                 [btn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
                 [btn setBackgroundColor:RGB(237, 238, 237)];
             }else if (i == 2){
-                [btn setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
-                btn.layer.borderWidth = 2;
-                btn.layer.borderColor = [[UIColor greenColor]CGColor];
+                [btn setTitleColor:RGB(35, 178, 95) forState:UIControlStateNormal];
+                btn.layer.borderWidth = 1;
+                btn.layer.borderColor = [RGB(35, 178, 95)CGColor];
                 [btn setBackgroundColor:[UIColor whiteColor]];
             }
             

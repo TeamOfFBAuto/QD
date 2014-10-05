@@ -94,7 +94,7 @@
     [cell loadCustomViewWithIndexPath:indexPath dataModel:self.dataModel];
     
     
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
     
 }
@@ -106,6 +106,7 @@
         NSLog(@"我要报名");
         
         GMettingSignUpViewController *gg = [[GMettingSignUpViewController alloc]init];
+        gg.dataModel = self.dataModel;
         [self.navigationController pushViewController:gg animated:YES];
         
         

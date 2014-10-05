@@ -18,6 +18,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    
+    NSLog(@"%s",__FUNCTION__);
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     
@@ -25,17 +28,18 @@
     self.aTitle = @"会议报名";
     
     
-    for (int i = 0; i<4; i++) {
-        UILabel *contentLable = [[UILabel alloc]initWithFrame:CGRectMake(65, 45, 100, 20)];
-        contentLable.backgroundColor = [UIColor redColor];
-        [self.contentLabelArray addObject:contentLable];
-    }
+    self.contentLabelArray = [NSMutableArray arrayWithCapacity:4];
     
+    for (int i = 0; i<4; i++) {
+        UITextField *contentLabel = [[UITextField alloc]initWithFrame:CGRectMake(60, 45, 200, 20)];
+        [self.contentLabelArray addObject:contentLabel];
+    }
     
     
     UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568-64) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:tableView];
     
    
@@ -122,31 +126,26 @@
     
     if (indexPath.row == 0) {
         
-        UITextField *contentLabel = [[UITextField alloc]initWithFrame:CGRectMake(70, 45, 200, 20)];
-        contentLabel.backgroundColor = [UIColor redColor];
-        [ccView addSubview:contentLabel];
-        [self.contentLabelArray addObject:contentLabel];
+        
+        [ccView addSubview:self.contentLabelArray[0]];
         [cell.contentView addSubview:ccView];
         ccView.frame = CGRectMake(15, 23, 290, 75);
         titleLabel.text = @"姓名";
         
     }else if (indexPath.row == 1){
         
-        UITextField *contentLabel = [[UITextField alloc]initWithFrame:CGRectMake(70, 45, 200, 20)];
-        contentLabel.backgroundColor = [UIColor redColor];
-        [ccView addSubview:contentLabel];
+        
+        [ccView addSubview:self.contentLabelArray[1]];
         [cell.contentView addSubview:ccView];
         titleLabel.text = @"手机号";
     }else if (indexPath.row == 2){
-        UITextField *contentLabel = [[UITextField alloc]initWithFrame:CGRectMake(70, 45, 200, 20)];
-        contentLabel.backgroundColor = [UIColor redColor];
-        [ccView addSubview:contentLabel];
+        
+        [ccView addSubview:self.contentLabelArray[2]];
         [cell.contentView addSubview:ccView];
         titleLabel.text = @"邮箱";
     }else if (indexPath.row == 3){
-        UITextField *contentLabel = [[UITextField alloc]initWithFrame:CGRectMake(70, 45, 200, 20)];
-        contentLabel.backgroundColor = [UIColor redColor];
-        [ccView addSubview:contentLabel];
+        
+        [ccView addSubview:self.contentLabelArray[3]];
         [cell.contentView addSubview:ccView];
         titleLabel.text= @"QQ";
     }else if (indexPath.row == 4){
@@ -171,8 +170,66 @@
 
 //提交按钮点击
 -(void)tijiaoBtnClicked{
+    
     NSLog(@"%s",__FUNCTION__);
+    
+    [self netWorking];
+    
+    
+    
 }
+
+
+
+//请求网络数据
+-(void)netWorking{
+   
+    UILabel *nameLabel = self.contentLabelArray[0];
+    NSString *userNameStr = nameLabel.text;
+    
+    UILabel *phoneLabel = self.contentLabelArray[1];
+    NSString *phoneStr = phoneLabel.text;
+    
+    UILabel *emailLabel = self.contentLabelArray[2];
+    NSString *emailStr = emailLabel.text;
+    
+    UILabel *qqLabel = self.contentLabelArray[3];
+    NSString *qqStr = qqLabel.text;
+    
+    NSString *eventIdStr = self.dataModel.eventId;
+    
+    
+    
+    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"eventId":eventIdStr,@"username":userNameStr,@"mobile":phoneStr,@"email":emailStr};
+    
+    [AFRequestService responseData:CALENDAR_EVENTJOIN andparameters:parameters andResponseData:^(id responseData) {
+        
+        NSDictionary * dict = (NSDictionary *)responseData;
+        NSString * code = [dict objectForKey:@"code"];
+        if ([code intValue]==0)//说明请求数据成功
+        {
+            NSLog(@"loadSuccess");
+            NSLog(@"%@",dict);
+            
+        }else{
+            
+            NSLog(@"erroCode:%@",code);
+            NSString *erroCodeStr = nil;
+            if ([code intValue]==2) {
+                erroCodeStr =  @"活动不存在或者已经超过报名截止时间";
+            }else if ([code intValue] == 3){
+                erroCodeStr = @"重复报名";
+            }
+            UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"报名失败" message:erroCodeStr delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [al show];
+            
+        }
+    }];
+}
+
+
+
+
 
 
 @end

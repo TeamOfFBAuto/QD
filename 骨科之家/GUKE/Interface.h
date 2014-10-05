@@ -147,7 +147,8 @@ alpha:(a)]
 #define CALENDAR_ACTIVITIES @"eventstatus.php"
 #pragma mark - 活动列表
 #define CALENDAR_ACTIVITIESTABLEVIEW @"eventlist.php"
-
+#pragma mark  - 活动报名
+#define CALENDAR_EVENTJOIN @"eventjoin.php"
 // 请求参数
 #define REQUEST_PATAMETER  @{@"userId": [NSString stringWithFormat:@"%d",((User_Model*)[[SingleInstance shareManager].objecAarray firstObject]).userId],@"sid": ((User_Model*)[[SingleInstance shareManager].objecAarray firstObject]).sid}
 //定义请求服务的返回参数

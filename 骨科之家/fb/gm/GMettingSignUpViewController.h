@@ -10,10 +10,11 @@
 
 //会议报名
 #import <UIKit/UIKit.h>
+#import "GeventModel.h"
 
 @interface GMettingSignUpViewController : SNViewController
 @property(nonatomic,strong)NSMutableArray *contentLabelArray;
 
-
+@property(nonatomic,strong)GeventModel *dataModel;
 
 @end
