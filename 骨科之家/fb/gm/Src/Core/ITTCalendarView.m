@@ -554,7 +554,7 @@
     if (!_view2) {
         _view2 = [[UILabel alloc]init];
         UIView *greenView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 15, 15)];
-        greenView.backgroundColor = GETColor(137, 192, 136);
+        greenView.backgroundColor = GETColor(204, 255, 204);
         UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(20, 0, 50, 15)];
         label.text = @"已报名";
         label.font = [UIFont systemFontOfSize:14];

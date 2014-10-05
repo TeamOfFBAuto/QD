@@ -148,10 +148,19 @@
         
     }else if (sender.tag == 11){//取消报名
         NSLog(@"取消报名");
+        
+        [self eventquitNetWork];
+        
+        
+        
     }else if (sender.tag == 12){//支付费用
+        
         NSLog(@"支付费用");
         [self PayForAli];
+        
+        
     }
+    
 }
 
 
@@ -241,6 +250,36 @@
 
 
 
+#pragma mark -  取消报名
+-(void)eventquitNetWork{
+    
+    
+    NSString *eventIdStr = self.dataModel.eventId;
+    
+    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"eventId":eventIdStr};
+    
+    [AFRequestService responseData:CALENDAR_EVENTQUIT andparameters:parameters andResponseData:^(id responseData) {
+        
+        NSDictionary * dict = (NSDictionary *)responseData;
+        NSString * code = [dict objectForKey:@"code"];
+        if ([code intValue]==0)//说明请求数据成功
+        {
+            NSLog(@"loadSuccess");
+            
+            NSLog(@"%@",dict);
+            
+            UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [al show];
+            
+            
+        }else{
+            
+            NSLog(@"%d",[code intValue]);
+            UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [al show];
+        }
+    }];
+}
 
 
 
