@@ -942,6 +942,7 @@
 		E361729419E031DA002F2D4F /* GeventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E361729319E031DA002F2D4F /* GeventDetailViewController.m */; };
 		E389ED0B19E04195007D3A03 /* GMettingSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E389ED0A19E04195007D3A03 /* GMettingSignUpViewController.m */; };
 		E389ED4319E0E7FD007D3A03 /* UILabel+GautoMatchedText.m in Sources */ = {isa = PBXBuildFile; fileRef = E389ED4119E0E7FD007D3A03 /* UILabel+GautoMatchedText.m */; };
+		E389ED4619E0F42E007D3A03 /* GmettingDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E389ED4519E0F42E007D3A03 /* GmettingDetailTableViewCell.m */; };
 		E39E4D4F19DA04DE00AEA2F6 /* ITTCalendarGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D2D19DA04DE00AEA2F6 /* ITTCalendarGridView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E39E4D5019DA04DE00AEA2F6 /* ITTCalendarScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D2F19DA04DE00AEA2F6 /* ITTCalendarScrollView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E39E4D5119DA04DE00AEA2F6 /* ITTCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D3119DA04DE00AEA2F6 /* ITTCalendarView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -2196,6 +2197,8 @@
 		E389ED0A19E04195007D3A03 /* GMettingSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMettingSignUpViewController.m; sourceTree = "<group>"; };
 		E389ED4119E0E7FD007D3A03 /* UILabel+GautoMatchedText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+GautoMatchedText.m"; sourceTree = "<group>"; };
 		E389ED4219E0E7FD007D3A03 /* UILabel+GautoMatchedText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+GautoMatchedText.h"; sourceTree = "<group>"; };
+		E389ED4419E0F42E007D3A03 /* GmettingDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GmettingDetailTableViewCell.h; sourceTree = "<group>"; };
+		E389ED4519E0F42E007D3A03 /* GmettingDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GmettingDetailTableViewCell.m; sourceTree = "<group>"; };
 		E39E4D2B19DA04DE00AEA2F6 /* Enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enum.h; sourceTree = "<group>"; };
 		E39E4D2C19DA04DE00AEA2F6 /* ITTCalendarGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalendarGridView.h; sourceTree = "<group>"; };
 		E39E4D2D19DA04DE00AEA2F6 /* ITTCalendarGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTCalendarGridView.m; sourceTree = "<group>"; };
@@ -4310,6 +4313,8 @@
 				E3076A8319D9D4B400333B7E /* GcalendarDetailViewController.m */,
 				E361729219E031DA002F2D4F /* GeventDetailViewController.h */,
 				E361729319E031DA002F2D4F /* GeventDetailViewController.m */,
+				E389ED4419E0F42E007D3A03 /* GmettingDetailTableViewCell.h */,
+				E389ED4519E0F42E007D3A03 /* GmettingDetailTableViewCell.m */,
 				E389ED0919E04195007D3A03 /* GMettingSignUpViewController.h */,
 				E389ED0A19E04195007D3A03 /* GMettingSignUpViewController.m */,
 				E361728F19E02ADA002F2D4F /* GeventModel.h */,
@@ -5336,6 +5341,7 @@
 				E39E4D5D19DA04DE00AEA2F6 /* ITTBaseDataSourceImp.m in Sources */,
 				3EEB7EE719A5D08600ED4ABA /* RemindTableViewCellOneTableViewCell.m in Sources */,
 				E3DF643C19DAB22C00D05E6F /* GRefreshTableView.m in Sources */,
+				E389ED4619E0F42E007D3A03 /* GmettingDetailTableViewCell.m in Sources */,
 				1918518519E023B400DAF8E6 /* FriendCircleDetailContentView.m in Sources */,
 				3E6BA42319D5080700A891EB /* SolveReasonCell.m in Sources */,
 				19960CB1196A80D6000121AA /* RSSwitch.m in Sources */,

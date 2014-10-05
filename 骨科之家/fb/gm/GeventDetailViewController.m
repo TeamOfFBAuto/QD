@@ -26,7 +26,9 @@
 //#import "AlixLibService.h"
 
 @interface GeventDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
-
+{
+    GmettingDetailTableViewCell *_tmpCell;
+}
 @end
 
 @implementation GeventDetailViewController
@@ -65,157 +67,31 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat height = 0;
-    if (indexPath.row == 3) {
-        height = 300;
+    
+    if (_tmpCell) {
+        height = [_tmpCell loadCustomViewWithIndexPath:indexPath dataModel:self.dataModel];
     }else{
-        height = 300;
+        _tmpCell = [[GmettingDetailTableViewCell alloc]init];
+        _tmpCell.delegate = self;
+        [_tmpCell loadCustomViewWithIndexPath:indexPath dataModel:self.dataModel];
     }
+    
     return height;
 }
 
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *identifier = @"identifier";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    GmettingDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell = [[GmettingDetailTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     
+    cell.delegate = self;
     for (UIView *view in cell.contentView.subviews) {
         [view removeFromSuperview];
     }
-    
-    if (indexPath.row == 0) {//会议名称
-        
-        //会议名称
-        UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 20, 230, 30)];
-        titleLabel.textColor = RGB(72, 158, 181);
-        titleLabel.text = [NSString _859ToUTF8:self.dataModel.eventTitle];
-        [titleLabel setMatchedFrame4LabelWithOrigin:CGPointMake(20, 20) width:230];
-        
-        //限定名额
-        UILabel *numLimitLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, CGRectGetMaxY(titleLabel.frame)+5, 65, 17)];
-        numLimitLabel.font = [UIFont systemFontOfSize:15];
-        numLimitLabel.textColor = RGB(168,168,168);
-        numLimitLabel.text = @"限定名额：";
-        UILabel *cNumLimintLabel  = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(numLimitLabel.frame)+5, numLimitLabel.frame.origin.y, 10, 17)];
-        cNumLimintLabel.textColor = RGB(168,168,168);
-        cNumLimintLabel.text = [NSString _859ToUTF8:self.dataModel.userLimit];
-        
-        //已报名
-        
-        
-        [cell.contentView addSubview:titleLabel];
-        [cell.contentView addSubview:numLimitLabel];
-        [cell.contentView addSubview:cNumLimintLabel];
-        
-    }else if (indexPath.row == 1){//会议时间
-        //会议时间
-        UILabel *meettingTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 20, 65, 20)];
-        meettingTimeLabel.font = [UIFont systemFontOfSize:15];
-        meettingTimeLabel.text = @"会议时间：";
-        meettingTimeLabel.textColor = RGB(98, 97, 97);
-        
-        UILabel *cMeettingTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(meettingTimeLabel.frame)+5, meettingTimeLabel.frame.origin.y, 150, 20)];
-        cMeettingTimeLabel.textColor = RGB(168,168,168);
-        cMeettingTimeLabel.font = [UIFont systemFontOfSize:15];
-        cMeettingTimeLabel.text = self.dataModel.eventTime;
-        
-        //报名截止
-        UILabel *meetingEndTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 43, 65, 20)];
-        meetingEndTimeLabel.text = @"报名截止：";
-        meetingEndTimeLabel.font = [UIFont systemFontOfSize:15];
-        meetingEndTimeLabel.textColor = RGB(98, 97, 97);
-        
-        UILabel *cMeetingEndTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(meetingEndTimeLabel.frame)+5, meetingEndTimeLabel.frame.origin.y, 100, 20)];
-        cMeetingEndTimeLabel.font = [UIFont systemFontOfSize:15];
-        cMeetingEndTimeLabel.textColor = RGB(168,168,168);
-        cMeetingEndTimeLabel.text = self.dataModel.endTime;
-        [cell.contentView addSubview:meettingTimeLabel];
-        [cell.contentView addSubview:cMeettingTimeLabel];
-        [cell.contentView addSubview:meetingEndTimeLabel];
-        [cell.contentView addSubview:cMeetingEndTimeLabel];
-        
-    }else if (indexPath.row == 2){//活动地点
-        //活动地点
-        UILabel *addressLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 20, 65, 20)];
-        addressLabel.textColor = RGB(98, 97, 97);
-        addressLabel.font = [UIFont systemFontOfSize:15];
-        addressLabel.text = @"活动地点：";
-        
-        UILabel *cAddressLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(addressLabel.frame)+5, addressLabel.frame.origin.y, 200, 20)];
-        cAddressLabel.font = [UIFont systemFontOfSize:15];
-        cAddressLabel.textColor = RGB(168,168,168);
-        cAddressLabel.text = [NSString _859ToUTF8:self.dataModel.address ];
-        [cAddressLabel setMatchedFrame4LabelWithOrigin:CGPointMake(CGRectGetMaxX(addressLabel.frame)+5, addressLabel.frame.origin.y) width:200];
-        [cell.contentView addSubview:addressLabel];
-        [cell.contentView addSubview:cAddressLabel];
-        
-        //会议费用
-        UILabel *feeLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, CGRectGetMaxY(cAddressLabel.frame)+5, 65, 20)];
-        feeLabel.textColor = RGB(98, 97, 97);
-        feeLabel.font = [UIFont systemFontOfSize:15];
-        feeLabel.text = @"会议费用：";
-        
-        UILabel *cFeeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(feeLabel.frame)+5, feeLabel.frame.origin.y, 200, 20)];
-        cFeeLabel.textColor = RGB(168, 168, 168);
-        cFeeLabel.text = [[NSString _859ToUTF8:self.dataModel.fee]stringByAppendingString:@"元"];
-        
-        [cell.contentView addSubview:feeLabel];
-        [cell.contentView addSubview:cFeeLabel];
-        
-        
-        //联系电话
-        UILabel *phoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, CGRectGetMaxY(feeLabel.frame)+5, 65, 20)];
-        phoneLabel.font = [UIFont systemFontOfSize:15];
-        phoneLabel.textColor = RGB(72, 158, 181);
-        phoneLabel.text = @"联系电话：";
-        
-        UILabel *cPhoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(phoneLabel.frame)+5, phoneLabel.frame.origin.y, 200, 20)];
-        cPhoneLabel.font = [UIFont systemFontOfSize:15];
-        cPhoneLabel.textColor = RGB(72, 158, 181);
-        cPhoneLabel.text = [NSString _859ToUTF8:self.dataModel.phone];
-        
-        [cell.contentView addSubview:phoneLabel];
-        [cell.contentView addSubview:cPhoneLabel];
-        
-        
-        
-        
-    }else if (indexPath.row == 3) {//会议议程以及报名
-        
-        NSArray *titleArray = @[@"报名",@"取消报名",@"支付费用"];
-        
-        for (int i = 0; i<3; i++) {
-            UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-            [btn setTitle:titleArray[i] forState:UIControlStateNormal];
-            btn.tag = 10+i;
-            [btn addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
-            
-            btn.layer.cornerRadius = 4;
-            
-            if (i ==0) {
-                [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                [btn setBackgroundColor:RGB(35, 178, 95)];
-                
-            }else if (i == 1){
-                [btn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-                [btn setBackgroundColor:RGB(237, 238, 237)];
-            }else if (i == 2){
-                [btn setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
-                btn.layer.borderWidth = 2;
-                btn.layer.borderColor = [[UIColor greenColor]CGColor];
-                [btn setBackgroundColor:[UIColor whiteColor]];
-            }
-            
-            
-            [btn setFrame:CGRectMake(10, 10+i*(50+10), 300, 50)];
-            
-            [cell.contentView addSubview:btn];
-        }
-        
-        
-    }
+    [cell loadCustomViewWithIndexPath:indexPath dataModel:self.dataModel];
     
     
     

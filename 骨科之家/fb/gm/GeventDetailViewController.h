@@ -11,10 +11,11 @@
 //会议详情
 #import <UIKit/UIKit.h>
 #import "GeventModel.h"
+#import "GmettingDetailTableViewCell.h"
 
 @interface GeventDetailViewController : SNViewController
 
 @property(nonatomic,strong)GeventModel *dataModel;
 
-
+-(void)btnClicked:(UIButton *)sender;
 @end
