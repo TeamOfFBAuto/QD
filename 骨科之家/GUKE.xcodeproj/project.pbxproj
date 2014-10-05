@@ -945,6 +945,7 @@
 		E389ED5419E12FBB007D3A03 /* tixiang-jiantouLeft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E389ED5119E12FBB007D3A03 /* tixiang-jiantouLeft@2x.png */; };
 		E389ED5519E12FBB007D3A03 /* tixiang-jiantou-16_26@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E389ED5219E12FBB007D3A03 /* tixiang-jiantou-16_26@2x.png */; };
 		E389ED5619E12FBB007D3A03 /* cal_current.9.png in Resources */ = {isa = PBXBuildFile; fileRef = E389ED5319E12FBB007D3A03 /* cal_current.9.png */; };
+		E389ED6119E149A5007D3A03 /* GMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E389ED6019E149A5007D3A03 /* GMAPI.m */; };
 		E39E4D4F19DA04DE00AEA2F6 /* ITTCalendarGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D2D19DA04DE00AEA2F6 /* ITTCalendarGridView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E39E4D5019DA04DE00AEA2F6 /* ITTCalendarScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D2F19DA04DE00AEA2F6 /* ITTCalendarScrollView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E39E4D5119DA04DE00AEA2F6 /* ITTCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D3119DA04DE00AEA2F6 /* ITTCalendarView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -2203,6 +2204,8 @@
 		E389ED5119E12FBB007D3A03 /* tixiang-jiantouLeft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tixiang-jiantouLeft@2x.png"; sourceTree = "<group>"; };
 		E389ED5219E12FBB007D3A03 /* tixiang-jiantou-16_26@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tixiang-jiantou-16_26@2x.png"; sourceTree = "<group>"; };
 		E389ED5319E12FBB007D3A03 /* cal_current.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cal_current.9.png; sourceTree = "<group>"; };
+		E389ED5F19E149A5007D3A03 /* GMAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMAPI.h; sourceTree = "<group>"; };
+		E389ED6019E149A5007D3A03 /* GMAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMAPI.m; sourceTree = "<group>"; };
 		E39E4D2B19DA04DE00AEA2F6 /* Enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enum.h; sourceTree = "<group>"; };
 		E39E4D2C19DA04DE00AEA2F6 /* ITTCalendarGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalendarGridView.h; sourceTree = "<group>"; };
 		E39E4D2D19DA04DE00AEA2F6 /* ITTCalendarGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTCalendarGridView.m; sourceTree = "<group>"; };
@@ -4351,6 +4354,8 @@
 		E389ED4A19E0FD51007D3A03 /* GUtils */ = {
 			isa = PBXGroup;
 			children = (
+				E389ED5F19E149A5007D3A03 /* GMAPI.h */,
+				E389ED6019E149A5007D3A03 /* GMAPI.m */,
 				E3076A4C19D9CCE600333B7E /* ITTDebug.h */,
 				E389ED4119E0E7FD007D3A03 /* UILabel+GautoMatchedText.m */,
 				E389ED4219E0E7FD007D3A03 /* UILabel+GautoMatchedText.h */,
@@ -5352,6 +5357,7 @@
 				199CFD5B195AA48300F74F7C /* AppDelegate.m in Sources */,
 				19960D10196A80D6000121AA /* SDWebImageDownloaderOperation.m in Sources */,
 				199D3E4919DA84E100464981 /* BingLiListFeed.m in Sources */,
+				E389ED6119E149A5007D3A03 /* GMAPI.m in Sources */,
 				3951C91519D11CC10040B07E /* FMDatabaseAdditions.m in Sources */,
 				19B7DA0619E08EC1004B7621 /* NSString+SBJSON.m in Sources */,
 				840BB21B19D7AB30000A4725 /* AFHTTPSessionManager.m in Sources */,

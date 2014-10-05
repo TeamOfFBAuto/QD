@@ -8,8 +8,12 @@
 
 #import "GMettingSignUpViewController.h"
 
-@interface GMettingSignUpViewController ()<UITableViewDataSource,UITableViewDelegate>
 
+@interface GMettingSignUpViewController ()
+{
+    MBProgressHUD *_hud;
+
+}
 @end
 
 @implementation GMettingSignUpViewController
@@ -95,15 +99,7 @@
     
     CGFloat height = 0;
     
-//    if (indexPath.row == 0) {
-//        height = 90;
-//    }else if (indexPath.row == 1){
-//        height = 65;
-//    }else if (indexPath.row == 6){
-//        height = 200;
-//    }else{
-//        height = 65;
-//    }
+
     height = 50;
     if (indexPath.row == 6) {
         height = 100;
@@ -235,11 +231,8 @@
     NSString *eventIdStr = self.dataModel.eventId;
     
     
-    //报名填写项目
-    NSDictionary *itemsDic = @{@"itemId":eventIdStr};
     
-    
-    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"eventId":eventIdStr,@"username":userNameStr,@"mobile":phoneStr,@"email":emailStr,@"company":companyStr,@"dept":deptStr,@"position":positionStr,@"items":itemsDic};
+    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"eventId":eventIdStr,@"username":userNameStr,@"mobile":phoneStr,@"email":emailStr,@"company":companyStr,@"dept":deptStr,@"position":positionStr};
     
     [AFRequestService responseData:CALENDAR_EVENTJOIN andparameters:parameters andResponseData:^(id responseData) {
         
@@ -247,10 +240,19 @@
         NSString * code = [dict objectForKey:@"code"];
         if ([code intValue]==0)//说明请求数据成功
         {
+            
+//            [self hudWasHidden:_hud];
+            
             NSLog(@"loadSuccess");
             NSLog(@"%@",dict);
             
+            UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"报名成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            al.tag = 100;
+            [al show];
+            
         }else{
+            
+//            [self hudWasHidden:_hud];
             
             NSLog(@"erroCode:%@",code);
             NSString *erroCodeStr = nil;
@@ -267,6 +269,14 @@
 }
 
 
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (alertView.tag == 100) {
+        if (buttonIndex == 0) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+    }
+}
 
 
 

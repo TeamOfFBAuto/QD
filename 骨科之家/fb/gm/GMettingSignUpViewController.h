@@ -11,8 +11,10 @@
 //会议报名
 #import <UIKit/UIKit.h>
 #import "GeventModel.h"
+#import "MBProgressHUD.h"
+#import "GMAPI.h"
 
-@interface GMettingSignUpViewController : SNViewController
+@interface GMettingSignUpViewController : SNViewController<UITableViewDataSource,UITableViewDelegate,MBProgressHUDDelegate,UIAlertViewDelegate>
 @property(nonatomic,strong)NSMutableArray *contentLabelArray;
 
 @property(nonatomic,strong)GeventModel *dataModel;

@@ -102,7 +102,7 @@
         if ([code intValue]==0)//说明请求数据成功
         {
             NSLog(@"loadSuccess");
-            NSLog(@"%@",dict);
+            NSLog(@"活动列表  %@",dict);
             
             NSArray *eventArray = [dict objectForKey:@"eventlist"];
             NSMutableArray *dataArray  = [NSMutableArray arrayWithCapacity:1];
@@ -249,9 +249,13 @@
         //是否报名
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(15, 20, 10, 10)];
         if ([m.userExists intValue] == 0) {
+            
             view.backgroundColor = RGB(255, 204, 204);
+            
         }else if ([m.userExists intValue] == 1){
+            
             view.backgroundColor = RGB(137, 192, 136);
+            
         }
         [cell.contentView addSubview:view];
         

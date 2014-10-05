@@ -17,5 +17,8 @@
 
 @property(nonatomic,strong)GeventModel *dataModel;
 
+
+@property(nonatomic,assign)CGFloat webViewHeight;//webview高度
+
 -(void)btnClicked:(UIButton *)sender;
 @end

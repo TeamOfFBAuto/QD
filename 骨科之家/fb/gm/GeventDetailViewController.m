@@ -25,7 +25,7 @@
 
 //#import "AlixLibService.h"
 
-@interface GeventDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface GeventDetailViewController ()<UITableViewDataSource,UITableViewDelegate,UIWebViewDelegate,UIAlertViewDelegate>
 {
     GmettingDetailTableViewCell *_tmpCell;
 }
@@ -51,6 +51,13 @@
 //    [self.view addSubview:tableView];
     
     
+    
+    
+    
+    
+    
+    
+    
 }
 
 
@@ -72,14 +79,24 @@
         {
             NSLog(@"loadSuccess");
             
-            NSLog(@"%@",dict);
+            NSLog(@"查看活动  %@",dict);
+            
+            NSString *isbaoming = self.dataModel.userExists;
             
             self.dataModel = [[GeventModel alloc]initWithDic:eventDic];
+            self.dataModel.userExists = isbaoming;
             
-            UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, 320, iPhone5?568-64:568-64-64) style:UITableViewStylePlain];
-            tableView.delegate = self;
-            tableView.dataSource = self;
-            [self.view addSubview:tableView];
+            
+            UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, 275, 0)];
+            [webView loadHTMLString:[NSString _859ToUTF8:self.dataModel.context] baseURL:nil];
+            webView.delegate = self;
+            webView.hidden = YES;
+            [self.view addSubview:webView];
+            
+//            UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, 320, iPhone5?568-64:568-64-64) style:UITableViewStylePlain];
+//            tableView.delegate = self;
+//            tableView.dataSource = self;
+//            [self.view addSubview:tableView];
             
             
         }else{
@@ -268,7 +285,8 @@
             
             NSLog(@"%@",dict);
             
-            UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"取消成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            al.tag = 101;
             [al show];
             
             
@@ -281,7 +299,38 @@
     }];
 }
 
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    
+    NSString *height_str= [webView stringByEvaluatingJavaScriptFromString: @"document.body.offsetHeight"];
+    int height = [height_str intValue];
+    webView.frame = CGRectMake(0,0,290,height);
+    NSLog(@"height: %@", [webView stringByEvaluatingJavaScriptFromString: @"document.body.offsetHeight"]);
+    
+    self.webViewHeight = [[webView stringByEvaluatingJavaScriptFromString: @"document.body.offsetHeight"]intValue] +10;
+    
+    
+    
+    
+    
+    
+    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, 320, iPhone5?568-64:568-64-64) style:UITableViewStylePlain];
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    [self.view addSubview:tableView];
+    
+    
+}
 
+
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (alertView.tag == 101) {
+        if (buttonIndex == 0) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+    }
+}
 
 
 

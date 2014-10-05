@@ -9,6 +9,7 @@
 #import "GmettingDetailTableViewCell.h"
 #import "UILabel+GautoMatchedText.h"
 #import "GeventDetailViewController.h"
+#import "GMAPI.h"
 
 @implementation GmettingDetailTableViewCell
 
@@ -24,6 +25,8 @@
 
 
 -(CGFloat)loadCustomViewWithIndexPath:(NSIndexPath*)indexPath dataModel:(GeventModel*)theModel{
+    
+    
     
     CGFloat height = 0;
     
@@ -44,8 +47,9 @@
         numLimitLabel.font = [UIFont systemFontOfSize:15];
         numLimitLabel.textColor = RGB(168,168,168);
         numLimitLabel.text = @"限定名额：";
-        UILabel *cNumLimintLabel  = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(numLimitLabel.frame)+5, numLimitLabel.frame.origin.y, 10, 17)];
+        UILabel *cNumLimintLabel  = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(numLimitLabel.frame)+5, numLimitLabel.frame.origin.y, 30, 17)];
         cNumLimintLabel.textColor = RGB(168,168,168);
+        
         cNumLimintLabel.text = [NSString _859ToUTF8:theModel.userLimit];
         
         
@@ -59,10 +63,18 @@
         UILabel *isLabel = [[UILabel alloc]initWithFrame:CGRectMake(260, 21, 60, 17)];
         isLabel.font = [UIFont systemFontOfSize:15];
         isLabel.textColor = RGB(72, 158, 181);
+        
+        
         if ([theModel.userExists intValue] == 0) {
+            
             isLabel.text = @"未报名";
+            
         }else if ([theModel.userExists intValue] == 1){
+            
+            
             isLabel.text = @"已报名";
+            
+            
         }
         [self.contentView addSubview:isLabel];
         
@@ -158,48 +170,96 @@
         titleLabel.textColor = RGB(72, 158, 181);
         titleLabel.font = [UIFont systemFontOfSize:15];
         
-        UILabel *contextLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, CGRectGetMaxY(titleLabel.frame), 200, 20)];
-        contextLabel.font = [UIFont systemFontOfSize:15];
-        contextLabel.textColor = RGB(168, 168, 168);
-        contextLabel.text = [NSString _859ToUTF8:theModel.context];
-        [contextLabel setMatchedFrame4LabelWithOrigin:CGPointMake(15, CGRectGetMaxY(titleLabel.frame)) width:275];
+//        UILabel *contextLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, CGRectGetMaxY(titleLabel.frame), 200, 20)];
+//        contextLabel.font = [UIFont systemFontOfSize:15];
+//        contextLabel.textColor = RGB(168, 168, 168);
+//        contextLabel.text = [NSString _859ToUTF8:theModel.context];
+//        [contextLabel setMatchedFrame4LabelWithOrigin:CGPointMake(15, CGRectGetMaxY(titleLabel.frame)) width:275];
+        
+        
+        
+        
+        UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectMake(15, CGRectGetMaxY(titleLabel.frame), 290, self.delegate.webViewHeight)];
+        
+        NSLog(@"%@",NSStringFromCGRect(webView.frame));
+        
+        webView.scrollView.scrollEnabled = NO;
+        
+        
+        [webView loadHTMLString:[NSString _859ToUTF8:theModel.context] baseURL:nil];
+        
+        [self.contentView addSubview:webView];
+        
         
         [self.contentView addSubview:titleLabel];
-        [self.contentView addSubview:contextLabel];
+//        [self.contentView addSubview:contextLabel];
         
         
         
         NSArray *titleArray = @[@"报名",@"取消报名",@"支付费用"];
         
-        for (int i = 0; i<3; i++) {
-            UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-            [btn setTitle:titleArray[i] forState:UIControlStateNormal];
-            btn.tag = 10+i;
-            [btn addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
-            
-            btn.layer.cornerRadius = 4;
-            
-            if (i ==0) {
-                [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                [btn setBackgroundColor:RGB(35, 178, 95)];
+        if ([theModel.userExists intValue] == 1) {//已报名
+            for (int i = 0; i<2; i++) {
+                UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+                [btn setTitle:titleArray[i+1] forState:UIControlStateNormal];
+                btn.tag = 11+i;
+                [btn addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
                 
-            }else if (i == 1){
-                [btn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-                [btn setBackgroundColor:RGB(237, 238, 237)];
-            }else if (i == 2){
-                [btn setTitleColor:RGB(35, 178, 95) forState:UIControlStateNormal];
-                btn.layer.borderWidth = 1;
-                btn.layer.borderColor = [RGB(35, 178, 95)CGColor];
-                [btn setBackgroundColor:[UIColor whiteColor]];
+                btn.layer.cornerRadius = 4;
+                
+                if (i == 0){
+                    [btn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+                    [btn setBackgroundColor:RGB(237, 238, 237)];
+                }else if (i == 1){
+                    [btn setTitleColor:RGB(35, 178, 95) forState:UIControlStateNormal];
+                    btn.layer.borderWidth = 1;
+                    btn.layer.borderColor = [RGB(35, 178, 95)CGColor];
+                    [btn setBackgroundColor:[UIColor whiteColor]];
+                }
+                
+                [btn setFrame:CGRectMake(10, CGRectGetMaxY(webView.frame)+20 +i*(50+10), 300, 50)];
+                
+                [self.contentView addSubview:btn];
+                
+                height = CGRectGetMaxY(btn.frame)+20;
             }
-            
-            
-            [btn setFrame:CGRectMake(10, CGRectGetMaxY(contextLabel.frame)+20 +i*(50+10), 300, 50)];
-            
-            [self.contentView addSubview:btn];
-            
-            height = CGRectGetMaxY(btn.frame)+20;
+        }else{
+            for (int i = 0; i<3; i++) {
+                UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+                [btn setTitle:titleArray[i] forState:UIControlStateNormal];
+                btn.tag = 10+i;
+                [btn addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
+                
+                btn.layer.cornerRadius = 4;
+                
+                if (i ==0) {
+                    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                    [btn setBackgroundColor:RGB(35, 178, 95)];
+                    
+                }else if (i == 1){
+                    [btn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+                    [btn setBackgroundColor:RGB(237, 238, 237)];
+                }else if (i == 2){
+                    [btn setTitleColor:RGB(35, 178, 95) forState:UIControlStateNormal];
+                    btn.layer.borderWidth = 1;
+                    btn.layer.borderColor = [RGB(35, 178, 95)CGColor];
+                    [btn setBackgroundColor:[UIColor whiteColor]];
+                }
+                
+                [btn setFrame:CGRectMake(10, CGRectGetMaxY(webView.frame)+20 +i*(50+10), 300, 50)];
+                
+                [self.contentView addSubview:btn];
+                
+                height = CGRectGetMaxY(btn.frame)+20;
+            }
         }
+        
+        
+        
+        
+        
+        
+        
         
     }
     
@@ -214,6 +274,7 @@
 -(void)btnClicked:(UIButton *)sender{
     [self.delegate btnClicked:sender];
 }
+
 
 
 
