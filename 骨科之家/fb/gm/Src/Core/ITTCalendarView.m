@@ -11,6 +11,7 @@
 #import "ITTCalMonth.h"
 #import "ITTCalDay.h"
 #import "ITTCalendarViewHeaderView.h"
+#import "MBProgressHUD.h"
 
 #import "GeventSingleModel.h"
 
@@ -23,6 +24,7 @@
 {
     NSTimeInterval          _swipeTimeInterval;
     NSTimeInterval          _begintimeInterval;
+    MBProgressHUD *_hud;
 }
 
 @property (retain, nonatomic) ITTCalMonth *calMonth;
@@ -643,9 +645,12 @@
 
 
 
-#pragma mark  -  请求网络数据
+#pragma mark  -  请求网络数据 翻页
 -(void)networkWithDate:(NSString *)theDate isNext:(BOOL)next{
     
+    
+    _hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
+    _hud.labelText = @"正在加载";
     
     NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"eventDate":theDate};
     
@@ -656,6 +661,9 @@
         NSString * code = [dict objectForKey:@"code"];
         if ([code intValue]==0)//说明请求数据成功
         {
+            
+            [MBProgressHUD hideHUDForView:self animated:YES];
+            
             NSLog(@"loadSuccess");
             
             NSLog(@"%@",dict);
@@ -715,6 +723,9 @@
             
             
         }else{
+            
+            [MBProgressHUD hideHUDForView:self animated:YES];
+            
             NSLog(@"%d",[code intValue]);
         }
     }];
