@@ -23,6 +23,9 @@
 
 -(void)dealloc{
     
+    _tableView.dataSource = nil;
+    _tableView.delegate = nil;
+    
     NSLog(@"%s",__FUNCTION__);
 }
 
