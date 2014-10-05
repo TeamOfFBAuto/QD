@@ -43,14 +43,49 @@
     
     NSLog(@"%s",__FUNCTION__);
     
-    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568) style:UITableViewStylePlain];
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    [self.view addSubview:tableView];
+    [self prepareNetData];
+    
+//    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320,iPhone5?568:568-64) style:UITableViewStylePlain];
+//    tableView.delegate = self;
+//    tableView.dataSource = self;
+//    [self.view addSubview:tableView];
     
     
+}
+
+
+
+-(void)prepareNetData{
     
     
+    NSString *eventIdStr = self.dataModel.eventId;
+    
+    
+    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"eventId":eventIdStr};
+
+    [AFRequestService responseData:CALENDAR_EVENT andparameters:parameters andResponseData:^(id responseData) {
+        
+        NSDictionary * dict = (NSDictionary *)responseData;
+        NSString * code = [dict objectForKey:@"code"];
+        NSDictionary *eventDic = [dict objectForKey:@"event"];
+        if ([code intValue]==0)//说明请求数据成功
+        {
+            NSLog(@"loadSuccess");
+            
+            NSLog(@"%@",dict);
+            
+            self.dataModel = [[GeventModel alloc]initWithDic:eventDic];
+            
+            UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, 320, iPhone5?568-64:568-64-64) style:UITableViewStylePlain];
+            tableView.delegate = self;
+            tableView.dataSource = self;
+            [self.view addSubview:tableView];
+            
+            
+        }else{
+            NSLog(@"%d",[code intValue]);
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

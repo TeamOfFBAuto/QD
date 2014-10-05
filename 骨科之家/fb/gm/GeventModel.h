@@ -10,6 +10,7 @@
 
 @interface GeventModel : NSObject
 
+//活动列表接口
 @property(nonatomic,strong)NSString *eventId;
 @property(nonatomic,strong)NSString *userId;//发布用户
 @property(nonatomic,strong)NSString *eventTitle;//活动标题
@@ -22,6 +23,12 @@
 @property(nonatomic,strong)NSString *context;//活动内容
 @property(nonatomic,strong)NSString *createDate;//发布时间
 @property(nonatomic,strong)NSString *userExists;//当前用户是否报名，0：否，1：是"
+
+//查看活动接口
+@property(nonatomic,strong)NSString *companyId;//公司id
+@property(nonatomic,strong)NSString *eventEndTime;//
+@property(nonatomic,strong)NSArray *signupItemList;//报名填写项目
+@property(nonatomic,strong)NSArray *userlist;
 
 
 

@@ -112,8 +112,8 @@
     
     if ([btnStr isEqualToString:lDateStr]) {
         
-        [self.gridButton setBackgroundImage:[UIImage imageNamed:@"btn_grid_cell_highlight.png"] forState:UIControlStateNormal];
-        [self.gridButton setBackgroundImage:[UIImage imageNamed:@"btn_grid_cell_highlight.png"] forState:UIControlStateSelected];
+        [self.gridButton setBackgroundImage:[UIImage imageNamed:@"cal_current.9.png"] forState:UIControlStateNormal];
+        [self.gridButton setBackgroundImage:[UIImage imageNamed:@"cal_current.9.png"] forState:UIControlStateSelected];
         
         
     }

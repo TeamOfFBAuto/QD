@@ -235,8 +235,11 @@
     NSString *eventIdStr = self.dataModel.eventId;
     
     
+    //报名填写项目
+    NSDictionary *itemsDic = @{@"itemId":eventIdStr};
     
-    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"eventId":eventIdStr,@"username":userNameStr,@"mobile":phoneStr,@"email":emailStr,@"company":companyStr,@"dept":deptStr,@"position":positionStr};
+    
+    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"eventId":eventIdStr,@"username":userNameStr,@"mobile":phoneStr,@"email":emailStr,@"company":companyStr,@"dept":deptStr,@"position":positionStr,@"items":itemsDic};
     
     [AFRequestService responseData:CALENDAR_EVENTJOIN andparameters:parameters andResponseData:^(id responseData) {
         

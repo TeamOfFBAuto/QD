@@ -149,6 +149,7 @@ alpha:(a)]
 #define CALENDAR_ACTIVITIESTABLEVIEW @"eventlist.php"
 #pragma mark  - 活动报名
 #define CALENDAR_EVENTJOIN @"eventjoin.php"
+#define CALENDAR_EVENT @"event.php"
 #define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
 
 // 请求参数
