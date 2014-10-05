@@ -3,4 +3,6 @@
 
    pod 'JSONKit', '~> 1.5pre'
 
+
+pod 'MBProgressHUD', '~> 0.9'
 pod 'ELCImagePickerController', '~> 0.2.0'
