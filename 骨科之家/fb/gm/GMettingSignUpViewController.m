@@ -1,36 +1,32 @@
 //
-//  GeventDetailViewController.m
+//  GMettingSignUpViewController.m
 //  GUKE
 //
 //  Created by gaomeng on 14-10-4.
 //  Copyright (c) 2014年 qidi. All rights reserved.
 //
 
-#import "GeventDetailViewController.h"
 #import "GMettingSignUpViewController.h"
 
-@interface GeventDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface GMettingSignUpViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @end
 
-@implementation GeventDetailViewController
+@implementation GMettingSignUpViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self loadNavigation];
     
-    NSLog(@"%@",[NSString _859ToUTF8:self.dataModel.eventTitle]);
     
-    
-    
-    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, 568-64) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, 320, 568-64) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     [self.view addSubview:tableView];
-    
     
     
     
@@ -43,24 +39,39 @@
 
 
 
--(NSInteger )tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 4;
+
+
+
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
+    return 5;
 }
 
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
     CGFloat height = 0;
-    if (indexPath.row == 3) {
-        height = 300;
-    }else{
-        height = 50;
+    
+    if (indexPath == 0) {
+        height = 100;
+    }else if (indexPath.row == 1){
+        height = 75;
+    }else if (indexPath.row == 2){
+        height = 75;
+    }else if (indexPath.row == 3){
+        height = 75;
+    }else if (indexPath.row == 4){
+        height = 350;
+        
     }
     return height;
 }
 
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *identifier = @"identifier";
+    static NSString *identifier = @"identifeir";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
@@ -70,64 +81,32 @@
         [view removeFromSuperview];
     }
     
-    if (indexPath.row == 3) {
-        
-        NSArray *titleArray = @[@"报名",@"取消报名",@"支付费用"];
-        
-        for (int i = 0; i<3; i++) {
-            UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-            [btn setTitle:titleArray[i] forState:UIControlStateNormal];
-            btn.tag = 10+i;
-            [btn addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
-            
-            btn.layer.cornerRadius = 4;
-            
-            if (i ==0) {
-                [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                [btn setBackgroundColor:RGB(35, 178, 95)];
-                
-            }else if (i == 1){
-                [btn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-                [btn setBackgroundColor:RGB(237, 238, 237)];
-            }else if (i == 2){
-                [btn setTitleColor:[UIColor greenColor] forState:UIControlStateNormal];
-                btn.layer.borderWidth = 2;
-                btn.layer.borderColor = [[UIColor greenColor]CGColor];
-                [btn setBackgroundColor:[UIColor whiteColor]];
-            }
-            
-            
-            [btn setFrame:CGRectMake(10, 10+i*(50+10), 300, 50)];
-            
-            [cell.contentView addSubview:btn];
-        }
-        
+    UIView *ccView = [[UIView alloc]initWithFrame:CGRectMake(15, 0, 290, 75)];
+    UIView *shuView = [[UIView alloc]initWithFrame:CGRectMake(0, 65, 1, 10)];
+    shuView.backgroundColor = RGB(29, 153, 174);
+    UIView *hengview = [[UIView alloc]initWithFrame:CGRectMake(0, 74, 1, 290)];
+    hengview.backgroundColor = RGB(29, 153, 174);
+    UIView *shuView1 = [[UIView alloc]initWithFrame:CGRectMake(289, 65, 1, 10)];
+    shuView1.backgroundColor  = RGB(29, 153, 174);
+    
+    [ccView addSubview:shuView];
+    [ccView addSubview:hengview];
+    [ccView addSubview:shuView1];
+    
+    
+    if (indexPath.row == 0) {
         
     }
+    
     
     
     
     return cell;
-    
 }
 
 
--(void)btnClicked:(UIButton *)sender{
-    if (sender.tag == 10) {//报名
-        
-        NSLog(@"我要报名");
-        
-        GMettingSignUpViewController *gg = [[GMettingSignUpViewController alloc]init];
-        [self.navigationController pushViewController:gg animated:YES];
-        
-        
-        
-    }else if (sender.tag == 11){//取消报名
-        NSLog(@"取消报名");
-    }else if (sender.tag == 12){//支付费用
-        NSLog(@"支付费用");
-    }
-}
+
+
 
 
 
@@ -151,7 +130,7 @@
     logoView.userInteractionEnabled = YES;
     
     UILabel *loginLabel = [[UILabel alloc]initWithFrame:CGRectMake(44, 7, 160, 30)];
-    loginLabel.text = @"会议日程";
+    loginLabel.text = @"会议报名";
     loginLabel.textColor = [UIColor whiteColor];
     loginLabel.backgroundColor = [UIColor clearColor];
     loginLabel.font = [UIFont systemFontOfSize:16];
@@ -173,10 +152,6 @@
 -(void)gPoPu{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
-
-
-
 
 
 @end

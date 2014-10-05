@@ -923,6 +923,7 @@
 		E33D677519DA7C400070D207 /* tixiang-jiantouLeft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E33D677419DA7C400070D207 /* tixiang-jiantouLeft@2x.png */; };
 		E361729119E02ADA002F2D4F /* GeventModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E361729019E02ADA002F2D4F /* GeventModel.m */; };
 		E361729419E031DA002F2D4F /* GeventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E361729319E031DA002F2D4F /* GeventDetailViewController.m */; };
+		E389ED0B19E04195007D3A03 /* GMettingSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E389ED0A19E04195007D3A03 /* GMettingSignUpViewController.m */; };
 		E39E4D4F19DA04DE00AEA2F6 /* ITTCalendarGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D2D19DA04DE00AEA2F6 /* ITTCalendarGridView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E39E4D5019DA04DE00AEA2F6 /* ITTCalendarScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D2F19DA04DE00AEA2F6 /* ITTCalendarScrollView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		E39E4D5119DA04DE00AEA2F6 /* ITTCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = E39E4D3119DA04DE00AEA2F6 /* ITTCalendarView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -2171,6 +2172,8 @@
 		E361729019E02ADA002F2D4F /* GeventModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeventModel.m; sourceTree = "<group>"; };
 		E361729219E031DA002F2D4F /* GeventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeventDetailViewController.h; sourceTree = "<group>"; };
 		E361729319E031DA002F2D4F /* GeventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeventDetailViewController.m; sourceTree = "<group>"; };
+		E389ED0919E04195007D3A03 /* GMettingSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GMettingSignUpViewController.h; sourceTree = "<group>"; };
+		E389ED0A19E04195007D3A03 /* GMettingSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMettingSignUpViewController.m; sourceTree = "<group>"; };
 		E39E4D2B19DA04DE00AEA2F6 /* Enum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enum.h; sourceTree = "<group>"; };
 		E39E4D2C19DA04DE00AEA2F6 /* ITTCalendarGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITTCalendarGridView.h; sourceTree = "<group>"; };
 		E39E4D2D19DA04DE00AEA2F6 /* ITTCalendarGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITTCalendarGridView.m; sourceTree = "<group>"; };
@@ -4253,6 +4256,8 @@
 				E3076A8319D9D4B400333B7E /* GcalendarDetailViewController.m */,
 				E361729219E031DA002F2D4F /* GeventDetailViewController.h */,
 				E361729319E031DA002F2D4F /* GeventDetailViewController.m */,
+				E389ED0919E04195007D3A03 /* GMettingSignUpViewController.h */,
+				E389ED0A19E04195007D3A03 /* GMettingSignUpViewController.m */,
 				E361728F19E02ADA002F2D4F /* GeventModel.h */,
 				E361729019E02ADA002F2D4F /* GeventModel.m */,
 			);
@@ -5180,6 +5185,7 @@
 				849104C919DC54C2009A636C /* AddGroupMemberViewController.m in Sources */,
 				199CFDF8195AA53900F74F7C /* SingleInstance.m in Sources */,
 				19960D33196A80D6000121AA /* UIImage+fixOrientation.m in Sources */,
+				E389ED0B19E04195007D3A03 /* GMettingSignUpViewController.m in Sources */,
 				E39E4D5719DA04DE00AEA2F6 /* ITTBaseCalendarGridView.m in Sources */,
 				19960D2F196A80D6000121AA /* MBProgressHUD.m in Sources */,
 				3EE1043719A497E50029EC5C /* SetUpTableViewCellOne.m in Sources */,
@@ -5220,10 +5226,7 @@
 				19960D49196A80D6000121AA /* wav.mm in Sources */,
 				561A868819DD74C000CC8674 /* SendPostsImageScrollView.m in Sources */,
 				19960CB2196A80D6000121AA /* StatusModel.m in Sources */,
-
-				19309EEE1990E7DF007561D9 /* FirendCircleHomeTableViewController.m in Sources */,
 				E361729119E02ADA002F2D4F /* GeventModel.m in Sources */,
-
 				19960D15196A80D6000121AA /* UIImage+MultiFormat.m in Sources */,
 				19960D4C196A80D7000121AA /* VoiceConverter.mm in Sources */,
 				19960CB4196A80D6000121AA /* VChatModel.m in Sources */,
@@ -5490,7 +5493,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "663bce84-31f1-462e-a50d-ebbe7bacfbf5";
+				PROVISIONING_PROFILE = "f2794893-6f40-4d34-b2ae-54d0f5e6cf98";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -5526,7 +5529,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "663bce84-31f1-462e-a50d-ebbe7bacfbf5";
+				PROVISIONING_PROFILE = "f2794893-6f40-4d34-b2ae-54d0f5e6cf98";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -5552,7 +5555,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = GUKE;
-				PROVISIONING_PROFILE = "91ea0988-0151-4008-a8fc-8e2885a2376c";
+				PROVISIONING_PROFILE = "f2794893-6f40-4d34-b2ae-54d0f5e6cf98";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
@@ -5580,7 +5583,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = GUKE;
-				PROVISIONING_PROFILE = "91ea0988-0151-4008-a8fc-8e2885a2376c";
+				PROVISIONING_PROFILE = "f2794893-6f40-4d34-b2ae-54d0f5e6cf98";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/**";
