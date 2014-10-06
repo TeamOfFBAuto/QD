@@ -734,8 +734,6 @@
     
     if (indexPath.row < _feed.attach_array.count)
     {
-        NSDictionary * dic = [_feed.attach_array objectAtIndex:indexPath.row];
-        
         static NSString * cell1 = @"cell1";
         CreateMedicalFilesCell * cell = [tableView dequeueReusableCellWithIdentifier:cell1];
         if (cell == nil) {

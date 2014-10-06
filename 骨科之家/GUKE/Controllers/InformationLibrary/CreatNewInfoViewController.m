@@ -13,8 +13,11 @@
 #import "UIImage+UIImageScale.h"
 #import "SolveReasonCell.h"
 #import "interface.h"
+#import "CreateInfoDetailCell.h"
 
-@interface CreatNewInfoViewController ()<UITableViewDataSource, UITableViewDelegate>
+#define CELL_HEIGHT 80
+
+@interface CreatNewInfoViewController ()<UITableViewDataSource, UITableViewDelegate,CreateInfoDetailCellDelegate>
 {
     // 标题视图
     UIView *_titleView;
@@ -31,6 +34,9 @@
     
     // 文本内容视图
     UITextView *_AddContentView;
+    
+    ///要删除的文件的id
+    NSMutableArray * delete_array;
     
     
     
@@ -62,17 +68,18 @@
 // 自定义导航栏
 - (void)loadNavigation;
 // 标题视图
-- (void)loadTitleView;
+- (UIView *)loadTitleView;
 // 附件视图
 - (void)loadFileView;
 // "附件"的列表
 - (void)loadFileTableView;
 // 文本内容视图
-- (void)loadAddContentView;
+- (UIView *)loadAddContentView;
 
 @end
 
 @implementation CreatNewInfoViewController
+@synthesize info = _info;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -89,20 +96,36 @@
     view.backgroundColor = [UIColor whiteColor];
     self.view = view;
     
-    _dataArray = [[NSMutableArray alloc] init];
+    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if (IOS7_LATER) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+    
+    delete_array = [NSMutableArray array];
+    
+    _dataArray = [[NSMutableArray alloc] init];
+    
+    if (_info.attachlist.count == 0)
+    {
+        _info.attachlist = [NSMutableArray array];
+    }else
+    {
+        [_dataArray addObjectsFromArray:_info.attachlist];
+    }
+    
     [self loadNavigation];
-    [self loadTitleView];
+    //    [self loadTitleView];
     [self loadFileView];
     [self loadFileTableView];
-    [self loadAddContentView];
+    //    [self loadAddContentView];
     
-    
-    
+
     _networkOpt = YES;
     
     
@@ -167,12 +190,12 @@
 
 }
 // 标题视图
-- (void)loadTitleView
+- (UIView *)loadTitleView
 {
     _titleView = [[UIView alloc] init];
-    _titleView.frame = CGRectMake(0, 64, SCREEN_WIDTH, 40);
+    _titleView.frame = CGRectMake(0, 64, SCREEN_WIDTH,80);
     _titleView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:_titleView];
+//    [self.view addSubview:_titleView];
     
     UILabel *titleLabel = [[UILabel alloc] init];
     titleLabel.frame = CGRectMake(10, 10, 40, 30);
@@ -185,6 +208,7 @@
     _titleField.frame = CGRectMake(60, 10, SCREEN_WIDTH-60-10, 30);
     _titleField.backgroundColor = [UIColor whiteColor];
     _titleField.font = [UIFont systemFontOfSize:13.5f];
+    _titleField.text = _info.title;
     [_titleView addSubview:_titleField];
     
     UIImageView *line = [[UIImageView alloc] init];
@@ -192,6 +216,31 @@
     line.backgroundColor = [UIColor clearColor];
     line.image = [UIImage imageNamed:@"guke_searchbglinered.png"];
     [_titleView addSubview:line];
+    
+    
+    
+    _fileView = [[UIView alloc] init];
+    _fileView.frame = CGRectMake(0,40, SCREEN_WIDTH, 40);
+    [_titleView addSubview:_fileView];
+    
+    UILabel *label = [[UILabel alloc] init];
+    label.frame = CGRectMake(10, 0, 220, 40);
+    label.text = @"附件: （图片、语音、视频)";
+    [_fileView addSubview:label];
+    
+    BlockButton *btn = [[BlockButton alloc] init];
+    btn.frame = CGRectMake(235, 5, 30, 30);
+    [btn setBackgroundImage:[UIImage imageNamed:@"task_attach"] forState:UIControlStateNormal];
+    btn.block = ^(BlockButton *btn){
+        
+        NSLog(@"上传文件");
+        [self setICON];
+    };
+    
+    [_fileView addSubview:btn];
+    
+    
+    return _titleView;
 }
 
 - (void)loadFileView
@@ -202,12 +251,12 @@
     [self.view addSubview:_fileView];
     
     UILabel *label = [[UILabel alloc] init];
-    label.frame = CGRectMake(10, 0, 200, 40);
+    label.frame = CGRectMake(10, 0, 220, 40);
     label.text = @"附件: （图片、语音、视频)";
     [_fileView addSubview:label];
     
     BlockButton *btn = [[BlockButton alloc] init];
-    btn.frame = CGRectMake(170, 5, 30, 30);
+    btn.frame = CGRectMake(235, 5, 30, 30);
     [btn setBackgroundImage:[UIImage imageNamed:@"task_attach"] forState:UIControlStateNormal];
     btn.block = ^(BlockButton *btn){
         
@@ -220,35 +269,46 @@
 
 - (void)loadFileTableView
 {
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, 0) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0, SCREEN_WIDTH,DEVICE_HEIGHT) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.backgroundColor = [UIColor whiteColor];
-    _tableView.alwaysBounceVertical = NO;
+//    _tableView.alwaysBounceVertical = NO;
     if ([_tableView respondsToSelector:@selector(setSeparatorInset:)]) {
         [_tableView setSeparatorInset:UIEdgeInsetsZero];
     }
     [self.view addSubview:_tableView];
+    
+    _tableView.tableHeaderView = [self loadTitleView];
+    
+    _tableView.tableFooterView = [self loadAddContentView];
+    
+    
 }
 
-- (void)loadAddContentView
+- (UIView *)loadAddContentView
 {
+    UIView * aView = [[UIView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,100)];
+    
     _AddContentView = [[UITextView alloc] init];
-    _AddContentView.frame = CGRectMake(5, _tableView.frame.origin.y+_tableView.frame.size.height, 310, 100);
+    _AddContentView.frame = CGRectMake(5,0,DEVICE_WIDTH-10,100);
     _AddContentView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.8];
     _AddContentView.font = [UIFont systemFontOfSize:14.0f];
+    _AddContentView.text = _info.content;
     
     // 画边框
     _AddContentView.layer.borderColor = [UIColor grayColor].CGColor;
     _AddContentView.layer.borderWidth =1.0;
     _AddContentView.layer.cornerRadius =5.0;
     
-    [self.view addSubview:_AddContentView];
+    [aView addSubview:_AddContentView];
     
     UITapGestureRecognizer *tableViewGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(commentTableViewTouchInSide)];
     tableViewGesture.numberOfTapsRequired = 1;
     tableViewGesture.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tableViewGesture];
+    
+    return aView;
 }
 
 - (void)commentTableViewTouchInSide{
@@ -266,7 +326,33 @@
     // 尾部
     [UIView commitAnimations];
     
-}  
+}
+
+#pragma mark - 删除操作
+-(void)deleteFilesTap:(CreateInfoDetailCell *)cell
+{
+    NSIndexPath * indexPath = [_tableView indexPathForCell:cell];
+    
+    if (indexPath.row < _dataArray.count)
+    {
+        id object = [_dataArray objectAtIndex:indexPath.row];
+        
+        if ([object isKindOfClass:[NSDictionary class]])///语音
+        {
+            NSDictionary * aDic = (NSDictionary *)object;
+            
+            if ([aDic.allKeys containsObject:@"fileurl"])
+            {
+                
+                [delete_array addObject:[aDic objectForKey:@"attachId"]];
+            }
+        }
+        
+        [_dataArray removeObjectAtIndex:indexPath.row];
+        [_tableView reloadData];
+    }
+}
+
 
 
 // 手势事件
@@ -279,9 +365,35 @@
 - (void)btnClick
 {
     NSLog(@"点击提交按钮");
+
     NSDictionary *parameters = @{@"userId":GET_USER_ID,@"sid":GET_S_ID,@"infoId":@"0",@"title":[NSString stringWithFormat:@"%@",_titleField.text],@"content":[NSString stringWithFormat:@"%@",_AddContentView.text]};
     
-    [AFRequestService responseDataWithImage:@"infonew.php" andparameters:parameters andDataArray:_dataArray andfieldType:@"attach1" andfileName:@"attach1.jpg" andResponseData:^(NSData *responseData){
+//    [AFRequestService responseDataWithImage:@"infonew.php" andparameters:parameters andDataArray:_dataArray andfieldType:@"attach1" andfileName:@"attach1.jpg" andResponseData:^(NSData *responseData){
+//        NSDictionary *dict =(NSDictionary *)responseData;
+//        NSString *list = [dict objectForKey:@"code"];
+//        if ([list intValue] == 0) {
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//            // 显示
+//            [alert show];
+//        }else{
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发送失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//            // 显示
+//            [alert show];
+//        }
+//        
+//    }];
+    
+    NSMutableDictionary * up_dic = [NSMutableDictionary dictionaryWithDictionary:parameters];
+    
+    if (delete_array.count)
+    {
+        NSString * delete_id = [delete_array componentsJoinedByString:@","];
+        [up_dic setObject:delete_id forKey:@"removeAttachIds"];
+    }
+    
+    
+    [AFRequestService bingliresponseDataWithImage:@"infonew.php" andparameters:up_dic andDataArray:_dataArray andfieldType:@"attach1" andfileName:@"attach1.jpg" andResponseData:^(NSData *responseData) {
+       
         NSDictionary *dict =(NSDictionary *)responseData;
         NSString *list = [dict objectForKey:@"code"];
         if ([list intValue] == 0) {
@@ -293,7 +405,6 @@
             // 显示
             [alert show];
         }
-        
     }];
 }
 
@@ -538,16 +649,16 @@
     [VoiceConverter wavToAmr:_filePath amrSavePath:[VoiceRecorderBaseVC getPathByFileName:[_fileName stringByAppendingString:@"wavToAmr"] ofType:@"amr"]];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:_fileName,@"fid",[VoiceRecorderBaseVC getPathByFileName:[_fileName stringByAppendingString:@"wavToAmr"] ofType:@"amr"],@"fileName",[NSNumber numberWithInt:(int)length],@"length", nil];
     [_dataArray addObject:dic];
-    
+/*
     if (SCREEN_HEIGHT<568) {
-        if (_dataArray.count*50<210) {
-            _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, _dataArray.count*50);
+        if (_dataArray.count*CELL_HEIGHT<210) {
+            _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, _dataArray.count*CELL_HEIGHT);
         }else{
             _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, 210);
         }
     }else{
-        if (_dataArray.count*50<300) {
-            _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, _dataArray.count*50);
+        if (_dataArray.count*CELL_HEIGHT<300) {
+            _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, _dataArray.count*CELL_HEIGHT);
         }else{
             _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, 210+88);
         }
@@ -555,6 +666,8 @@
     
     
     _AddContentView.frame = CGRectMake(5, _tableView.frame.origin.y+_tableView.frame.size.height+2, 310, 100);
+    [_tableView reloadData];
+ */
     [_tableView reloadData];
     [self tableViewSlide];
  
@@ -630,20 +743,22 @@
             model.imageName = [locationString stringByAppendingString:@".jpg"];
             model.imageData = imgData;
             [_dataArray addObject:model];
+            /*
             if (SCREEN_HEIGHT<568) {
-                if (_dataArray.count*50<210) {
-                    _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, _dataArray.count*50);
+                if (_dataArray.count*CELL_HEIGHT<210) {
+                    _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, _dataArray.count*CELL_HEIGHT);
                 }else{
                     _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, 210);
                 }
             }else{
-                if (_dataArray.count*50<210+88) {
-                    _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, _dataArray.count*50);
+                if (_dataArray.count*CELL_HEIGHT<210+88) {
+                    _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, _dataArray.count*CELL_HEIGHT);
                 }else{
                     _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, 210+88);
                 }
             }
             _AddContentView.frame = CGRectMake(5, _tableView.frame.origin.y+_tableView.frame.size.height+2, 310, 100);
+             */
             [_tableView reloadData];
             [self tableViewSlide];
             [self dismissViewControllerAnimated:YES completion:nil];
@@ -758,12 +873,49 @@
     NSLog(@"压缩文件输出路径 :%@",_mp4Path);
     
     
-    [_alert show];
+   // [_alert show];
     
     
     _videoDuration = [NSString stringWithFormat:@"%.2f s", duration];
     _videoSize = [NSString stringWithFormat:@"%d kb", [self getFileSize:_mp4Path]];
     _hasMp4 = YES;
+    
+    
+    
+    // 获取系统当前时间
+    NSDate *senddate=[NSDate date];
+    NSDateFormatter *dateformatter=[[NSDateFormatter alloc] init];
+    [dateformatter setDateFormat:@"YYYYMMddhhmmss"];
+    NSString *locationString=[dateformatter stringFromDate:senddate];
+    
+    NSMutableData * data = [NSMutableData dataWithContentsOfFile:_mp4Path];
+    
+    VideoUploadModel * model = [[VideoUploadModel alloc] init];
+    model.fileData = data;
+    model.filePath = _mp4Path;
+    model.fileName = [locationString stringByAppendingString:@".mp4"];
+    
+    [_dataArray addObject:model];
+   /*
+    if (SCREEN_HEIGHT<568) {
+        if (_dataArray.count*CELL_HEIGHT<210) {
+            _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, _dataArray.count*CELL_HEIGHT);
+        }else{
+            _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, 210);
+        }
+    }else{
+        if (_dataArray.count*CELL_HEIGHT<300) {
+            _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, _dataArray.count*CELL_HEIGHT);
+        }else{
+            _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, 210+88);
+        }
+    }
+    
+    
+    _AddContentView.frame = CGRectMake(5, _tableView.frame.origin.y+_tableView.frame.size.height+2, 310, 100);
+    */
+    [_tableView reloadData];
+    [self tableViewSlide];
     
 }
 
@@ -786,10 +938,6 @@
 }
 
 
-
-
-
-
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -808,28 +956,21 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50;
+    return 80;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *cellName = [NSString stringWithFormat:@"FileCell%d%d",indexPath.section,indexPath.row];
-    SolveReasonCell *cell = [tableView dequeueReusableCellWithIdentifier:cellName];
+    CreateInfoDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellName];
     if (cell == nil) {
-        cell = [[[NSBundle mainBundle]loadNibNamed:@"SolveReasonCell" owner:self options:nil]lastObject];
+        cell = [[[NSBundle mainBundle]loadNibNamed:@"CreateInfoDetailCell" owner:self options:nil]lastObject];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.delegate = self;
     id object = [_dataArray objectAtIndex:indexPath.row];
     
-    if ([object isKindOfClass:[NSDictionary class]]) {
-        cell.videoImage.image = [UIImage imageNamed:@"icon_menu_volume.png"];
-        NSDictionary *dic = (NSDictionary *)object;
-        NSString *tempVoice = [NSString stringWithFormat:@"%@",[dic objectForKey:@"fid"]];
-        cell.videoName.text = [tempVoice stringByAppendingString:@".amr"];
-    }else{
-        cell.videoImage.image = [UIImage imageNamed:@"icon_word.png"];
-        cell.videoName.text = [NSString stringWithFormat:@"%@",((imgUploadModel *)object).imageName];
-    }
+    [cell setInfoWith:object];
     return cell;
 }
 
@@ -841,6 +982,27 @@
         CGPoint offset = CGPointMake(0, _tableView.contentSize.height - _tableView.frame.size.height);
         [_tableView setContentOffset:offset animated:YES];
     }
+}
+
+-(void)tableViewHeight
+{
+    if (SCREEN_HEIGHT<568) {
+        if (_dataArray.count*CELL_HEIGHT<210) {
+            _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, _dataArray.count*CELL_HEIGHT);
+        }else{
+            _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, 210);
+        }
+    }else{
+        if (_dataArray.count*CELL_HEIGHT<300) {
+            _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, _dataArray.count*CELL_HEIGHT);
+        }else{
+            _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, 210+88);
+        }
+    }
+    
+    
+    _AddContentView.frame = CGRectMake(5, _tableView.frame.origin.y+_tableView.frame.size.height+2, 310, 100);
+    [_tableView reloadData];
 }
 
 

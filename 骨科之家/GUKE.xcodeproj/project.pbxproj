@@ -897,6 +897,8 @@
 		565DAE5D19DA9C6B00C3924D /* AttachListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE5C19DA9C6B00C3924D /* AttachListModel.m */; };
 		565DAE6119DAAE8000C3924D /* TDDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 565DAE5F19DAAE8000C3924D /* TDDetailCell.m */; };
 		565DAE6219DAAE8000C3924D /* TDDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 565DAE6019DAAE8000C3924D /* TDDetailCell.xib */; };
+		565F720719E29E6C00E1D2DD /* CreateInfoDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 565F720519E29E6C00E1D2DD /* CreateInfoDetailCell.m */; };
+		565F720819E29E6C00E1D2DD /* CreateInfoDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 565F720619E29E6C00E1D2DD /* CreateInfoDetailCell.xib */; };
 		5675CAE219D9C05100FB975F /* IndustryNewsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5675CAE119D9C05100FB975F /* IndustryNewsController.m */; };
 		5675CAE519D9C7A600FB975F /* IndustryNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5675CAE419D9C7A600FB975F /* IndustryNewsModel.m */; };
 		5675CAE819D9CBF900FB975F /* IndustryNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5675CAE719D9CBF900FB975F /* IndustryNewsCell.m */; };
@@ -2109,6 +2111,9 @@
 		565DAE5E19DAAE8000C3924D /* TDDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDetailCell.h; sourceTree = "<group>"; };
 		565DAE5F19DAAE8000C3924D /* TDDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDDetailCell.m; sourceTree = "<group>"; };
 		565DAE6019DAAE8000C3924D /* TDDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDDetailCell.xib; sourceTree = "<group>"; };
+		565F720419E29E6C00E1D2DD /* CreateInfoDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateInfoDetailCell.h; sourceTree = "<group>"; };
+		565F720519E29E6C00E1D2DD /* CreateInfoDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateInfoDetailCell.m; sourceTree = "<group>"; };
+		565F720619E29E6C00E1D2DD /* CreateInfoDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateInfoDetailCell.xib; sourceTree = "<group>"; };
 		5675CAE019D9C05100FB975F /* IndustryNewsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndustryNewsController.h; sourceTree = "<group>"; };
 		5675CAE119D9C05100FB975F /* IndustryNewsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndustryNewsController.m; sourceTree = "<group>"; };
 		5675CAE319D9C7A600FB975F /* IndustryNewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndustryNewsModel.h; sourceTree = "<group>"; };
@@ -3827,6 +3832,9 @@
 				3E46C16619D2E43E00403A42 /* InfoDetailViewController.m */,
 				3E46C15419D2B8B600403A42 /* CreatNewInfoViewController.h */,
 				3E46C15519D2B8B600403A42 /* CreatNewInfoViewController.m */,
+				565F720419E29E6C00E1D2DD /* CreateInfoDetailCell.h */,
+				565F720519E29E6C00E1D2DD /* CreateInfoDetailCell.m */,
+				565F720619E29E6C00E1D2DD /* CreateInfoDetailCell.xib */,
 			);
 			path = InformationLibrary;
 			sourceTree = "<group>";
@@ -4851,6 +4859,7 @@
 				3E7BAE7419D18F35002E28A1 /* guke_userarticle_icon_bg@2x.png in Resources */,
 				3EC2E00319B9A2A500B42351 /* amp4_new@2x.png in Resources */,
 				199C00E4195AAD1D00F74F7C /* loading_2@2x.png in Resources */,
+				565F720819E29E6C00E1D2DD /* CreateInfoDetailCell.xib in Resources */,
 				199C0166195AAD1D00F74F7C /* z_arrow_down@2x.png in Resources */,
 				3EEB7EEC19A5E01F00ED4ABA /* chatting_keyboard_btn_normal@2x.png in Resources */,
 				199C00CA195AAD1D00F74F7C /* ic_more_item_top_default.9@2x.png in Resources */,
@@ -5351,6 +5360,7 @@
 				19960D1A196A80D6000121AA /* EGORefreshTableHeaderView.m in Sources */,
 				19960D0A196A80D6000121AA /* MKAnnotationView+WebCache.m in Sources */,
 				8458B80619D94EA50083B4AC /* BubbleCell.m in Sources */,
+				565F720719E29E6C00E1D2DD /* CreateInfoDetailCell.m in Sources */,
 				565DAE5D19DA9C6B00C3924D /* AttachListModel.m in Sources */,
 				1977B50619C84D9B00D504A7 /* AboutProduceViewController.m in Sources */,
 				19975B0B19767EE800ADF199 /* MBButtonMenuViewController.m in Sources */,

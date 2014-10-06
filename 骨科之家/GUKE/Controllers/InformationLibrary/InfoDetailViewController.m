@@ -14,6 +14,7 @@
 #import "ShareCircleViewController.h"
 #import "TSActionSheet.h"
 #import "SNGroupsViewController.h"
+#import "CreatNewInfoViewController.h"
 @interface InfoDetailViewController ()<UITableViewDataSource, UITableViewDelegate,MBProgressHUDDelegate,InfoFileTableViewCellDelegate>
 {
     MBProgressHUD *HUD;
@@ -108,6 +109,8 @@
     TSActionSheet *actionSheet = [[TSActionSheet alloc] init];
     NSString *share1 = @"分享到诊疗圈";
     NSString *share2 = @"分享到讨论组";
+    NSString *edit = @"编辑资料";
+    NSString * delete = @"删除资料";
     [actionSheet addButtonWithTitle:share1 icon:@"guke_ic_share_article" block:^{
         ShareCircleViewController * share = [[ShareCircleViewController alloc] initWithNibName:@"ShareCircleViewController" bundle:nil];
         share.share_content = [NSString _859ToUTF8:_detailModel.content];
@@ -123,6 +126,23 @@
         [bself.navigationController pushViewController:list animated:YES];
         
     }];
+    
+    
+    if ([self.model.userId isEqualToString:GET_U_ID])
+    {
+        [actionSheet addButtonWithTitle:edit icon:@"guke_ic_edit" block:^{
+            
+            CreatNewInfoViewController * create = [[CreatNewInfoViewController alloc] init];
+            create.info = _detailModel;
+            [bself.navigationController pushViewController:create animated:YES];
+            
+        }];
+        
+        [actionSheet addButtonWithTitle:delete icon:@"guke_ic_delete" block:^{
+            [bself deleteZiLiao];
+        }];
+        
+    }
     
     actionSheet.cornerRadius = 0;
     
@@ -281,6 +301,27 @@
     [_contentView addSubview:contentLabel];
     [contentLabel sizeToFit];
     _contentView.frame = CGRectMake(0, _fileTableView.frame.origin.y+_fileTableView.frame.size.height, SCREEN_WIDTH, contentLabel.frame.origin.y+contentLabel.frame.size.height);
+
+}
+
+#pragma mark - 删除资料
+-(void)deleteZiLiao
+{
+//    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"bingliId":_feed.bingliId};
+//    
+//    __weak typeof(self)wself=self;
+//    
+//    [AFRequestService responseData:BINGLI_DELETE_URL andparameters:parameters andResponseData:^(id responseData) {
+//        
+//        NSDictionary * dict = (NSDictionary *)responseData;
+//        NSLog(@"dict ------  %@",dict);
+//        NSString * code=[NSString stringWithFormat:@"%@",[dict objectForKey:@"code"]];
+//        
+//        if ([code intValue]==0)//说明请求数据成功
+//        {
+//            [wself.navigationController popViewControllerAnimated:YES];
+//        }
+//    }];
 
 }
 

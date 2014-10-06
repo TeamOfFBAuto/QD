@@ -10,7 +10,7 @@
 
 @interface InformationDetailModel : NSObject
 
-@property (nonatomic, strong) NSArray *attachlist;
+@property (nonatomic, strong) NSMutableArray *attachlist;
 @property (nonatomic, strong) NSString *content;
 @property (nonatomic, strong) NSString *createDate;
 @property (nonatomic, strong) NSString *deleteFlag;
