@@ -147,6 +147,14 @@ alpha:(a)]
 #define CALENDAR_ACTIVITIES @"eventstatus.php"
 #pragma mark - 活动列表
 #define CALENDAR_ACTIVITIESTABLEVIEW @"eventlist.php"
+#pragma mark  - 活动报名
+#define CALENDAR_EVENTJOIN @"eventjoin.php"
+#define mark - 查看活动
+#define CALENDAR_EVENT @"event.php"
+#pragma mark - 取消活动报名
+#define CALENDAR_EVENTQUIT @"eventquit.php"
+
+#define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
 
 // 请求参数
 #define REQUEST_PATAMETER  @{@"userId": [NSString stringWithFormat:@"%d",((User_Model*)[[SingleInstance shareManager].objecAarray firstObject]).userId],@"sid": ((User_Model*)[[SingleInstance shareManager].objecAarray firstObject]).sid}
@@ -174,8 +182,8 @@ alpha:(a)]
 #define SOURCE_FROME_MATERIAL @"3" // 分享自资料库
 // 讨论组分享来源
 #define SOURCE_GROUP_NONE @"0" // 无分享来源
-#define SOURCE_GROUP_CASE @"1" // 分享自资料库
-#define SOURCE_GROUP_MATERIAL @"2" //分享自病例库
+#define SOURCE_GROUP_MATERIAL @"1" // 分享自资料库
+#define  SOURCE_GROUP_CASE @"2" //分享自病例库
 // 视图的TAG宏定义
 #define SEARCH_BTN_TAG 201
 #define ADD_BTN_TAG 202

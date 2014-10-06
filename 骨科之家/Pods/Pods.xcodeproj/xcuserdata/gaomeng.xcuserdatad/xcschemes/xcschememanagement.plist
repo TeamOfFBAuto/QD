@@ -6,43 +6,43 @@
 	<dict>
 		<key>Pods-ELCImagePickerController.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods-JSONKit.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Reachability.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>321E1021F9A041E2AA61273A</key>
+		<key>117B395A59AB45A78B985C44</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5518D809F94E43EE9CB7DE63</key>
+		<key>6835EABBD64D4320BE6A38A7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>583F555FE0B74E6286E81318</key>
+		<key>7EA56232D34A4D58A23976B1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B5CC1BC02B044B55ACC60319</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FB0DC877D4E644C1B00E184A</key>
+		<key>94B453EC5ABA4A38993C2DAF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -116,7 +116,18 @@
         self.isReloadData = NO;
     }
     
-    [self reloadData];
+    @try {
+        
+        [self reloadData];
+        
+    }
+    @catch (NSException *exception) {
+        
+        NSLog(@"%@",exception);
+    }
+    @finally {
+        
+    }
     //如果有更多数据，重新设置footerview  frame
     if (self.isHaveMoreData)
     {
@@ -220,7 +231,15 @@
 
 - (void)dealloc
 {
+    NSLog(@"%@ dealloc",NSStringFromClass([self class]));
+    self.delegate = nil;
+    _refreshHeaderView.delegate = nil;
+    _refreshHeaderView = nil;
     
+    self.dataArray = nil;
+    self.loadingIndicator = nil;
+    self.normalLabel = nil;
+    self.loadingLabel = nil;
 }
 
 

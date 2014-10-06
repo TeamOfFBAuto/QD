@@ -113,7 +113,7 @@
     NSString * delete = @"删除资料";
     [actionSheet addButtonWithTitle:share1 icon:@"guke_ic_share_article" block:^{
         ShareCircleViewController * share = [[ShareCircleViewController alloc] initWithNibName:@"ShareCircleViewController" bundle:nil];
-        share.share_content = [NSString _859ToUTF8:_detailModel.content];
+        share.share_content = _detailModel.content;
         share.theId = self.model.infoId;
         share.type = @"3";
         [bself.navigationController pushViewController:share animated:YES];

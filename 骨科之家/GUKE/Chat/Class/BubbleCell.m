@@ -77,6 +77,8 @@
 #import "VChatViewController.h"
 #import "SqliteBase.h"
 #import "SingleInstance.h"
+#import "LiuLanBingLiViewController.h"
+#import "InfoDetailViewController.h"
 
 @implementation BubbleCell
 
@@ -926,20 +928,23 @@
     
     
     _sourceLable = [[UILabel alloc]initWithFrame:CGRectZero];
-    _sourceLable.layer.cornerRadius = 2;
-    [_bubbleImageView addSubview:_sourceLable];
+    _sourceLable.font = [UIFont systemFontOfSize:12.0f];
+    _sourceLable.layer.cornerRadius = 2.0f;
+    _sourceLable.layer.masksToBounds = YES;
+    _sourceLable.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1];
+    _sourceLable.textAlignment = NSTextAlignmentCenter;
+    _sourceLable.textColor = [UIColor colorWithRed:151/255.0 green:151/255.0 blue:151/255.0 alpha:1];
+    [self.contentView addSubview:_sourceLable];
     
     _contextLable = [[UILabel alloc]initWithFrame:CGRectZero];
     _contextLable.backgroundColor = [UIColor clearColor];
     [_bubbleImageView addSubview:_contextLable];
     
     
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(skipTOcaseAnd:)];
-    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longClickImage:)];
+    
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(clickImage:)];
     longPress.allowableMovement = 0.6;
-    [_bubbleImageView addGestureRecognizer:tap];
     [_bubbleImageView addGestureRecognizer:longPress];
-    [tap release];
     [longPress release];
     
     _pictureMaskImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
@@ -988,7 +993,7 @@ if([url hasSuffix:@".jpg"]){
         _bubbleImageView.frame = CGRectMake(320 - (SPACE_LEFT + HEAD_WIDTH + HEADER_BUBBLE_DIS) - _bubbleImageView.frame.size.width, _bubbleImageView.frame.origin.y, _bubbleImageView.frame.size.width, _bubbleImageView.frame.size.height);
         
     }
-         }
+    }
 else{
     CGSize resultSize=[SingleInstance customFontHeight:[self.object context] andFontSize:18 andLineWidth:BUBBLE_LABLE_WIGHT];
     CGRect content_r = CGRectMake(THEFONT_NEAR_OFFSET, THEFONTUPDOWNOFFSET-3, resultSize.width, resultSize.height);
@@ -1005,14 +1010,15 @@ else{
     }
     _contextLable.frame = content_r;
     _bubbleImageView.frame = bubble_r;
+    
 }
-    _sourceLable.frame = CGRectMake(320 - (SPACE_LEFT + HEAD_WIDTH + HEADER_BUBBLE_DIS) - _bubbleImageView.frame.size.width, _bubbleImageView.frame.origin.y + _bubbleImageView.frame.size.height, _bubbleImageView.frame.size.width, 20);
+   _sourceLable.frame = CGRectMake((SCREEN_WIDTH-120)/2, _bubbleImageView.frame.origin.y + _bubbleImageView.frame.size.height+5, 120, 20);
     [self layoutSuperBefor];
 }
 #pragma mark-----
 -(void)fillViewWithObject:(id)object{
     [super fillViewWithObject:object];
-    
+    NSLog(@"%@ == %@",[object shareId],[object context]);
     if ([[object attachlist] count]) {
         NSString *url = [[[object attachlist] firstObject] fileurl];
         if([url hasSuffix:@".jpg"]){
@@ -1038,6 +1044,24 @@ else{
         _contextLable.text = [object context];
         
     }
+   
+    if([[object shareSource] isKindOfClass:[NSString class]]){
+        if ([[object shareSource] isEqualToString:SOURCE_GROUP_CASE]) {
+            self.sourceLable.text = @"分享来自病例库";
+            UITapGestureRecognizer *tapCase = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickCell:)];
+            [_bubbleImageView addGestureRecognizer:tapCase];
+            tapCase.view.tag = [[object shareId] integerValue];
+            NSLog(@"%d",tapCase.view.tag);
+            
+        }
+        else if([[object shareSource] isEqualToString:SOURCE_GROUP_MATERIAL]){
+            self.sourceLable.text = @"分享来自资料库";
+            UITapGestureRecognizer *tapMaterial = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickbuCell:)];
+            [_bubbleImageView addGestureRecognizer:tapMaterial];
+            tapMaterial.view.tag = [[object shareId] integerValue];
+        }
+        
+    }
 }
 - (void)requestStart{
     _loadActivityIndicatorView.alpha = 1;
@@ -1054,11 +1078,23 @@ else{
 +(CGFloat)heightForViewWithObject:(id)object{
     return PHOTO_GALLERY_SIZE_HEIGHT+2*5+[BubbleCell heightForIdateMarginUpOffset:TEST_IDATE] +THEBUBLLE_FOLLOWINGOFFSET+SPACE_IMAGE_BUBBLE_SHADOW+ HEAD_CELL_SPACE_DOWN;
 }
-// 图片点击事件
-- (void)clickImage:(id)sender{
-//    if (self.delegate && [self.delegate respondsToSelector:@selector(pageExcBubbleClickImage:)]) {
-//        [self.delegate pageExcBubbleClickImage:self];
-//    }
+// Cell点击事件
+- (void)clickCell:(UITapGestureRecognizer *)sender{
+    LiuLanBingLiViewController *skipToView = [[LiuLanBingLiViewController alloc]init];
+    skipToView.theId = [NSString stringWithFormat:@"%d",sender.view.tag];
+    UIViewController *VCtest=(UIViewController *)self.delegate;
+    [VCtest.navigationController pushViewController:skipToView animated:YES];
+
+}
+
+// Cell点击事件
+- (void)clickbuCell:(UITapGestureRecognizer *)sender{
+    InformationModel *model = [[InformationModel alloc]init];
+    model.infoId = [NSString stringWithFormat:@"%d",sender.view.tag];
+    InfoDetailViewController *skipToView = [[InfoDetailViewController alloc]initWithModel:model];
+    UIViewController *VCtest=(UIViewController *)self.delegate;
+    [VCtest.navigationController pushViewController:skipToView animated:YES];
+    
 }
 - (void)longClickImage:(UILongPressGestureRecognizer *)gesture{
     if (_isSelfSendGlo) {

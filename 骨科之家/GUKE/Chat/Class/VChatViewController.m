@@ -250,7 +250,7 @@
     VChatModel *model = [_dataSoureArr objectAtIndex:indexPath.row];
     CGFloat height = 0.0f;
     // 自适应高度
-    if (model.shareSource.length == 0) {
+    if (model.shareSource.length == 0 || [model.shareSource isEqualToString:SOURCE_GROUP_NONE]) {
         
     
     if (model.sendType == SEND_Type_content) {
@@ -258,11 +258,11 @@
     }else if (model.sendType == SEND_Type_voice){
         height = [BubbleSubVoiceCell heightForViewWithObject:[self.dataSoureArr objectAtIndex:indexPath.row]];
     }else if (model.sendType == SEND_Type_photo){
-        height = [BubbleSubImageCell heightForViewWithObject:[self.dataSoureArr objectAtIndex:indexPath.row]];
+        height = [BubbleSubImageCell heightForViewWithObject:[self.dataSoureArr objectAtIndex:indexPath.row]] ;
     }
 }
     else {
-        height = [BubbleSubShareCell heightForViewWithObject:[self.dataSoureArr objectAtIndex:indexPath.row]];
+        height = [BubbleSubShareCell heightForViewWithObject:[self.dataSoureArr objectAtIndex:indexPath.row]] + 20;
     }
     return  height;
 }
@@ -276,8 +276,7 @@
     static NSString *bubbleCell03 = @"bubbleCell03";
    
     VChatModel *model = [_dataSoureArr objectAtIndex:indexPath.row];
-    NSLog(@"%@",model.shareSource);
-    if(model.shareSource.length == 0){
+    if(model.shareSource.length == 0 || [model.shareSource isEqualToString:SOURCE_GROUP_NONE]){
     // 绑定文本内容
     if (model.sendType == SEND_Type_content) {
         BubbleSubTextCell *cell = [tableView dequeueReusableCellWithIdentifier:bubbleCell01];
@@ -346,6 +345,7 @@
         return nil;
     }
    }
+    // 分享来自资料库和病例库
     else{
         BubbleSubShareCell *cell = [tableView dequeueReusableCellWithIdentifier:bubbleCell00];
         if (!cell) {

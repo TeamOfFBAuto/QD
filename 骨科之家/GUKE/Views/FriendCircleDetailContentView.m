@@ -198,16 +198,16 @@
             cell.contentShare.tag = [articleModel.sourceId integerValue];
             shareUrl = articleModel.context;
             UITapGestureRecognizer *tapCase = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(skipToCase:)];
-            tapCase.view.tag = [articleModel.sourceId integerValue];
             [cell.contentShare addGestureRecognizer:tapCase];
+            tapCase.view.tag = [articleModel.sourceId integerValue];
         }
         else if([articleModel.fromWeixin isEqualToString:SOURCE_FROME_MATERIAL]){
             cell.urlLabel.text = @"分享了一个资料";
             cell.contentShare.tag = [articleModel.sourceId integerValue];
             shareUrl = articleModel.context;
             UITapGestureRecognizer *tapCase = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(skipToMaterial:)];
-            tapCase.view.tag = [articleModel.sourceId integerValue];
             [cell.contentShare addGestureRecognizer:tapCase];
+            tapCase.view.tag = [articleModel.sourceId integerValue];
         }
        
         [cell.contentShare setText:shareUrl];

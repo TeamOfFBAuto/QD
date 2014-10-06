@@ -11,6 +11,7 @@
 #import "ITTCalMonth.h"
 #import "ITTCalDay.h"
 #import "ITTCalendarViewHeaderView.h"
+#import "MBProgressHUD.h"
 
 #import "GeventSingleModel.h"
 
@@ -23,6 +24,7 @@
 {
     NSTimeInterval          _swipeTimeInterval;
     NSTimeInterval          _begintimeInterval;
+    MBProgressHUD *_hud;
 }
 
 @property (retain, nonatomic) ITTCalMonth *calMonth;
@@ -540,25 +542,35 @@
     
     
     
-    if (!_label1) {
-        _label1 = [[UILabel alloc]init];
-        _label1.font = [UIFont systemFontOfSize:14];
-        _label1.backgroundColor = GETColor(255, 204, 204);
-        _label1.text = @"未报名";
+    if (!_view1) {
+        _view1 = [[UILabel alloc]init];
+        UIView *redView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 15, 15)];
+        redView.backgroundColor = GETColor(255, 204, 204);
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(20, 0, 50, 15)];
+        label.text = @"未报名";
+        label.font = [UIFont systemFontOfSize:14];
+        [_view1 addSubview:redView];
+        [_view1 addSubview:label];
     }
     
-    if (!_label2) {
-        _label2 = [[UILabel alloc]init];
-        _label2.font = [UIFont systemFontOfSize:14];
-        _label2.backgroundColor = GETColor(182, 250, 57);
-        _label2.text = @"已报名";
+    if (!_view2) {
+        _view2 = [[UILabel alloc]init];
+        UIView *greenView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 15, 15)];
+        greenView.backgroundColor = GETColor(204, 255, 204);
+        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(20, 0, 50, 15)];
+        label.text = @"已报名";
+        label.font = [UIFont systemFontOfSize:14];
+        [_view2 addSubview:greenView];
+        [_view2 addSubview:label];
+        
+        
     }
     
-    [_label1 setFrame:CGRectMake(10, maxHeight+15, 50, 15)];
-    [_label2 setFrame:CGRectMake(CGRectGetMaxX(_label1.frame)+5, _label1.frame.origin.y, 50, 15)];
+    [_view1 setFrame:CGRectMake(10, maxHeight+15, 70, 15)];
+    [_view2 setFrame:CGRectMake(CGRectGetMaxX(_view1.frame)+30, _view1.frame.origin.y, 50, 15)];
     
-    [self.gridScrollView addSubview:_label1];
-    [self.gridScrollView addSubview:_label2];
+    [self.gridScrollView addSubview:_view1];
+    [self.gridScrollView addSubview:_view2];
     
     
     
@@ -633,9 +645,12 @@
 
 
 
-#pragma mark  -  请求网络数据
+#pragma mark  -  请求网络数据 翻页
 -(void)networkWithDate:(NSString *)theDate isNext:(BOOL)next{
     
+    
+    _hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
+    _hud.labelText = @"正在加载";
     
     NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"eventDate":theDate};
     
@@ -646,6 +661,9 @@
         NSString * code = [dict objectForKey:@"code"];
         if ([code intValue]==0)//说明请求数据成功
         {
+            
+            [MBProgressHUD hideHUDForView:self animated:YES];
+            
             NSLog(@"loadSuccess");
             
             NSLog(@"%@",dict);
@@ -705,6 +723,9 @@
             
             
         }else{
+            
+            [MBProgressHUD hideHUDForView:self animated:YES];
+            
             NSLog(@"%d",[code intValue]);
         }
     }];
@@ -1115,7 +1136,7 @@
              */
             selectedEnable = [self isSelectedAtRow:index.row column:index.column];
             BOOL selected = (!selectedEnable && [self isGridViewSelectedEnableAtRow:index.row column:index.column]);
-            [self setSelectedAtRow:index.row column:index.column selected:selected];
+//            [self setSelectedAtRow:index.row column:index.column selected:selected];
             if (!_allowsMultipleSelection) {
                 [self resetSelectedIndicesMatrix];
                 selectedEnable = selectedEnable & [self isGridViewSelectedEnableAtRow:index.row column:index.column];

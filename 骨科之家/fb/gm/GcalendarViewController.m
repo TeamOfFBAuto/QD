@@ -10,17 +10,38 @@
 
 #import "ITTBaseDataSourceImp.h"
 
-#import "GcalendarDetailViewController.h"
-
 #import "GeventSingleModel.h"
+
+#import "GeventListViewController.h"
+
+#import "MBProgressHUD.h"
 
 @interface GcalendarViewController ()
 {
     ITTCalendarView *_calendarView;
+    MBProgressHUD *_hud;
+    
+    
 }
 @end
 
+
+
+
+
+
 @implementation GcalendarViewController
+
+
+-(void)dealloc{
+    
+    _calendarView.dataSource = nil;
+    _calendarView.delegate = nil;
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"GMJOINSUCCESS" object:nil];
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"GMESCSUCCESS" object:nil];
+    NSLog(@"%s",__FUNCTION__);
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,6 +59,14 @@
     
     NSLog(@"===============%@",ldateStr);
     
+    
+    
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(prepareNetData) name:@"GMJOINSUCCESS" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(prepareNetData) name:@"GMESCSUCCESS" object:nil];
+    
+    
+    
     [self networkWithDate:ldateStr];
     
     
@@ -50,14 +79,24 @@
 }
 
 
-
+-(void)prepareNetData{
+    NSDate *date = [NSDate date];
+    NSTimeZone *zone = [NSTimeZone systemTimeZone];
+    NSInteger interval = [zone secondsFromGMTForDate: date];
+    NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
+    NSString *ldateStr = [[NSString stringWithFormat:@"%@",localeDate]substringToIndex:10];
+    
+    NSLog(@"===============%@",ldateStr);
+    [self networkWithDate:ldateStr];
+}
 
 
 
 
 //请求网络数据
 -(void)networkWithDate:(NSString *)theDate{
-    
+    _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    _hud.labelText = @"正在加载";
     
     NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"eventDate":theDate};
     
@@ -68,6 +107,9 @@
         NSString * code = [dict objectForKey:@"code"];
         if ([code intValue]==0)//说明请求数据成功
         {
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
             NSLog(@"loadSuccess");
             
             NSLog(@"%@",dict);
@@ -102,6 +144,11 @@
             
             
         }else{
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"加载失败,请重新加载" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [al show];
+            
             NSLog(@"%d",[code intValue]);
         }
     }];
@@ -118,8 +165,21 @@
     NSLog(@"%d",[calDay getDay]);
     NSLog(@"%d",[calDay getMonth]);
     NSLog(@"%d",[calDay getYear]);
+    NSString *monthStr = nil;
+    NSString *dayStr = nil;
+    if ([calDay getMonth]<10) {
+        monthStr = [NSString stringWithFormat:@"0%d",[calDay getMonth]];
+    }else{
+        monthStr = [NSString stringWithFormat:@"%d",[calDay getMonth]];
+    }
+    if ([calDay getDay]<10) {
+        dayStr = [NSString stringWithFormat:@"0%d",[calDay getDay]];
+        
+    }else{
+        dayStr = [NSString stringWithFormat:@"%d",[calDay getDay]];
+    }
     
-    NSString *calDayStr = [NSString stringWithFormat:@"%d-%d-%d",[calDay getYear],[calDay getMonth],[calDay getDay]];
+    NSString *calDayStr = [NSString stringWithFormat:@"%d-%@-%@",[calDay getYear],monthStr,dayStr];
     
     
     
@@ -129,12 +189,16 @@
         NSLog(@"%@",dic);
         NSString *dateStr = [dic objectForKey:@"eventDate"];
         
-        NSLog(@"%@",dateStr);
+        NSLog(@"单例中的时间 dateStr:%@",dateStr);
+        NSLog(@"日历中的时间 calDayStr:%@",calDayStr);
         
         if ([calDayStr isEqualToString:dateStr]) {
-            GcalendarDetailViewController *gdvc = [[GcalendarDetailViewController alloc]init];
+            
+            GeventListViewController *gdvc = [[GeventListViewController alloc]init];
             gdvc.calDay = calDay;
+            
             [self.navigationController pushViewController:gdvc animated:YES];
+            break;
         }
         
         

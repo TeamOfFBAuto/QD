@@ -106,7 +106,7 @@
 
 - (void)refreshLastUpdatedDate {
 	
-	if ([_delegate respondsToSelector:@selector(GEGORefreshTableDataSourceLastUpdated:)]) {
+	if (_delegate && [_delegate respondsToSelector:@selector(GEGORefreshTableDataSourceLastUpdated:)]) {
 		
 		NSDate *date = [_delegate GEGORefreshTableDataSourceLastUpdated:self];
 

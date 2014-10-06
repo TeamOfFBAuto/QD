@@ -84,7 +84,7 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">back_icon.png</string>
 						</object>
-						<object class="NSCustomResource" key="IBUINormalImage">
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">tixiang-jiantouLeft.png</string>
 						</object>
@@ -114,7 +114,7 @@
 						<double key="IBUIContentEdgeInsets.bottom">5</double>
 						<double key="IBUIContentEdgeInsets.left">11</double>
 						<double key="IBUIContentEdgeInsets.right">11</double>
-						<object class="NSCustomResource" key="IBUINormalImage">
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">tixiang-jiantou-16_26.png</string>
 						</object>
@@ -444,8 +444,8 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="back_icon.png">{10, 11}</string>
-			<string key="tixiang-jiantou-16_26.png">{8, 13}</string>
-			<string key="tixiang-jiantouLeft.png">{8, 13}</string>
+			<string key="tixiang-jiantou-16_26.png">{42, 33}</string>
+			<string key="tixiang-jiantouLeft.png">{42, 33}</string>
 		</dictionary>
 	</data>
 </archive>

@@ -32,6 +32,7 @@
 #import "FriendCircleHomeTableViewCell.h"
 #import "UserArticleListAttachListModel.h"
 
+
 #define USER_ARTI_LIST @"user_article_list"
 #define FAVORIT_DEFAULT_TAG 1024
 #define COMMENT_DEFAULT_TAG 10240
@@ -332,6 +333,7 @@ static NSString *commentId = 0;
     NSDictionary *parameters = @{@"userId": GET_USER_ID,@"sid": GET_S_ID,@"articleType":[NSString stringWithFormat:@"%d",0],@"pageSize":[NSString stringWithFormat:@"%d",REFRESH_COUNT],@"page":[NSString stringWithFormat:@"%d",_refreshPage]};
     __weak FirendCircleHomeTableViewController *friendCircleView = self;
     [AFRequestService responseData:USER_ARTICLE_LIST andparameters:parameters andResponseData:^(NSData *responseData) {
+         
         NSDictionary *articleDict = (NSDictionary *)responseData;
         NSLog(@"zenme le ne ---  %@",articleDict);
         NSInteger codeNum = [[articleDict objectForKey:@"code"]integerValue];
@@ -346,22 +348,22 @@ static NSString *commentId = 0;
         }
         for (NSDictionary *articleList in articleLists) {
             UserArticleList *userArticleModel = [[UserArticleList alloc]init];
-            userArticleModel.articleId = [NSString _859ToUTF8:[articleList valueForKeyPath:@"articleId"]];
-            userArticleModel.context = [NSString _859ToUTF8:[articleList valueForKeyPath:@"context"]];
-            userArticleModel.createDate = [NSString _859ToUTF8:[articleList valueForKeyPath:@"createDate"]];
-            userArticleModel.deleteFlag = [NSString _859ToUTF8:[articleList valueForKeyPath:@"deleteFlag"]];
-            userArticleModel.isShare = [NSString _859ToUTF8:[articleList valueForKeyPath:@"isShare"]];// 0 非分享 1是分享
-            userArticleModel.photo = [NSString _859ToUTF8:[articleList valueForKeyPath:@"photo"]];
-            userArticleModel.shareUrl = [NSString _859ToUTF8:[articleList valueForKeyPath:@"shareUrl"]];
-            userArticleModel.isGood = [NSString _859ToUTF8:[articleList valueForKeyPath:@"isGood"]];// 当前用户是够已点赞
-            userArticleModel.fromWeixin = [NSString _859ToUTF8:[articleList valueForKeyPath:@"fromWeixin"]];// 分享来源；0：分享链接；1：分享微信；2：分享病历库；3：分享资料库"
-            userArticleModel.shareComment = [NSString _859ToUTF8:[articleList valueForKeyPath:@"shareComment"]];
+            userArticleModel.articleId = [articleList valueForKeyPath:@"articleId"];
+            userArticleModel.context = [articleList valueForKeyPath:@"context"];
+            userArticleModel.createDate = [articleList valueForKeyPath:@"createDate"];
+            userArticleModel.deleteFlag = [articleList valueForKeyPath:@"deleteFlag"];
+            userArticleModel.isShare = [articleList valueForKeyPath:@"isShare"];// 0 非分享 1是分享
+            userArticleModel.photo = [articleList valueForKeyPath:@"photo"];
+            userArticleModel.shareUrl = [articleList valueForKeyPath:@"shareUrl"];
+            userArticleModel.isGood = [articleList valueForKeyPath:@"isGood"];// 当前用户是够已点赞
+            userArticleModel.fromWeixin = [articleList valueForKeyPath:@"fromWeixin"];// 分享来源；0：分享链接；1：分享微信；2：分享病历库；3：分享资料库"
+            userArticleModel.shareComment = [articleList valueForKeyPath:@"shareComment"];
             // 分享链接时的评论
-            userArticleModel.sourceId = [NSString _859ToUTF8:[articleList valueForKeyPath:@"sourceId"]];
-            userArticleModel.userId = [NSString _859ToUTF8:[articleList valueForKeyPath:@"userId"]];
-            userArticleModel.username = [NSString _859ToUTF8:[articleList valueForKeyPath:@"username"]];
-            userArticleModel.imageHeight = [NSString _859ToUTF8:[articleList valueForKey:@"height"]];
-            userArticleModel.imageWidth = [NSString _859ToUTF8:[articleList valueForKey:@"width"]];
+            userArticleModel.sourceId = [articleList valueForKeyPath:@"sourceId"];
+            userArticleModel.userId = [articleList valueForKeyPath:@"userId"];
+            userArticleModel.username = [articleList valueForKeyPath:@"username"];
+            userArticleModel.imageHeight = [articleList valueForKey:@"height"];
+            userArticleModel.imageWidth = [articleList valueForKey:@"width"];
             
             
             NSArray * attachlistarray = [articleList objectForKey:@"attachlist"];
@@ -378,14 +380,14 @@ static NSString *commentId = 0;
             NSMutableArray *commentArray = [articleList valueForKeyPath:@"commentlist"];
             for (NSDictionary *commentlist in commentArray) {
                 contentAndGood *commentModel = [[contentAndGood alloc]init];
-                commentModel.articleId = [NSString _859ToUTF8:[commentlist valueForKeyPath:@"articleId"]];
-                commentModel.articleUserId = [NSString _859ToUTF8:[commentlist valueForKeyPath:@"articleUserId"]];
-                commentModel.commentId = [NSString _859ToUTF8:[commentlist valueForKeyPath:@"commentId"]];
-                commentModel.commentType = [NSString _859ToUTF8:[commentlist valueForKeyPath:@"commentType"]];
-                commentModel.context = [NSString _859ToUTF8:[commentlist valueForKeyPath:@"context"]];
-                commentModel.createDate = [NSString _859ToUTF8:[commentlist valueForKeyPath:@"createDate"]];
-                commentModel.deleteFlag = [NSString _859ToUTF8:[commentlist valueForKeyPath:@"deleteFlag"]];
-                commentModel.userId = [NSString _859ToUTF8:[commentlist valueForKeyPath:@"userId"]];
+                commentModel.articleId = [commentlist valueForKeyPath:@"articleId"];
+                commentModel.articleUserId = [commentlist valueForKeyPath:@"articleUserId"];
+                commentModel.commentId = [commentlist valueForKeyPath:@"commentId"];
+                commentModel.commentType = [commentlist valueForKeyPath:@"commentType"];
+                commentModel.context = [commentlist valueForKeyPath:@"context"];
+                commentModel.createDate = [commentlist valueForKeyPath:@"createDate"];
+                commentModel.deleteFlag = [commentlist valueForKeyPath:@"deleteFlag"];
+                commentModel.userId = [commentlist valueForKeyPath:@"userId"];
                 commentModel.userName = [UserInfoDB selectFeildString:@"firstname" andcuId:GET_U_ID anduserId:commentModel.userId];
                 if (commentModel.userName.length <= 0) {
                     commentModel.userName = [commentlist valueForKeyPath:@"username"];
@@ -403,14 +405,14 @@ static NSString *commentId = 0;
             NSMutableArray *goodArray = [articleList valueForKeyPath:@"goodlist"];
             for (NSDictionary *goodlist in goodArray) {
                 contentAndGood *goodModel = [[contentAndGood alloc]init];
-                goodModel.articleId = [NSString _859ToUTF8:[goodlist valueForKeyPath:@"articleId"]];
-                goodModel.articleUserId = [NSString _859ToUTF8:[goodlist valueForKeyPath:@"articleUserId"]];
-                goodModel.commentId = [NSString _859ToUTF8:[goodlist valueForKeyPath:@"commentId"]];
-                goodModel.commentType = [NSString _859ToUTF8:[goodlist valueForKeyPath:@"commentType"]];
-                goodModel.context = [NSString _859ToUTF8:[goodlist valueForKeyPath:@"context"]];
-                goodModel.createDate = [NSString _859ToUTF8:[goodlist valueForKeyPath:@"createDate"]];
-                goodModel.deleteFlag = [NSString _859ToUTF8:[goodlist valueForKeyPath:@"deleteFlag"]];
-                goodModel.userId = [NSString _859ToUTF8:[goodlist valueForKeyPath:@"userId"]];
+                goodModel.articleId = [goodlist valueForKeyPath:@"articleId"];
+                goodModel.articleUserId = [goodlist valueForKeyPath:@"articleUserId"];
+                goodModel.commentId = [goodlist valueForKeyPath:@"commentId"];
+                goodModel.commentType = [goodlist valueForKeyPath:@"commentType"];
+                goodModel.context = [goodlist valueForKeyPath:@"context"];
+                goodModel.createDate = [goodlist valueForKeyPath:@"createDate"];
+                goodModel.deleteFlag = [goodlist valueForKeyPath:@"deleteFlag"];
+                goodModel.userId = [goodlist valueForKeyPath:@"userId"];
                 goodModel.iconUrl = [UserInfoDB selectFeildString:@"icon" andcuId:GET_U_ID anduserId:goodModel.userId];
                  NSString *userID  = [UserInfoDB selectFeildString:@"userId" andcuId:GET_U_ID anduserId:goodModel.userId];
                 // 没有此用户，便提取写到数据库中
@@ -542,11 +544,10 @@ static NSString *commentId = 0;
         }
         
         cell.delegate = self;
+        cell.ContentView.delegate = self;
         cell.single_imageView.image = nil;
         cell.PictureViews.frame = CGRectZero;
         cell.single_imageView.frame = CGRectZero;
-//        cell.PictureViews.backgroundColor = [UIColor redColor];
-//        cell.single_imageView.backgroundColor = [UIColor orangeColor];
         // 保存cell
         [cellDic setObject:cell forKey:[NSString stringWithFormat:@"%d",indexPath.row-1]];
         
@@ -631,14 +632,14 @@ static NSString *commentId = 0;
                 imgHeight = 75*(i+j)+2.5*(j + i - 1);
             }
             
-            height = USER_ICON_WHDTH +[SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250]+REPORT_TIME_HEIGHT+40 + shareHeight + commentHeight + imgHeight;
+            height = USER_ICON_WHDTH +[SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250] +[SingleInstance customFontHeightFont:articleModel.shareComment andFontSize:15 andLineWidth:250] +REPORT_TIME_HEIGHT+40 + shareHeight + commentHeight + imgHeight;
         }else{
             double imgHeight = SHARE_IMAGE_HEIGHT;
             
             if (articleModel.context == nil || articleModel.context.length == 0 || [articleModel.context isEqualToString:@" "]){
                  height = USER_ICON_WHDTH+imgHeight+REPORT_TIME_HEIGHT+40 + shareHeight + commentHeight-16 ;
             }else{
-                height = USER_ICON_WHDTH +[SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250]+imgHeight+REPORT_TIME_HEIGHT+40 + shareHeight + commentHeight ;
+                height = USER_ICON_WHDTH +[SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250] +[SingleInstance customFontHeightFont:articleModel.shareComment andFontSize:15 andLineWidth:250] +imgHeight+REPORT_TIME_HEIGHT+40 + shareHeight + commentHeight ;
             }
 
         }

@@ -65,6 +65,8 @@ ITTCalendarViewHeaderViewDelegate, ITTCalendarViewFooterViewDelegate, ITTCalenda
     
     UILabel *_label1;//未报名
     UILabel *_label2;//已报名
+    UIView *_view1;
+    UIView *_view2;
     
 }
 @property (nonatomic, retain) id<ITTCalendarViewDataSource> dataSource;
