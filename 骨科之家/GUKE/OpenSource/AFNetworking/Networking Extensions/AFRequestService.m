@@ -11,15 +11,22 @@
 #import "Interface.h"
 #import "MBProgressHUD.h"
 #import "imgUploadModel.h"
+#import "SBJsonBase.h"
+#import "NSString+SBJSON.h"
 @implementation AFRequestService
 // 单纯的post请求
 +(void)responseData:(NSString *)requestURL andparameters:(NSDictionary *)parameters andResponseData:(getDataBlock)getdata
 {
         AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc]initWithBaseURL:[NSURL URLWithString:BASE_URL]];
-        manager.responseSerializer = [AFJSONResponseSerializer serializer];
+        manager.responseSerializer.stringEncoding = NSUTF8StringEncoding;
+       // manager.responseSerializer = [AFJSONResponseSerializer serializer];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
         [manager POST:requestURL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            id dic = [[[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding] JSONValue];
+            if([dic isKindOfClass:[NSDictionary class]]){
+              NSLog(@"%@",operation.responseData);
             getdata(responseObject);
+            }
            
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         

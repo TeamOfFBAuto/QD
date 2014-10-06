@@ -32,6 +32,7 @@
 #import "FriendCircleHomeTableViewCell.h"
 #import "UserArticleListAttachListModel.h"
 
+
 #define USER_ARTI_LIST @"user_article_list"
 #define FAVORIT_DEFAULT_TAG 1024
 #define COMMENT_DEFAULT_TAG 10240
@@ -332,6 +333,7 @@ static NSString *commentId = 0;
     NSDictionary *parameters = @{@"userId": GET_USER_ID,@"sid": GET_S_ID,@"articleType":[NSString stringWithFormat:@"%d",0],@"pageSize":[NSString stringWithFormat:@"%d",REFRESH_COUNT],@"page":[NSString stringWithFormat:@"%d",_refreshPage]};
     __weak FirendCircleHomeTableViewController *friendCircleView = self;
     [AFRequestService responseData:USER_ARTICLE_LIST andparameters:parameters andResponseData:^(NSData *responseData) {
+         
         NSDictionary *articleDict = (NSDictionary *)responseData;
         NSLog(@"zenme le ne ---  %@",articleDict);
         NSInteger codeNum = [[articleDict objectForKey:@"code"]integerValue];
@@ -382,7 +384,7 @@ static NSString *commentId = 0;
                 commentModel.articleUserId = [NSString _859ToUTF8:[commentlist valueForKeyPath:@"articleUserId"]];
                 commentModel.commentId = [NSString _859ToUTF8:[commentlist valueForKeyPath:@"commentId"]];
                 commentModel.commentType = [NSString _859ToUTF8:[commentlist valueForKeyPath:@"commentType"]];
-                commentModel.context = [NSString _859ToUTF8:[commentlist valueForKeyPath:@"context"]];
+                commentModel.context = [commentlist valueForKeyPath:@"context"];
                 commentModel.createDate = [NSString _859ToUTF8:[commentlist valueForKeyPath:@"createDate"]];
                 commentModel.deleteFlag = [NSString _859ToUTF8:[commentlist valueForKeyPath:@"deleteFlag"]];
                 commentModel.userId = [NSString _859ToUTF8:[commentlist valueForKeyPath:@"userId"]];
