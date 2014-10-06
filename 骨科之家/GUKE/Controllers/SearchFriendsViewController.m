@@ -147,10 +147,10 @@
             for (int i = 0; i < [userLists count]; ++i) {
                 FriendIfo *friendModel = [[FriendIfo alloc]init];
                 NSDictionary * userlist = (NSDictionary *)userLists[i];
-                friendModel.dstUserId =[NSString _859ToUTF8:[userlist objectForKey:@"userId"]];
-                friendModel.dstUserName = [NSString _859ToUTF8:[userlist objectForKey:@"firstname"]];
-                friendModel.dstUser =[NSString _859ToUTF8: [userlist objectForKey:@"username"]];
-                friendModel.icon = [NSString _859ToUTF8:[userlist objectForKey:@"icon"]];
+                friendModel.dstUserId =[userlist objectForKey:@"userId"];
+                friendModel.dstUserName = [userlist objectForKey:@"firstname"];
+                friendModel.dstUser = [userlist objectForKey:@"username"];
+                friendModel.icon = [userlist objectForKey:@"icon"];
                 [userArray addObject:friendModel];
                 friendModel = nil;
             }

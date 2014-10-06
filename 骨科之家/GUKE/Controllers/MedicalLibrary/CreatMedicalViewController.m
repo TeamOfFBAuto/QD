@@ -760,20 +760,20 @@
                     cell.Files_imageView.frame = CGRectMake(30,20, 60, 30);
                     [cell.Files_imageView setImage:[UIImage imageNamed:@"task_voice"]];
                     
-                    cell.content_textView.text = [NSString _859ToUTF8:[aDic objectForKey:@"filename"]];
+                    cell.content_textView.text = [aDic objectForKey:@"filename"];
                     cell.filesSize_label.text = [NSString stringWithFormat:@"%.2f k",[[aDic objectForKey:@"filesize"] intValue]/1024.00];
                     
                 }else if ([SNTools judgeFileSuffixImage:url])
                 {
                     [cell.Files_imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_BASE_URL,[aDic objectForKey:@"previewurl"]]] placeholderImage:[UIImage imageNamed:@"guke_image_loading"]];
                     
-                    cell.content_textView.text = [NSString _859ToUTF8:[aDic objectForKey:@"filename"]];
+                    cell.content_textView.text = [aDic objectForKey:@"filename"];
                     cell.filesSize_label.text = [NSString stringWithFormat:@"%.2f k",[[aDic objectForKey:@"filesize"] intValue]/1024.00];
                     
                 }else///视频
                 {
                     [cell.Files_imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_BASE_URL,[aDic objectForKey:@"previewurl"]]] placeholderImage:[UIImage imageNamed:@"guke_image_loading"]];
-                    cell.content_textView.text = [NSString _859ToUTF8:[aDic objectForKey:@"filename"]];
+                    cell.content_textView.text = [aDic objectForKey:@"filename"];
                     cell.filesSize_label.text = [NSString stringWithFormat:@"%.2f k",[[aDic objectForKey:@"filesize"] intValue]/1024.00];
                 }
                 

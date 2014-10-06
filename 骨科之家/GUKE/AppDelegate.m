@@ -248,6 +248,7 @@
         UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:vc];
         self.window.rootViewController = nv;
     }else if (type == Root_contact){
+        NSLog(@"%@===%@",GET_USER_ID,GET_S_ID);
         // 后台执行加载数据
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             SqliteFieldAndTable *sqliteAndtable = [[SqliteFieldAndTable alloc]init];

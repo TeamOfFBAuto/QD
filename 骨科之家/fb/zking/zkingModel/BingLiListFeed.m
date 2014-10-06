@@ -15,9 +15,9 @@
 {
     self = [super init];
     if (self) {
-        self.attachId = [NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[dic objectForKey:@"attachId"]]];
-        self.filename = [NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[dic objectForKey:@"filename"]]];
-        self.fileurl = [NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[dic objectForKey:@"fileurl"]]];
+        self.attachId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"attachId"]];
+        self.filename = [NSString stringWithFormat:@"%@",[dic objectForKey:@"filename"]];
+        self.fileurl = [NSString stringWithFormat:@"%@",[dic objectForKey:@"fileurl"]];
     }
     return self;
 }
@@ -30,10 +30,10 @@
 {
     self = [super init];
     if (self) {
-        self.tagId = [NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[dic objectForKey:@"tagId"]]];
-        self.tag = [NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[dic objectForKey:@"tag"]]];
-        self.userId = [NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[dic objectForKey:@"userId"]]];
-        self.bingliId = [NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[dic objectForKey:@"bingliId"]]];
+        self.tagId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"tagId"]];
+        self.tag = [NSString stringWithFormat:@"%@",[dic objectForKey:@"tag"]];
+        self.userId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"userId"]];
+        self.bingliId = [NSString stringWithFormat:@"%@",[dic objectForKey:@"bingliId"]];
     }
     return self;
 }
@@ -47,43 +47,43 @@
 
 -(void)setBingLiListFeedDic:(NSDictionary *)mydic{
 
-    self.bingliId=[NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[mydic objectForKey:@"bingliId"]]];
+    self.bingliId=[NSString stringWithFormat:@"%@",[mydic objectForKey:@"bingliId"]];
     
-    self.userId=[NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[mydic objectForKey:@"userId"]]];
+    self.userId=[NSString stringWithFormat:@"%@",[mydic objectForKey:@"userId"]];
     
-    self.psnname=[NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[mydic objectForKey:@"psnname"]]];
+    self.psnname=[NSString stringWithFormat:@"%@",[mydic objectForKey:@"psnname"]];
     
-    self.sex=[NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[mydic objectForKey:@"sex"]]];
+    self.sex=[NSString stringWithFormat:@"%@",[mydic objectForKey:@"sex"]];
     
-    self.zhenduan=[NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[mydic objectForKey:@"zhenduan"]]];
+    self.zhenduan=[NSString stringWithFormat:@"%@",[mydic objectForKey:@"zhenduan"]];
 
-    self.mobile=[NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[mydic objectForKey:@"mobile"]]];
+    self.mobile=[NSString stringWithFormat:@"%@",[mydic objectForKey:@"mobile"]];
     
-    self.relateMobile=[NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[mydic objectForKey:@"relateMobile"]]];
+    self.relateMobile=[NSString stringWithFormat:@"%@",[mydic objectForKey:@"relateMobile"]];
     
-    self.fangan=[NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[mydic objectForKey:@"fangan"]]];
+    self.fangan=[NSString stringWithFormat:@"%@",[mydic objectForKey:@"fangan"]];
     
-    self.binglihao=[NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[mydic objectForKey:@"binglihao"]]];
+    self.binglihao=[NSString stringWithFormat:@"%@",[mydic objectForKey:@"binglihao"]];
     
-    self.leibieId=[NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[mydic objectForKey:@"leibieId"]]];
+    self.leibieId=[NSString stringWithFormat:@"%@",[mydic objectForKey:@"leibieId"]];
     
-    self.idno=[NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[mydic objectForKey:@"idno"]]];
+    self.idno=[NSString stringWithFormat:@"%@",[mydic objectForKey:@"idno"]];
     
-    self.jiuzhen=[NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[mydic objectForKey:@"jiuzhen"]]];
+    self.jiuzhen=[NSString stringWithFormat:@"%@",[mydic objectForKey:@"jiuzhen"]];
     
-    self.bianma=[NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[mydic objectForKey:@"bianma"]]];
+    self.bianma=[NSString stringWithFormat:@"%@",[mydic objectForKey:@"bianma"]];
     
-    self.memo=[NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[mydic objectForKey:@"memo"]]];
+    self.memo=[NSString stringWithFormat:@"%@",[mydic objectForKey:@"memo"]];
     
-    self.fenleiId=[NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[mydic objectForKey:@"fenleiId"]]];
+    self.fenleiId=[NSString stringWithFormat:@"%@",[mydic objectForKey:@"fenleiId"]];
     
-    self.createDate=[NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[mydic objectForKey:@"createDate"]]];
+    self.createDate=[NSString stringWithFormat:@"%@",[mydic objectForKey:@"createDate"]];
     
-    self.leibiename=[NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[mydic objectForKey:@"leibiename"]]];
+    self.leibiename=[NSString stringWithFormat:@"%@",[mydic objectForKey:@"leibiename"]];
     
-    self.fenleiname=[NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[mydic objectForKey:@"fenleiName"]]];
+    self.fenleiname=[NSString stringWithFormat:@"%@",[mydic objectForKey:@"fenleiName"]];
     
-    self.firstname=[NSString _859ToUTF8:[NSString stringWithFormat:@"%@",[mydic objectForKey:@"firstname"]]];
+    self.firstname=[NSString stringWithFormat:@"%@",[mydic objectForKey:@"firstname"]];
     
     NSArray * array = [mydic objectForKey:@"attachlist"];
 

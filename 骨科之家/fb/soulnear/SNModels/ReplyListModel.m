@@ -24,12 +24,12 @@
     self = [super init];
     if (self)
     {
-        _context = [NSString _859ToUTF8:[dic objectForKey:@"context"]];
-        _firstname = [NSString _859ToUTF8:[dic objectForKey:@"firstname"]];
-        _replyId = [NSString _859ToUTF8:[dic objectForKey:@"replyId"]];
-        _createDate = [NSString _859ToUTF8:[dic objectForKey:@"sendTime"]];
-        _userId = [NSString _859ToUTF8:[dic objectForKey:@"userId"]];
-        _zhutiId = [NSString _859ToUTF8:[dic objectForKey:@"zhutiId"]];
+        _context = [dic objectForKey:@"context"];
+        _firstname = [dic objectForKey:@"firstname"];
+        _replyId = [dic objectForKey:@"replyId"];
+        _createDate = [dic objectForKey:@"sendTime"];
+        _userId = [dic objectForKey:@"userId"];
+        _zhutiId = [dic objectForKey:@"zhutiId"];
         
         _attach_array = [NSMutableArray array];
         

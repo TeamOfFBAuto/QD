@@ -36,7 +36,7 @@
         UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 20, 230, 20)];
         titleLabel.font = [UIFont systemFontOfSize:15];
         titleLabel.textColor = RGB(72, 158, 181);
-        titleLabel.text = [NSString _859ToUTF8:theModel.eventTitle];
+        titleLabel.text = theModel.eventTitle;
         [titleLabel setMatchedFrame4LabelWithOrigin:CGPointMake(15, 20) width:230];
         if (titleLabel.frame.size.height<20) {
             titleLabel.frame = CGRectMake(15, 20, 230, 20);
@@ -50,7 +50,7 @@
         UILabel *cNumLimintLabel  = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(numLimitLabel.frame)+5, numLimitLabel.frame.origin.y, 30, 17)];
         cNumLimintLabel.textColor = RGB(168,168,168);
         
-        cNumLimintLabel.text = [NSString _859ToUTF8:theModel.userLimit];
+        cNumLimintLabel.text = theModel.userLimit;
         
         
         [self.contentView addSubview:titleLabel];
@@ -140,7 +140,7 @@
         UILabel *cAddressLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(addressLabel.frame)+5, addressLabel.frame.origin.y, 200, 20)];
         cAddressLabel.font = [UIFont systemFontOfSize:15];
         cAddressLabel.textColor = RGB(168,168,168);
-        cAddressLabel.text = [NSString _859ToUTF8:theModel.address ];
+        cAddressLabel.text = theModel.address;
         [cAddressLabel setMatchedFrame4LabelWithOrigin:CGPointMake(CGRectGetMaxX(addressLabel.frame)+5, addressLabel.frame.origin.y) width:200];
         [self.contentView addSubview:addressLabel];
         [self.contentView addSubview:cAddressLabel];
@@ -153,7 +153,7 @@
         
         UILabel *cFeeLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(feeLabel.frame)+5, feeLabel.frame.origin.y, 200, 20)];
         cFeeLabel.textColor = RGB(168, 168, 168);
-        cFeeLabel.text = [[NSString _859ToUTF8:theModel.fee]stringByAppendingString:@"元"];
+        cFeeLabel.text = [theModel.fee stringByAppendingString:@"元"];
         
         [self.contentView addSubview:feeLabel];
         [self.contentView addSubview:cFeeLabel];
@@ -168,7 +168,7 @@
         UILabel *cPhoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(CGRectGetMaxX(phoneLabel.frame)+5, phoneLabel.frame.origin.y, 200, 20)];
         cPhoneLabel.font = [UIFont systemFontOfSize:15];
         cPhoneLabel.textColor = RGB(72, 158, 181);
-        cPhoneLabel.text = [NSString _859ToUTF8:theModel.phone];
+        cPhoneLabel.text = theModel.phone;
         
         [self.contentView addSubview:phoneLabel];
         [self.contentView addSubview:cPhoneLabel];
@@ -201,7 +201,7 @@
         webView.scrollView.scrollEnabled = NO;
         
         
-        [webView loadHTMLString:[NSString _859ToUTF8:theModel.context] baseURL:nil];
+        [webView loadHTMLString:theModel.context baseURL:nil];
         
         [self.contentView addSubview:webView];
         

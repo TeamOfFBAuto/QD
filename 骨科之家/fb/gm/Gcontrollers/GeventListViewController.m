@@ -303,7 +303,7 @@
         titleLabel.textColor = RGB(127, 126, 126);
         titleLabel.numberOfLines = 1;
         GeventModel *m = _dataArray[indexPath.row - 1];
-        titleLabel.text = [NSString _859ToUTF8:m.eventTitle];
+        titleLabel.text = m.eventTitle;
         [cell.contentView addSubview:titleLabel];
         
         //是否报名

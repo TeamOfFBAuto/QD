@@ -80,7 +80,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
     
-    cell.textLabel.text = [NSString _859ToUTF8:[[data_array objectAtIndex:indexPath.row] objectForKey:@"fenleiName"]];
+    cell.textLabel.text = [[data_array objectAtIndex:indexPath.row] objectForKey:@"fenleiName"];
     
     return cell;
 }

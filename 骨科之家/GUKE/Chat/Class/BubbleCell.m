@@ -1018,7 +1018,7 @@ else{
 #pragma mark-----
 -(void)fillViewWithObject:(id)object{
     [super fillViewWithObject:object];
-    NSLog(@"%@",[object shareId]);
+    NSLog(@"%@ == %@",[object shareId],[object context]);
     if ([[object attachlist] count]) {
         NSString *url = [[[object attachlist] firstObject] fileurl];
         if([url hasSuffix:@".jpg"]){

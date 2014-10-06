@@ -453,9 +453,9 @@
         [user setObject:userName.text forKey:LOG_USER_NAME];
         [user setObject:pwd.text forKey:LOG_USER_PSW];
         
-        [user setObject:[NSString _859ToUTF8:[userDetail objectForKey:@"userId"]] forKey:U_ID];
-        [user setObject:[NSString _859ToUTF8:[userDetail objectForKey:@"firstname"]] forKey:U_NAME];
-        [user setObject:[NSString _859ToUTF8:[userDetail objectForKey:@"sid"]] forKey:ACCESS_TOKEN_K];
+        [user setObject:[userDetail objectForKey:@"userId"] forKey:U_ID];
+        [user setObject:[userDetail objectForKey:@"firstname"] forKey:U_NAME];
+        [user setObject:[userDetail objectForKey:@"sid"] forKey:ACCESS_TOKEN_K];
         [user synchronize];
        
         return YES;
