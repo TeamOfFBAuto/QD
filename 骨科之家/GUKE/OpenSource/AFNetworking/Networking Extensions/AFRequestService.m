@@ -24,8 +24,7 @@
         [manager POST:requestURL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             id dic = [[[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding] JSONValue];
             if([dic isKindOfClass:[NSDictionary class]]){
-              NSLog(@"%@",operation.responseData);
-            getdata(responseObject);
+            getdata(dic);
             }
            
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -39,7 +38,10 @@
     AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc]initWithBaseURL:[NSURL URLWithString:BASE_URL]];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     [manager POST:requestURL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        getdata(responseObject);
+        id dic = [[[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding] JSONValue];
+        if([dic isKindOfClass:[NSDictionary class]]){
+            getdata(dic);
+        }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         failRequest();
@@ -56,7 +58,10 @@
         
         
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        getdata(responseObject);
+        id dic = [[[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding] JSONValue];
+        if([dic isKindOfClass:[NSDictionary class]]){
+            getdata(dic);
+        }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 
@@ -73,7 +78,10 @@
         [formData appendPartWithFileData:ImageData name:typeName fileName:name mimeType:mimeTypeName];
         
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        getdata(responseObject);
+        id dic = [[[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding] JSONValue];
+        if([dic isKindOfClass:[NSDictionary class]]){
+            getdata(dic);
+        }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
          NSString *alertcontext = LOCALIZATION(@"tip_msg_neterror");
@@ -87,58 +95,24 @@
 
 + (void)responseData:(NSString *)requestURL andparameters:(NSDictionary *)parameters andResponseData:(getDataBlock)getdata andCathtype:(int)type andID:(int)_id andtypeName:(NSString *)name
 {
-    if (IOS7_LATER) {
-        // 使用userDefaults来存储用户账号关联的信息
+  
         if ([UserDefaultsCatch getCache:type andID:_id andTypeName:name]) {
-            id responseObject = (id)[UserDefaultsCatch getCache:type andID:_id andTypeName:name];
-            getdata(responseObject);
-        }
-        AFNetAPIClient *manage1 = [AFNetAPIClient shareClient];
-        manage1.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-        [manage1 POST:requestURL parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-            NSString *oldString = [NSString stringWithFormat:@"%@",[UserDefaultsCatch getCache:type andID:_id andTypeName:name]];
-            NSString *newstring = [NSString stringWithFormat:@"%@",responseObject];
-            // 如果没有缓存
-            if (![UserDefaultsCatch getCache:type andID:_id andTypeName:name]){
-                [UserDefaultsCatch saveCache:type andID:_id andTypeName:name andString:responseObject];
-                getdata(responseObject);
-            }
-            else {
-                if (![oldString isEqualToString:newstring]) {
-                    // 用户网络数据发生变化，则更新本地的数据
-                    [UserDefaultsCatch saveCache:type andID:_id andTypeName:name andString:responseObject];
-                    // 发送通知，是否网络数据有变化，有变化重新加载数据
-                    [[NSNotificationCenter defaultCenter] postNotificationName:IS_DATACHANG object:nil userInfo:nil];
-                }
-                else{
-                    // 相等则返回
-                    return;
-                }
-            }
-            
-            
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-           
-        }];
-        
-    }
-    else{
-        if ([UserDefaultsCatch getCache:type andID:_id andTypeName:name]) {
-            id responseObject = (id)[UserDefaultsCatch getCache:type andID:_id andTypeName:name];
-            getdata(responseObject);
+            id dic = (id)[UserDefaultsCatch getCache:type andID:_id andTypeName:name];
+            getdata(dic);
         }
         AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc]initWithBaseURL:[NSURL URLWithString:BASE_URL]];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
         [manager POST:requestURL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+             id dic = [[[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding] JSONValue];
             id oldResponseObject = (id)[UserDefaultsCatch getCache:type andID:_id andTypeName:name];
             if (![UserDefaultsCatch getCache:type andID:_id andTypeName:name]){
-                [UserDefaultsCatch saveCache:type andID:_id andTypeName:name andString:responseObject];
-                getdata(responseObject);
+                [UserDefaultsCatch saveCache:type andID:_id andTypeName:name andString:dic];
+                getdata(dic);
             }
             else {
-                if (![oldResponseObject isEqual:responseObject]) {
+                if (![oldResponseObject isEqual:dic]) {
                     // 用户网络数据发生变化，则更新本地的数据
-                    [UserDefaultsCatch saveCache:type andID:_id andTypeName:name andString:responseObject];
+                    [UserDefaultsCatch saveCache:type andID:_id andTypeName:name andString:dic];
                     // 发送通知，是否网络数据有变化，有变化重新加载数据
                     [[NSNotificationCenter defaultCenter] postNotificationName:IS_DATACHANG object:nil userInfo:nil];
                 }
@@ -153,39 +127,18 @@
             
             
         }];
-        
-        
-    }
 }
 + (void)responseDataWithFirstWeb:(NSString *)requestURL andparameters:(NSDictionary *)parameters andResponseData:(getDataBlock)getdata andCathtype:(int)type andID:(int)_id
 {
-    // __weak
-    if (IOS7_LATER) {
-       
-        AFNetAPIClient *manage1 = [AFNetAPIClient shareClient];
-        manage1.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-        [manage1 POST:requestURL parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-            
-                // 用户网络数据发生变化，则更新本地的数据
-                [UserDefaultsCatch saveCache:type andID:_id andString:responseObject];
-                 getdata(responseObject);
-            
-            
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                        id responseObject = (id)[UserDefaultsCatch getCache:type andID:_id];
-                        getdata(responseObject);
-        }];
-        
-    }
-    else{
         
         AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc]initWithBaseURL:[NSURL URLWithString:BASE_URL]];
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
         [manager POST:requestURL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            
-                // 用户网络数据发生变化，则更新本地的数据
-                [UserDefaultsCatch saveCache:type andID:_id andString:responseObject];
-                getdata(responseObject);
+            id dic = [[[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding] JSONValue];
+            if([dic isKindOfClass:[NSDictionary class]]){
+                [UserDefaultsCatch saveCache:type andID:_id andString:dic];
+                getdata(dic);
+            }
             
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -193,10 +146,7 @@
                  id responseObject = (id)[UserDefaultsCatch getCache:type andID:_id];
                  getdata(responseObject);
             
-        }];
-        
-        
-    }
+        }]; 
 }
 
 // 上传多个附件
@@ -217,8 +167,10 @@
         manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
         [manager POST:requestURL parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//            NSLog(@" ----------   %@",[operation.responseString JSONValue]);
-            getdata(responseObject);
+            id dic = [[[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding] JSONValue];
+            if([dic isKindOfClass:[NSDictionary class]]){
+                getdata(dic);
+            }
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"error ------  %@",error);
@@ -262,7 +214,10 @@
             } success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 [myProgressHUD hide:YES];
                 if (i == dataArray.count) {
-                    getdata(responseObject);
+                    id dic = [[[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding] JSONValue];
+                    if([dic isKindOfClass:[NSDictionary class]]){
+                        getdata(dic);
+                    }
                 }
                 
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -292,7 +247,10 @@
         } success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //            NSLog(@" ----------   %@",[operation.responseString JSONValue]);
             [myProgressHUD hide:YES];
-            getdata(responseObject);
+            id dic = [[[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding] JSONValue];
+            if([dic isKindOfClass:[NSDictionary class]]){
+                getdata(dic);
+            }
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"error ------  %@",error);
@@ -374,7 +332,10 @@
         } success:^(AFHTTPRequestOperation *operation, id responseObject) {
             [myProgressHUD hide:YES];
             if (i == dataArray.count) {
-                getdata(responseObject);
+                id dic = [[[NSString alloc] initWithData:operation.responseData encoding:NSUTF8StringEncoding] JSONValue];
+                if([dic isKindOfClass:[NSDictionary class]]){
+                    getdata(dic);
+                }
             }
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

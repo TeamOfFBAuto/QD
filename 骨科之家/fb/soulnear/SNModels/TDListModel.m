@@ -25,14 +25,14 @@
     self = [super init];
     if (self)
     {
-        _zhutiId = [NSString _859ToUTF8:[dic objectForKey:@"zhutiId"]];
-        _typeId = [NSString _859ToUTF8:[dic objectForKey:@"typeId"]];
-        _title = [NSString _859ToUTF8:[dic objectForKey:@"title"]];
-        _psnname = [NSString _859ToUTF8:[dic objectForKey:@"psnname"]];
-        _content = [NSString _859ToUTF8:[dic objectForKey:@"content"]];
-        _smallPic = [NSString _859ToUTF8:[dic objectForKey:@"smallPic"]];
-        _bigPic = [NSString _859ToUTF8:[dic objectForKey:@"bigPic"]];
-        _createDate = [NSString _859ToUTF8:[dic objectForKey:@"createDate"]];
+        _zhutiId = [dic objectForKey:@"zhutiId"];
+        _typeId = [dic objectForKey:@"typeId"];
+        _title = [dic objectForKey:@"title"];
+        _psnname = [dic objectForKey:@"psnname"];
+        _content = [dic objectForKey:@"content"];
+        _smallPic = [dic objectForKey:@"smallPic"];
+        _bigPic = [dic objectForKey:@"bigPic"];
+        _createDate = [dic objectForKey:@"createDate"];
     }
     
     return self;

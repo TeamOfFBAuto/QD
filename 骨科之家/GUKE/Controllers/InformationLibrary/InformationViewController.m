@@ -146,14 +146,14 @@
             for (NSDictionary *article in articleList) {
                 
                 InformationModel *model = [[InformationModel alloc] init];
-                model.content = [NSString _859ToUTF8:[article objectForKey:@"content"]];
-                model.createDate = [NSString _859ToUTF8:[article objectForKey:@"createDate"]];
-                model.deleteFlag = [NSString _859ToUTF8:[article objectForKey:@"deleteFlag"]];
-                model.firstname = [NSString _859ToUTF8:[article objectForKey:@"firstname"]];
-                model.infoId = [NSString _859ToUTF8:[article objectForKey:@"infoId"]];
-                model.title = [NSString _859ToUTF8:[article objectForKey:@"title"]];
-                model.userId = [NSString _859ToUTF8:[article objectForKey:@"userId"]];
-                model.weight = [NSString _859ToUTF8:[article objectForKey:@"weight"]];
+                model.content = [article objectForKey:@"content"];
+                model.createDate = [article objectForKey:@"createDate"];
+                model.deleteFlag = [article objectForKey:@"deleteFlag"];
+                model.firstname = [article objectForKey:@"firstname"];
+                model.infoId = [article objectForKey:@"infoId"];
+                model.title = [article objectForKey:@"title"];
+                model.userId = [article objectForKey:@"userId"];
+                model.weight = [article objectForKey:@"weight"];
                 [self.dataArray addObject:model];
             }
 

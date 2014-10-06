@@ -14,6 +14,7 @@
 #import "UUID.h"
 #import "UIImage+fixOrientation.h"
 #import "UIImage+UIImageExt.h"
+#import "NSString+SBJSON.h"
 
 @interface TDDetailViewController ()<ToolbarDelegate>
 {
@@ -138,6 +139,7 @@
     [request setCompletionBlock:^{
         
         NSDictionary * allDic = [upLoad_request.responseString objectFromJSONString];
+      //NSDictionary * allDic =  [[[NSString alloc] initWithData:upLoad_request.responseData encoding:NSUTF8StringEncoding] JSONValue];
         
         NSLog(@"aldii ---  %@",allDic);
         

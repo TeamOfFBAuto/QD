@@ -367,8 +367,8 @@
             });
             //  跳转到群组成员添加页面
             AddGroupMemberViewController *addGroupMember = [[AddGroupMemberViewController alloc]init];
-            addGroupMember.groupId = [NSString _859ToUTF8:[groupDict objectForKey:@"groupId"]];
-            addGroupMember.groupName = [NSString _859ToUTF8:[groupDict objectForKey:@"groupName"]];
+            addGroupMember.groupId = [groupDict objectForKey:@"groupId"];
+            addGroupMember.groupName = [groupDict objectForKey:@"groupName"];
             [self.navigationController pushViewController:addGroupMember animated:YES];
         }
         else if (codeNum == CODE_ERROE){

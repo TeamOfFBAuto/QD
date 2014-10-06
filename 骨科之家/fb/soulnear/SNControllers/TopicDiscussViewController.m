@@ -98,6 +98,7 @@
     return 44;
 }
 
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString * identifier = @"identifier";
@@ -108,7 +109,7 @@
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    cell.textLabel.text = [NSString _859ToUTF8:[[data_array objectAtIndex:indexPath.row] objectForKey:@"typeName"]];
+    cell.textLabel.text = [[data_array objectAtIndex:indexPath.row] objectForKey:@"typeName"];
     
     return cell;
 }

@@ -53,7 +53,7 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     
-    NSLog(@"%@",[NSString _859ToUTF8:self.dataModel.eventTitle]);
+    NSLog(@"%@",self.dataModel.eventTitle);
     self.aTitle = @"会议日程";
     
     NSLog(@"%s",__FUNCTION__);
@@ -112,7 +112,7 @@
             if (!_webView) {
                 _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, 275, 0)];
             }
-            [_webView loadHTMLString:[NSString _859ToUTF8:self.dataModel.context] baseURL:nil];
+            [_webView loadHTMLString:self.dataModel.context baseURL:nil];
             _webView.delegate = self;
             _webView.hidden = YES;
             [self.view addSubview:_webView];
@@ -168,7 +168,7 @@
             if (!_webView) {
                 _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, 275, 0)];
             }
-            [_webView loadHTMLString:[NSString _859ToUTF8:self.dataModel.context] baseURL:nil];
+            [_webView loadHTMLString:self.dataModel.context baseURL:nil];
             _webView.delegate = self;
             _webView.hidden = YES;
             [self.view addSubview:_webView];
@@ -228,7 +228,7 @@
             if (!_webView) {
                 _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, 275, 0)];
             }
-            [_webView loadHTMLString:[NSString _859ToUTF8:self.dataModel.context] baseURL:nil];
+            [_webView loadHTMLString:self.dataModel.context baseURL:nil];
             _webView.delegate = self;
             _webView.hidden = YES;
             [self.view addSubview:_webView];
