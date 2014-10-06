@@ -42,6 +42,7 @@
                            
                            @"articleId",
                            @"context",
+                           @"title",
                            @"attachId",@"filename",@"fileurl",@"voiceLength",
                            //                           @"attachId2",@"filename2",@"fileurl2",@"voiceLength2",可以按照这种方式存储 暂时没必要单独把所有附件放在另外一个表中
                            //                           @"companyId",
@@ -98,9 +99,10 @@
     //NSLog(@"sqlinsert --- 语句:%@",sqlinsert);
     // 更新数据库中的数据
     if ([table isEqualToString:TABLE_HD]) {
-        sqlupdata = [NSString stringWithFormat:@"UPDATE %@ SET %@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ? ,%@ = ?,%@ = ? ,%@ = ?  WHERE %@ = ? AND %@ = ?",
+        sqlupdata = [NSString stringWithFormat:@"UPDATE %@ SET %@ = ?,SET %@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ?,%@ = ? ,%@ = ?,%@ = ? ,%@ = ?  WHERE %@ = ? AND %@ = ?",
                      TABLE_HD,
                      @"context",
+                     @"title",
                      @"attachId",
                      @"filename",
                      @"fileurl",
@@ -138,7 +140,7 @@
                 
 //                NSInteger articleId = model.articleId;
                 NSString *context = model.context?model.context:@"";
-                
+                NSString *title = model.title?model.title:@"";
                 
                 NSString *attachId = @"";
                 NSString *filename = @"";
@@ -173,7 +175,7 @@
                 
                 if ([set next]) {
                    // 数据有在，则更新
-                    res = [dataBase executeUpdate:sqlupdata,context,attachId,filename,fileurl,voiceLength,createDate,firstUsername,firstname,icon,iconUpdateTime,isGroupArticle,recvId,typeId,uid,userid,issend,shareSource,shareId,ukey,articleId];
+                    res = [dataBase executeUpdate:sqlupdata,context,title,attachId,filename,fileurl,voiceLength,createDate,firstUsername,firstname,icon,iconUpdateTime,isGroupArticle,recvId,typeId,uid,userid,issend,shareSource,shareId,ukey,articleId];
                     if (res) {
                         NSLog(@"update suc");
                     }else{
@@ -181,7 +183,7 @@
                     }
                 }else{
                     // 数据不在，则插入
-                    res = [dataBase executeUpdate:sqlinsert,ukey,articleId,context,attachId,filename,fileurl,voiceLength,createDate,firstUsername,firstname,icon,iconUpdateTime,isGroupArticle,recvId,typeId,uid,userid,shareSource,shareId,isRead,issend];
+                    res = [dataBase executeUpdate:sqlinsert,ukey,articleId,context,title,attachId,filename,fileurl,voiceLength,createDate,firstUsername,firstname,icon,iconUpdateTime,isGroupArticle,recvId,typeId,uid,userid,shareSource,shareId,isRead,issend];
                     if (res) {
                         NSLog(@"插入数据成");
                     }else{
@@ -267,6 +269,7 @@
         VChatModel *model = [[VChatModel alloc] init];
         NSInteger articleId = [set intForColumn:@"articleId"];
         NSString *context = [set stringForColumn:@"context"];
+        NSString *title = [set stringForColumn:@"title"];
         
         // 读取的声音和图片的附件内容
         NSString *attachId = [set stringForColumn:@"attachId"];
@@ -296,6 +299,7 @@
         
         model.articleId = articleId;
         model.context = context;
+        model.title = title;
         model.creatDate = createDate;
         model.userId = userid;
         model.firstUsername = firstUsername;

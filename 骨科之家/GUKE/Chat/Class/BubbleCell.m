@@ -341,7 +341,7 @@
 //#define THEFONTUPDOWNOFFSET 10
 -(void)bubble{
     NSString *string = _contentLable.text;
-    CGSize resultSize=[string?string:@" " sizeWithFont:[UIFont systemFontOfSize:FORTSIZE] constrainedToSize:CGSizeMake(BUBBLE_LABLE_WIGHT,INT_MAX) lineBreakMode:NSLineBreakByCharWrapping];
+    CGSize resultSize=[string?string:@"" sizeWithFont:[UIFont systemFontOfSize:FORTSIZE] constrainedToSize:CGSizeMake(BUBBLE_LABLE_WIGHT,INT_MAX) lineBreakMode:NSLineBreakByCharWrapping];
 
     
     
@@ -812,9 +812,6 @@
             [_pictureImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",GLOBAL_URL_FILEGET,url]] placeholderImage:image completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 [self bubble];
             }];
-//        [_pictureImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",GLOBAL_URL_FILEGET,url]] placeholderImage:image completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-//            
-//        }];
         }
     }
     
@@ -938,14 +935,17 @@
     
     _contextLable = [[UILabel alloc]initWithFrame:CGRectZero];
     _contextLable.backgroundColor = [UIColor clearColor];
+    _contextLable.font = [UIFont systemFontOfSize:FORTSIZE];
+    _contextLable.lineBreakMode = NSLineBreakByCharWrapping;
+    _contextLable.numberOfLines = 0;
     [_bubbleImageView addSubview:_contextLable];
     
     
     
-    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(clickImage:)];
-    longPress.allowableMovement = 0.6;
-    [_bubbleImageView addGestureRecognizer:longPress];
-    [longPress release];
+//    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(clickImage:)];
+//    longPress.allowableMovement = 0.6;
+//    [_bubbleImageView addGestureRecognizer:longPress];
+//[longPress release];
     
     _pictureMaskImageView = [[UIImageView alloc] initWithFrame:CGRectZero];
     _pictureMaskImageView.layer.cornerRadius = 2;
@@ -963,6 +963,7 @@
 // 初始化布局
 - (void)bubble{
      NSString *url = [[[self.object attachlist] firstObject] fileurl];
+    // 是图片
 if([url hasSuffix:@".jpg"]){
     float width_image = 0.0f ;//有可能是从网络端获取的
     float height_image = 0.0f;
@@ -994,8 +995,10 @@ if([url hasSuffix:@".jpg"]){
         
     }
     }
+    // 非图片
 else{
-    CGSize resultSize=[SingleInstance customFontHeight:[self.object context] andFontSize:18 andLineWidth:BUBBLE_LABLE_WIGHT];
+    NSString *string = _contextLable.text;
+    CGSize resultSize=[string?string:@"" sizeWithFont:[UIFont systemFontOfSize:FORTSIZE] constrainedToSize:CGSizeMake(BUBBLE_LABLE_WIGHT,INT_MAX) lineBreakMode:NSLineBreakByCharWrapping];
     CGRect content_r = CGRectMake(THEFONT_NEAR_OFFSET, THEFONTUPDOWNOFFSET-3, resultSize.width, resultSize.height);
     
     CGFloat upMargin = [BubbleCell heightForIdateMarginUpOffset:_isShowDate];
@@ -1018,10 +1021,9 @@ else{
 #pragma mark-----
 -(void)fillViewWithObject:(id)object{
     [super fillViewWithObject:object];
-    NSLog(@"%@ == %@",[object shareId],[object context]);
     if ([[object attachlist] count]) {
         NSString *url = [[[object attachlist] firstObject] fileurl];
-        if([url hasSuffix:@".jpg"]){
+if([url hasSuffix:@".jpg"]){
         
         UIImage *image;
         if (_isSelfSendGlo) {
@@ -1039,11 +1041,12 @@ else{
             }];
         }
     }
-    }
     else{
-        _contextLable.text = [object context];
-        
+          _contextLable.text = [object title];
+    
+          }
     }
+    
    
     if([[object shareSource] isKindOfClass:[NSString class]]){
         if ([[object shareSource] isEqualToString:SOURCE_GROUP_CASE]) {
@@ -1051,7 +1054,6 @@ else{
             UITapGestureRecognizer *tapCase = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(clickCell:)];
             [_bubbleImageView addGestureRecognizer:tapCase];
             tapCase.view.tag = [[object shareId] integerValue];
-            NSLog(@"%d",tapCase.view.tag);
             
         }
         else if([[object shareSource] isEqualToString:SOURCE_GROUP_MATERIAL]){
@@ -1078,7 +1080,7 @@ else{
 +(CGFloat)heightForViewWithObject:(id)object{
     return PHOTO_GALLERY_SIZE_HEIGHT+2*5+[BubbleCell heightForIdateMarginUpOffset:TEST_IDATE] +THEBUBLLE_FOLLOWINGOFFSET+SPACE_IMAGE_BUBBLE_SHADOW+ HEAD_CELL_SPACE_DOWN;
 }
-// Cell点击事件
+// Cell点击事件分享来自病例库
 - (void)clickCell:(UITapGestureRecognizer *)sender{
     LiuLanBingLiViewController *skipToView = [[LiuLanBingLiViewController alloc]init];
     skipToView.theId = [NSString stringWithFormat:@"%d",sender.view.tag];
@@ -1087,9 +1089,10 @@ else{
 
 }
 
-// Cell点击事件
+// Cell点击事件分享来自资料库
 - (void)clickbuCell:(UITapGestureRecognizer *)sender{
     InformationModel *model = [[InformationModel alloc]init];
+    NSLog(@"%@",[NSString stringWithFormat:@"%d",sender.view.tag]);
     model.infoId = [NSString stringWithFormat:@"%d",sender.view.tag];
     InfoDetailViewController *skipToView = [[InfoDetailViewController alloc]initWithModel:model];
     UIViewController *VCtest=(UIViewController *)self.delegate;

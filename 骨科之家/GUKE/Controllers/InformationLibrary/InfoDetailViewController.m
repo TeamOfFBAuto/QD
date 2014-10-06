@@ -250,9 +250,9 @@
     [_InfoDetailView addSubview:_titleView];
     
     UILabel *titleLabel = [[UILabel alloc] init];
-    titleLabel.frame = CGRectMake(10, 10, SCREEN_WIDTH-20, [SingleInstance customFontHeightFont:[NSString stringWithFormat:@"%@",self.model.title] andFontSize:17.0f andLineWidth:SCREEN_WIDTH-20]);
+    titleLabel.frame = CGRectMake(10, 10, SCREEN_WIDTH-20, [SingleInstance customFontHeightFont:[NSString stringWithFormat:@"%@",_detailModel.title] andFontSize:17.0f andLineWidth:SCREEN_WIDTH-20]);
     titleLabel.backgroundColor = [UIColor whiteColor];
-    titleLabel.text = [NSString stringWithFormat:@"%@",self.model.title];
+    titleLabel.text = [NSString stringWithFormat:@"%@",_detailModel.title];
     titleLabel.font = [UIFont boldSystemFontOfSize:15.0f];
     titleLabel.numberOfLines = 0;
     [_titleView addSubview:titleLabel];
@@ -260,7 +260,7 @@
     UILabel *timeLabel = [[UILabel alloc] init];
     timeLabel.frame = CGRectMake(10, titleLabel.frame.origin.y+titleLabel.frame.size.height+5, SCREEN_WIDTH-20, 15);
     timeLabel.backgroundColor = [UIColor whiteColor];
-    timeLabel.text = [NSString stringWithFormat:@"%@ %@", self.model.firstname,self.model.createDate];
+    timeLabel.text = [NSString stringWithFormat:@"%@ %@", _detailModel.firstname,_detailModel.createDate];
     timeLabel.numberOfLines = 0;
     timeLabel.textColor = [UIColor lightGrayColor];
     timeLabel.font = [UIFont systemFontOfSize:13.0f];
@@ -293,11 +293,11 @@
     _contentView.frame = CGRectZero;
     [_InfoDetailView addSubview:_contentView];
     
-    UILabel *contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0,SCREEN_WIDTH-20, [SingleInstance customFontHeightFont:[NSString stringWithFormat:@"%@",self.model.content] andFontSize:15.0f andLineWidth:SCREEN_WIDTH-20])];
+    UILabel *contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0,SCREEN_WIDTH-20, [SingleInstance customFontHeightFont:[NSString stringWithFormat:@"%@",_detailModel.content] andFontSize:15.0f andLineWidth:SCREEN_WIDTH-20])];
     contentLabel.numberOfLines = 0;
     contentLabel.textColor = [UIColor lightGrayColor];
     contentLabel.font = [UIFont systemFontOfSize:14.0f];
-    contentLabel.text = [NSString stringWithFormat:@"%@",self.model.content];
+    contentLabel.text = [NSString stringWithFormat:@"%@",_detailModel.content];
     [_contentView addSubview:contentLabel];
     [contentLabel sizeToFit];
     _contentView.frame = CGRectMake(0, _fileTableView.frame.origin.y+_fileTableView.frame.size.height, SCREEN_WIDTH, contentLabel.frame.origin.y+contentLabel.frame.size.height);

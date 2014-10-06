@@ -57,7 +57,6 @@
     NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
     NSString *ldateStr = [[NSString stringWithFormat:@"%@",localeDate]substringToIndex:10];
     
-    NSLog(@"===============%@",ldateStr);
     
     
     
