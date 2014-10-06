@@ -75,6 +75,10 @@
                 return ;
             }
             
+            if (currentPage == 1) {
+                [data_array removeAllObjects];
+            }
+            
             NSArray * array = [dict objectForKey:@"replylist"];
             if ([array isKindOfClass:[NSArray class]])
             {
@@ -142,7 +146,7 @@
       //NSDictionary * allDic =  [[[NSString alloc] initWithData:upLoad_request.responseData encoding:NSUTF8StringEncoding] JSONValue];
         
        // NSLog(@"aldii ---  %@",allDic);
-        
+        currentPage = 1;
         [bself getCommentData];
         
     }];
