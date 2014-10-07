@@ -108,7 +108,7 @@
             
             self.dataModel = [[GeventModel alloc]initWithDic:eventDic];
             self.dataModel.userExists = isbaoming;
-            
+            self.dataModel.userlist = [dict objectForKey:@"userlist"];
             if (!_webView) {
                 _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, 275, 0)];
             }
@@ -163,6 +163,7 @@
             
             self.dataModel = [[GeventModel alloc]initWithDic:eventDic];
             self.dataModel.userExists = isbaoming;
+            self.dataModel.userlist = [dict objectForKey:@"userlist"];
             
             
             if (!_webView) {
@@ -223,7 +224,7 @@
             
             self.dataModel = [[GeventModel alloc]initWithDic:eventDic];
             self.dataModel.userExists = isbaoming;
-            
+            self.dataModel.userlist = [dict objectForKey:@"userlist"];
             
             if (!_webView) {
                 _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, 275, 0)];
@@ -319,6 +320,8 @@
     }else if (sender.tag == 12){//支付费用
         
         NSLog(@"支付费用");
+        
+        
         [self PayForAli];
         
         
@@ -357,7 +360,7 @@
     order.seller = SellerID;
     
     order.tradeNO = [self generateTradeNO]; //订单ID（由商家自行制定）
-    order.productName = [NSString _859ToUTF8:self.dataModel.eventTitle]; //商品标题
+    order.productName = self.dataModel.eventTitle; //商品标题
     order.productDescription = @"discription"; //商品描   述
     order.amount = [NSString stringWithFormat:@"%@",[NSString _859ToUTF8:self.dataModel.fee]];//商品价格
    order.notifyURL =  @"http%3A%2F%2Fwwww.xxx.com"; //回调URL
