@@ -1079,6 +1079,7 @@
 - (void)finish:(ASIHTTPRequest *)request{
     [self endPull];
     NSDictionary *dic = [[[[NSString alloc] initWithData:request.responseData encoding:NSUTF8StringEncoding] autorelease] JSONValue];
+    NSLog(@"%@",dic);
     NSUInteger codeNum = [[dic objectForKey:CKEY] integerValue];
     if (request.responseStatusCode == 200 && codeNum == CODE_SUCCESS){
         id articlelist = [dic objectForKey:@"articlelist"];

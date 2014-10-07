@@ -14,6 +14,7 @@
 #import "ShareCircleViewController.h"
 #import "TSActionSheet.h"
 #import "SNGroupsViewController.h"
+#import "CreatNewInfoViewController.h"
 @interface InfoDetailViewController ()<UITableViewDataSource, UITableViewDelegate,MBProgressHUDDelegate,InfoFileTableViewCellDelegate>
 {
     MBProgressHUD *HUD;
@@ -108,6 +109,8 @@
     TSActionSheet *actionSheet = [[TSActionSheet alloc] init];
     NSString *share1 = @"分享到诊疗圈";
     NSString *share2 = @"分享到讨论组";
+    NSString *edit = @"编辑资料";
+    NSString * delete = @"删除资料";
     [actionSheet addButtonWithTitle:share1 icon:@"guke_ic_share_article" block:^{
         ShareCircleViewController * share = [[ShareCircleViewController alloc] initWithNibName:@"ShareCircleViewController" bundle:nil];
         share.share_content = _detailModel.content;
@@ -123,6 +126,23 @@
         [bself.navigationController pushViewController:list animated:YES];
         
     }];
+    
+    
+    if ([self.model.userId isEqualToString:GET_U_ID])
+    {
+        [actionSheet addButtonWithTitle:edit icon:@"guke_ic_edit" block:^{
+            
+            CreatNewInfoViewController * create = [[CreatNewInfoViewController alloc] init];
+            create.info = _detailModel;
+            [bself.navigationController pushViewController:create animated:YES];
+            
+        }];
+        
+        [actionSheet addButtonWithTitle:delete icon:@"guke_ic_delete" block:^{
+            [bself deleteZiLiao];
+        }];
+        
+    }
     
     actionSheet.cornerRadius = 0;
     
@@ -230,9 +250,9 @@
     [_InfoDetailView addSubview:_titleView];
     
     UILabel *titleLabel = [[UILabel alloc] init];
-    titleLabel.frame = CGRectMake(10, 10, SCREEN_WIDTH-20, [SingleInstance customFontHeightFont:[NSString stringWithFormat:@"%@",self.model.title] andFontSize:17.0f andLineWidth:SCREEN_WIDTH-20]);
+    titleLabel.frame = CGRectMake(10, 10, SCREEN_WIDTH-20, [SingleInstance customFontHeightFont:[NSString stringWithFormat:@"%@",_detailModel.title] andFontSize:17.0f andLineWidth:SCREEN_WIDTH-20]);
     titleLabel.backgroundColor = [UIColor whiteColor];
-    titleLabel.text = [NSString stringWithFormat:@"%@",self.model.title];
+    titleLabel.text = [NSString stringWithFormat:@"%@",_detailModel.title];
     titleLabel.font = [UIFont boldSystemFontOfSize:15.0f];
     titleLabel.numberOfLines = 0;
     [_titleView addSubview:titleLabel];
@@ -240,7 +260,7 @@
     UILabel *timeLabel = [[UILabel alloc] init];
     timeLabel.frame = CGRectMake(10, titleLabel.frame.origin.y+titleLabel.frame.size.height+5, SCREEN_WIDTH-20, 15);
     timeLabel.backgroundColor = [UIColor whiteColor];
-    timeLabel.text = [NSString stringWithFormat:@"%@ %@", self.model.firstname,self.model.createDate];
+    timeLabel.text = [NSString stringWithFormat:@"%@ %@", _detailModel.firstname,_detailModel.createDate];
     timeLabel.numberOfLines = 0;
     timeLabel.textColor = [UIColor lightGrayColor];
     timeLabel.font = [UIFont systemFontOfSize:13.0f];
@@ -273,14 +293,35 @@
     _contentView.frame = CGRectZero;
     [_InfoDetailView addSubview:_contentView];
     
-    UILabel *contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0,SCREEN_WIDTH-20, [SingleInstance customFontHeightFont:[NSString stringWithFormat:@"%@",self.model.content] andFontSize:15.0f andLineWidth:SCREEN_WIDTH-20])];
+    UILabel *contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0,SCREEN_WIDTH-20, [SingleInstance customFontHeightFont:[NSString stringWithFormat:@"%@",_detailModel.content] andFontSize:15.0f andLineWidth:SCREEN_WIDTH-20])];
     contentLabel.numberOfLines = 0;
     contentLabel.textColor = [UIColor lightGrayColor];
     contentLabel.font = [UIFont systemFontOfSize:14.0f];
-    contentLabel.text = [NSString stringWithFormat:@"%@",self.model.content];
+    contentLabel.text = [NSString stringWithFormat:@"%@",_detailModel.content];
     [_contentView addSubview:contentLabel];
     [contentLabel sizeToFit];
     _contentView.frame = CGRectMake(0, _fileTableView.frame.origin.y+_fileTableView.frame.size.height, SCREEN_WIDTH, contentLabel.frame.origin.y+contentLabel.frame.size.height);
+
+}
+
+#pragma mark - 删除资料
+-(void)deleteZiLiao
+{
+//    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"bingliId":_feed.bingliId};
+//    
+//    __weak typeof(self)wself=self;
+//    
+//    [AFRequestService responseData:BINGLI_DELETE_URL andparameters:parameters andResponseData:^(id responseData) {
+//        
+//        NSDictionary * dict = (NSDictionary *)responseData;
+//        NSLog(@"dict ------  %@",dict);
+//        NSString * code=[NSString stringWithFormat:@"%@",[dict objectForKey:@"code"]];
+//        
+//        if ([code intValue]==0)//说明请求数据成功
+//        {
+//            [wself.navigationController popViewControllerAnimated:YES];
+//        }
+//    }];
 
 }
 
