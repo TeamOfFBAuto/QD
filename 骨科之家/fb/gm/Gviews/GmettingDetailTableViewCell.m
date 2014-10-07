@@ -42,8 +42,65 @@
             titleLabel.frame = CGRectMake(15, 20, 230, 20);
         }
         
-        //限定名额
-        UILabel *numLimitLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, CGRectGetMaxY(titleLabel.frame)+5, 65, 17)];
+        
+        //是否报名
+        
+        UILabel *isLabel = [[UILabel alloc]initWithFrame:CGRectMake(260, 21, 60, 35)];
+        isLabel.font = [UIFont systemFontOfSize:15];
+        isLabel.numberOfLines = 2;
+        isLabel.textColor = RGB(72, 158, 181);
+        
+        
+        if ([theModel.userExists intValue] == 0) {
+            
+            isLabel.text = @"未报名";
+            
+        }else if ([theModel.userExists intValue] == 1){
+            
+            
+            isLabel.text = @"已报名";
+            
+            
+        }
+        
+        
+        
+        NSDate *date = [NSDate date];
+        NSTimeZone *zone = [NSTimeZone systemTimeZone];
+        NSInteger interval = [zone secondsFromGMTForDate: date];
+        NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
+        NSString *localeDateStr = [[NSString stringWithFormat:@"%@",localeDate]substringToIndex:10];
+        if ([theModel.userExists intValue] >[localeDateStr intValue]) {
+            isLabel.text = @"已结束";
+        }
+        
+        
+        
+        for (NSDictionary *dic in theModel.userlist) {
+            if ([theModel.userId isEqualToString:[dic objectForKey:@"userId"]]) {
+                NSString *payStateStr = [dic objectForKey:@"payState"];
+                if ([payStateStr isEqualToString:@"1"]) {
+                    isLabel.text = @"已报名已付款";
+                }
+            }
+        }
+        
+        [isLabel setMatchedFrame4LabelWithOrigin:CGPointMake(260, 21) width:60];
+        
+        [self.contentView addSubview:isLabel];
+        
+        ////限定名额
+        UILabel *numLimitLabel = [[UILabel alloc]init];
+        
+        if (CGRectGetMaxY(isLabel.frame)<CGRectGetMaxY(titleLabel.frame)) {
+            [numLimitLabel setFrame:CGRectMake(15, CGRectGetMaxY(titleLabel.frame)+5, 65, 17)];
+        }else{
+            [numLimitLabel setFrame:CGRectMake(15, CGRectGetMaxY(isLabel.frame)+5, 65, 17)];
+        }
+        
+        
+        
+        
         numLimitLabel.font = [UIFont systemFontOfSize:14];
         numLimitLabel.textColor = RGB(168,168,168);
         numLimitLabel.text = @"限定名额:";
@@ -97,40 +154,7 @@
         
         
         
-        //是否报名
-    
-        UILabel *isLabel = [[UILabel alloc]initWithFrame:CGRectMake(260, 21, 60, 17)];
-        isLabel.font = [UIFont systemFontOfSize:15];
-        isLabel.textColor = RGB(72, 158, 181);
         
-        
-        if ([theModel.userExists intValue] == 0) {
-            
-            isLabel.text = @"未报名";
-            
-        }else if ([theModel.userExists intValue] == 1){
-            
-            
-            isLabel.text = @"已报名";
-            
-            
-        }
-        
-        
-        
-        NSDate *date = [NSDate date];
-        NSTimeZone *zone = [NSTimeZone systemTimeZone];
-        NSInteger interval = [zone secondsFromGMTForDate: date];
-        NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
-        NSString *localeDateStr = [[NSString stringWithFormat:@"%@",localeDate]substringToIndex:10];
-        if ([theModel.userExists intValue] >[localeDateStr intValue]) {
-            isLabel.text = @"已结束";
-        }
-        
-        
-        
-        
-        [self.contentView addSubview:isLabel];
         
         
         height = CGRectGetMaxY(numLimitLabel.frame)+20;

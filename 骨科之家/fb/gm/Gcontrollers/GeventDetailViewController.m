@@ -398,11 +398,67 @@
     
 }
 
-
+#pragma mark - 支付完成的回调
 -(void)aliresault{
 
     NSLog(@"阿里回调");
     
+    _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    _hud.labelText = @"正在加载";
+    
+    NSString *eventUserIdStr = @"0";
+    
+    if (self.dataModel.userlist.count > 0) {
+        for (NSDictionary *dic in self.dataModel.userlist) {
+            NSString *userId = [dic objectForKey:@"userId"];
+            if ([GET_U_ID isEqualToString:userId]) {
+                eventUserIdStr = [dic objectForKey:@"eventUserId"];
+            }
+        }
+    }
+    
+    
+    
+    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"eventUserId":eventUserIdStr};
+    
+    [AFRequestService responseData:CALENDAR_EVENT andparameters:parameters andResponseData:^(id responseData) {
+        
+        NSDictionary * dict = (NSDictionary *)responseData;
+        NSString * code = [dict objectForKey:@"code"];
+        NSDictionary *eventDic = [dict objectForKey:@"event"];
+        if ([code intValue]==0)//说明请求数据成功
+        {
+            
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
+            NSLog(@"loadSuccess");
+            
+            NSLog(@"查看活动  %@",dict);
+            
+            NSString *isbaoming = @"1";
+            
+            self.dataModel = [[GeventModel alloc]initWithDic:eventDic];
+            self.dataModel.userExists = isbaoming;
+            self.dataModel.userlist = [dict objectForKey:@"userlist"];
+            if (!_webView) {
+                _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, 275, 0)];
+            }
+            [_webView loadHTMLString:self.dataModel.context baseURL:nil];
+            _webView.delegate = self;
+            _webView.hidden = YES;
+            [self.view addSubview:_webView];
+            
+            [self prepareNetData1];
+            
+            
+        }else{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"加载失败，请重新加载" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [al show];
+            NSLog(@"%d",[code intValue]);
+        }
+    }];
     
     
     
@@ -430,17 +486,9 @@
         NSString * code = [dict objectForKey:@"code"];
         if ([code intValue]==0)//说明请求数据成功
         {
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"GMESCSUCCESS" object:nil];
-            
-            NSLog(@"loadSuccess");
-            
-            NSLog(@"%@",dict);
-            
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             
-            UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"取消成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//            al.tag = 101;
+            UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"支付成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [al show];
             
             
@@ -448,9 +496,6 @@
             
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             
-            NSLog(@"%d",[code intValue]);
-            UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [al show];
         }
     }];
 }
@@ -464,9 +509,6 @@
     NSLog(@"height: %@", [webView stringByEvaluatingJavaScriptFromString: @"document.body.offsetHeight"]);
     
     self.webViewHeight = [[webView stringByEvaluatingJavaScriptFromString: @"document.body.offsetHeight"]intValue] +10;
-    
-    
-    
     
     
     
