@@ -14,7 +14,7 @@
 #import "MBProgressHUD.h"
 #import "GMAPI.h"
 
-@interface GMettingSignUpViewController : SNViewController<UITableViewDataSource,UITableViewDelegate,MBProgressHUDDelegate,UIAlertViewDelegate>
+@interface GMettingSignUpViewController : SNViewController<UITableViewDataSource,UITableViewDelegate,MBProgressHUDDelegate,UIAlertViewDelegate,UITextFieldDelegate>
 @property(nonatomic,strong)NSMutableArray *contentLabelArray;
 
 @property(nonatomic,strong)GeventModel *dataModel;

@@ -512,7 +512,7 @@
     
     
     
-    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, 320, iPhone5?568-64:568-64-64) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, 320, iPhone5?568-64:480-64) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     [self.view addSubview:tableView];
