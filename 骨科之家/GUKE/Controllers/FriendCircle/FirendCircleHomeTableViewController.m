@@ -115,6 +115,9 @@ static NSString *commentId = 0;
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    if(IOS7_LATER){
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
     [self navigation];
     [self initTable];
     [self keyBoardListener];

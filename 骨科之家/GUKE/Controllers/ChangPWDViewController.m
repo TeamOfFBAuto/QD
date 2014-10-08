@@ -33,7 +33,9 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    if(IOS7_LATER){
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
     [self navigetion];
     [self creatUI];
 }
@@ -193,7 +195,7 @@
 }
 - (void)changPWD
 {
-    // 旧密码为空
+//    // 旧密码为空
     if ([oldPWD.text isEqualToString:@""] || oldPWD.text == nil ) {
         UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"旧密码不能为空" message:@"" delegate:self cancelButtonTitle:LOCALIZATION(@"dialog_ok") otherButtonTitles:nil];
         [alert show];
@@ -201,7 +203,7 @@
     }
     // 新密密码为空
     if ([newPWD.text isEqualToString:@""] || newPWD.text == nil ) {
-        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"旧密码不能为空" message:@"" delegate:self cancelButtonTitle:LOCALIZATION(@"dialog_ok")otherButtonTitles:nil];
+        UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"新密码不能为空" message:@"" delegate:self cancelButtonTitle:LOCALIZATION(@"dialog_ok")otherButtonTitles:nil];
         [alert show];
         return;
     }
