@@ -672,7 +672,6 @@ static NSString *commentId = 0;
     [AFRequestService responseData:DELETE_BLOG_URL andparameters:parameters andResponseData:^(id responseData) {
         
         NSDictionary * dict = (NSDictionary *)responseData;
-        NSLog(@"dic -----  %@",dict);
         if ([[dict objectForKey:@"code"] intValue] == 0)
         {
             [articleArray removeObjectAtIndex:indexPath.row-1];
@@ -695,16 +694,18 @@ static NSString *commentId = 0;
     // 点赞
     if ([sender.titleLabel.text isEqualToString:LOCALIZATION(@"userarticle_comment_good")]) {
         //sender.userInteractionEnabled = NO;
-        [self doFavoriteAndComment:GOOD_TYPE_CODE andBtn:sender andContext:nil];
         [sender setTitle:LOCALIZATION(@"button_cancel") forState:UIControlStateNormal];
+        [self doFavoriteAndComment:GOOD_TYPE_CODE andBtn:sender andContext:nil];
+        
         
         
     }
     //取消赞
     else if ([sender.titleLabel.text isEqualToString:LOCALIZATION(@"button_cancel")]){
         //sender.userInteractionEnabled = NO;
-        [self doFavoriteAndComment:DEL_GOOD_TYPE_CODE andBtn:sender andContext:nil];
         [sender setTitle:LOCALIZATION(@"userarticle_comment_good") forState:UIControlStateNormal];
+        [self doFavoriteAndComment:DEL_GOOD_TYPE_CODE andBtn:sender andContext:nil];
+        
     }
     else{
         return;
@@ -750,7 +751,8 @@ static NSString *commentId = 0;
     if ([type isEqualToString:GOOD_TYPE_CODE]) {
            // 获取对应的文章
         model = (UserArticleList *)articleArray[sender.tag-FAVORIT_DEFAULT_TAG];
-        // 写入数组中同时写入数据库
+        model.isGood = @"1";
+        // 写入数组中同时写1入数据库
         [self insertLocalData:model.articleId andContext:nil anduserId:GET_USER_ID andTag:sender.tag-FAVORIT_DEFAULT_TAG andType:type];
             parameters = @{@"userId": GET_USER_ID,@"sid": GET_S_ID,@"articleId":model.articleId,@"commentType":type};
        
@@ -766,6 +768,7 @@ static NSString *commentId = 0;
             // 获取对应的文章
             model = (UserArticleList *)articleArray[sender.tag-FAVORIT_DEFAULT_TAG];
            // 删除数组中得元素
+        model.isGood = @"0";
            [self insertLocalData:model.articleId andContext:nil anduserId:GET_USER_ID andTag:sender.tag-FAVORIT_DEFAULT_TAG andType:type];
         
             parameters = @{@"userId": GET_USER_ID,@"sid": GET_S_ID,@"articleId":model.articleId,@"commentType":type};

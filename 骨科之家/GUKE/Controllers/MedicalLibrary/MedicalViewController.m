@@ -163,8 +163,6 @@
         NSString * pageCount=[NSString stringWithFormat:@"%@",[dict objectForKey:@"pageCount"]];
         NSString * recordCount=[NSString stringWithFormat:@"%@",[dict objectForKey:@"recordCount"]];
         
-        NSLog(@"xxxxx======%@",dict);
-        
         [self endPull];
         
         if ([code intValue]==0)//说明请求数据成功
@@ -178,6 +176,7 @@
             {
                 [data_array removeAllObjects];
             }
+            // 当前的页面为零是，清空数据组
             if (currentPage == 0)
             {
                 [data_array removeAllObjects];
