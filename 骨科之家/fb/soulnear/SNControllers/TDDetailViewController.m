@@ -65,7 +65,6 @@
     [AFRequestService responseData:TOPIC_DISCUSS_COMMENT_URL andparameters:parameters andResponseData:^(id responseData) {
         
         NSDictionary * dict = (NSDictionary *)responseData;
-        NSLog(@"dict -------  %@",dict);
         NSString * code = [dict objectForKey:@"code"];
         if ([code intValue]==0)//说明请求数据成功
         {
@@ -105,7 +104,6 @@
     NSString * filename;
     
     ASIFormDataRequest * upLoad_request = [[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BASE_URL,TOPIC_DISCUSS_COMMIT_URL]]];
-//    ASIFormDataRequest * upLoad_request = [HttpRequsetFactory getRequestKeys:dic subUrl:TOPIC_DISCUSS_COMMIT_URL userCommon:YES];
     [upLoad_request setTimeOutSeconds:30.0f];
     [upLoad_request setShouldAttemptPersistentConnection:NO];
     
@@ -116,7 +114,6 @@
     if (type == SEND_Type_voice)
     {
         data = [NSMutableData dataWithContentsOfFile:[VoiceRecorderBaseVC getPathByFileName:[[(NSDictionary *)object objectForKey:@"fid"] stringByAppendingString:@"wavToAmr"] ofType:@"amr"]];
-//        [dic setObject:[object objectForKey:@"length"] forKey:@"voiceLength1"];
         filename = [NSString stringWithFormat:@"%@.amr",[object objectForKey:@"fid"]];
         [upLoad_request setPostValue:[object objectForKey:@"length"] forKey:@"voiceLength1"];
         [upLoad_request addData:data withFileName:filename andContentType:nil forKey:@"attach1"];
@@ -141,11 +138,6 @@
     __weak typeof(self) bself = self;
     
     [request setCompletionBlock:^{
-        
-       // NSDictionary * allDic = [upLoad_request.responseString objectFromJSONString];
-      //NSDictionary * allDic =  [[[NSString alloc] initWithData:upLoad_request.responseData encoding:NSUTF8StringEncoding] JSONValue];
-        
-       // NSLog(@"aldii ---  %@",allDic);
         currentPage = 1;
         [bself getCommentData];
         
@@ -235,28 +227,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ReplyListModel * info = [data_array objectAtIndex:indexPath.row];
-    float height = 110;
-    if (info.theType == SEND_Type_content)
-    {
-        CGRect rectr = [info.context boundingRectWithSize:CGSizeMake(DEVICE_WIDTH-30, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15]} context:nil];
-        
-        if (rectr.size.height+20+26 > 110)
-        {
-            height = rectr.size.height+20+26;
-        }
-    }else if (info.theType == SEND_Type_photo)
-    {
-        height = 130;
-        
-    }else if (info.theType == SEND_Type_voice)
-    {
-        
-    }else if (info.theType == SEND_Type_other)
-    {
-        
-    }
-    
-    return height;
+   return [TDDetailCell heightForCell:info];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -276,8 +247,6 @@
 #pragma mark - ToolBarDelegate
 - (BOOL)placeTextViewShouldReturn:(HPGrowingTextView *)textView
 {
-    
-    
     return YES;
 }
 - (void)toolBarPicture
