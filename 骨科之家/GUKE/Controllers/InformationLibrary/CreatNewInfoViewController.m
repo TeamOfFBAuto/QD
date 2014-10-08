@@ -358,6 +358,10 @@
 // 手势事件
 - (void)tapAction
 {
+    __weak typeof(self)wself=self;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(repeatLoadData)]) {
+        [wself.delegate repeatLoadData];
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark - 提交

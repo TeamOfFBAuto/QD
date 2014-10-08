@@ -134,6 +134,8 @@ alpha:(a)]
 #pragma mark - 资料库分享到讨论组
 ///资料库分享到讨论组
 #define ZILIAOKU_SHARE_GROUPS_URL @"infosharegroup.php"
+#pragma mark - 删除资料
+#define INFORM_DEL_URL            @"infodel.php"
 
 
 #pragma mark - 删除朋友圈文章

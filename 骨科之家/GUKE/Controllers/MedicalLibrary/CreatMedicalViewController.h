@@ -21,13 +21,17 @@
 
 @end
 
-
+@protocol CreatMedicalViewDelegate<NSObject>
+@optional
+- (void)repeatLoadData;
+@end
 
 @interface CreatMedicalViewController : SNViewController<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate,AVAudioPlayerDelegate,AVAudioSessionDelegate>{
 
 
 
 }
+@property(nonatomic,assign)id<CreatMedicalViewDelegate>delegate;
 
 @property(nonatomic,strong)UITableView *mainTableView;
 

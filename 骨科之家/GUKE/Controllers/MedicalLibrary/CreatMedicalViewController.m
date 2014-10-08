@@ -257,6 +257,10 @@
 // 手势事件
 - (void)tapAction
 {
+    __weak typeof(self)wself=self;
+    if (wself.delegate && [wself.delegate respondsToSelector:@selector(repeatLoadData)]) {
+        [wself.delegate repeatLoadData];
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark - 提交按钮方法

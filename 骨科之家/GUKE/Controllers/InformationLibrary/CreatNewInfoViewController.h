@@ -11,9 +11,13 @@
 #import "ChatVoiceRecorderVC.h"
 #import "VoiceConverter.h"
 #import "InformationDetailModel.h"
+@protocol CreatNewInfoViewDelegate <NSObject>
+@optional
+- (void)repeatLoadData;
+@end
 @interface CreatNewInfoViewController : UIViewController<VoiceRecorderBaseVCDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@property(nonatomic,assign)id<CreatNewInfoViewDelegate>delegate;
 @property (strong, nonatomic)  ChatVoiceRecorderVC *recorderVC;
-
 @property(nonatomic,strong)InformationDetailModel * info;
 
 

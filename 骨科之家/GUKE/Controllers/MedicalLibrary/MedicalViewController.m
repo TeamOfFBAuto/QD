@@ -7,11 +7,10 @@
 //
 
 #import "MedicalViewController.h"
-#import "CreatMedicalViewController.h"
 #import "BingLiListFeed.h"
 #import "BinglilistModels.h"
 #import "MedicalCell.h"
-#import "LiuLanBingLiViewController.h"
+
 
 
 @interface MedicalViewController ()<PullTableViewDelegate,UITableViewDataSource,UITableViewDelegate>
@@ -107,9 +106,17 @@
         [_tableView setSeparatorInset:UIEdgeInsetsZero];
         
     }
-    
+    [self setExtraCellLineHidden:self.tableView];
     [self.view addSubview:self.tableView];
     
+}
+// 隐掉额外的cell的线条
+- (void)setExtraCellLineHidden: (UITableView *)tableView
+{
+    UIView *view =[ [UIView alloc]init];
+    view.backgroundColor = [UIColor clearColor];
+    [tableView setTableFooterView:view];
+    [tableView setTableHeaderView:view];
 }
 
 // "新建资料"按钮
@@ -171,7 +178,10 @@
             {
                 [data_array removeAllObjects];
             }
-            
+            if (currentPage == 0)
+            {
+                [data_array removeAllObjects];
+            }
             
             NSArray * array = [dict objectForKey:@"binglilist"];
             
@@ -223,11 +233,15 @@
 {
     BingLiListFeed * feed = [data_array objectAtIndex:indexPath.row];
     LiuLanBingLiViewController * liulan = [[LiuLanBingLiViewController alloc] init];
+    liulan.delegate = self;
     liulan.feed = feed;
     [self.navigationController pushViewController:liulan animated:YES];
     
 }
-
+// 重新加载数据
+- (void)repeatLoadData{
+    [self layOutlist];
+}
 
 #pragma mark - PullTableViewDelegate
 - (void)pullTableViewDidTriggerRefresh:(PullTableView*)pullTableView

@@ -582,7 +582,7 @@
 - (void)getNewArticle:(NSMutableArray *)userArray
 {
     // 将聊天广场的内容添加到数组源数组中
-    [self getVCData:userArray];
+    //[self getVCData:userArray];
     // 对整个数据源数组进行处理
     for (NSInteger i = 0; i < [UserContactArray count]; i++)
     {
@@ -598,27 +598,27 @@
         
     }
 }
-// 处理聊天广场的数据
-- (void)getVCData:(NSMutableArray *)userArray{
-    // 提取聊天广场的数据
-    UserContact *vcContact = [[UserContact alloc]init];
-    
-    [self dicWithVType:VChatType_VC andRecvId:[NSNumber numberWithInt:0]];
-    [newArticleDic setObject:@"0" forKey:@"articleId"];
-    [newArticleDic setObject:GET_U_ID forKey:@"userId"];
-    NSArray *array1 = [SqliteBase readbase:TABLE_HD query:newArticleDic count:1];
-    VChatModel *model = (VChatModel *)[array1 firstObject];
-    VChatAttachModel *att = (VChatAttachModel *)[model.attachlist lastObject];
-    
-    vcContact.creatDate = model.creatDate;
-    vcContact.contactId = @"0";
-    vcContact.context = model.context;
-    vcContact.contactType = PUSH_GCHAT;
-    vcContact.typeId =model.typeId;
-    vcContact.firstUsername = model.firstname;
-    vcContact.filename = [[att.filename componentsSeparatedByString:@"."] lastObject];
-    [userArray addObject:vcContact];
-}
+//// 处理聊天广场的数据
+//- (void)getVCData:(NSMutableArray *)userArray{
+//    // 提取聊天广场的数据
+//    UserContact *vcContact = [[UserContact alloc]init];
+//    
+//    [self dicWithVType:VChatType_VC andRecvId:[NSNumber numberWithInt:0]];
+//    [newArticleDic setObject:@"0" forKey:@"articleId"];
+//    [newArticleDic setObject:GET_U_ID forKey:@"userId"];
+//    NSArray *array1 = [SqliteBase readbase:TABLE_HD query:newArticleDic count:1];
+//    VChatModel *model = (VChatModel *)[array1 firstObject];
+//    VChatAttachModel *att = (VChatAttachModel *)[model.attachlist lastObject];
+//    
+//    vcContact.creatDate = model.creatDate;
+//    vcContact.contactId = @"0";
+//    vcContact.context = model.context;
+//    vcContact.contactType = PUSH_GCHAT;
+//    vcContact.typeId =model.typeId;
+//    vcContact.firstUsername = model.firstname;
+//    vcContact.filename = [[att.filename componentsSeparatedByString:@"."] lastObject];
+//    [userArray addObject:vcContact];
+//}
 #pragma mark =========if there is not data in database,we write the data pushed into the database
 - (void)pushGetData{
     [newArticleDic setValue:GET_S_ID forKey:@"sid"];
@@ -1055,34 +1055,35 @@
         cell = [[[NSBundle mainBundle]loadNibNamed:@"CachatTableViewCell" owner:self options:nil]lastObject];
     }
     UserContact *model = nil;
-    if (indexPath.row == 3) {
-        model  = (UserContact *)[UserContactArray lastObject];
-        cell.imgView.image = [UIImage imageNamed:@"group@2x.png"];
-        cell.nameLabel.text = LOCALIZATION(@"chat_expressname");
-        cell.nameLabel.backgroundColor = [UIColor clearColor];
-        cell.timeLable.text = [SingleInstance handleDate:model.creatDate];
-        cell.timeLable.textColor = [SingleInstance colorFromHexRGB:@"9a9a9a"];
-        cell.nameLabel.textColor = [UIColor blackColor];
-        cell.typeLable.hidden = YES;
-        if (model.filename == nil || [model.filename isEqualToString:@""]) {
-            if (model.context == nil || [model.context isEqualToString:@""]) {
-                cell.connectLable.hidden = YES;
-                cell.timeLable.hidden = YES;
-            }
-            cell.connectLable.text = [NSString stringWithFormat:@"%@:%@",model.firstUsername,model.context];
-        }
-        else if([model.filename isEqualToString:@"jpg"]) {
-            cell.connectLable.text = [NSString stringWithFormat:@"%@:%@",model.firstUsername,LOCALIZATION(@"chattype_photo")];
-        }
-        else if ([model.filename isEqualToString:@"amr"]){
-            cell.connectLable.text = [NSString stringWithFormat:@"%@:[%@]",model.firstUsername,LOCALIZATION(@"setting_notify_voice")];
-        }
-        else{
-            cell.connectLable.hidden = YES;
-            cell.timeLable.hidden = YES;
-        }
-        cell.connectLable.textColor = [UIColor colorWithRed:128/255.0 green:128/255.0 blue:128/255.0 alpha:0.8];
-    }else if (indexPath.row < 3)
+//    if (indexPath.row == 3) {
+//        model  = (UserContact *)[UserContactArray lastObject];
+//        cell.imgView.image = [UIImage imageNamed:@"group@2x.png"];
+//        cell.nameLabel.text = LOCALIZATION(@"chat_expressname");
+//        cell.nameLabel.backgroundColor = [UIColor clearColor];
+//        cell.timeLable.text = [SingleInstance handleDate:model.creatDate];
+//        cell.timeLable.textColor = [SingleInstance colorFromHexRGB:@"9a9a9a"];
+//        cell.nameLabel.textColor = [UIColor blackColor];
+//        cell.typeLable.hidden = YES;
+//        if (model.filename == nil || [model.filename isEqualToString:@""]) {
+//            if (model.context == nil || [model.context isEqualToString:@""]) {
+//                cell.connectLable.hidden = YES;
+//                cell.timeLable.hidden = YES;
+//            }
+//            cell.connectLable.text = [NSString stringWithFormat:@"%@:%@",model.firstUsername,model.context];
+//        }
+//        else if([model.filename isEqualToString:@"jpg"]) {
+//            cell.connectLable.text = [NSString stringWithFormat:@"%@:%@",model.firstUsername,LOCALIZATION(@"chattype_photo")];
+//        }
+//        else if ([model.filename isEqualToString:@"amr"]){
+//            cell.connectLable.text = [NSString stringWithFormat:@"%@:[%@]",model.firstUsername,LOCALIZATION(@"setting_notify_voice")];
+//        }
+//        else{
+//            cell.connectLable.hidden = YES;
+//            cell.timeLable.hidden = YES;
+//        }
+//        cell.connectLable.textColor = [UIColor colorWithRed:128/255.0 green:128/255.0 blue:128/255.0 alpha:0.8];
+//    }else
+    if (indexPath.row < 3)
     {
         cell.imgView.image = [UIImage imageNamed:[[imageAndTitleArray objectAtIndex:0] objectAtIndex:indexPath.row]];
         CGRect rect = cell.nameLabel.frame;
@@ -1094,7 +1095,7 @@
         cell.typeLable.text = @"";
     }else{
         cell.accessoryType =  UITableViewCellAccessoryNone;
-        model = (UserContact *)[UserContactArray objectAtIndex:indexPath.row-4];
+        model = (UserContact *)[UserContactArray objectAtIndex:indexPath.row-3];
         cell.nameLabel.text = model.contactName;
         cell.nameLabel.backgroundColor = [UIColor clearColor];
         cell.timeLable.text = [SingleInstance handleDate:model.creatDate];
