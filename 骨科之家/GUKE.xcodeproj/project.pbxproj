@@ -531,6 +531,8 @@
 		19B7DA1119E08EC1004B7621 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B7D9F319E08EC1004B7621 /* libcrypto.a */; };
 		19B7DA1219E08EC1004B7621 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B7D9F419E08EC1004B7621 /* libssl.a */; };
 		19B7DA1319E08EC2004B7621 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B7D9F419E08EC1004B7621 /* libssl.a */; };
+		19BB891E19E6A29800E08834 /* calendar_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BB891C19E6A29800E08834 /* calendar_green@2x.png */; };
+		19BB891F19E6A29800E08834 /* calendar_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BB891D19E6A29800E08834 /* calendar_red@2x.png */; };
 		19BC02EF19AC7282008EBA22 /* addNewContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 19BC02EE19AC7282008EBA22 /* addNewContact.m */; };
 		19BC02F219AC800A008EBA22 /* chatfrom_bg_voice_playing.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC02F019AC800A008EBA22 /* chatfrom_bg_voice_playing.9.png */; };
 		19BC02F319AC800A008EBA22 /* chatto_bg_voice_playing.9.png in Resources */ = {isa = PBXBuildFile; fileRef = 19BC02F119AC800A008EBA22 /* chatto_bg_voice_playing.9.png */; };
@@ -977,8 +979,6 @@
 		E31D734019E3B6F300B214CF /* GloadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = E31D733919E3B6F300B214CF /* GloadingView.m */; };
 		E31D734119E3B6F300B214CF /* GRefreshTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E31D733B19E3B6F300B214CF /* GRefreshTableView.m */; };
 		E348B72919E6638500A95DD5 /* cal_current.9.png in Resources */ = {isa = PBXBuildFile; fileRef = E348B72819E6638500A95DD5 /* cal_current.9.png */; };
-		E37C7F7B19E6916E006EFE2C /* calendar_red.png in Resources */ = {isa = PBXBuildFile; fileRef = E37C7F7919E6916E006EFE2C /* calendar_red.png */; };
-		E37C7F7C19E6916E006EFE2C /* calendar_green.png in Resources */ = {isa = PBXBuildFile; fileRef = E37C7F7A19E6916E006EFE2C /* calendar_green.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1674,6 +1674,8 @@
 		19B7D9F419E08EC1004B7621 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
 		19B7D9F619E08EC1004B7621 /* DataSigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSigner.h; sourceTree = "<group>"; };
 		19B7D9F719E08EC1004B7621 /* DataVerifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataVerifier.h; sourceTree = "<group>"; };
+		19BB891C19E6A29800E08834 /* calendar_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar_green@2x.png"; sourceTree = "<group>"; };
+		19BB891D19E6A29800E08834 /* calendar_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "calendar_red@2x.png"; sourceTree = "<group>"; };
 		19BC02ED19AC7282008EBA22 /* addNewContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addNewContact.h; sourceTree = "<group>"; };
 		19BC02EE19AC7282008EBA22 /* addNewContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = addNewContact.m; sourceTree = "<group>"; };
 		19BC02F019AC800A008EBA22 /* chatfrom_bg_voice_playing.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chatfrom_bg_voice_playing.9.png; sourceTree = "<group>"; };
@@ -2263,8 +2265,6 @@
 		E31D733A19E3B6F300B214CF /* GRefreshTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRefreshTableView.h; sourceTree = "<group>"; };
 		E31D733B19E3B6F300B214CF /* GRefreshTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRefreshTableView.m; sourceTree = "<group>"; };
 		E348B72819E6638500A95DD5 /* cal_current.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cal_current.9.png; sourceTree = "<group>"; };
-		E37C7F7919E6916E006EFE2C /* calendar_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar_red.png; sourceTree = "<group>"; };
-		E37C7F7A19E6916E006EFE2C /* calendar_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar_green.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -4355,8 +4355,8 @@
 		E31D72CD19E3AB7A00B214CF /* GImages */ = {
 			isa = PBXGroup;
 			children = (
-				E37C7F7919E6916E006EFE2C /* calendar_red.png */,
-				E37C7F7A19E6916E006EFE2C /* calendar_green.png */,
+				19BB891C19E6A29800E08834 /* calendar_green@2x.png */,
+				19BB891D19E6A29800E08834 /* calendar_red@2x.png */,
 				E348B72819E6638500A95DD5 /* cal_current.9.png */,
 				E31D72CE19E3AB7A00B214CF /* btn_grid@2x.png */,
 				E31D72CF19E3AB7A00B214CF /* btn_grid_cell@2x.png */,
@@ -4700,6 +4700,7 @@
 				3E7BAE5319D18F35002E28A1 /* guke_share_sms@2x.png in Resources */,
 				3E7BADAC19D18F35002E28A1 /* guke_back_icon@2x.png in Resources */,
 				19960CC2196A80D6000121AA /* button_right_select@2x.png in Resources */,
+				19BB891E19E6A29800E08834 /* calendar_green@2x.png in Resources */,
 				1977B50119C8447800D504A7 /* produce@2x.png in Resources */,
 				199C0108195AAD1D00F74F7C /* set_usercheck@2x.png in Resources */,
 				3E7BADF319D18F35002E28A1 /* guke_ic_addphoto@2x.png in Resources */,
@@ -4720,7 +4721,6 @@
 				3E7BAE2219D18F35002E28A1 /* guke_icon_word@2x.png in Resources */,
 				5621320119DFF45C00B3F8C1 /* ShareCircleViewController.xib in Resources */,
 				199C00CB195AAD1D00F74F7C /* ic_more_item_top_pressed.9@2x.png in Resources */,
-				E37C7F7B19E6916E006EFE2C /* calendar_red.png in Resources */,
 				19960CE8196A80D6000121AA /* voice_L0@2x.png in Resources */,
 				3E7BADBF19D18F35002E28A1 /* guke_cal_current@2x.png in Resources */,
 				3E7BAE0919D18F35002E28A1 /* guke_ic_msg@2x.png in Resources */,
@@ -4824,6 +4824,7 @@
 				3E7BAE2119D18F35002E28A1 /* guke_icon_userinfo_menu@2x.png in Resources */,
 				E31D731919E3AB7A00B214CF /* tixiang-jiantouLeft@2x.png in Resources */,
 				199C0152195AAD1D00F74F7C /* user_default_small_72@2x.png in Resources */,
+				19BB891F19E6A29800E08834 /* calendar_red@2x.png in Resources */,
 				199C0097195AAD1D00F74F7C /* chat_zhantie_btn@2x.png in Resources */,
 				563D756B19DE9C8700095CC7 /* LiuLanSectionView.xib in Resources */,
 				19960CBC196A80D6000121AA /* button_left_default@2x.png in Resources */,
@@ -5112,7 +5113,6 @@
 				3E7BADB519D18F35002E28A1 /* guke_btnblue@2x.png in Resources */,
 				199CFD9B195AA50200F74F7C /* radio_unchecked@2x.png in Resources */,
 				199C00B2195AAD1D00F74F7C /* friend_left_none@2x.png in Resources */,
-				E37C7F7C19E6916E006EFE2C /* calendar_green.png in Resources */,
 				3E7BADFD19D18F35002E28A1 /* guke_ic_dongtai@2x.png in Resources */,
 				199C0086195AAD1D00F74F7C /* btn_style_alert_dialog_button_pressed.9@2x.png in Resources */,
 				199C00E8195AAD1D00F74F7C /* loading_6@2x.png in Resources */,
