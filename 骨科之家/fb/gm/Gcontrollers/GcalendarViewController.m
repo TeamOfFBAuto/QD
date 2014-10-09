@@ -161,6 +161,7 @@
 - (void)calendarViewDidSelectDay:(ITTCalendarView*)calendarView calDay:(ITTCalDay*)calDay{
     
     NSLog(@"--------- %@",calDay);
+    
     NSLog(@"%d",[calDay getDay]);
     NSLog(@"%d",[calDay getMonth]);
     NSLog(@"%d",[calDay getYear]);
