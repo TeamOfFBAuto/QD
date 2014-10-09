@@ -977,6 +977,8 @@
 		E31D734019E3B6F300B214CF /* GloadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = E31D733919E3B6F300B214CF /* GloadingView.m */; };
 		E31D734119E3B6F300B214CF /* GRefreshTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E31D733B19E3B6F300B214CF /* GRefreshTableView.m */; };
 		E348B72919E6638500A95DD5 /* cal_current.9.png in Resources */ = {isa = PBXBuildFile; fileRef = E348B72819E6638500A95DD5 /* cal_current.9.png */; };
+		E37C7F7B19E6916E006EFE2C /* calendar_red.png in Resources */ = {isa = PBXBuildFile; fileRef = E37C7F7919E6916E006EFE2C /* calendar_red.png */; };
+		E37C7F7C19E6916E006EFE2C /* calendar_green.png in Resources */ = {isa = PBXBuildFile; fileRef = E37C7F7A19E6916E006EFE2C /* calendar_green.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2261,6 +2263,8 @@
 		E31D733A19E3B6F300B214CF /* GRefreshTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRefreshTableView.h; sourceTree = "<group>"; };
 		E31D733B19E3B6F300B214CF /* GRefreshTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRefreshTableView.m; sourceTree = "<group>"; };
 		E348B72819E6638500A95DD5 /* cal_current.9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cal_current.9.png; sourceTree = "<group>"; };
+		E37C7F7919E6916E006EFE2C /* calendar_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar_red.png; sourceTree = "<group>"; };
+		E37C7F7A19E6916E006EFE2C /* calendar_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar_green.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -4351,6 +4355,8 @@
 		E31D72CD19E3AB7A00B214CF /* GImages */ = {
 			isa = PBXGroup;
 			children = (
+				E37C7F7919E6916E006EFE2C /* calendar_red.png */,
+				E37C7F7A19E6916E006EFE2C /* calendar_green.png */,
 				E348B72819E6638500A95DD5 /* cal_current.9.png */,
 				E31D72CE19E3AB7A00B214CF /* btn_grid@2x.png */,
 				E31D72CF19E3AB7A00B214CF /* btn_grid_cell@2x.png */,
@@ -4714,6 +4720,7 @@
 				3E7BAE2219D18F35002E28A1 /* guke_icon_word@2x.png in Resources */,
 				5621320119DFF45C00B3F8C1 /* ShareCircleViewController.xib in Resources */,
 				199C00CB195AAD1D00F74F7C /* ic_more_item_top_pressed.9@2x.png in Resources */,
+				E37C7F7B19E6916E006EFE2C /* calendar_red.png in Resources */,
 				19960CE8196A80D6000121AA /* voice_L0@2x.png in Resources */,
 				3E7BADBF19D18F35002E28A1 /* guke_cal_current@2x.png in Resources */,
 				3E7BAE0919D18F35002E28A1 /* guke_ic_msg@2x.png in Resources */,
@@ -5105,6 +5112,7 @@
 				3E7BADB519D18F35002E28A1 /* guke_btnblue@2x.png in Resources */,
 				199CFD9B195AA50200F74F7C /* radio_unchecked@2x.png in Resources */,
 				199C00B2195AAD1D00F74F7C /* friend_left_none@2x.png in Resources */,
+				E37C7F7C19E6916E006EFE2C /* calendar_green.png in Resources */,
 				3E7BADFD19D18F35002E28A1 /* guke_ic_dongtai@2x.png in Resources */,
 				199C0086195AAD1D00F74F7C /* btn_style_alert_dialog_button_pressed.9@2x.png in Resources */,
 				199C00E8195AAD1D00F74F7C /* loading_6@2x.png in Resources */,
