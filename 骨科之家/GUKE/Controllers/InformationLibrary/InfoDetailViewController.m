@@ -295,12 +295,12 @@
     
     UILabel *contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0,SCREEN_WIDTH-20, [SingleInstance customFontHeightFont:[NSString stringWithFormat:@"%@",_detailModel.content] andFontSize:15.0f andLineWidth:SCREEN_WIDTH-20])];
     contentLabel.numberOfLines = 0;
-    contentLabel.textColor = [UIColor lightGrayColor];
+    contentLabel.textColor = GETColor(156, 156, 156);
     contentLabel.font = [UIFont systemFontOfSize:14.0f];
     contentLabel.text = [NSString stringWithFormat:@"%@",_detailModel.content];
     [_contentView addSubview:contentLabel];
     [contentLabel sizeToFit];
-    _contentView.frame = CGRectMake(0, _fileTableView.frame.origin.y+_fileTableView.frame.size.height, SCREEN_WIDTH, contentLabel.frame.origin.y+contentLabel.frame.size.height);
+    _contentView.frame = CGRectMake(0, _fileTableView.frame.origin.y+_fileTableView.frame.size.height + 15, SCREEN_WIDTH, contentLabel.frame.origin.y+contentLabel.frame.size.height);
 
 }
 

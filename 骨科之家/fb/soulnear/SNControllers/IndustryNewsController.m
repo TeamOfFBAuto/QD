@@ -48,10 +48,18 @@
     }
     
     [self.view addSubview:_myTableView];
+    [self setExtraCellLineHidden:_myTableView];
     _myTableView.pullTableIsRefreshing = YES;
     
     
     [self getIndustryNewsDataWithPage:currentPage];
+}
+- (void)setExtraCellLineHidden: (UITableView *)tableView
+{
+    UIView *view =[ [UIView alloc]init];
+    view.backgroundColor = [UIColor clearColor];
+    [tableView setTableFooterView:view];
+    [tableView setTableHeaderView:view];
 }
 
 #pragma mark - 请求数据方法

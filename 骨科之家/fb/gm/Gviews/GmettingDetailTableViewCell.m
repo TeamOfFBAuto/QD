@@ -69,8 +69,11 @@
         NSTimeZone *zone = [NSTimeZone systemTimeZone];
         NSInteger interval = [zone secondsFromGMTForDate: date];
         NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
-        NSString *localeDateStr = [[NSString stringWithFormat:@"%@",localeDate]substringToIndex:10];
-        if ([theModel.userExists intValue] >[localeDateStr intValue]) {
+        NSString *localeDateStr = [[[NSString stringWithFormat:@"%@",localeDate]substringToIndex:10]stringByReplacingOccurrencesOfString:@"-" withString:@""];
+        NSString *eventTimeStr = [theModel.eventTime stringByReplacingOccurrencesOfString:@"-" withString:@""];
+        
+        
+        if ([eventTimeStr intValue] <[localeDateStr intValue]) {
             isLabel.text = @"已结束";
         }
         
@@ -311,25 +314,37 @@
                     height = CGRectGetMaxY(btn.frame)+20;
                 }
             }else if ([theModel.userExists intValue] == 0){//未报名
-                for (int i = 0; i<1; i++) {
-                    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-                    [btn setTitle:titleArray[i] forState:UIControlStateNormal];
-                    btn.tag = 10+i;
-                    [btn addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
+                
+                
+                NSDate *date = [NSDate date];
+                NSTimeZone *zone = [NSTimeZone systemTimeZone];
+                NSInteger interval = [zone secondsFromGMTForDate: date];
+                NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
+                NSString *localeDateStr = [[[NSString stringWithFormat:@"%@",localeDate]substringToIndex:10]stringByReplacingOccurrencesOfString:@"-" withString:@""];
+                NSString *endTimeStr = [theModel.endTime stringByReplacingOccurrencesOfString:@"-" withString:@""];
+                
+                if ([endTimeStr intValue]< [localeDateStr intValue]) {
                     
-                    btn.layer.cornerRadius = 4;
+                    height = CGRectGetMaxY(webView.frame)+20;
                     
-                    if (i ==0) {
-                        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                        [btn setBackgroundColor:RGB(35, 178, 95)];
-                        
+                }else{
+                    
+                    for (int i = 0; i<1; i++) {
+                        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+                        [btn setTitle:titleArray[i] forState:UIControlStateNormal];
+                        btn.tag = 10+i;
+                        [btn addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
+                        btn.layer.cornerRadius = 4;
+                        if (i ==0) {
+                            [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                            [btn setBackgroundColor:RGB(35, 178, 95)];
+                        }
+                        [btn setFrame:CGRectMake(10, CGRectGetMaxY(webView.frame)+20 +i*(50+10), 300, 50)];
+                        [self.contentView addSubview:btn];
+                        height = CGRectGetMaxY(btn.frame)+20;
                     }
-                    [btn setFrame:CGRectMake(10, CGRectGetMaxY(webView.frame)+20 +i*(50+10), 300, 50)];
-                    
-                    [self.contentView addSubview:btn];
-                    
-                    height = CGRectGetMaxY(btn.frame)+20;
                 }
+                
             }
         }
         

@@ -134,9 +134,12 @@
             self.gridButton.userInteractionEnabled = NO;
             
             if ([[dic objectForKey:@"eventStatus"]intValue]) {//1为已报名
-                [self.gridButton setBackgroundColor:[UIColor greenColor]];
+//                [self.gridButton setBackgroundColor:[UIColor greenColor]];
+                [self.gridButton setBackgroundImage:[UIImage imageNamed:@"calendar_green.png"] forState:UIControlStateNormal];
             }else{
-                [self.gridButton setBackgroundColor:[UIColor redColor]];
+//                [self.gridButton setBackgroundColor:[UIColor redColor]];
+                [self.gridButton setBackgroundImage:[UIImage imageNamed:@"calendar_red.png"] forState:UIControlStateNormal];
+                
                 break;
             }
             

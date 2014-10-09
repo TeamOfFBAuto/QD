@@ -23,7 +23,7 @@
         self.userName.backgroundColor = [UIColor clearColor];
         // "分享了一个链接"
         self.urlLabel = [[UILabel alloc] init];
-        self.urlLabel.frame = CGRectMake(USER_ICON_WHDTH + USER_NAME_WHDTH+3, 26, URL_LABEL_WHDTH, URL_LABEL_HEIGHT);
+        self.urlLabel.frame = CGRectMake(USER_ICON_WHDTH + USER_NAME_WHDTH+3, 15, URL_LABEL_WHDTH, URL_LABEL_HEIGHT);
         
         self.urlLabel.text = @"分享了一个链接";
         self.urlLabel.textAlignment = NSTextAlignmentLeft;

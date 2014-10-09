@@ -89,7 +89,13 @@
     }
     return self;
 }
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"guke_title_bg@2x" ofType:@"png"]] forBarMetrics:UIBarMetricsDefault];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+}
 - (void)loadView
 {
     UIView *view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame];
@@ -179,6 +185,7 @@
     rightBtn.frame = CGRectMake(0, (44-28)/2+1, 44, 28);
     rightBtn.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.2f];
     rightBtn.layer.cornerRadius = 4;
+    rightBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [rightBtn setTitle:@"提交" forState:UIControlStateNormal];
     [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
@@ -193,9 +200,10 @@
 - (UIView *)loadTitleView
 {
     _titleView = [[UIView alloc] init];
-    _titleView.frame = CGRectMake(0, 64, SCREEN_WIDTH,80);
+    _titleView.frame = CGRectMake(0, 64, SCREEN_WIDTH,100);
     _titleView.backgroundColor = [UIColor whiteColor];
-//    [self.view addSubview:_titleView];
+    _titleView.layer.borderColor = [GETColor(156, 156, 156) CGColor];
+    _titleView.layer.borderWidth = 1.0;
     
     UILabel *titleLabel = [[UILabel alloc] init];
     titleLabel.frame = CGRectMake(10, 10, 40, 30);
@@ -208,25 +216,33 @@
     _titleField.frame = CGRectMake(60, 10, SCREEN_WIDTH-60-10, 30);
     _titleField.backgroundColor = [UIColor whiteColor];
     _titleField.font = [UIFont systemFontOfSize:13.5f];
+    _titleField.layer.borderWidth = 1;
+    _titleField.layer.borderColor = [GETColor(156, 156, 156) CGColor];
+    _titleField.layer.cornerRadius = 3;
+    _titleField.textColor = GETColor(156, 156, 156);
     _titleField.text = _info.title;
     [_titleView addSubview:_titleField];
     
-    UIImageView *line = [[UIImageView alloc] init];
-    line.frame = CGRectMake(60-1, _titleField.frame.origin.y+_titleField.frame.size.height-10, SCREEN_WIDTH-60-10+2, 5);
-    line.backgroundColor = [UIColor clearColor];
-    line.image = [UIImage imageNamed:@"guke_searchbglinered.png"];
+    UIView *line = [[UIView alloc]initWithFrame:CGRectMake(-2, 50, SCREEN_WIDTH + 4, 1)];
+    line.layer.borderColor = [GETColor(156, 156, 156) CGColor];
+    line.layer.borderWidth = 1.0;
     [_titleView addSubview:line];
     
-    
-    
     _fileView = [[UIView alloc] init];
-    _fileView.frame = CGRectMake(0,40, SCREEN_WIDTH, 40);
+    _fileView.frame = CGRectMake(0,53, SCREEN_WIDTH, 40);
     [_titleView addSubview:_fileView];
     
     UILabel *label = [[UILabel alloc] init];
-    label.frame = CGRectMake(10, 0, 220, 40);
-    label.text = @"附件: （图片、语音、视频)";
+    label.frame = CGRectMake(10, 0, 53, 40);
+    label.text = @"附件:";
     [_fileView addSubview:label];
+    
+    UILabel *label1 = [[UILabel alloc] init];
+    label1.frame = CGRectMake(60, 0, 170, 40);
+    label1.textAlignment = NSTextAlignmentLeft;
+    label1.text = @"（图片、语音、视频）";
+    label1.textColor = GETColor(156, 156, 156);
+    [_fileView addSubview:label1];
     
     BlockButton *btn = [[BlockButton alloc] init];
     btn.frame = CGRectMake(235, 5, 30, 30);
@@ -251,9 +267,16 @@
     [self.view addSubview:_fileView];
     
     UILabel *label = [[UILabel alloc] init];
-    label.frame = CGRectMake(10, 0, 220, 40);
-    label.text = @"附件: （图片、语音、视频)";
+    label.frame = CGRectMake(10, 0, 50, 40);
+    label.text = @"附件:";
     [_fileView addSubview:label];
+    
+    UILabel *label1 = [[UILabel alloc] init];
+    label1.frame = CGRectMake(60, 0, 170, 40);
+    label1.textAlignment = NSTextAlignmentLeft;
+    label1.text = @"（图片、语音、视频）";
+    label1.textColor = GETColor(156, 156, 156);
+    [_fileView addSubview:label1];
     
     BlockButton *btn = [[BlockButton alloc] init];
     btn.frame = CGRectMake(235, 5, 30, 30);
@@ -288,10 +311,10 @@
 
 - (UIView *)loadAddContentView
 {
-    UIView * aView = [[UIView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,100)];
+    UIView * aView = [[UIView alloc] initWithFrame:CGRectMake(-2,0,DEVICE_WIDTH+4,110)];
     
     _AddContentView = [[UITextView alloc] init];
-    _AddContentView.frame = CGRectMake(5,0,DEVICE_WIDTH-10,100);
+    _AddContentView.frame = CGRectMake(7,10,DEVICE_WIDTH-10,100);
     _AddContentView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.8];
     _AddContentView.font = [UIFont systemFontOfSize:14.0f];
     _AddContentView.text = _info.content;
@@ -370,7 +393,7 @@
 {
     NSLog(@"点击提交按钮");
 
-    NSDictionary *parameters = @{@"userId":GET_USER_ID,@"sid":GET_S_ID,@"infoId":_info.infoId,@"title":[NSString stringWithFormat:@"%@",_titleField.text],@"content":[NSString stringWithFormat:@"%@",_AddContentView.text]};
+    NSDictionary *parameters = @{@"userId":GET_USER_ID,@"sid":GET_S_ID,@"infoId":_info.infoId?_info.infoId:@"0",@"title":[NSString stringWithFormat:@"%@",_titleField.text],@"content":[NSString stringWithFormat:@"%@",_AddContentView.text]};
     
 //    [AFRequestService responseDataWithImage:@"infonew.php" andparameters:parameters andDataArray:_dataArray andfieldType:@"attach1" andfileName:@"attach1.jpg" andResponseData:^(NSData *responseData){
 //        NSDictionary *dict =(NSDictionary *)responseData;
@@ -674,6 +697,7 @@
     _AddContentView.frame = CGRectMake(5, _tableView.frame.origin.y+_tableView.frame.size.height+2, 310, 100);
     [_tableView reloadData];
  */
+
     [_tableView reloadData];
     [self tableViewSlide];
  
@@ -749,22 +773,6 @@
             model.imageName = [locationString stringByAppendingString:@".jpg"];
             model.imageData = imgData;
             [_dataArray addObject:model];
-            /*
-            if (SCREEN_HEIGHT<568) {
-                if (_dataArray.count*CELL_HEIGHT<210) {
-                    _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, _dataArray.count*CELL_HEIGHT);
-                }else{
-                    _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, 210);
-                }
-            }else{
-                if (_dataArray.count*CELL_HEIGHT<210+88) {
-                    _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, _dataArray.count*CELL_HEIGHT);
-                }else{
-                    _tableView.frame = CGRectMake(0, _fileView.frame.origin.y+_fileView.frame.size.height, SCREEN_WIDTH, 210+88);
-                }
-            }
-            _AddContentView.frame = CGRectMake(5, _tableView.frame.origin.y+_tableView.frame.size.height+2, 310, 100);
-             */
             [_tableView reloadData];
             [self tableViewSlide];
             [self dismissViewControllerAnimated:YES completion:nil];

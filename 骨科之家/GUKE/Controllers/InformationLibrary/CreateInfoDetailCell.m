@@ -106,6 +106,7 @@
         self.files_label.text = ((VideoUploadModel *)object).fileName;
         self.files_size_label.text = [NSString stringWithFormat:@"%d k",((VideoUploadModel *)object).fileData.length/1024];
     }
+    self.files_size_label.textColor = GETColor(156, 156, 156);
 }
 
 - (void)filesImageViewTap:(id)sender

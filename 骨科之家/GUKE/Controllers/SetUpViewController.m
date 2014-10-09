@@ -123,7 +123,7 @@
 }
 - (void)creatTable
 {
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, viewSize.width, viewSize.height - 64) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, viewSize.width, viewSize.height) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.scrollEnabled = YES;
     _tableView.dataSource = self;

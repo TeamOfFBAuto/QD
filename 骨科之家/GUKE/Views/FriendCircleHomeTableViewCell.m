@@ -51,7 +51,7 @@ static const NSMutableArray *subjectArry;
         self.urlLabel.textAlignment = NSTextAlignmentLeft;
         self.urlLabel.backgroundColor = [UIColor clearColor];
         self.urlLabel.textColor = [UIColor blackColor];
-        self.urlLabel.font = [UIFont systemFontOfSize:13.5f];
+        self.urlLabel.font = [UIFont systemFontOfSize:14.0f];
         self.urlLabel.hidden = YES;
         
         
@@ -215,10 +215,10 @@ static const NSMutableArray *subjectArry;
     
     self.userIcon.frame = CGRectMake(10, 15, USER_ICON_WHDTH, USER_ICON_HEIGHT);
     self.userName.frame = CGRectMake(USER_ICON_WHDTH + 20, 20, USER_NAME_WHDTH, USER_NAME_HEIGHT);
-    self.urlLabel.frame = CGRectMake(USER_ICON_WHDTH + USER_NAME_WHDTH+5, 26, URL_LABEL_WHDTH, URL_LABEL_HEIGHT);
+    self.urlLabel.frame = CGRectMake(USER_ICON_WHDTH + USER_NAME_WHDTH+5, 20.5, URL_LABEL_WHDTH, URL_LABEL_HEIGHT);
     
     CGFloat contentHeight = [FriendContentView heightForCellWithPost:_post];
-    _ContentView.frame = CGRectMake(0,45, 320,contentHeight);
+    _ContentView.frame = CGRectMake(0,50, 320,contentHeight);
     if (_ContentView.isShareLabel) {
         self.urlLabel.hidden = NO;
     }else{

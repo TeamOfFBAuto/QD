@@ -106,7 +106,13 @@
     }
     return self;
 }
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"guke_title_bg@2x" ofType:@"png"]] forBarMetrics:UIBarMetricsDefault];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+}
 - (void)loadView
 {
     UIView *view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame];
@@ -236,6 +242,7 @@
     rightBtn.frame = CGRectMake(0, (44-28)/2+1, 44, 28);
     rightBtn.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.2f];
     rightBtn.layer.cornerRadius = 4;
+    rightBtn.font = [UIFont systemFontOfSize:14];
     [rightBtn setTitle:@"提交" forState:UIControlStateNormal];
     [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
@@ -287,8 +294,8 @@
     text_view.textAlignment = NSTextAlignmentLeft;
     text_view.textColor = [UIColor lightGrayColor];
     text_view.font = [UIFont systemFontOfSize:14];
-    text_view.layer.borderColor = [UIColor blueColor].CGColor;
-    text_view.layer.borderWidth = 0.5;
+    text_view.layer.borderColor = GETColor(55, 168, 189).CGColor;
+    text_view.layer.borderWidth = 1;
     [view addSubview:text_view];
     
     placeHolder_shuoming = [[UILabel alloc] initWithFrame:CGRectMake(10,5,200,20)];
@@ -806,6 +813,7 @@
             
             cell.content_textView.text = ((VideoUploadModel *)object).fileName;
             cell.filesSize_label.text = [NSString stringWithFormat:@"%d k",((VideoUploadModel *)object).fileData.length/1024];
+            cell.filesSize_label.textColor = GETColor(156, 156, 156);
         }
         
         return cell;
@@ -819,28 +827,6 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         }
         
-//        if (!treatment_case)
-//        {
-//            treatment_case = [[UITextView alloc] initWithFrame:CGRectMake(10,5,DEVICE_WIDTH-20,60)];
-//            treatment_case.tag = 100 + indexPath.row;
-//            treatment_case.text = _feed.fangan;
-//            treatment_case.textAlignment = NSTextAlignmentLeft;
-//            treatment_case.layer.cornerRadius = 5;
-//            treatment_case.font = [UIFont systemFontOfSize:15];
-//            treatment_case.delegate = self;
-//            treatment_case.layer.masksToBounds = YES;
-//            treatment_case.layer.borderColor = [UIColor grayColor].CGColor;
-//            treatment_case.layer.borderWidth = 0.5;
-//            [cell.contentView addSubview:treatment_case];
-//            
-//            
-//            placeHolder_treatment_case = [[UILabel alloc] initWithFrame:CGRectMake(10,5,200,20)];
-//            placeHolder_treatment_case.text = @"治疗方案";
-//            placeHolder_treatment_case.font = [UIFont systemFontOfSize:15];
-//            placeHolder_treatment_case.textAlignment = NSTextAlignmentLeft;
-//            placeHolder_treatment_case.textColor = [UIColor blackColor];
-//            [treatment_case addSubview:placeHolder_treatment_case];
-//        }
         
         for (UIView * view in cell.contentView.subviews) {
             [view removeFromSuperview];
@@ -848,10 +834,10 @@
         
         
         UITextView * textView = [textView_array objectAtIndex:indexPath.row - _feed.attach_array.count];
-        textView.frame = CGRectMake(10,5,DEVICE_WIDTH-20,60);
+        textView.frame = CGRectMake(10,8,DEVICE_WIDTH-20,70);
         textView.layer.masksToBounds = YES;
-        textView.layer.borderColor = [UIColor grayColor].CGColor;
-        textView.layer.borderWidth = 0.5;
+        textView.layer.borderColor = GETColor(55, 168, 189).CGColor;
+        textView.layer.borderWidth = 1;
         
         if (!placeHolder_treatment_case)
         {
@@ -893,12 +879,14 @@
         }
         
         UITextView * textView = [textView_array objectAtIndex:indexPath.row - _feed.attach_array.count];
+        textView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+        textView.layer.borderWidth = 1;
+        textView.layer.cornerRadius = 3;
+        textView.textColor = GETColor(156, 156, 156);
         [cell.contentView addSubview:textView];
         
         NSString * title = [content_array objectAtIndex:indexPath.row-_feed.attach_array.count];
         cell.title_label.text = title;
-//        cell.input_textView.tag = indexPath.row + 100;
-//        cell.input_textView.delegate = self;
         
         CGSize aSize = [title sizeWithFont:[UIFont systemFontOfSize:16] constrainedToSize:CGSizeMake(MAXFLOAT, 30)];
         
@@ -909,7 +897,7 @@
         
         float input_widht = DEVICE_WIDTH - 20 - aSize.width -10;
         
-        CGRect textViewFrame = CGRectMake(aSize.width+10,10,input_widht,25);
+        CGRect textViewFrame = CGRectMake(aSize.width+13,10,input_widht,30);
         textView.frame = textViewFrame;
         
         cell.input_line_view.frame = CGRectMake(aSize.width+10,textViewFrame.origin.y+textViewFrame.size.height+2.5,input_widht+5,4);
