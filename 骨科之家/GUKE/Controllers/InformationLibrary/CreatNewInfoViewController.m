@@ -370,7 +370,7 @@
 {
     NSLog(@"点击提交按钮");
 
-    NSDictionary *parameters = @{@"userId":GET_USER_ID,@"sid":GET_S_ID,@"infoId":_info.infoId,@"title":[NSString stringWithFormat:@"%@",_titleField.text],@"content":[NSString stringWithFormat:@"%@",_AddContentView.text]};
+    NSDictionary *parameters = @{@"userId":GET_USER_ID,@"sid":GET_S_ID,@"infoId":_info.infoId?_info.infoId:@"0",@"title":[NSString stringWithFormat:@"%@",_titleField.text],@"content":[NSString stringWithFormat:@"%@",_AddContentView.text]};
     
 //    [AFRequestService responseDataWithImage:@"infonew.php" andparameters:parameters andDataArray:_dataArray andfieldType:@"attach1" andfileName:@"attach1.jpg" andResponseData:^(NSData *responseData){
 //        NSDictionary *dict =(NSDictionary *)responseData;
