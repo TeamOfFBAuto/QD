@@ -254,7 +254,7 @@
             [sqliteAndtable getAllInfo];
             sqliteAndtable = nil;
             dispatch_sync(dispatch_get_main_queue(), ^{
-                
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadOver" object:nil userInfo:nil];
             });
         });
          UserContactViewController *userContact = [[UserContactViewController alloc]init];

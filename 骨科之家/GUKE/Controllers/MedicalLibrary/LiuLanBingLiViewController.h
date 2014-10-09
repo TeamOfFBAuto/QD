@@ -10,11 +10,15 @@
 #import "BingLiListFeed.h"
 
 #import "InfoFileTableViewCell.h"
-
+@protocol LiuLanBingLiViewDelegate<NSObject>
+@optional
+- (void)repeatLoadData;
+@end
 @interface LiuLanBingLiViewController : SNViewController<UITableViewDataSource,UITableViewDelegate,InfoFileTableViewCellDelegate>
 {
     
 }
+@property(nonatomic,assign)id<LiuLanBingLiViewDelegate>delegate;
 
 @property(nonatomic,strong)UITableView * myTableView;
 

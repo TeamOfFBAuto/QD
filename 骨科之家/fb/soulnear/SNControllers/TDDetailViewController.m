@@ -15,6 +15,7 @@
 #import "UIImage+fixOrientation.h"
 #import "UIImage+UIImageExt.h"
 #import "NSString+SBJSON.h"
+#import "SingleInstance.h"
 
 @interface TDDetailViewController ()<ToolbarDelegate>
 {
@@ -65,7 +66,6 @@
     [AFRequestService responseData:TOPIC_DISCUSS_COMMENT_URL andparameters:parameters andResponseData:^(id responseData) {
         
         NSDictionary * dict = (NSDictionary *)responseData;
-        NSLog(@"dict -------  %@",dict);
         NSString * code = [dict objectForKey:@"code"];
         if ([code intValue]==0)//说明请求数据成功
         {
@@ -105,7 +105,6 @@
     NSString * filename;
     
     ASIFormDataRequest * upLoad_request = [[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BASE_URL,TOPIC_DISCUSS_COMMIT_URL]]];
-//    ASIFormDataRequest * upLoad_request = [HttpRequsetFactory getRequestKeys:dic subUrl:TOPIC_DISCUSS_COMMIT_URL userCommon:YES];
     [upLoad_request setTimeOutSeconds:30.0f];
     [upLoad_request setShouldAttemptPersistentConnection:NO];
     
@@ -116,7 +115,6 @@
     if (type == SEND_Type_voice)
     {
         data = [NSMutableData dataWithContentsOfFile:[VoiceRecorderBaseVC getPathByFileName:[[(NSDictionary *)object objectForKey:@"fid"] stringByAppendingString:@"wavToAmr"] ofType:@"amr"]];
-//        [dic setObject:[object objectForKey:@"length"] forKey:@"voiceLength1"];
         filename = [NSString stringWithFormat:@"%@.amr",[object objectForKey:@"fid"]];
         [upLoad_request setPostValue:[object objectForKey:@"length"] forKey:@"voiceLength1"];
         [upLoad_request addData:data withFileName:filename andContentType:nil forKey:@"attach1"];
@@ -141,11 +139,6 @@
     __weak typeof(self) bself = self;
     
     [request setCompletionBlock:^{
-        
-       // NSDictionary * allDic = [upLoad_request.responseString objectFromJSONString];
-      //NSDictionary * allDic =  [[[NSString alloc] initWithData:upLoad_request.responseData encoding:NSUTF8StringEncoding] JSONValue];
-        
-       // NSLog(@"aldii ---  %@",allDic);
         currentPage = 1;
         [bself getCommentData];
         
@@ -169,9 +162,11 @@
     UIView * aView = [[UIView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,0)];
     aView.backgroundColor = [UIColor whiteColor];
     
-    CGRect rectr = [self.info.title boundingRectWithSize:CGSizeMake(DEVICE_WIDTH-30, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16]} context:nil];
+    CGSize recSize = [SingleInstance customFontHeight:self.info.title andFontSize:16 andLineWidth:DEVICE_WIDTH-30];
+       // CGRect rectr = [self.info.title boundingRectWithSize:CGSizeMake(DEVICE_WIDTH-30, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16]} context:nil];
     
-    UILabel * titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15,20,DEVICE_WIDTH-30,rectr.size.height)];
+    
+    UILabel * titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15,20,DEVICE_WIDTH-30,recSize.height)];
     titleLabel.numberOfLines = 0;
     titleLabel.text = _info.title;
     titleLabel.textAlignment = NSTextAlignmentLeft;
@@ -179,7 +174,7 @@
     titleLabel.font = [UIFont systemFontOfSize:16];
     [aView addSubview:titleLabel];
     
-    height += 20 + rectr.size.height;
+    height += 20 + recSize.height;
     
     if (![_info.bigPic isKindOfClass:[NSNull class]])
     {
@@ -191,9 +186,9 @@
         height += 30 + 150;
     }
     
-    CGRect rectr1 = [self.info.content boundingRectWithSize:CGSizeMake(DEVICE_WIDTH-30, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14]} context:nil];
-    
-    UILabel * contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(15,height+20,DEVICE_WIDTH-30,rectr1.size.height)];
+    //CGRect rectr1 = [self.info.content boundingRectWithSize:CGSizeMake(DEVICE_WIDTH-30, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14]} context:nil];
+    CGSize recSize1 = [SingleInstance customFontHeight:self.info.content andFontSize:14 andLineWidth:DEVICE_WIDTH-30];
+    UILabel * contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(15,height+20,DEVICE_WIDTH-30,recSize1.height)];
     contentLabel.numberOfLines = 0;
     contentLabel.text = _info.content;
     contentLabel.textAlignment = NSTextAlignmentLeft;
@@ -201,7 +196,7 @@
     contentLabel.font = [UIFont systemFontOfSize:14];
     [aView addSubview:contentLabel];
     
-    height += 30 + rectr1.size.height + 20;
+    height += 30 + recSize1.height + 20;
     
     aView.frame = CGRectMake(0,0,DEVICE_WIDTH-30,height);
     
@@ -221,7 +216,7 @@
 -(void)wavToAmr:(NSString *)_filePath  with:(NSString *)_fileName length:(CGFloat)length{
     [VoiceConverter wavToAmr:_filePath amrSavePath:[VoiceRecorderBaseVC getPathByFileName:[_fileName stringByAppendingString:@"wavToAmr"] ofType:@"amr"]];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:_fileName,@"fid",_filePath,@"fileName",[NSNumber numberWithInt:(int)length],@"length", nil];
-    NSLog(@"%@==%@",_filePath,_fileName);
+    //NSLog(@"%@==%@",_filePath,_fileName);
     [self sureUpload:dic withType:SEND_Type_voice];
 }
 
@@ -235,28 +230,7 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ReplyListModel * info = [data_array objectAtIndex:indexPath.row];
-    float height = 110;
-    if (info.theType == SEND_Type_content)
-    {
-        CGRect rectr = [info.context boundingRectWithSize:CGSizeMake(DEVICE_WIDTH-30, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15]} context:nil];
-        
-        if (rectr.size.height+20+26 > 110)
-        {
-            height = rectr.size.height+20+26;
-        }
-    }else if (info.theType == SEND_Type_photo)
-    {
-        height = 130;
-        
-    }else if (info.theType == SEND_Type_voice)
-    {
-        
-    }else if (info.theType == SEND_Type_other)
-    {
-        
-    }
-    
-    return height;
+   return [TDDetailCell heightForCell:info];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -276,8 +250,6 @@
 #pragma mark - ToolBarDelegate
 - (BOOL)placeTextViewShouldReturn:(HPGrowingTextView *)textView
 {
-    
-    
     return YES;
 }
 - (void)toolBarPicture

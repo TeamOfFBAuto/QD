@@ -175,7 +175,7 @@
     UIView *rightView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
     rightView.backgroundColor = [UIColor clearColor];
     
-    UIButton * rightBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     rightBtn.frame = CGRectMake(0, (44-28)/2+1, 44, 28);
     rightBtn.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.2f];
     rightBtn.layer.cornerRadius = 4;
@@ -358,6 +358,10 @@
 // 手势事件
 - (void)tapAction
 {
+    __weak typeof(self)wself=self;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(repeatLoadData)]) {
+        [wself.delegate repeatLoadData];
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark - 提交
@@ -366,7 +370,7 @@
 {
     NSLog(@"点击提交按钮");
 
-    NSDictionary *parameters = @{@"userId":GET_USER_ID,@"sid":GET_S_ID,@"infoId":@"0",@"title":[NSString stringWithFormat:@"%@",_titleField.text],@"content":[NSString stringWithFormat:@"%@",_AddContentView.text]};
+    NSDictionary *parameters = @{@"userId":GET_USER_ID,@"sid":GET_S_ID,@"infoId":_info.infoId,@"title":[NSString stringWithFormat:@"%@",_titleField.text],@"content":[NSString stringWithFormat:@"%@",_AddContentView.text]};
     
 //    [AFRequestService responseDataWithImage:@"infonew.php" andparameters:parameters andDataArray:_dataArray andfieldType:@"attach1" andfileName:@"attach1.jpg" andResponseData:^(NSData *responseData){
 //        NSDictionary *dict =(NSDictionary *)responseData;
@@ -391,7 +395,7 @@
         [up_dic setObject:delete_id forKey:@"removeAttachIds"];
     }
     
-    
+    NSLog(@"%@",up_dic);
     [AFRequestService bingliresponseDataWithImage:@"infonew.php" andparameters:up_dic andDataArray:_dataArray andfieldType:@"attach1" andfileName:@"attach1.jpg" andResponseData:^(NSData *responseData) {
        
         NSDictionary *dict =(NSDictionary *)responseData;

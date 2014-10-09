@@ -90,7 +90,7 @@
     _feed.fenleiId = [[data_array objectAtIndex:indexPath.row] objectForKey:@"fenleiId"];
     NSDictionary * dic = [NSDictionary dictionaryWithObjectsAndKeys:[[data_array objectAtIndex:indexPath.row] objectForKey:@"fenleiId"],@"typeId",nil];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"uploadData" object:dic];
+    
     
 //    [self.navigationController popViewControllerAnimated:YES];
     
@@ -177,7 +177,7 @@
 //        }
 //    }];
     
-    
+    NSLog(@"%@",parameters);
     [AFRequestService bingliresponseDataWithImage:WRITE_BINGLI_URL andparameters:parameters andDataArray:_feed.attach_array andfieldType:@"attach1" andfileName:@"attach1.jpg" andResponseData:^(NSData *responseData) {
         
         NSDictionary * dict = (NSDictionary *)responseData;
@@ -185,6 +185,7 @@
         
         if ([[dict objectForKey:@"code"]intValue] == 0)
         {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"uploadData" object:nil];
             [wself.navigationController popViewControllerAnimated:YES];
         }
     }];

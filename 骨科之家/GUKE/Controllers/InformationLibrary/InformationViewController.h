@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface InformationViewController : UIViewController
+#import "CreatNewInfoViewController.h"
+#import "InfoDetailViewController.h"
+@interface InformationViewController : UIViewController<InfoDetailViewDelegate,CreatNewInfoViewDelegate>
 
 @end

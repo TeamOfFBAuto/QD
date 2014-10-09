@@ -39,6 +39,6 @@
 
 -(void)setInfoWith:(ReplyListModel *)info;
 
-
++ (CGFloat)heightForCell:(ReplyListModel *)info;
 
 @end

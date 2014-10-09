@@ -1,4 +1,4 @@
-//
+        //
 //  GeventDetailViewController.m
 //  GUKE
 //
@@ -52,19 +52,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    if (IOS7_LATER) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
     NSLog(@"%@",self.dataModel.eventTitle);
     self.aTitle = @"会议日程";
     
     NSLog(@"%s",__FUNCTION__);
     
     [self prepareNetData];
-    
-//    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320,iPhone5?568:568-64) style:UITableViewStylePlain];
-//    tableView.delegate = self;
-//    tableView.dataSource = self;
-//    [self.view addSubview:tableView];
-    
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(prepareNetData1) name:@"GMJOINSUCCESS" object:nil];
@@ -108,7 +104,7 @@
             
             self.dataModel = [[GeventModel alloc]initWithDic:eventDic];
             self.dataModel.userExists = isbaoming;
-            
+            self.dataModel.userlist = [dict objectForKey:@"userlist"];
             if (!_webView) {
                 _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, 275, 0)];
             }
@@ -116,13 +112,6 @@
             _webView.delegate = self;
             _webView.hidden = YES;
             [self.view addSubview:_webView];
-            
-            //            UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, 320, iPhone5?568-64:568-64-64) style:UITableViewStylePlain];
-            //            tableView.delegate = self;
-            //            tableView.dataSource = self;
-            //            [self.view addSubview:tableView];
-            
-            
         }else{
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"加载失败，请重新加载" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
@@ -163,6 +152,7 @@
             
             self.dataModel = [[GeventModel alloc]initWithDic:eventDic];
             self.dataModel.userExists = isbaoming;
+            self.dataModel.userlist = [dict objectForKey:@"userlist"];
             
             
             if (!_webView) {
@@ -173,12 +163,6 @@
             _webView.hidden = YES;
             [self.view addSubview:_webView];
             [self.view addSubview:_webView];
-            
-            //            UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, 320, iPhone5?568-64:568-64-64) style:UITableViewStylePlain];
-            //            tableView.delegate = self;
-            //            tableView.dataSource = self;
-            //            [self.view addSubview:tableView];
-            
             
         }else{
             [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -223,7 +207,7 @@
             
             self.dataModel = [[GeventModel alloc]initWithDic:eventDic];
             self.dataModel.userExists = isbaoming;
-            
+            self.dataModel.userlist = [dict objectForKey:@"userlist"];
             
             if (!_webView) {
                 _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, 275, 0)];
@@ -250,7 +234,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
@@ -319,6 +302,8 @@
     }else if (sender.tag == 12){//支付费用
         
         NSLog(@"支付费用");
+        
+        
         [self PayForAli];
         
         
@@ -357,7 +342,7 @@
     order.seller = SellerID;
     
     order.tradeNO = [self generateTradeNO]; //订单ID（由商家自行制定）
-    order.productName = [NSString _859ToUTF8:self.dataModel.eventTitle]; //商品标题
+    order.productName = self.dataModel.eventTitle; //商品标题
     order.productDescription = @"discription"; //商品描   述
     order.amount = [NSString stringWithFormat:@"%@",[NSString _859ToUTF8:self.dataModel.fee]];//商品价格
    order.notifyURL =  @"http%3A%2F%2Fwwww.xxx.com"; //回调URL
@@ -395,11 +380,67 @@
     
 }
 
-
+#pragma mark - 支付完成的回调
 -(void)aliresault{
 
     NSLog(@"阿里回调");
     
+    _hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    _hud.labelText = @"正在加载";
+    
+    NSString *eventUserIdStr = @"0";
+    
+    if (self.dataModel.userlist.count > 0) {
+        for (NSDictionary *dic in self.dataModel.userlist) {
+            NSString *userId = [dic objectForKey:@"userId"];
+            if ([GET_U_ID isEqualToString:userId]) {
+                eventUserIdStr = [dic objectForKey:@"eventUserId"];
+            }
+        }
+    }
+    
+    
+    
+    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"eventUserId":eventUserIdStr};
+    
+    [AFRequestService responseData:CALENDAR_EVENT andparameters:parameters andResponseData:^(id responseData) {
+        
+        NSDictionary * dict = (NSDictionary *)responseData;
+        NSString * code = [dict objectForKey:@"code"];
+        NSDictionary *eventDic = [dict objectForKey:@"event"];
+        if ([code intValue]==0)//说明请求数据成功
+        {
+            
+            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
+            NSLog(@"loadSuccess");
+            
+            NSLog(@"查看活动  %@",dict);
+            
+            NSString *isbaoming = @"1";
+            
+            self.dataModel = [[GeventModel alloc]initWithDic:eventDic];
+            self.dataModel.userExists = isbaoming;
+            self.dataModel.userlist = [dict objectForKey:@"userlist"];
+            if (!_webView) {
+                _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, 275, 0)];
+            }
+            [_webView loadHTMLString:self.dataModel.context baseURL:nil];
+            _webView.delegate = self;
+            _webView.hidden = YES;
+            [self.view addSubview:_webView];
+            
+            [self prepareNetData1];
+            
+            
+        }else{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"加载失败，请重新加载" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [al show];
+            NSLog(@"%d",[code intValue]);
+        }
+    }];
     
     
     
@@ -427,17 +468,9 @@
         NSString * code = [dict objectForKey:@"code"];
         if ([code intValue]==0)//说明请求数据成功
         {
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"GMESCSUCCESS" object:nil];
-            
-            NSLog(@"loadSuccess");
-            
-            NSLog(@"%@",dict);
-            
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             
-            UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"取消成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//            al.tag = 101;
+            UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"支付成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [al show];
             
             
@@ -445,9 +478,6 @@
             
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             
-            NSLog(@"%d",[code intValue]);
-            UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [al show];
         }
     }];
 }
@@ -464,10 +494,7 @@
     
     
     
-    
-    
-    
-    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, 320, iPhone5?568-64:568-64-64) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     [self.view addSubview:tableView];

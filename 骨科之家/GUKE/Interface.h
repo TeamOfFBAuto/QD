@@ -134,6 +134,8 @@ alpha:(a)]
 #pragma mark - 资料库分享到讨论组
 ///资料库分享到讨论组
 #define ZILIAOKU_SHARE_GROUPS_URL @"infosharegroup.php"
+#pragma mark - 删除资料
+#define INFORM_DEL_URL            @"infodel.php"
 
 
 #pragma mark - 删除朋友圈文章
@@ -153,6 +155,7 @@ alpha:(a)]
 #define CALENDAR_EVENT @"event.php"
 #pragma mark - 取消活动报名
 #define CALENDAR_EVENTQUIT @"eventquit.php"
+#define CALENDAR_EVENTPAYSUCCESS @"eventpaysuccess.php"
 
 #define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
 

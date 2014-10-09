@@ -8,10 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "InformationModel.h"
+
+@protocol InfoDetailViewDelegate <NSObject>
+@optional
+-(void)repeatLoadData;
+@end
 @interface InfoDetailViewController : UIViewController
+
+@property(nonatomic,strong)MPMoviePlayerController *moviePlayer;
+@property(nonatomic,assign)id<InfoDetailViewDelegate>delegate;
 // 自定义初始化方法(传入model值)
 - (instancetype)initWithModel:(InformationModel *)model;
-@property(nonatomic,strong)MPMoviePlayerController *moviePlayer;
 
 
 @end

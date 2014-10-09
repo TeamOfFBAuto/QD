@@ -25,7 +25,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    if (IOS7_LATER) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
     total_num = 3;
     
     self.dataArray=[NSMutableArray array];
@@ -36,7 +38,7 @@
     }
     
     self.aTitle = @"添加标签";
-    _myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT-88) style:UITableViewStylePlain];
+    _myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT-152) style:UITableViewStylePlain];
     _myTableView.separatorColor=[UIColor clearColor];
     _myTableView.delegate = self;
     _myTableView.dataSource = self;
@@ -101,7 +103,7 @@
 -(void)setBingliBottomView{
 
 //1 bgView
-    UIView *aview=[[UIView alloc]initWithFrame:CGRectMake(0, DEVICE_HEIGHT-88, 320, 88)];
+    UIView *aview=[[UIView alloc]initWithFrame:CGRectMake(0, DEVICE_HEIGHT-152, 320, 88)];
     aview.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:aview];
     

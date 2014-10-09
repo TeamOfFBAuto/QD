@@ -31,15 +31,17 @@
 {
     if (info.theType == SEND_Type_content)
     {
-        CGRect rectr = [info.context boundingRectWithSize:CGSizeMake(DEVICE_WIDTH-30, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15]} context:nil];
+        //CGRect rectr = [info.context boundingRectWithSize:CGSizeMake(DEVICE_WIDTH-100, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14]} context:nil];
+        CGSize recSize = [SingleInstance customFontHeight:info.context andFontSize:14 andLineWidth:DEVICE_WIDTH-100];
         
-        _background_imageView = [[UIImageView alloc] initWithFrame:CGRectMake(56,37,rectr.size.width+20,rectr.size.height+20)];
+        _background_imageView = [[UIImageView alloc] initWithFrame:CGRectMake(56,37,recSize.width+20,recSize.height+20)];
         _background_imageView.image = [[UIImage imageNamed:@"chatfrom_bg_voice_playing.9.png"] stretchableImageWithLeftCapWidth:18 topCapHeight:26];
         [self.contentView addSubview:_background_imageView];
         
-        _content_label = [[UILabel alloc] initWithFrame:CGRectMake(12,10,rectr.size.width,rectr.size.height)];
+        _content_label = [[UILabel alloc] initWithFrame:CGRectMake(12,10,recSize.width,recSize.height)];
         _content_label.text = info.context;
         _content_label.numberOfLines = 0;
+        _content_label.backgroundColor = [UIColor clearColor];
         _content_label.font = [UIFont systemFontOfSize:14];
         _content_label.textAlignment = NSTextAlignmentLeft;
         _content_label.textColor = [UIColor blackColor];
@@ -85,13 +87,41 @@
         
     }
     
-//    _header_imageView sd_setImageWithURL:[SNTools returnUrl:info.] placeholderImage:<#(UIImage *)#>
-    _header_imageView.image = [UIImage imageNamed:@"user_default_ico"];
+    //_header_imageView.image = [UIImage imageNamed:@"user_default_ico"];w
+    NSString *iconUrl = [UserInfoDB selectFeildString:@"icon" andcuId:GET_USER_ID anduserId:info.userId];
+    [_header_imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",IMAGE_BASE_URL,iconUrl]] placeholderImage:[UIImage imageNamed:@"user_default_ico"]];
     _userName_label.text = info.firstname;
     _date_label.text = info.createDate;
+    _date_label.layer.cornerRadius = 3;
     
 }
-
++ (CGFloat)heightForCell:(ReplyListModel *)info{
+    if (info.theType == SEND_Type_content)
+    {
+        CGFloat height = 110;
+            CGSize resultSize=[info.context?info.context :@"" sizeWithFont:[UIFont systemFontOfSize:15] constrainedToSize:CGSizeMake(DEVICE_WIDTH-100, MAXFLOAT) lineBreakMode:NSLineBreakByCharWrapping];
+        if (resultSize.height+20+26 > 110)
+        {
+            height = resultSize.height+20+26;
+        }
+        return height;
+        
+    }else if (info.theType == SEND_Type_photo)
+    {
+        return 130;
+        
+    }else if (info.theType == SEND_Type_voice)
+    {
+        return 110;
+        
+    }else if (info.theType == SEND_Type_other)
+    {
+        return 0;
+    }
+    else {
+        return 0;
+    }
+}
 -(void)voiceTap:(UITapGestureRecognizer *)sender
 {
     [self playVoice];

@@ -74,6 +74,7 @@
     [super viewWillAppear:YES];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pushNew:) name:PUSH_NEW object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enterForGroud:) name:ENTERFORGROUD object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadDataOver:) name:@"reloadOver" object:nil];
     /*
      是否显示小红点的标记
      */
@@ -116,6 +117,7 @@
     [self navigation];
     [self creatHead];
 }
+
 // 程序由推送启动跳转到聊天的界面
 - (void)pushVachat
 {
@@ -550,25 +552,25 @@
 // 获取用户加入及创建的群组列表
 - (void)getUserADDGroupList
 {
-//    [groupArray removeAllObjects];
-//    [groupToContactArray removeAllObjects];
-//    [groupArray addObjectsFromArray:[UserAddedGroupDB selectFeildString:nil andcuId:GET_USER_ID]];
-//    for (int i = 0; i < [groupArray count]; i++) {
-//        GroupList *groupmModel = (GroupList *)groupArray[i];
-//        UserContact *model = [[UserContact alloc]init];
-//        model.creator = groupmModel.creator;
-//        model.creatorName = groupmModel.creatorName;
-//        model.contactId = groupmModel.groupId;
-//        model.groupType = groupmModel.groupType;
-//        model.contactType = PUSH_GPCHAT;
-//        model.lastMsgUser = groupmModel.latestMsgUser;
-//        model.lastMsgUserUsername = groupmModel.latestMsgUserName;
-//        model.contactName = groupmModel.groupName;
-//        model.memo = groupmModel.memo;
-//        model.icon = [UserInfoDB selectFeildString:@"icon" andcuId:GET_U_ID anduserId:model.contactId];
-//        // 将群组添加到用户联系人的数据库中（没有重的数据便插入）
-//        [userContactDB selectuserContactInfo:USERCONTACT_TABLE andkeyValue:model andkeyArray:[self getFieldArray]];
-//    }
+    [groupArray removeAllObjects];
+    [groupToContactArray removeAllObjects];
+    [groupArray addObjectsFromArray:[UserAddedGroupDB selectFeildString:nil andcuId:GET_USER_ID]];
+    for (int i = 0; i < [groupArray count]; i++) {
+        GroupList *groupmModel = (GroupList *)groupArray[i];
+        UserContact *model = [[UserContact alloc]init];
+        model.creator = groupmModel.creator;
+        model.creatorName = groupmModel.creatorName;
+        model.contactId = groupmModel.groupId;
+        model.groupType = groupmModel.groupType;
+        model.contactType = PUSH_GPCHAT;
+        model.lastMsgUser = groupmModel.latestMsgUser;
+        model.lastMsgUserUsername = groupmModel.latestMsgUserName;
+        model.contactName = groupmModel.groupName;
+        model.memo = groupmModel.memo;
+        model.icon = [UserInfoDB selectFeildString:@"icon" andcuId:GET_U_ID anduserId:model.contactId];
+        // 将群组添加到用户联系人的数据库中（没有重的数据便插入）
+        [userContactDB selectuserContactInfo:USERCONTACT_TABLE andkeyValue:model andkeyArray:[self getFieldArray]];
+    }
     [UserContactArray removeAllObjects];
     
     // 将正在聊天的人员加入到数组中
@@ -576,13 +578,14 @@
     
     // 获取最新的消息
     [self getNewArticle:UserContactArray];
+    [_tableView reloadData];
     [self setExtraCellLineHidden:_tableView];
 }
 // 得到最新的聊天信息(从聊天的数据库中的数据库中)
 - (void)getNewArticle:(NSMutableArray *)userArray
 {
     // 将聊天广场的内容添加到数组源数组中
-    [self getVCData:userArray];
+    //[self getVCData:userArray];
     // 对整个数据源数组进行处理
     for (NSInteger i = 0; i < [UserContactArray count]; i++)
     {
@@ -597,27 +600,6 @@
         }
         
     }
-}
-// 处理聊天广场的数据
-- (void)getVCData:(NSMutableArray *)userArray{
-    // 提取聊天广场的数据
-    UserContact *vcContact = [[UserContact alloc]init];
-    
-    [self dicWithVType:VChatType_VC andRecvId:[NSNumber numberWithInt:0]];
-    [newArticleDic setObject:@"0" forKey:@"articleId"];
-    [newArticleDic setObject:GET_U_ID forKey:@"userId"];
-    NSArray *array1 = [SqliteBase readbase:TABLE_HD query:newArticleDic count:1];
-    VChatModel *model = (VChatModel *)[array1 firstObject];
-    VChatAttachModel *att = (VChatAttachModel *)[model.attachlist lastObject];
-    
-    vcContact.creatDate = model.creatDate;
-    vcContact.contactId = @"0";
-    vcContact.context = model.context;
-    vcContact.contactType = PUSH_GCHAT;
-    vcContact.typeId =model.typeId;
-    vcContact.firstUsername = model.firstname;
-    vcContact.filename = [[att.filename componentsSeparatedByString:@"."] lastObject];
-    [userArray addObject:vcContact];
 }
 #pragma mark =========if there is not data in database,we write the data pushed into the database
 - (void)pushGetData{
@@ -1055,34 +1037,7 @@
         cell = [[[NSBundle mainBundle]loadNibNamed:@"CachatTableViewCell" owner:self options:nil]lastObject];
     }
     UserContact *model = nil;
-    if (indexPath.row == 3) {
-        model  = (UserContact *)[UserContactArray lastObject];
-        cell.imgView.image = [UIImage imageNamed:@"group@2x.png"];
-        cell.nameLabel.text = LOCALIZATION(@"chat_expressname");
-        cell.nameLabel.backgroundColor = [UIColor clearColor];
-        cell.timeLable.text = [SingleInstance handleDate:model.creatDate];
-        cell.timeLable.textColor = [SingleInstance colorFromHexRGB:@"9a9a9a"];
-        cell.nameLabel.textColor = [UIColor blackColor];
-        cell.typeLable.hidden = YES;
-        if (model.filename == nil || [model.filename isEqualToString:@""]) {
-            if (model.context == nil || [model.context isEqualToString:@""]) {
-                cell.connectLable.hidden = YES;
-                cell.timeLable.hidden = YES;
-            }
-            cell.connectLable.text = [NSString stringWithFormat:@"%@:%@",model.firstUsername,model.context];
-        }
-        else if([model.filename isEqualToString:@"jpg"]) {
-            cell.connectLable.text = [NSString stringWithFormat:@"%@:%@",model.firstUsername,LOCALIZATION(@"chattype_photo")];
-        }
-        else if ([model.filename isEqualToString:@"amr"]){
-            cell.connectLable.text = [NSString stringWithFormat:@"%@:[%@]",model.firstUsername,LOCALIZATION(@"setting_notify_voice")];
-        }
-        else{
-            cell.connectLable.hidden = YES;
-            cell.timeLable.hidden = YES;
-        }
-        cell.connectLable.textColor = [UIColor colorWithRed:128/255.0 green:128/255.0 blue:128/255.0 alpha:0.8];
-    }else if (indexPath.row < 3)
+    if (indexPath.row < 3)
     {
         cell.imgView.image = [UIImage imageNamed:[[imageAndTitleArray objectAtIndex:0] objectAtIndex:indexPath.row]];
         CGRect rect = cell.nameLabel.frame;
@@ -1094,7 +1049,7 @@
         cell.typeLable.text = @"";
     }else{
         cell.accessoryType =  UITableViewCellAccessoryNone;
-        model = (UserContact *)[UserContactArray objectAtIndex:indexPath.row-4];
+        model = (UserContact *)[UserContactArray objectAtIndex:indexPath.row-3];
         cell.nameLabel.text = model.contactName;
         cell.nameLabel.backgroundColor = [UIColor clearColor];
         cell.timeLable.text = [SingleInstance handleDate:model.creatDate];
@@ -1182,21 +1137,10 @@
         [self.navigationController pushViewController:gCalendarVC animated:YES];
         
         
-    }else if (indexPath.row == 3)// 聊天广场
-    {
-        
-        VChatViewController *vc = [[VChatViewController alloc] init];
-        UserContact *model = (UserContact *)[UserContactArray lastObject];
-        vc.recvFirstName = LOCALIZATION(@"chat_expressname");
-        vc.recvName = model.contactUsername;
-        vc.type = VChatType_VC;
-        [self.navigationController pushViewController:vc animated:YES];
-        SSRCRelease(vc)
-       
     }else
     {
         VChatViewController *vc = [[VChatViewController alloc] init];
-        UserContact *model = (UserContact *)[UserContactArray objectAtIndex:indexPath.row-4];
+        UserContact *model = (UserContact *)[UserContactArray objectAtIndex:indexPath.row-3];
         // 未读数据清零
         model.lastMsgNum = @"0";
         // 个人聊天
@@ -1205,7 +1149,6 @@
             vc.recvId = [NSNumber numberWithInt:[model.contactId intValue]];
             vc.recvName = model.contactUsername;
             vc.recvFirstName = model.contactName;
-            NSLog(@"%@===%@====%@ === %@",vc.recvId,vc.recvName,vc.recvFirstName,vc.recvId);
         }
         // 群组聊天
         else if ([model.contactType isEqualToString:ORDINARY_GROUP_CODE]){
@@ -1215,7 +1158,6 @@
                 vc.recvId = [NSNumber numberWithInt:[model.contactId intValue]];
                 vc.recvName = model.contactUsername;
                 vc.recvFirstName = model.contactName;
-                NSLog(@"%@===%@====%@ === %@",vc.recvId,vc.recvName,vc.recvFirstName,vc.recvId);
             }
             else if ([model.groupType isEqualToString:GROUPTYPE_SYSTEM_CODE]){
                 vc.type = VChatType_pGroup;
@@ -1239,7 +1181,7 @@
     
 }
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-     if (indexPath.row <= 3) {
+     if (indexPath.row < 3) {
          return NO;
      }
      else{
@@ -1249,15 +1191,16 @@
 //打开编辑模式后，默认情况下每行左边会出现红的删除按钮，这个方法就是关闭这些按钮的
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView
            editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row <= 3) {
+    if (indexPath.row < 3) {
          return UITableViewCellEditingStyleNone;
     }
     else{
     return UITableViewCellEditingStyleDelete;
     }
 }
+// 编辑
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row <= 3) {
+    if (indexPath.row <= 2) {
         return;
     }
     else{
@@ -1268,7 +1211,7 @@
             window = [[UIApplication sharedApplication].windows objectAtIndex:0];
         }
         popOver = [[QiDiPopoverView alloc] init];
-        [popOver showPopoverAtPoint:CGPointMake(viewSize.width, 0) inView:self.view withContentView:[self creatMoreOperationView:indexPath.row - 1]];
+        [popOver showPopoverAtPoint:CGPointMake(viewSize.width, 0) inView:self.view withContentView:[self creatMoreOperationView:indexPath.row - 3]];
     }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
     }
@@ -1300,7 +1243,7 @@
     [popoverController showPopoverWithTouch:event];
     
 }
-
+// 弹出视图
 -(void) showActionSheet:(id)sender forEvent:(UIEvent*)event
 {
     TSActionSheet *actionSheet = [[TSActionSheet alloc] init];
@@ -1329,6 +1272,8 @@
     
     [actionSheet showWithTouch:event];
 }
+
+// 创建弹出视图的布局
 - (UIView *)creatGroupView{
     UIView *contaiterView = [[UIView alloc]initWithFrame:CGRectMake(30, 64, viewSize.width-60, 170)];
     contaiterView.backgroundColor = [UIColor blackColor];
@@ -1484,8 +1429,7 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    //self.view = nil;
-    // Dispose of any resources that can be recreated.
+
 }
 
 // 给selfTypeDic赋值
@@ -1514,6 +1458,10 @@
         }
     }
     return newArticleDic;
+}
+// 数据加载完成后执行方法
+- (void)reloadDataOver:(NSNotification *)noti{
+    [self getUserADDGroupList];
 }
 #pragma mark -- noti
 - (void)pushNew:(NSNotification *)noti{

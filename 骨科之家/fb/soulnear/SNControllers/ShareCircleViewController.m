@@ -17,8 +17,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if(IOS7_LATER){
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
     
-    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.aTitle = @"分享";
     
     self.title_label.text = self.share_content;

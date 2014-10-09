@@ -307,21 +307,24 @@
 #pragma mark - 删除资料
 -(void)deleteZiLiao
 {
-//    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"bingliId":_feed.bingliId};
-//    
-//    __weak typeof(self)wself=self;
-//    
-//    [AFRequestService responseData:BINGLI_DELETE_URL andparameters:parameters andResponseData:^(id responseData) {
-//        
-//        NSDictionary * dict = (NSDictionary *)responseData;
-//        NSLog(@"dict ------  %@",dict);
-//        NSString * code=[NSString stringWithFormat:@"%@",[dict objectForKey:@"code"]];
-//        
-//        if ([code intValue]==0)//说明请求数据成功
-//        {
-//            [wself.navigationController popViewControllerAnimated:YES];
-//        }
-//    }];
+    NSDictionary *parameters = @{@"userId":GET_U_ID,@"sid":GET_S_ID,@"infoId":_detailModel.infoId};
+    
+    __weak typeof(self)wself=self;
+    
+    [AFRequestService responseData:INFORM_DEL_URL andparameters:parameters andResponseData:^(id responseData) {
+        
+        NSDictionary * dict = (NSDictionary *)responseData;
+        NSString * code=[NSString stringWithFormat:@"%@",[dict objectForKey:@"code"]];
+        
+        if ([code intValue]==0)//说明请求数据成功
+        {
+            if (wself.delegate && [wself.delegate respondsToSelector:@selector(repeatLoadData)]) {
+                [wself.delegate repeatLoadData];
+            }
+            [wself.navigationController popViewControllerAnimated:YES];
+            
+        }
+    }];
 
 }
 

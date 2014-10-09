@@ -7,12 +7,11 @@
 //
 
 #import "InformationViewController.h"
-#import "CreatNewInfoViewController.h"
 #import "InformationTableViewCell.h"
 #import "MBProgressHUD.h"
 #import "Interface.h"
 #import "InformationModel.h"
-#import "InfoDetailViewController.h"
+
 @interface InformationViewController ()<MBProgressHUDDelegate, UITableViewDataSource, UITableViewDelegate>
 {
     MBProgressHUD *HUD;
@@ -51,7 +50,9 @@
     view.backgroundColor = [UIColor whiteColor];
     self.view = view;
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -62,8 +63,12 @@
     [self loadUITableView];
     [self loadNewInformationBtn];
     [self getArticleList];
+    
 }
-
+// 重新加载数据
+- (void)repeatLoadData{
+    [self getArticleList];
+}
 // 导航的设置
 - (void)loadNavigation
 {
@@ -135,7 +140,7 @@
 {
     [self creatHUD:LOCALIZATION(@"chat_loading")];
     [HUD show:YES];
-    
+    [self.dataArray removeAllObjects];
      NSDictionary *parameters = @{@"userId": GET_USER_ID,@"sid": GET_S_ID,@"pageSize":[NSString stringWithFormat:@"%d",INT32_MAX],@"page":[NSString stringWithFormat:@"%d",1]};
     
     [AFRequestService responseData:@"infolist.php" andparameters:parameters andResponseData:^(NSData *responseData) {
@@ -171,7 +176,6 @@
     }];
 
 }
-
 // 手势事件
 - (void)tapAction
 {
@@ -181,8 +185,9 @@
 // "新建资料"的点击事件
 - (void)Click
 {
-    CreatNewInfoViewController *creat = [[CreatNewInfoViewController alloc] init];
-    [self.navigationController pushViewController:creat animated:YES];
+    CreatNewInfoViewController *creatVC = [[CreatNewInfoViewController alloc] init];
+    creatVC.delegate = self;
+    [self.navigationController pushViewController:creatVC animated:YES];
 }
 
 #pragma mark - Table view data source
@@ -223,6 +228,7 @@
 {
     InformationModel *model = (InformationModel *)[self.dataArray objectAtIndex:indexPath.row];
     InfoDetailViewController *InfoDetailVC = [[InfoDetailViewController alloc] initWithModel:model];
+    InfoDetailVC.delegate = self;
     [self.navigationController pushViewController:InfoDetailVC animated:YES];
 }
 

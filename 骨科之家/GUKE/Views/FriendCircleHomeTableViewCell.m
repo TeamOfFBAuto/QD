@@ -157,7 +157,9 @@ static const NSMutableArray *subjectArry;
     if ([post.isGood isEqualToString:@"1"]) {
         flag = YES;
     }
-    
+    else{
+        flag = NO;
+    }
     if (flag) {
         [self.favorite setTitle:LOCALIZATION(@"button_cancel")forState:UIControlStateNormal];
     }

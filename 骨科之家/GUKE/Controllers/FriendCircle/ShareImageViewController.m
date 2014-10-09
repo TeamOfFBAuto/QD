@@ -181,47 +181,28 @@
         alert.tag = 403;
         [alert show];
     }else{
-        [self creatHUD:LOCALIZATION(@"userarticle_newfile_sending")];
-        [HUD show:YES];
-        NSDictionary *parameters = @{@"userId":GET_USER_ID,@"sid":GET_S_ID,@"context":moodContent.text,@"isShare":ISNOT_SHARE_CODE};
-        /*s上传单张图片
-//        [AFRequestService responseDataWithImage:USER_ARTICEL_NEW andparameters:parameters andImageData:self.imgData  andfieldType:@"photo" andfileName:@"photo.jpg" andResponseData:^(NSData *responseData){
-//            NSDictionary * dict = (NSDictionary *)responseData;
-//            NSUInteger codeNum = [[dict objectForKey:@"code"] integerValue];
-//            if (codeNum == 0) {
-//                [HUD hide:YES];
-//                NSString *alertcontext = LOCALIZATION(@"userarticle_newfile_success");
-//                NSString *alertText = LOCALIZATION(@"dialog_prompt");
-//                NSString *alertOk = LOCALIZATION(@"dialog_ok");
-//                UIAlertView * alert = [[UIAlertView alloc]initWithTitle:alertText message:alertcontext delegate:self cancelButtonTitle:alertOk otherButtonTitles:nil];
-//                alert.tag = 401;
-//                [alert show];
-//            }
-//            else if (codeNum == 1){
-//                NSString *alertcontext = LOCALIZATION(@"userarticle_newfile_error");
-//                NSString *alertText = LOCALIZATION(@"dialog_prompt");
-//                NSString *alertOk = LOCALIZATION(@"dialog_ok");
-//                UIAlertView * alert = [[UIAlertView alloc]initWithTitle:alertText message:alertcontext delegate:self cancelButtonTitle:alertOk otherButtonTitles:nil];
-//                alert.tag = 402;
-//                [alert show];
-//            }
-//            
-//        }];
-         */
-        
         NSMutableArray * array = [NSMutableArray array];
         
         for (UIImage * image in _data_array)
         {
             NSData * imgData = UIImageJPEGRepresentation(image, 0.3);
-        
+            
             imgUploadModel * model = [[imgUploadModel alloc] init];
             model.imageName = [UUID createUUID];
             model.imageData = imgData;
             [array addObject:model];
         }
-        
-        
+        if([array count] == 0){
+            NSString *alertcontext = @"请选择图片";
+            NSString *alertText = LOCALIZATION(@"dialog_prompt");
+            NSString *alertOk = LOCALIZATION(@"dialog_ok");
+            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:alertText message:alertcontext delegate:self cancelButtonTitle:alertOk otherButtonTitles:nil];
+            [alert show];
+            return;
+        }
+        [self creatHUD:LOCALIZATION(@"userarticle_newfile_sending")];
+        [HUD show:YES];
+        NSDictionary *parameters = @{@"userId":GET_USER_ID,@"sid":GET_S_ID,@"context":moodContent.text,@"isShare":ISNOT_SHARE_CODE};
         [AFRequestService responseDataWithImage:USER_ARTICEL_NEW andparameters:parameters andDataArray:array andfieldType:@"photo" andfileName:@"photo.jpg" andResponseData:^(NSData *responseData) {
             NSDictionary * dict = (NSDictionary *)responseData;
             NSUInteger codeNum = [[dict objectForKey:@"code"] integerValue];

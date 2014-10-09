@@ -281,7 +281,7 @@
     }
     else {
         ITTCalDay *calDay = [_calMonth calDayAtDay:day];
-        ITTDINFO(@"day is %d", day);
+        NSLog(@"day is %d", day);
 #pragma mark - 点击哪一天跳转
         [self.delegate calendarViewDidSelectDay:self calDay:calDay];
         if([self isEarlyerMinimumDay:calDay] || [self isAfterMaximumDay:calDay])
@@ -697,7 +697,7 @@
                     if (next) {
                         self.calMonth = [_calMonth nextMonth];
                         
-                        ITTDINFO(@"self.calmonth %@", self.calMonth);
+                        NSLog(@"self.calmonth %@", self.calMonth);
                         
                     }
                     else {

@@ -40,7 +40,9 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    if(IOS7_LATER){
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
     userArray = [[NSMutableArray alloc]init];
     self.view.backgroundColor = [UIColor whiteColor];
     UIView *bgNavi = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 130, 44)];

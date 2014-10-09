@@ -32,23 +32,6 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     
-//    if (_tableView) {
-//        _tableView = nil;
-//        _tableView.dataSource = nil;
-//        _tableView.refreshDelegate = nil;
-//    }
-//    _tableView = [[RefreshTableView alloc]initWithFrame:CGRectMake(0, 64, 320, 568-64)];
-//    _tableView.separatorColor = [UIColor clearColor];
-//    
-//    _tableView.refreshDelegate = self;//用refreshDelegate替换UITableViewDelegate
-//    _tableView.dataSource = self;
-//    [self.view addSubview:_tableView];
-//    
-//    _page = 1;
-//    _pageCapacity = 20;
-//    
-//    [_tableView showRefreshHeader:YES];//进入界面先刷新数据
-    
     if (_tableView) {
         [_tableView showRefreshHeader:YES];
     }
@@ -60,12 +43,14 @@
     // Do any additional setup after loading the view.
     
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    if (IOS7_LATER) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
     
     
     self.aTitle = @"会议日程";
     
-    _tableView = [[RefreshTableView alloc]initWithFrame:CGRectMake(0, 64, 320, 568-64)];
+    _tableView = [[RefreshTableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
     _tableView.separatorColor = [UIColor clearColor];
     
     _tableView.refreshDelegate = self;//用refreshDelegate替换UITableViewDelegate
@@ -246,7 +231,9 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        cell.separatorInset = UIEdgeInsetsZero;
+        if (IOS7_LATER) {
+            cell.separatorInset = UIEdgeInsetsZero;
+        }
     }
     
     

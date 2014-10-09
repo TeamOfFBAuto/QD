@@ -113,11 +113,13 @@
     [AFRequestService responseData:BINGLI_DELETE_URL andparameters:parameters andResponseData:^(id responseData) {
         
         NSDictionary * dict = (NSDictionary *)responseData;
-        NSLog(@"dict ------  %@",dict);
         NSString * code=[NSString stringWithFormat:@"%@",[dict objectForKey:@"code"]];
         
         if ([code intValue]==0)//说明请求数据成功
         {
+            if (wself.delegate && [wself.delegate respondsToSelector:@selector(repeatLoadData)]) {
+                [wself.delegate repeatLoadData];
+            }
             [wself.navigationController popViewControllerAnimated:YES];
         }
     }];
