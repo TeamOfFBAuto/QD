@@ -51,13 +51,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(uploadData:)
+                                                 name:@"uploadData"
+                                               object:nil];
     data_array = [NSMutableArray array];
     [self loadNavigation];
     [self loadUITableView];
     [self loadNewInformationBtn];
     [self layOutlist];
 }
-
 // 导航的设置
 - (void)loadNavigation
 {
@@ -172,16 +175,16 @@
                 return ;
             }
             
-            if (currentPage == 1)
+            if (currentPage < 1)
             {
                 [data_array removeAllObjects];
             }
             // 当前的页面为零是，清空数据组
-            if (currentPage == 0)
-            {
-                [data_array removeAllObjects];
-            }
-            
+//            if (currentPage == 0)
+//            {
+//                [data_array removeAllObjects];
+//            }
+//            
             NSArray * array = [dict objectForKey:@"binglilist"];
             
             for (NSDictionary * dic in array) {
@@ -241,7 +244,11 @@
 - (void)repeatLoadData{
     [self layOutlist];
 }
-
+-(void)uploadData:(NSNotification *)notification
+{
+   [self layOutlist];
+    
+}
 #pragma mark - PullTableViewDelegate
 - (void)pullTableViewDidTriggerRefresh:(PullTableView*)pullTableView
 {
@@ -259,7 +266,10 @@
     _tableView.pullLastRefreshDate = [NSDate date];
 }
 
-
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"uploadData" object:nil];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

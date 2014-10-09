@@ -50,7 +50,7 @@
     
     self.aTitle = @"会议日程";
     
-    _tableView = [[RefreshTableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    _tableView = [[RefreshTableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
     _tableView.separatorColor = [UIColor clearColor];
     
     _tableView.refreshDelegate = self;//用refreshDelegate替换UITableViewDelegate

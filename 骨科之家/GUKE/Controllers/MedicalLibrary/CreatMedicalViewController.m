@@ -187,12 +187,12 @@
 
 - (void)handleWillShowKeyboard:(NSNotification *)notification
 {
-    _mainTableView.contentSize = CGSizeMake(0,_mainTableView.contentSize.height+226);
+    _mainTableView.contentSize = CGSizeMake(0,_mainTableView.contentSize.height+280);
 }
 
 - (void)handleWillHideKeyboard:(NSNotification *)notification
 {
-    _mainTableView.contentSize = CGSizeMake(0,_mainTableView.contentSize.height-226);
+    _mainTableView.contentSize = CGSizeMake(0,_mainTableView.contentSize.height-280);
 }
 
 
@@ -232,7 +232,7 @@
     UIView *rightView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
     rightView.backgroundColor = [UIColor clearColor];
     
-    UIButton * rightBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton * rightBtn = [UIButton buttonWithType:UIButtonTypeCustom   ];
     rightBtn.frame = CGRectMake(0, (44-28)/2+1, 44, 28);
     rightBtn.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.2f];
     rightBtn.layer.cornerRadius = 4;

@@ -1,4 +1,4 @@
-//
+        //
 //  GeventDetailViewController.m
 //  GUKE
 //
@@ -52,19 +52,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    if (IOS7_LATER) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
     NSLog(@"%@",self.dataModel.eventTitle);
     self.aTitle = @"会议日程";
     
     NSLog(@"%s",__FUNCTION__);
     
     [self prepareNetData];
-    
-//    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320,iPhone5?568:568-64) style:UITableViewStylePlain];
-//    tableView.delegate = self;
-//    tableView.dataSource = self;
-//    [self.view addSubview:tableView];
-    
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(prepareNetData1) name:@"GMJOINSUCCESS" object:nil];
@@ -116,13 +112,6 @@
             _webView.delegate = self;
             _webView.hidden = YES;
             [self.view addSubview:_webView];
-            
-            //            UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, 320, iPhone5?568-64:568-64-64) style:UITableViewStylePlain];
-            //            tableView.delegate = self;
-            //            tableView.dataSource = self;
-            //            [self.view addSubview:tableView];
-            
-            
         }else{
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"加载失败，请重新加载" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
@@ -174,12 +163,6 @@
             _webView.hidden = YES;
             [self.view addSubview:_webView];
             [self.view addSubview:_webView];
-            
-            //            UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, 320, iPhone5?568-64:568-64-64) style:UITableViewStylePlain];
-            //            tableView.delegate = self;
-            //            tableView.dataSource = self;
-            //            [self.view addSubview:tableView];
-            
             
         }else{
             [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -251,7 +234,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 
@@ -512,7 +494,7 @@
     
     
     
-    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, 320, iPhone5?568-64:480-64) style:UITableViewStylePlain];
+    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
     [self.view addSubview:tableView];
