@@ -104,7 +104,7 @@ static NSString *commentId = 0;
 }
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:YES];
+    [super viewWillAppear:animated];
     [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"guke_title_bg@2x" ofType:@"png"]] forBarMetrics:UIBarMetricsDefault];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
