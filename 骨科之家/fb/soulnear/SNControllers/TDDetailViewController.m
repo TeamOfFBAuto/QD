@@ -15,6 +15,7 @@
 #import "UIImage+fixOrientation.h"
 #import "UIImage+UIImageExt.h"
 #import "NSString+SBJSON.h"
+#import "SingleInstance.h"
 
 @interface TDDetailViewController ()<ToolbarDelegate>
 {
@@ -161,9 +162,11 @@
     UIView * aView = [[UIView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,0)];
     aView.backgroundColor = [UIColor whiteColor];
     
-    CGRect rectr = [self.info.title boundingRectWithSize:CGSizeMake(DEVICE_WIDTH-30, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16]} context:nil];
+    CGSize recSize = [SingleInstance customFontHeight:self.info.title andFontSize:16 andLineWidth:DEVICE_WIDTH-30];
+       // CGRect rectr = [self.info.title boundingRectWithSize:CGSizeMake(DEVICE_WIDTH-30, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16]} context:nil];
     
-    UILabel * titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15,20,DEVICE_WIDTH-30,rectr.size.height)];
+    
+    UILabel * titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15,20,DEVICE_WIDTH-30,recSize.height)];
     titleLabel.numberOfLines = 0;
     titleLabel.text = _info.title;
     titleLabel.textAlignment = NSTextAlignmentLeft;
@@ -171,7 +174,7 @@
     titleLabel.font = [UIFont systemFontOfSize:16];
     [aView addSubview:titleLabel];
     
-    height += 20 + rectr.size.height;
+    height += 20 + recSize.height;
     
     if (![_info.bigPic isKindOfClass:[NSNull class]])
     {
@@ -183,9 +186,9 @@
         height += 30 + 150;
     }
     
-    CGRect rectr1 = [self.info.content boundingRectWithSize:CGSizeMake(DEVICE_WIDTH-30, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14]} context:nil];
-    
-    UILabel * contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(15,height+20,DEVICE_WIDTH-30,rectr1.size.height)];
+    //CGRect rectr1 = [self.info.content boundingRectWithSize:CGSizeMake(DEVICE_WIDTH-30, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14]} context:nil];
+    CGSize recSize1 = [SingleInstance customFontHeight:self.info.content andFontSize:14 andLineWidth:DEVICE_WIDTH-30];
+    UILabel * contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(15,height+20,DEVICE_WIDTH-30,recSize1.height)];
     contentLabel.numberOfLines = 0;
     contentLabel.text = _info.content;
     contentLabel.textAlignment = NSTextAlignmentLeft;
@@ -193,7 +196,7 @@
     contentLabel.font = [UIFont systemFontOfSize:14];
     [aView addSubview:contentLabel];
     
-    height += 30 + rectr1.size.height + 20;
+    height += 30 + recSize1.height + 20;
     
     aView.frame = CGRectMake(0,0,DEVICE_WIDTH-30,height);
     
@@ -213,7 +216,7 @@
 -(void)wavToAmr:(NSString *)_filePath  with:(NSString *)_fileName length:(CGFloat)length{
     [VoiceConverter wavToAmr:_filePath amrSavePath:[VoiceRecorderBaseVC getPathByFileName:[_fileName stringByAppendingString:@"wavToAmr"] ofType:@"amr"]];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:_fileName,@"fid",_filePath,@"fileName",[NSNumber numberWithInt:(int)length],@"length", nil];
-    NSLog(@"%@==%@",_filePath,_fileName);
+    //NSLog(@"%@==%@",_filePath,_fileName);
     [self sureUpload:dic withType:SEND_Type_voice];
 }
 
