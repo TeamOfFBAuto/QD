@@ -53,6 +53,7 @@
     _fileSize.frame = CGRectMake(120, 40, 80, 15);
     _fileSize.backgroundColor = [UIColor whiteColor];
     _fileSize.font = [UIFont systemFontOfSize:14.0f];
+    _fileSize.textColor = GETColor(156, 156, 156);
     _fileSize.text = [NSString stringWithFormat:@"%.2fK",[((NSString *)[self.fileDic objectForKey:@"filesize"]) floatValue]/1024.0];
     _fileSize.textAlignment = NSTextAlignmentLeft;
     
