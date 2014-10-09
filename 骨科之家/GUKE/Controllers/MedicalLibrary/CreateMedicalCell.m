@@ -24,12 +24,15 @@
         self.input_textView = [[UITextView alloc] initWithFrame:CGRectMake(65,15,150,25)];
         self.input_textView.font = [UIFont systemFontOfSize:15];
         self.input_textView.contentInset = UIEdgeInsetsZero;
+        self.input_line_view.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+        self.input_line_view.layer.borderWidth = 1;
+        self.input_line_view.layer.cornerRadius = 3;
         self.input_textView.textColor = [UIColor blackColor];
         [self.contentView addSubview:self.input_textView];
         
-        self.input_line_view = [[UIImageView alloc] initWithFrame:CGRectMake(60,30,160,4)];
-        self.input_line_view.image = [UIImage imageNamed:@"searchbgline"];
-        [self.contentView addSubview:self.input_line_view];
+//        self.input_line_view = [[UIImageView alloc] initWithFrame:CGRectMake(60,30,160,4)];
+//        self.input_line_view.image = [UIImage imageNamed:@"searchbgline"];
+//        [self.contentView addSubview:self.input_line_view];
         
     }
     return self;
