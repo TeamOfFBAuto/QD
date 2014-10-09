@@ -43,12 +43,14 @@
     // Do any additional setup after loading the view.
     
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    if (IOS7_LATER) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
     
     
     self.aTitle = @"会议日程";
     
-    _tableView = [[RefreshTableView alloc]initWithFrame:CGRectMake(0, 64, 320, 568-64)];
+    _tableView = [[RefreshTableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     _tableView.separatorColor = [UIColor clearColor];
     
     _tableView.refreshDelegate = self;//用refreshDelegate替换UITableViewDelegate
@@ -229,7 +231,9 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-        cell.separatorInset = UIEdgeInsetsZero;
+        if (IOS7_LATER) {
+            cell.separatorInset = UIEdgeInsetsZero;
+        }
     }
     
     
