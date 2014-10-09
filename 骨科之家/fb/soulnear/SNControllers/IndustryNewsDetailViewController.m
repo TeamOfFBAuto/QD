@@ -168,6 +168,7 @@
     {
         NewsDetailModel * model = [data_array objectAtIndex:indexPath.row];
         [cell.myImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_BASE_URL,model.fileurl]] placeholderImage:[UIImage imageNamed:@"guke_image_loading"]];
+        cell.image_name_label.textColor = RGB(127,127,127);
         cell.image_name_label.text = model.filename;
         
         CGRect rectr = [model.filename boundingRectWithSize:CGSizeMake(DEVICE_WIDTH-30, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15]} context:nil];
@@ -182,6 +183,7 @@
         cell.imageView.image = nil;
         cell.image_name_label.text = @"";
         cell.textLabel.numberOfLines = 0;
+        cell.textLabel.textColor = GETColor(127,127,127);
         cell.textLabel.text = [data_array objectAtIndex:indexPath.row];
         
     }

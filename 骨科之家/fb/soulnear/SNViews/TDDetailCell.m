@@ -50,7 +50,7 @@
     }else if (info.theType == SEND_Type_photo)
     {
         _content_imageView = [[UIImageView alloc] initWithFrame:CGRectMake(56,37,120,80)];
-        _content_imageView.contentMode = UIViewContentModeScaleAspectFill;
+        _content_imageView.contentMode = UIViewContentModeScaleToFill;
         [_content_imageView sd_setImageWithURL:[SNTools returnUrl:[[info.attach_array objectAtIndex:0] fileurl]] placeholderImage:nil];
         [self.contentView addSubview:_content_imageView];
         

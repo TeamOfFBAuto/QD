@@ -651,8 +651,10 @@
 }
 -(void)wavToAmr:(NSString *)_filePath  with:(NSString *)_fileName length:(CGFloat)length{
     [VoiceConverter wavToAmr:_filePath amrSavePath:[VoiceRecorderBaseVC getPathByFileName:[_fileName stringByAppendingString:@"wavToAmr"] ofType:@"amr"]];
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:_fileName,@"fid",[VoiceRecorderBaseVC getPathByFileName:[_fileName stringByAppendingString:@"wavToAmr"] ofType:@"amr"],@"fileName",[NSNumber numberWithInt:(int)length],@"length", nil];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:_fileName,@"fid",[UUID createUUID],@"content",_filePath,@"fileName",[NSNumber numberWithInt:(int)length],@"length", nil];
     [_dataArray addObject:dic];
+    
+    
 /*
     if (SCREEN_HEIGHT<568) {
         if (_dataArray.count*CELL_HEIGHT<210) {

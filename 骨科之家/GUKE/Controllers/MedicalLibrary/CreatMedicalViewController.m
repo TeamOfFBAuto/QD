@@ -1116,6 +1116,8 @@
         [self.player.aCell.voiceIcon stopAnimating];
     }
    self.player = nil;
+    isAnimationVoice = NO;
+    self.player.delegate = self;
 }
 - (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError *)error
 {
@@ -1123,6 +1125,8 @@
         [self.player.aCell.voiceIcon stopAnimating];
     }
     self.player = nil;
+    isAnimationVoice = NO;
+    self.player.delegate = nil;
 }
 
 #pragma mark - 查看图片

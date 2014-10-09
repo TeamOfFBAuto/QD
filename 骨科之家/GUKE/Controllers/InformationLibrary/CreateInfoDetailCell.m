@@ -15,7 +15,7 @@
 @end
 
 @implementation MyAudioPlayer
-@synthesize aImageView = _aImageView;
+@synthesize aCell = _aCell;
 
 
 @end
@@ -169,7 +169,6 @@
         return;
     }
     
-    NSLog(@"点击播放录音的按钮！");
     [self startVoicePlaybalck];
     
     __weak typeof(self)bself = self;
@@ -185,6 +184,14 @@
 ///播放本地语音
 -(void)playLocalVoiceWithPath:(NSString *)path
 {
+    
+//    if (_delegate && [_delegate respondsToSelector:@selector(playVoiceTap:WithPath:)]) {
+//        [_delegate playVoiceTap:self WithPath:path];
+//    }
+//    
+    NSLog(@"点击播放录音的按钮----%d！----%@",[[NSFileManager defaultManager] fileExistsAtPath:path],path);
+
+ 
     if (isAnimationVoice) {
         return;
     }
@@ -192,14 +199,13 @@
     [self startVoicePlaybalck];
     
     NSData *data = [NSData dataWithContentsOfFile:path];
-    NSError * error = nil;
-    self.player = [[MyAudioPlayer alloc] initWithData:data error:&error];
+    self.player = [[MyAudioPlayer alloc] initWithData:data error:nil];
     self.player.delegate = self;
+    self.player.aCell = self;
     [self.player prepareToPlay];
     [self.player play];
     self.player.volume = 1;
     
-    NSLog(@"error -----  %@",error);
 }
 
 // 开始播放背景（动画）
@@ -235,6 +241,7 @@
         [self stopVocicePlaybalck];
     }
     self.player = nil;
+    self.player.delegate = nil;
 }
 - (void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError *)error
 {
@@ -242,6 +249,7 @@
         [self stopVocicePlaybalck];
     }
     self.player = nil;
+    self.player.delegate = nil;
 }
 
 

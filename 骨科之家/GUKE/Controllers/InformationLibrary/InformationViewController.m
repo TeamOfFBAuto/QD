@@ -12,13 +12,15 @@
 #import "Interface.h"
 #import "InformationModel.h"
 
-@interface InformationViewController ()<MBProgressHUDDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface InformationViewController ()<MBProgressHUDDelegate, UITableViewDataSource, UITableViewDelegate,PullTableViewDelegate>
 {
     MBProgressHUD *HUD;
+    
+    int currentPage;
 }
 
 // 创建资料库的列表
-@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) PullTableView *tableView;
 // 创建资料库的数据源
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
@@ -59,6 +61,10 @@
     if(IOS7_LATER){
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
+    currentPage = 1;
+    [self creatHUD:LOCALIZATION(@"chat_loading")];
+    [HUD show:YES];
+    
     [self loadNavigation];
     [self loadUITableView];
     [self loadNewInformationBtn];
@@ -105,10 +111,11 @@
 // 创建资料库列表
 - (void)loadUITableView
 {
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-50) style:UITableViewStylePlain];
+    self.tableView = [[PullTableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-50) style:UITableViewStylePlain];
     self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.pullDelegate = self;
     // 解决IOS7下tableview分割线左边短了一点
     if ([_tableView respondsToSelector:@selector(setSeparatorInset:)]) {
         
@@ -138,15 +145,21 @@
 // 获取"资料库"文章数据
 - (void)getArticleList
 {
-    [self creatHUD:LOCALIZATION(@"chat_loading")];
-    [HUD show:YES];
-    [self.dataArray removeAllObjects];
-     NSDictionary *parameters = @{@"userId": GET_USER_ID,@"sid": GET_S_ID,@"pageSize":[NSString stringWithFormat:@"%d",INT32_MAX],@"page":[NSString stringWithFormat:@"%d",1]};
+//    [self.dataArray removeAllObjects];
+    __weak typeof(self)bself = self;
+     NSDictionary *parameters = @{@"userId": GET_USER_ID,@"sid": GET_S_ID,@"pageSize":[NSString stringWithFormat:@"%d",20],@"page":[NSString stringWithFormat:@"%d",currentPage]};
     
     [AFRequestService responseData:@"infolist.php" andparameters:parameters andResponseData:^(NSData *responseData) {
+        
+        [bself endPull];
+        
         NSDictionary *articleDict = (NSDictionary *)responseData;
         NSInteger codeNum = [[articleDict objectForKey:@"code"]integerValue];
         if(codeNum == CODE_SUCCESS){
+            if (currentPage == 1) {
+                [bself.dataArray removeAllObjects];
+            }
+            
             NSArray *articleList = [articleDict objectForKey:@"infolist"];
             for (NSDictionary *article in articleList) {
                 
@@ -159,7 +172,7 @@
                 model.title = [article objectForKey:@"title"];
                 model.userId = [article objectForKey:@"userId"];
                 model.weight = [article objectForKey:@"weight"];
-                [self.dataArray addObject:model];
+                [bself.dataArray addObject:model];
             }
 
             [HUD hide:YES];
@@ -231,6 +244,24 @@
     InfoDetailVC.delegate = self;
     [self.navigationController pushViewController:InfoDetailVC animated:YES];
 }
+
+#pragma mark - PullTableViewDelegate
+- (void)pullTableViewDidTriggerRefresh:(PullTableView*)pullTableView
+{
+    currentPage = 1;
+    [self getArticleList];
+}
+- (void)pullTableViewDidTriggerLoadMore:(PullTableView*)pullTableView
+{
+    currentPage++;
+    [self getArticleList];
+}
+- (void)endPull{
+    _tableView.pullTableIsLoadingMore = NO;
+    _tableView.pullTableIsRefreshing = NO;
+    _tableView.pullLastRefreshDate = [NSDate date];
+}
+
 
 
 - (void)didReceiveMemoryWarning

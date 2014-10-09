@@ -9,20 +9,24 @@
 #import <UIKit/UIKit.h>
 #import "VoicePlayCenter.h"
 
+
+@class CreateInfoDetailCell;
 @interface MyAudioPlayer : AVAudioPlayer
 {
     
 }
 
-@property(nonatomic,strong)UIImageView * aImageView;
+@property(nonatomic,strong)CreateInfoDetailCell * aCell;
 
 @end
 
-@class CreateInfoDetailCell;
+//@class CreateInfoDetailCell;
 @protocol CreateInfoDetailCellDelegate <NSObject>
 
 @optional
 -(void)deleteFilesTap:(CreateInfoDetailCell*)cell;
+///播放语音
+-(void)playVoiceTap:(CreateInfoDetailCell *)cell WithPath:(NSString *)path;
 
 @end
 
@@ -60,6 +64,8 @@
 
 - (IBAction)deleteButtonTap:(id)sender;
 
+-(void)stopVocicePlaybalck;
 
+-(void)startVoicePlaybalck;
 
 @end
