@@ -230,7 +230,7 @@
     Cochat.frame = CGRectMake(0, 0, 80, 40);
     NSString *CochatText = LOCALIZATION(@"home_chat");
     [Cochat setTitle:CochatText forState:UIControlStateNormal];
-    [Cochat setTitleColor:GETColor(144, 84, 158) forState:UIControlStateNormal];
+    [Cochat setTitleColor:[SingleInstance colorFromHexRGB:@"2d85a0"] forState:UIControlStateNormal];
     [Cochat addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     Cochat.titleLabel.textAlignment = NSTextAlignmentCenter;
     Cochat.titleLabel.font = [UIFont systemFontOfSize:16];
