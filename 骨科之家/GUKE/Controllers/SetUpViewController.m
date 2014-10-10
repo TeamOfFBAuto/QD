@@ -64,7 +64,7 @@
     NSString *account = LOCALIZATION(@"setting_account");
     NSString *setting_icon = LOCALIZATION(@"setting_icon");
     NSString *setting_changIfo = LOCALIZATION(@"setting_changIfo");
-    NSString *setting_changepwd = LOCALIZATION(@"setting_changepwd");
+   // NSString *setting_changepwd = LOCALIZATION(@"setting_changepwd");
     NSString *setting_notify = LOCALIZATION(@"setting_notify");
     NSString *setting_feedback = LOCALIZATION(@"setting_feedback");
     NSString *setting_checknewversion = LOCALIZATION(@"setting_checknewversion");
@@ -73,8 +73,8 @@
     NSString *private_police = LOCALIZATION(@"private_police");
     NSString *about_produce = LOCALIZATION(@"about_produce");
     
-        dataArry = @[account, setting_icon, setting_changIfo, setting_changepwd, setting_notify , setting_feedback, setting_checknewversion,versionstr,setting_switch,private_police,about_produce];
-        imgArray = @[@"set_username",@"set_userphone",@"set_changeinfo",@"set_changepwd",@"set_usermsg",@"set_feedback",@"set_usercheck",@"set_userfile",@"set_switch_account",@"privacy@2x",@"produce@2x"];
+        dataArry = @[account, setting_icon, setting_changIfo, setting_notify , setting_feedback, setting_checknewversion,versionstr,setting_switch,private_police,about_produce];
+        imgArray = @[@"set_username",@"set_userphone",@"set_changeinfo",@"set_usermsg",@"set_feedback",@"set_usercheck",@"set_userfile",@"set_switch_account",@"privacy@2x",@"produce@2x"];
     [self creatTable];
     //通知中心监听媒体音量值得变化
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -238,13 +238,8 @@
                 [self.navigationController pushViewController:alterPerDetails animated:YES];
             }
                 break;
+           
             case 3:{
-                // 修改密码
-                    ChangPWDViewController *changPWD = [[ChangPWDViewController alloc]init];
-                    [self.navigationController pushViewController:changPWD animated:YES];
-            }
-                break;
-            case 4:{
                 //新消息提醒
                 RemindViewController *inviteColleague = [[RemindViewController alloc]init];
                 [self.navigationController pushViewController:inviteColleague animated:YES];
@@ -252,14 +247,14 @@
             }
                 break;
             
-            case 5:{
+            case 4:{
                 // 意见与反馈
                 SuggestionViewController *suggest = [[SuggestionViewController alloc]init];
                 [self.navigationController pushViewController:suggest animated:YES];
     
             }
                 break;
-            case 6:{
+            case 5:{
                 // 检查新版本
                 NSString *versionLabel = dataArry[indexPath.row+1];
                 NSString *versionNum = [versionLabel substringWithRange:NSMakeRange(4, versionLabel.length-4)];
@@ -318,25 +313,25 @@
                 
             }
                 break;
-            case 7:{
+            case 6:{
                 // 当前版本
                 
             }
                 break;
-            case 8:{
+            case 7:{
                 // 切换用户
                 UserLoginViewController *userLogin = [[UserLoginViewController alloc]init];
                 [self.navigationController pushViewController:userLogin animated:YES];
                 
             }
                 break;
-            case 9:{
+            case 8:{
                 PrivatPoliceViewController *private = [[PrivatPoliceViewController alloc]init];
                 [self.navigationController pushViewController:private animated:YES];
    
             }
                 break;
-            case 10:{
+            case 9:{
                 AboutProduceViewController *produce = [[AboutProduceViewController alloc]init];
                 [self.navigationController pushViewController:produce animated:YES];
                 
