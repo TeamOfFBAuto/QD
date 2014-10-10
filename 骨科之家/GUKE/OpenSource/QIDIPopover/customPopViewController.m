@@ -1,15 +1,14 @@
 //
-//  TSPopoverViewController.m
+//  customPopViewController.m
+//  GUKE
 //
-//  Created by Saito Takashi on 5/9/12.
-//  Copyright (c) 2012 synetics ltd. All rights reserved.
-//
-// https://github.com/takashisite/TSPopover
+//  Created by qidi on 14-10-10.
+//  Copyright (c) 2014年 qidi. All rights reserved.
 //
 
-#import "TSPopoverController.h"
+#import "customPopViewController.h"
 #import "TSPopoverTouchView.h"
-#import "TSPopoverPopoverView.h"
+#import "customPopoverView.h"
 #import <QuartzCore/QuartzCore.h>
 
 
@@ -18,13 +17,12 @@
 #define OUTER_MARGIN 0
 #define TITLE_LABEL_HEIGHT 25
 #define ARROW_SIZE 0
-#define ARROW_MARGIN 0
-
-@interface TSPopoverController ()
+#define ARROW_MARGIN 7
+@interface customPopViewController ()
 
 @end
 
-@implementation TSPopoverController
+@implementation customPopViewController
 
 @synthesize contentViewController = _contentViewController;
 @synthesize contentView = _contentView;
@@ -37,14 +35,14 @@
 @synthesize popoverGradient = _popoverGradient;
 
 - (id)init {
-	if ((self = [super init])) {
+    if ((self = [super init])) {
         
         
         self.cornerRadius = CORNER_RADIUS;
         self.titleColor = [UIColor whiteColor];
         self.titleFont = [UIFont boldSystemFontOfSize:14];
         self.view.backgroundColor = [UIColor clearColor];
-        self.arrowPosition = TSPopoverArrowPositionVertical;
+        self.arrowPosition = QIPopoverArrowPositionVertical;
         self.popoverBaseColor = [UIColor clearColor];
         self.popoverGradient = YES;
         screenRect = [[UIScreen mainScreen] bounds];
@@ -54,11 +52,11 @@
         }
         self.view.frame = screenRect;
         screenRect.origin.y = 0;
-        screenRect.size.height = screenRect.size.height-20;   
+        screenRect.size.height = screenRect.size.height-20;
         
         titleLabelheight = 0;
-	}
-	return self;
+    }
+    return self;
 }
 
 - (id)initWithContentViewController:(UIViewController*)viewController
@@ -76,7 +74,7 @@
     self = [self init];
     self.contentView = view;
     
-    return self;   
+    return self;
 }
 
 - (void)viewDidLoad
@@ -95,7 +93,7 @@
 }
 
 - (void) showPopoverWithTouch:(UIEvent*)senderEvent
-{    
+{
     UIView *senderView = [[senderEvent.allTouches anyObject] view];
     CGPoint applicationFramePoint = CGPointMake(screenRect.origin.x,0-screenRect.origin.y);
     UIWindow *appWindow = [[UIApplication sharedApplication] keyWindow];
@@ -121,7 +119,7 @@
 
 - (void) showPopoverWithRect:(CGRect)senderRect
 {
-
+    
     CGPoint senderPoint = [self senderPointFromSenderRect:senderRect];
     [self showPopoverWithPoint:senderPoint];
 }
@@ -140,10 +138,10 @@
     
     int backgroundPositionX = 0;
     int backgroundPositionY = 0;
-    if(arrowDirection == TSPopoverArrowDirectionLeft){
+    if(arrowDirection == QIPopoverArrowDirectionLeft){
         backgroundPositionX = ARROW_SIZE;
     }
-    if(arrowDirection == TSPopoverArrowDirectionTop){
+    if(arrowDirection == QIPopoverArrowDirectionTop){
         backgroundPositionY = ARROW_SIZE;
     }
     
@@ -153,19 +151,19 @@
         titleLabel.textColor = self.titleColor;
         titleLabel.text = self.titleText;
         titleLabel.backgroundColor = [UIColor clearColor];
-        titleLabel.textAlignment = NSTextAlignmentCenter;
+        titleLabel.textAlignment = NSTextAlignmentLeft;
         titleLabel.font = self.titleFont;
     }
     contentViewFrame.origin.x = backgroundPositionX+MARGIN;
     contentViewFrame.origin.y = backgroundPositionY+titleLabelheight+MARGIN;
-
-
+    
+    
     self.contentView.frame = contentViewFrame;
     CALayer * contentViewLayer = [self.contentView layer];
     [contentViewLayer setMasksToBounds:YES];
     [contentViewLayer setCornerRadius:self.cornerRadius];
     
-    popoverView = [[TSPopoverPopoverView alloc] init];
+    popoverView = [[customPopoverView alloc] init];
     popoverView.arrowDirection = arrowDirection;
     popoverView.arrowPosition = self.arrowPosition;
     popoverView.arrowPoint = senderPoint;
@@ -176,7 +174,7 @@
     popoverView.isGradient = self.popoverGradient;
     [popoverView addSubview:self.contentView];
     [popoverView addSubview:titleLabel];
-
+    
     CALayer* layer = popoverView.layer;
     layer.shadowOffset = CGSizeMake(0, 2);
     layer.shadowColor = [[UIColor clearColor] CGColor];
@@ -185,9 +183,9 @@
     [self.view addSubview:popoverView];
     
     UIWindow *appWindow = [[UIApplication sharedApplication] keyWindow];
-
+    
     [appWindow.rootViewController.view addSubview:self.view];
-
+    
     
     [UIView animateWithDuration:0.0
                           delay:0.0
@@ -198,7 +196,7 @@
                      completion:^(BOOL finished) {
                      }
      ];
-
+    
 }
 
 - (void)view:(UIView*)view touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
@@ -245,14 +243,14 @@
     CGRect contentFrameRect = contentFrame;
     float screenWidth = screenRect.size.width;
     float screenHeight = screenRect.size.height - screenRect.origin.y;
-
+    
     contentFrameRect.origin.x = MARGIN;
     contentFrameRect.origin.y = MARGIN;
     
     float statusBarHeight = [[UIApplication sharedApplication] statusBarFrame].size.height;
-
-
-    if(self.arrowPosition == TSPopoverArrowPositionVertical){
+    
+    
+    if(self.arrowPosition == QIPopoverArrowPositionVertical){
         if(contentFrameRect.size.width > self.view.frame.size.width - (OUTER_MARGIN*2+MARGIN*2)){
             contentFrameRect.size.width = self.view.frame.size.width - (OUTER_MARGIN*2+MARGIN*2);
         }
@@ -260,20 +258,20 @@
         float popoverY;
         float popoverHeight = contentFrameRect.size.height+titleLabelheight+(ARROW_SIZE+MARGIN*2);
         
-        if(arrowDirection == TSPopoverArrowDirectionTop){
+        if(arrowDirection == QIPopoverArrowDirectionTop){
             popoverY = senderPoint.y+ARROW_MARGIN;
             if((popoverY+popoverHeight) > screenHeight){
                 contentFrameRect.size.height = screenHeight - (screenRect.origin.y + popoverY + titleLabelheight + (OUTER_MARGIN*2+MARGIN*2));
             }
         }
         
-        if(arrowDirection == TSPopoverArrowDirectionBottom){
+        if(arrowDirection == QIPopoverArrowDirectionBottom){
             popoverY = senderPoint.y - ARROW_MARGIN;
             if((popoverY-popoverHeight) < statusBarHeight){
                 contentFrameRect.size.height = popoverY - (statusBarHeight + ARROW_SIZE + screenRect.origin.y + titleLabelheight + (OUTER_MARGIN+MARGIN*2));
             }
         }
-    }else if(self.arrowPosition == TSPopoverArrowPositionHorizontal){
+    }else if(self.arrowPosition == QIPopoverArrowPositionHorizontal){
         if(contentFrameRect.size.height > screenHeight - (OUTER_MARGIN*2+MARGIN*2)){
             contentFrameRect.size.height = screenHeight - (OUTER_MARGIN*2+MARGIN*2);
         }
@@ -281,14 +279,14 @@
         float popoverX;
         float popoverWidth = contentFrameRect.size.width+(ARROW_SIZE+MARGIN*2);
         
-        if(arrowDirection == TSPopoverArrowDirectionLeft){
+        if(arrowDirection == QIPopoverArrowDirectionLeft){
             popoverX = senderPoint.x + ARROW_MARGIN;
             if((popoverX+popoverWidth)> screenWidth - (OUTER_MARGIN*2+MARGIN*2)){
                 contentFrameRect.size.width = screenWidth - popoverX - ARROW_SIZE - (OUTER_MARGIN*2+MARGIN*2);
             }
         }
         
-        if(arrowDirection == TSPopoverArrowDirectionRight){
+        if(arrowDirection == QIPopoverArrowDirectionRight){
             popoverX = senderPoint.x - ARROW_MARGIN;
             if((popoverX-popoverWidth) < screenRect.origin.x+(OUTER_MARGIN*2+MARGIN*2)){
                 contentFrameRect.size.width = popoverX - ARROW_SIZE - (OUTER_MARGIN*2+MARGIN*2);
@@ -308,12 +306,12 @@
     float popoverHeight;
     float popoverX;
     float popoverY;
-
-    if(self.arrowPosition == TSPopoverArrowPositionVertical){
+    
+    if(self.arrowPosition == QIPopoverArrowPositionVertical){
         
         popoverWidth = contentFrame.size.width+MARGIN*2;
         popoverHeight = contentFrame.size.height+titleLabelheight+(ARROW_SIZE+MARGIN*2);
-
+        
         popoverX = senderPoint.x - (popoverWidth/2);
         if(popoverX < OUTER_MARGIN) {
             popoverX = OUTER_MARGIN;
@@ -321,7 +319,7 @@
             popoverX = self.view.frame.size.width - (popoverWidth+OUTER_MARGIN);
         }
         
-        if(arrowDirection == TSPopoverArrowDirectionBottom){
+        if(arrowDirection == QIPopoverArrowDirectionBottom){
             popoverY = senderPoint.y - popoverHeight - ARROW_MARGIN;
         }else{
             popoverY = senderPoint.y + ARROW_MARGIN;
@@ -329,12 +327,12 @@
         
         popoverRect = CGRectMake(popoverX, popoverY, popoverWidth, popoverHeight);
         
-    }else if((self.arrowPosition = TSPopoverArrowPositionHorizontal)){
+    }else if((self.arrowPosition = QIPopoverArrowPositionHorizontal)){
         
         popoverWidth = contentFrame.size.width+ARROW_SIZE+MARGIN*2;
         popoverHeight = contentFrame.size.height+titleLabelheight+MARGIN*2;
-
-        if(arrowDirection == TSPopoverArrowDirectionRight){
+        
+        if(arrowDirection == QIPopoverArrowDirectionRight){
             popoverX = senderPoint.x - popoverWidth - ARROW_MARGIN;
         }else{
             popoverX = senderPoint.x + ARROW_MARGIN;
@@ -348,10 +346,10 @@
         }
         
         popoverRect = CGRectMake(popoverX, popoverY, popoverWidth, popoverHeight);
-
+        
     }
-
-
+    
+    
     return popoverRect;
     
 }
@@ -361,18 +359,18 @@
     CGPoint senderPoint;
     [self checkArrowPosition:senderRect];
     
-    if(arrowDirection == TSPopoverArrowDirectionTop){
+    if(arrowDirection == QIPopoverArrowDirectionTop){
         senderPoint = CGPointMake(senderRect.origin.x + (senderRect.size.width/2), senderRect.origin.y + senderRect.size.height);
-    }else if(arrowDirection == TSPopoverArrowDirectionBottom){
+    }else if(arrowDirection == QIPopoverArrowDirectionBottom){
         senderPoint = CGPointMake(senderRect.origin.x + (senderRect.size.width/2), senderRect.origin.y);
-    }else if(arrowDirection == TSPopoverArrowDirectionRight){
+    }else if(arrowDirection == QIPopoverArrowDirectionRight){
         senderPoint = CGPointMake(senderRect.origin.x, senderRect.origin.y + (senderRect.size.height/2));
         senderPoint.y = senderPoint.y + screenRect.origin.y;
-    }else if(arrowDirection == TSPopoverArrowDirectionLeft){
+    }else if(arrowDirection == QIPopoverArrowDirectionLeft){
         senderPoint = CGPointMake(senderRect.origin.x + senderRect.size.width, senderRect.origin.y + (senderRect.size.height/2));
         senderPoint.y = senderPoint.y + screenRect.origin.y;
     }
-
+    
     return senderPoint;
 }
 
@@ -380,51 +378,50 @@
 {
     float clearSpaceA=0;
     float clearSpaceB=0;
-    if(self.arrowPosition == TSPopoverArrowPositionVertical){
+    if(self.arrowPosition == QIPopoverArrowPositionVertical){
         if(!arrowDirection){
             clearSpaceA = screenRect.origin.y + senderRect.origin.y;
             clearSpaceB = screenRect.size.height - (senderRect.origin.y+senderRect.size.height);
             if(clearSpaceA> clearSpaceB){
                 if(clearSpaceA < titleLabelheight+10){
-                    self.arrowPosition = TSPopoverArrowPositionHorizontal;
+                    self.arrowPosition = QIPopoverArrowPositionHorizontal;
                     [self checkArrowPosition:senderRect];
                 }else{
-                    arrowDirection = TSPopoverArrowDirectionBottom;
+                    arrowDirection = QIPopoverArrowDirectionBottom;
                 }
             }else{
                 if(clearSpaceB < titleLabelheight+10){
-                    self.arrowPosition = TSPopoverArrowPositionHorizontal;
+                    self.arrowPosition = QIPopoverArrowPositionHorizontal;
                     [self checkArrowPosition:senderRect];
                 }else{
-                    arrowDirection = TSPopoverArrowDirectionTop;
+                    arrowDirection = QIPopoverArrowDirectionTop;
                 }
             }
         }
         
         
-    }else if(self.arrowPosition == TSPopoverArrowPositionHorizontal){
+    }else if(self.arrowPosition == QIPopoverArrowPositionHorizontal){
         
         if(!arrowDirection){
             clearSpaceA = screenRect.origin.x + senderRect.origin.x;
             clearSpaceB = screenRect.size.width - (senderRect.origin.x+senderRect.size.width);
             if(clearSpaceA> clearSpaceB){
                 if(clearSpaceA < 40){
-                    self.arrowPosition = TSPopoverArrowPositionVertical;
+                    self.arrowPosition = QIPopoverArrowPositionVertical;
                     [self checkArrowPosition:senderRect];
                 }else{
-                    arrowDirection = TSPopoverArrowDirectionRight;
+                    arrowDirection = QIPopoverArrowDirectionRight;
                 }
             }else{
                 if(clearSpaceB < 40){
-                    self.arrowPosition = TSPopoverArrowPositionVertical;
+                    self.arrowPosition = QIPopoverArrowPositionVertical;
                     [self checkArrowPosition:senderRect];
                 }else{
-                    arrowDirection = TSPopoverArrowDirectionLeft;
+                    arrowDirection = QIPopoverArrowDirectionLeft;
                 }
             }
         }
         
     }
 }
-
 @end

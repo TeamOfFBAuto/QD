@@ -10,7 +10,7 @@
 #import "LiuLanSectionView.h"
 //#import "InfoFileTableViewCell.h"
 #import "TagManagerViewController.h"
-#import "TSActionSheet.h"
+#import "customActionSheet.h"
 #import "PostMoodViewController.h"
 #import "CreatMedicalViewController.h"
 #import "ShareCircleViewController.h"
@@ -67,7 +67,7 @@
 {
     [self.view endEditing:YES];
     __weak typeof(self)bself = self;
-    TSActionSheet *actionSheet = [[TSActionSheet alloc] init];
+    customActionSheet *actionSheet = [[customActionSheet alloc] init];
     NSString *share1 = @"分享到诊疗圈";
     NSString *share2 = @"分享到讨论组";
     NSString *edit = @"编辑病历";

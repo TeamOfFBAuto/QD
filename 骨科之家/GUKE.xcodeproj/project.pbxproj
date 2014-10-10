@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		190A7CAC19E7F3BB00965B44 /* customActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 190A7CA719E7F3BB00965B44 /* customActionSheet.m */; };
+		190A7CAD19E7F3BB00965B44 /* customPopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190A7CA919E7F3BB00965B44 /* customPopViewController.m */; };
+		190A7CAE19E7F3BB00965B44 /* customPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 190A7CAB19E7F3BB00965B44 /* customPopoverView.m */; };
+		190A7CB119E7F3DA00965B44 /* LiuLanBingLiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190A7CB019E7F3DA00965B44 /* LiuLanBingLiViewController.m */; };
+		190A7CB419E7F3F900965B44 /* InfoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190A7CB319E7F3F900965B44 /* InfoDetailViewController.m */; };
+		190A7CB719E7F4B400965B44 /* TSPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190A7CB619E7F4B400965B44 /* TSPopoverController.m */; };
+		190A7CBA19E7F4E000965B44 /* TSPopoverPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 190A7CB919E7F4E000965B44 /* TSPopoverPopoverView.m */; };
+		190A7CBD19E7F5CA00965B44 /* UserContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190A7CBC19E7F5CA00965B44 /* UserContactViewController.m */; };
+		190A7CC219E7F68900965B44 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190A7CBF19E7F68900965B44 /* RegisterViewController.m */; };
+		190A7CC319E7F68900965B44 /* UserLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 190A7CC119E7F68900965B44 /* UserLoginViewController.m */; };
 		1918517019E0236600DAF8E6 /* FirendCircleHomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1918516D19E0236600DAF8E6 /* FirendCircleHomeTableViewController.m */; };
 		1918517119E0236600DAF8E6 /* FriendCircleDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1918516F19E0236600DAF8E6 /* FriendCircleDetailViewController.m */; };
 		1918518019E023B400DAF8E6 /* CommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1918517319E023B400DAF8E6 /* CommentTableViewCell.m */; };
@@ -45,12 +55,9 @@
 		197ABFF71973EE9E00FC6A24 /* contentAndGood.m in Sources */ = {isa = PBXBuildFile; fileRef = 197ABFF61973EE9E00FC6A24 /* contentAndGood.m */; };
 		198BBF1D19B83FD6000FBC75 /* LoadToLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = 198BBF1C19B83FD6000FBC75 /* LoadToLocal.m */; };
 		198EA15F1975455500F85698 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 198EA15E1975455500F85698 /* libsqlite3.0.dylib */; };
-		198F8A3D1960FAD600B3F09C /* UserContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 198F8A3C1960FAD600B3F09C /* UserContactViewController.m */; };
 		198F8A441961653800B3F09C /* QiDiPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 198F8A431961653800B3F09C /* QiDiPopoverView.m */; };
 		199196DD195BBF3D0050C393 /* FriendDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 199196DC195BBF3D0050C393 /* FriendDetailTableViewCell.m */; };
 		199196ED195C13560050C393 /* TSActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 199196E3195C13560050C393 /* TSActionSheet.m */; };
-		199196EE195C13560050C393 /* TSPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 199196E5195C13560050C393 /* TSPopoverController.m */; };
-		199196EF195C13560050C393 /* TSPopoverPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 199196E7195C13560050C393 /* TSPopoverPopoverView.m */; };
 		199196F0195C13560050C393 /* TSPopoverTouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 199196EA195C13560050C393 /* TSPopoverTouchView.m */; };
 		199196F1195C13560050C393 /* UIBarButtonItem+WEPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 199196EC195C13560050C393 /* UIBarButtonItem+WEPopover.m */; };
 		19960CA8196A80D6000121AA /* Cache.m in Sources */ = {isa = PBXBuildFile; fileRef = 19960B6C196A80D6000121AA /* Cache.m */; };
@@ -479,7 +486,6 @@
 		199CFD9A195AA50200F74F7C /* radio_unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = 199CFD88195AA50200F74F7C /* radio_unchecked.png */; };
 		199CFD9B195AA50200F74F7C /* radio_unchecked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 199CFD89195AA50200F74F7C /* radio_unchecked@2x.png */; };
 		199CFD9C195AA50200F74F7C /* RadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 199CFD8B195AA50200F74F7C /* RadioButton.m */; };
-		199CFD9E195AA50200F74F7C /* UserLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 199CFD90195AA50200F74F7C /* UserLoginViewController.m */; };
 		199CFDF7195AA53900F74F7C /* Contactlist.m in Sources */ = {isa = PBXBuildFile; fileRef = 199CFDA1195AA53900F74F7C /* Contactlist.m */; };
 		199CFDF8195AA53900F74F7C /* SingleInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 199CFDA3195AA53900F74F7C /* SingleInstance.m */; };
 		199CFDF9195AA53900F74F7C /* UserContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 199CFDA5195AA53900F74F7C /* UserContact.m */; };
@@ -592,7 +598,6 @@
 		3E46C15E19D2C51F00403A42 /* InformationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E46C15C19D2C51F00403A42 /* InformationTableViewCell.xib */; };
 		3E46C16119D2CBA100403A42 /* InformationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E46C16019D2CBA100403A42 /* InformationModel.m */; };
 		3E46C16419D2DEE600403A42 /* NSString+_859ToUTF8.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E46C16319D2DEE600403A42 /* NSString+_859ToUTF8.m */; };
-		3E46C16719D2E43E00403A42 /* InfoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E46C16619D2E43E00403A42 /* InfoDetailViewController.m */; };
 		3E4B255B197E1EB10061A9AE /* UINavigationItem+margin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4B255A197E1EB10061A9AE /* UINavigationItem+margin.m */; };
 		3E4B2561197E6C550061A9AE /* AddNewColleagueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4B2560197E6C550061A9AE /* AddNewColleagueCell.m */; };
 		3E67F49919D3CE89001B0880 /* InformationDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E67F49819D3CE89001B0880 /* InformationDetailModel.m */; };
@@ -898,7 +903,6 @@
 		563845D719DF31E5004C236A /* VideoUploadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 563845D619DF31E5004C236A /* VideoUploadModel.m */; };
 		563D756219DE6CFC00095CC7 /* MedicalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 563D756019DE6CFC00095CC7 /* MedicalCell.m */; };
 		563D756319DE6CFC00095CC7 /* MedicalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 563D756119DE6CFC00095CC7 /* MedicalCell.xib */; };
-		563D756619DE8B1300095CC7 /* LiuLanBingLiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 563D756519DE8B1300095CC7 /* LiuLanBingLiViewController.m */; };
 		563D756919DE9C7500095CC7 /* LiuLanSectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 563D756819DE9C7500095CC7 /* LiuLanSectionView.m */; };
 		563D756B19DE9C8700095CC7 /* LiuLanSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 563D756A19DE9C8700095CC7 /* LiuLanSectionView.xib */; };
 		563D756E19DECF0600095CC7 /* TagManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 563D756D19DECF0600095CC7 /* TagManagerViewController.m */; };
@@ -994,6 +998,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		190A7CA619E7F3BB00965B44 /* customActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customActionSheet.h; sourceTree = "<group>"; };
+		190A7CA719E7F3BB00965B44 /* customActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customActionSheet.m; sourceTree = "<group>"; };
+		190A7CA819E7F3BB00965B44 /* customPopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customPopViewController.h; sourceTree = "<group>"; };
+		190A7CA919E7F3BB00965B44 /* customPopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customPopViewController.m; sourceTree = "<group>"; };
+		190A7CAA19E7F3BB00965B44 /* customPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customPopoverView.h; sourceTree = "<group>"; };
+		190A7CAB19E7F3BB00965B44 /* customPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customPopoverView.m; sourceTree = "<group>"; };
+		190A7CAF19E7F3DA00965B44 /* LiuLanBingLiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiuLanBingLiViewController.h; sourceTree = "<group>"; };
+		190A7CB019E7F3DA00965B44 /* LiuLanBingLiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiuLanBingLiViewController.m; sourceTree = "<group>"; };
+		190A7CB219E7F3F900965B44 /* InfoDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoDetailViewController.h; sourceTree = "<group>"; };
+		190A7CB319E7F3F900965B44 /* InfoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoDetailViewController.m; sourceTree = "<group>"; };
+		190A7CB519E7F4B400965B44 /* TSPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverController.h; sourceTree = "<group>"; };
+		190A7CB619E7F4B400965B44 /* TSPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPopoverController.m; sourceTree = "<group>"; };
+		190A7CB819E7F4E000965B44 /* TSPopoverPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverPopoverView.h; sourceTree = "<group>"; };
+		190A7CB919E7F4E000965B44 /* TSPopoverPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPopoverPopoverView.m; sourceTree = "<group>"; };
+		190A7CBB19E7F5CA00965B44 /* UserContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserContactViewController.h; sourceTree = "<group>"; };
+		190A7CBC19E7F5CA00965B44 /* UserContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserContactViewController.m; sourceTree = "<group>"; };
+		190A7CBE19E7F68900965B44 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		190A7CBF19E7F68900965B44 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		190A7CC019E7F68900965B44 /* UserLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLoginViewController.h; sourceTree = "<group>"; };
+		190A7CC119E7F68900965B44 /* UserLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLoginViewController.m; sourceTree = "<group>"; };
 		1918516C19E0236600DAF8E6 /* FirendCircleHomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirendCircleHomeTableViewController.h; sourceTree = "<group>"; };
 		1918516D19E0236600DAF8E6 /* FirendCircleHomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirendCircleHomeTableViewController.m; sourceTree = "<group>"; };
 		1918516E19E0236600DAF8E6 /* FriendCircleDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendCircleDetailViewController.h; sourceTree = "<group>"; };
@@ -1059,18 +1083,12 @@
 		198BBF1B19B83FD6000FBC75 /* LoadToLocal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadToLocal.h; sourceTree = "<group>"; };
 		198BBF1C19B83FD6000FBC75 /* LoadToLocal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadToLocal.m; sourceTree = "<group>"; };
 		198EA15E1975455500F85698 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
-		198F8A3B1960FAD600B3F09C /* UserContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserContactViewController.h; sourceTree = "<group>"; };
-		198F8A3C1960FAD600B3F09C /* UserContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserContactViewController.m; sourceTree = "<group>"; };
 		198F8A421961653800B3F09C /* QiDiPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QiDiPopoverView.h; sourceTree = "<group>"; };
 		198F8A431961653800B3F09C /* QiDiPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QiDiPopoverView.m; sourceTree = "<group>"; };
 		199196DB195BBF3D0050C393 /* FriendDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FriendDetailTableViewCell.h; path = ../Controllers/FriendDetailTableViewCell.h; sourceTree = "<group>"; };
 		199196DC195BBF3D0050C393 /* FriendDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FriendDetailTableViewCell.m; path = ../Controllers/FriendDetailTableViewCell.m; sourceTree = "<group>"; };
 		199196E2195C13560050C393 /* TSActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSActionSheet.h; sourceTree = "<group>"; };
 		199196E3195C13560050C393 /* TSActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSActionSheet.m; sourceTree = "<group>"; };
-		199196E4195C13560050C393 /* TSPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverController.h; sourceTree = "<group>"; };
-		199196E5195C13560050C393 /* TSPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPopoverController.m; sourceTree = "<group>"; };
-		199196E6195C13560050C393 /* TSPopoverPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverPopoverView.h; sourceTree = "<group>"; };
-		199196E7195C13560050C393 /* TSPopoverPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPopoverPopoverView.m; sourceTree = "<group>"; };
 		199196E8195C13560050C393 /* TSPopoverTouchesDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverTouchesDelegate.h; sourceTree = "<group>"; };
 		199196E9195C13560050C393 /* TSPopoverTouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSPopoverTouchView.h; sourceTree = "<group>"; };
 		199196EA195C13560050C393 /* TSPopoverTouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSPopoverTouchView.m; sourceTree = "<group>"; };
@@ -1485,8 +1503,6 @@
 		199CFD89195AA50200F74F7C /* radio_unchecked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "radio_unchecked@2x.png"; sourceTree = "<group>"; };
 		199CFD8A195AA50200F74F7C /* RadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioButton.h; sourceTree = "<group>"; };
 		199CFD8B195AA50200F74F7C /* RadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioButton.m; sourceTree = "<group>"; };
-		199CFD8F195AA50200F74F7C /* UserLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLoginViewController.h; sourceTree = "<group>"; };
-		199CFD90195AA50200F74F7C /* UserLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLoginViewController.m; sourceTree = "<group>"; };
 		199CFDA0195AA53900F74F7C /* Contactlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contactlist.h; sourceTree = "<group>"; };
 		199CFDA1195AA53900F74F7C /* Contactlist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contactlist.m; sourceTree = "<group>"; };
 		199CFDA2195AA53900F74F7C /* SingleInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleInstance.h; sourceTree = "<group>"; };
@@ -1774,8 +1790,6 @@
 		3E46C16019D2CBA100403A42 /* InformationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationModel.m; sourceTree = "<group>"; };
 		3E46C16219D2DEE600403A42 /* NSString+_859ToUTF8.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+_859ToUTF8.h"; sourceTree = "<group>"; };
 		3E46C16319D2DEE600403A42 /* NSString+_859ToUTF8.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+_859ToUTF8.m"; sourceTree = "<group>"; };
-		3E46C16519D2E43E00403A42 /* InfoDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoDetailViewController.h; sourceTree = "<group>"; };
-		3E46C16619D2E43E00403A42 /* InfoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoDetailViewController.m; sourceTree = "<group>"; };
 		3E47C113196F9513003EE734 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3E4B2559197E1EB10061A9AE /* UINavigationItem+margin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+margin.h"; sourceTree = "<group>"; };
 		3E4B255A197E1EB10061A9AE /* UINavigationItem+margin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+margin.m"; sourceTree = "<group>"; };
@@ -2114,8 +2128,6 @@
 		563D755F19DE6CFC00095CC7 /* MedicalCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedicalCell.h; sourceTree = "<group>"; };
 		563D756019DE6CFC00095CC7 /* MedicalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedicalCell.m; sourceTree = "<group>"; };
 		563D756119DE6CFC00095CC7 /* MedicalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MedicalCell.xib; sourceTree = "<group>"; };
-		563D756419DE8B1300095CC7 /* LiuLanBingLiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiuLanBingLiViewController.h; sourceTree = "<group>"; };
-		563D756519DE8B1300095CC7 /* LiuLanBingLiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiuLanBingLiViewController.m; sourceTree = "<group>"; };
 		563D756719DE9C7500095CC7 /* LiuLanSectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiuLanSectionView.h; sourceTree = "<group>"; };
 		563D756819DE9C7500095CC7 /* LiuLanSectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiuLanSectionView.m; sourceTree = "<group>"; };
 		563D756A19DE9C8700095CC7 /* LiuLanSectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LiuLanSectionView.xib; sourceTree = "<group>"; };
@@ -2452,8 +2464,8 @@
 		198F8A3A1960F9EE00B3F09C /* Vchat */ = {
 			isa = PBXGroup;
 			children = (
-				198F8A3B1960FAD600B3F09C /* UserContactViewController.h */,
-				198F8A3C1960FAD600B3F09C /* UserContactViewController.m */,
+				190A7CBB19E7F5CA00965B44 /* UserContactViewController.h */,
+				190A7CBC19E7F5CA00965B44 /* UserContactViewController.m */,
 			);
 			name = Vchat;
 			sourceTree = "<group>";
@@ -2461,19 +2473,25 @@
 		199196E1195C13560050C393 /* QIDIPopover */ = {
 			isa = PBXGroup;
 			children = (
+				190A7CB819E7F4E000965B44 /* TSPopoverPopoverView.h */,
+				190A7CB919E7F4E000965B44 /* TSPopoverPopoverView.m */,
+				190A7CB519E7F4B400965B44 /* TSPopoverController.h */,
+				190A7CB619E7F4B400965B44 /* TSPopoverController.m */,
 				198F8A421961653800B3F09C /* QiDiPopoverView.h */,
 				198F8A431961653800B3F09C /* QiDiPopoverView.m */,
 				199196E2195C13560050C393 /* TSActionSheet.h */,
 				199196E3195C13560050C393 /* TSActionSheet.m */,
-				199196E4195C13560050C393 /* TSPopoverController.h */,
-				199196E5195C13560050C393 /* TSPopoverController.m */,
-				199196E6195C13560050C393 /* TSPopoverPopoverView.h */,
-				199196E7195C13560050C393 /* TSPopoverPopoverView.m */,
 				199196E8195C13560050C393 /* TSPopoverTouchesDelegate.h */,
 				199196E9195C13560050C393 /* TSPopoverTouchView.h */,
 				199196EA195C13560050C393 /* TSPopoverTouchView.m */,
 				199196EB195C13560050C393 /* UIBarButtonItem+WEPopover.h */,
 				199196EC195C13560050C393 /* UIBarButtonItem+WEPopover.m */,
+				190A7CA619E7F3BB00965B44 /* customActionSheet.h */,
+				190A7CA719E7F3BB00965B44 /* customActionSheet.m */,
+				190A7CA819E7F3BB00965B44 /* customPopViewController.h */,
+				190A7CA919E7F3BB00965B44 /* customPopViewController.m */,
+				190A7CAA19E7F3BB00965B44 /* customPopoverView.h */,
+				190A7CAB19E7F3BB00965B44 /* customPopoverView.m */,
 			);
 			path = QIDIPopover;
 			sourceTree = "<group>";
@@ -3319,14 +3337,16 @@
 		199CFD8C195AA50200F74F7C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				190A7CBE19E7F68900965B44 /* RegisterViewController.h */,
+				190A7CBF19E7F68900965B44 /* RegisterViewController.m */,
+				190A7CC019E7F68900965B44 /* UserLoginViewController.h */,
+				190A7CC119E7F68900965B44 /* UserLoginViewController.m */,
 				3E46C14D19D2A2AE00403A42 /* MedicalLibrary */,
 				3E46C14C19D2A2A400403A42 /* InformationLibrary */,
 				197ABFE619737BD100FC6A24 /* FriendCircle */,
 				198F8A3A1960F9EE00B3F09C /* Vchat */,
 				19996482195D25F1006C84CC /* SetUp */,
 				19996478195D250E006C84CC /* AddressList */,
-				199CFD8F195AA50200F74F7C /* UserLoginViewController.h */,
-				199CFD90195AA50200F74F7C /* UserLoginViewController.m */,
 				199F1B5219BEAF4000750258 /* UserCenter.h */,
 				199F1B5319BEAF4000750258 /* UserCenter.m */,
 			);
@@ -3849,8 +3869,8 @@
 			children = (
 				3E46C15119D2A31C00403A42 /* InformationViewController.h */,
 				3E46C15219D2A31C00403A42 /* InformationViewController.m */,
-				3E46C16519D2E43E00403A42 /* InfoDetailViewController.h */,
-				3E46C16619D2E43E00403A42 /* InfoDetailViewController.m */,
+				190A7CB219E7F3F900965B44 /* InfoDetailViewController.h */,
+				190A7CB319E7F3F900965B44 /* InfoDetailViewController.m */,
 				3E46C15419D2B8B600403A42 /* CreatNewInfoViewController.h */,
 				3E46C15519D2B8B600403A42 /* CreatNewInfoViewController.m */,
 				562E199319E68C4A004CEF81 /* CreateInfoDetailCell.h */,
@@ -3865,8 +3885,8 @@
 			children = (
 				3E46C14E19D2A2F200403A42 /* MedicalViewController.h */,
 				3E46C14F19D2A2F200403A42 /* MedicalViewController.m */,
-				563D756419DE8B1300095CC7 /* LiuLanBingLiViewController.h */,
-				563D756519DE8B1300095CC7 /* LiuLanBingLiViewController.m */,
+				190A7CAF19E7F3DA00965B44 /* LiuLanBingLiViewController.h */,
+				190A7CB019E7F3DA00965B44 /* LiuLanBingLiViewController.m */,
 				563D756719DE9C7500095CC7 /* LiuLanSectionView.h */,
 				563D756819DE9C7500095CC7 /* LiuLanSectionView.m */,
 				563D756A19DE9C8700095CC7 /* LiuLanSectionView.xib */,
@@ -5254,6 +5274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				190A7CAC19E7F3BB00965B44 /* customActionSheet.m in Sources */,
 				19960D4F196A80D7000121AA /* ChatRecordVoiceView.m in Sources */,
 				194EDB7C19D9D3D800A60E32 /* RecordsTableViewCell.m in Sources */,
 				E31D731D19E3AB7A00B214CF /* ITTCalendarView.m in Sources */,
@@ -5270,6 +5291,7 @@
 				3E4B255B197E1EB10061A9AE /* UINavigationItem+margin.m in Sources */,
 				199CFDF7195AA53900F74F7C /* Contactlist.m in Sources */,
 				199CFDF9195AA53900F74F7C /* UserContact.m in Sources */,
+				190A7CB419E7F3F900965B44 /* InfoDetailViewController.m in Sources */,
 				19960CB0196A80D6000121AA /* LatestListModel.m in Sources */,
 				3E3785011990F9390000F8FF /* MJRefreshConst.m in Sources */,
 				199DAD9D19837C50007EB14E /* GroupMember.m in Sources */,
@@ -5329,6 +5351,7 @@
 				3E37846E199092150000F8FF /* InferiorsTableViewCell.m in Sources */,
 				19A069471970C6D000830898 /* GroupIfo.m in Sources */,
 				19B7DA0E19E08EC1004B7621 /* SBJsonWriter.m in Sources */,
+				190A7CBA19E7F4E000965B44 /* TSPopoverPopoverView.m in Sources */,
 				198F8A441961653800B3F09C /* QiDiPopoverView.m in Sources */,
 				563845D719DF31E5004C236A /* VideoUploadModel.m in Sources */,
 				E31D732019E3AB7A00B214CF /* ITTCalendarViewHeaderView.m in Sources */,
@@ -5381,10 +5404,8 @@
 				19960D1D196A80D6000121AA /* PullEGORefreshTableView.m in Sources */,
 				199CFE18195AA53900F74F7C /* UIImageView+AFNetworking.m in Sources */,
 				19960D16196A80D6000121AA /* UIImage+WebP.m in Sources */,
-				199196EE195C13560050C393 /* TSPopoverController.m in Sources */,
 				3E1EFFCF1980AB9D008C9B8D /* PEResizeControl.m in Sources */,
 				199CFE19195AA53900F74F7C /* UIProgressView+AFNetworking.m in Sources */,
-				199CFD9E195AA50200F74F7C /* UserLoginViewController.m in Sources */,
 				19975AFD19762AB400ADF199 /* ShareImageViewController.m in Sources */,
 				19960D50196A80D7000121AA /* ChatVoiceRecorderVC.m in Sources */,
 				19E0933019E62E26004AC3DF /* IndustryNewsCell.m in Sources */,
@@ -5393,7 +5414,6 @@
 				199AA6DB19627CF300ED10B1 /* AppInPhone.m in Sources */,
 				199C017E195AE08B00F74F7C /* ChineseString.m in Sources */,
 				3E1EFFCD1980AB9D008C9B8D /* PECropView.m in Sources */,
-				563D756619DE8B1300095CC7 /* LiuLanBingLiViewController.m in Sources */,
 				19996494195D3E1A006C84CC /* RemindViewController.m in Sources */,
 				193ED7F6197F8552000C5009 /* UserInfoDB.m in Sources */,
 				1954B75C19DEEA360056A971 /* FbRegistCell.m in Sources */,
@@ -5406,7 +5426,6 @@
 				19960CB1196A80D6000121AA /* RSSwitch.m in Sources */,
 				1971CB91197E4F9500165755 /* SqliteClass.m in Sources */,
 				3EBFA06619AC864500328CF4 /* MyLabel.m in Sources */,
-				3E46C16719D2E43E00403A42 /* InfoDetailViewController.m in Sources */,
 				19960D52196A80D7000121AA /* LLRecordVoiceViewController.m in Sources */,
 				199F1B5419BEAF4000750258 /* UserCenter.m in Sources */,
 				5675CAED19D9D35300FB975F /* SNTools.m in Sources */,
@@ -5420,6 +5439,7 @@
 				1918518919E0241600DAF8E6 /* UserArticleList.m in Sources */,
 				E31D731219E3AB7A00B214CF /* GeventModel.m in Sources */,
 				19960CB3196A80D6000121AA /* UINavigationItem+selfArchItem.m in Sources */,
+				190A7CC219E7F68900965B44 /* RegisterViewController.m in Sources */,
 				3E3785001990F9390000F8FF /* MJRefreshBaseView.m in Sources */,
 				3EA2D6BB19835F3B0088E522 /* HPGrowingTextView.m in Sources */,
 				3E3785061990F9390000F8FF /* UIView+Extension.m in Sources */,
@@ -5452,16 +5472,16 @@
 				3E4B2561197E6C550061A9AE /* AddNewColleagueCell.m in Sources */,
 				19960D47196A80D6000121AA /* UIView+Animation.m in Sources */,
 				E31D732D19E3AB7A00B214CF /* ITTCalMonth.m in Sources */,
+				190A7CAE19E7F3BB00965B44 /* customPopoverView.m in Sources */,
 				19960CF7196A80D6000121AA /* ASINetworkQueue.m in Sources */,
 				3E3785031990F9390000F8FF /* MJRefreshHeaderView.m in Sources */,
 				19B7DA0A19E08EC1004B7621 /* SBJsonBase.m in Sources */,
-				199196EF195C13560050C393 /* TSPopoverPopoverView.m in Sources */,
 				19B7DA0419E08EC1004B7621 /* NSObject+SBJSON.m in Sources */,
 				840BB22419D7AB30000A4725 /* CheckNetWork.m in Sources */,
 				E31D733E19E3B6F300B214CF /* GEGORefreshTableFooterView.m in Sources */,
 				8458B80519D94EA50083B4AC /* SqliteBase.m in Sources */,
 				195C2FF81988859B0099B45F /* MyUncaughtExceptionHandler.m in Sources */,
-				198F8A3D1960FAD600B3F09C /* UserContactViewController.m in Sources */,
+				190A7CC319E7F68900965B44 /* UserLoginViewController.m in Sources */,
 				3E46C15D19D2C51F00403A42 /* InformationTableViewCell.m in Sources */,
 				3E46C16419D2DEE600403A42 /* NSString+_859ToUTF8.m in Sources */,
 				E31D732F19E3AB7A00B214CF /* GevnetListTableViewCell.m in Sources */,
@@ -5469,6 +5489,7 @@
 				19960D0F196A80D6000121AA /* SDWebImageDownloader.m in Sources */,
 				563D757119DED87000095CC7 /* SNViewController.m in Sources */,
 				3E3785041990F9390000F8FF /* UIScrollView+Extension.m in Sources */,
+				190A7CB119E7F3DA00965B44 /* LiuLanBingLiViewController.m in Sources */,
 				19996492195D3E1A006C84CC /* ChangPWDViewController.m in Sources */,
 				19DAE95E196D228700FE7187 /* GroupListTableViewCell.m in Sources */,
 				5630B98119DBF35A00DCFE1B /* ShowImagesViewController.m in Sources */,
@@ -5512,6 +5533,7 @@
 				849104B119DC51B2009A636C /* VoicePlayCenter.m in Sources */,
 				849104C819DC54C2009A636C /* GroupMemberListViewController.m in Sources */,
 				3E765BAA197FA46D00B1BC7F /* UIImage+UIImageScale.m in Sources */,
+				190A7CBD19E7F5CA00965B44 /* UserContactViewController.m in Sources */,
 				19960CAF196A80D6000121AA /* ImageCache.m in Sources */,
 				3951C91619D11CC10040B07E /* FMDatabasePool.m in Sources */,
 				199CFE14195AA53900F74F7C /* AFNetworkActivityIndicatorManager.m in Sources */,
@@ -5525,6 +5547,7 @@
 				840BB22D19D7AB72000A4725 /* AFNetAPIClient.m in Sources */,
 				19960D1E196A80D6000121AA /* PullPsCollectionView.m in Sources */,
 				565DAE5A19DA9BCD00C3924D /* ReplyListModel.m in Sources */,
+				190A7CAD19E7F3BB00965B44 /* customPopViewController.m in Sources */,
 				E31D730819E3AB7A00B214CF /* GcalendarViewController.m in Sources */,
 				840BB21F19D7AB30000A4725 /* AFSecurityPolicy.m in Sources */,
 				19960D12196A80D6000121AA /* SDWebImagePrefetcher.m in Sources */,
@@ -5532,6 +5555,7 @@
 				1918517019E0236600DAF8E6 /* FirendCircleHomeTableViewController.m in Sources */,
 				5630B99219DC374900DCFE1B /* MedicalModel.m in Sources */,
 				19960CF5196A80D6000121AA /* ASIHTTPRequest.m in Sources */,
+				190A7CB719E7F4B400965B44 /* TSPopoverController.m in Sources */,
 				1954B75919DEE5A00056A971 /* BiaoQianBottomView.m in Sources */,
 				19960D4D196A80D7000121AA /* ChatRecorderView.m in Sources */,
 				5621320019DFF45C00B3F8C1 /* ShareCircleViewController.m in Sources */,

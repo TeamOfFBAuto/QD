@@ -12,7 +12,7 @@
 #import "InformationDetailModel.h"
 #import "InfoFileTableViewCell.h"
 #import "ShareCircleViewController.h"
-#import "TSActionSheet.h"
+#import "customActionSheet.h"
 #import "SNGroupsViewController.h"
 #import "CreatNewInfoViewController.h"
 @interface InfoDetailViewController ()<UITableViewDataSource, UITableViewDelegate,MBProgressHUDDelegate,InfoFileTableViewCellDelegate>
@@ -106,7 +106,7 @@
 {
     [self.view endEditing:YES];
     __weak typeof(self)bself = self;
-    TSActionSheet *actionSheet = [[TSActionSheet alloc] init];
+    customActionSheet *actionSheet = [[customActionSheet alloc] init];
     NSString *share1 = @"分享到诊疗圈";
     NSString *share2 = @"分享到讨论组";
     NSString *edit = @"编辑资料";
@@ -273,7 +273,7 @@
 - (void)loadFileTableView
 {
     _fileTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-    _fileTableView.backgroundColor = [UIColor whiteColor];
+    _fileTableView.backgroundColor = [UIColor clearColor];
     _fileTableView.delegate = self;
     _fileTableView.dataSource = self;
     _fileTableView.alwaysBounceVertical = NO;

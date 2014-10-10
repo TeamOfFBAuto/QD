@@ -34,6 +34,7 @@
 //#define  currentDev1 [[UIDevice currentDevice].systemVersion floatValue] == 7.0
 #define  IOS7_LATER  [[UIDevice currentDevice].systemVersion floatValue] >=7.0
 #define  ISIOS_PREV [[UIDevice currentDevice].systemVersion floatValue] < 7.0
+#define  IOS8_PREV [[UIDevice currentDevice].systemVersion floatValue] >= 8.0
 #define  viewSize  self.view.frame.size
 // 应用在商店中的Apple ID
 #define AppleId 916459637

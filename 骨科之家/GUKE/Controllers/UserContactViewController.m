@@ -97,8 +97,8 @@
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"isShowRed"] boolValue]) {
         UIView *redLable = (UIView *)[head_bg viewWithTag:615];
         if (redLable.frame.size.width == 0) {
-            redLable.frame = CGRectMake(285, 5, 12, 12);
-            redLable.layer.cornerRadius = 6;
+            redLable.frame = CGRectMake(SCREEN_WIDTH/4 - 10, 5, 10, 10);
+            redLable.layer.cornerRadius = 5;
         }
     }
 }
@@ -672,8 +672,8 @@
             // 上侧显示红点
             UIView *redLable = (UIView *)[head_bg viewWithTag:615];
             if (redLable.frame.size.width == 0) {
-                redLable.frame = CGRectMake(285, 5, 12, 12);
-                redLable.layer.cornerRadius = 6;
+                redLable.frame = CGRectMake(SCREEN_WIDTH/4 - 10, 5, 10, 10);
+                redLable.layer.cornerRadius = 5;
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"redLabel" object:nil userInfo:nil];
             }
             
@@ -781,8 +781,8 @@
                     // 上侧显示红点
                     UIView *redLable = (UIView *)[head_bg viewWithTag:615];
                     if (redLable.frame.size.width == 0) {
-                        redLable.frame = CGRectMake(285, 5, 12, 12);
-                        redLable.layer.cornerRadius = 6;
+                        redLable.frame = CGRectMake(SCREEN_WIDTH/4 - 10, 5, 10, 10);
+                        redLable.layer.cornerRadius = 5;
                         [[NSNotificationCenter defaultCenter] postNotificationName:@"redLabel" object:nil userInfo:nil];
                     }
                     
@@ -843,8 +843,8 @@
                 // 上侧显示红点
                 UIView *redLable = (UIView *)[head_bg viewWithTag:615];
                 if (redLable.frame.size.width == 0) {
-                    redLable.frame = CGRectMake(285, 5, 12, 12);
-                    redLable.layer.cornerRadius = 6;
+                    redLable.frame = CGRectMake(SCREEN_WIDTH/4 - 10, 5, 10, 10);
+                    redLable.layer.cornerRadius = 5;
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"redLabel" object:nil userInfo:nil];
                 }
                 
@@ -968,8 +968,8 @@
                         // 上侧显示红点
                         UIView *redLable = (UIView *)[head_bg viewWithTag:615];
                         if (redLable.frame.size.width == 0) {
-                            redLable.frame = CGRectMake(285, 5, 12, 12);
-                            redLable.layer.cornerRadius = 6;
+                            redLable.frame = CGRectMake(SCREEN_WIDTH/4 - 10, 5, 10, 10);
+                            redLable.layer.cornerRadius = 5;
                             [[NSNotificationCenter defaultCenter] postNotificationName:@"redLabel" object:nil userInfo:nil];
                         }
                         
