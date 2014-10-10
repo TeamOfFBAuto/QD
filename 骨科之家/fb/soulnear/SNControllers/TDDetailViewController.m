@@ -52,10 +52,17 @@
     
     [self getCommentData];
     
-    
-    toolBar = [[Toolbar alloc] initWithFrame:CGRectMake(0,DEVICE_HEIGHT, 0, 0)];
+    // 判断底部的适用尺寸
+    if(IOS7_LATER){
+        toolBar = [[Toolbar alloc] initWithFrame:CGRectMake(0,DEVICE_HEIGHT, 0, 0)];
+        toolBar.delegate = self;
+        [toolBar showInView:self.view withValidHeight:DEVICE_HEIGHT];
+    }
+    else{
+    toolBar = [[Toolbar alloc] initWithFrame:CGRectMake(0,DEVICE_HEIGHT - 64, 0, 0)];
     toolBar.delegate = self;
-    [toolBar showInView:self.view withValidHeight:DEVICE_HEIGHT];
+    [toolBar showInView:self.view withValidHeight:DEVICE_HEIGHT - 64];
+    }
 }
 
 #pragma mark - 获取评论数据
@@ -186,7 +193,6 @@
         height += 30 + 150;
     }
     
-    //CGRect rectr1 = [self.info.content boundingRectWithSize:CGSizeMake(DEVICE_WIDTH-30, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14]} context:nil];
     CGSize recSize1 = [SingleInstance customFontHeight:self.info.content andFontSize:14 andLineWidth:DEVICE_WIDTH-30];
     UILabel * contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(15,height+20,DEVICE_WIDTH-30,recSize1.height)];
     contentLabel.numberOfLines = 0;

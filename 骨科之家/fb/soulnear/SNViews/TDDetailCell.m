@@ -31,14 +31,21 @@
 {
     if (info.theType == SEND_Type_content)
     {
-        //CGRect rectr = [info.context boundingRectWithSize:CGSizeMake(DEVICE_WIDTH-100, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14]} context:nil];
-        CGSize recSize = [SingleInstance customFontHeight:info.context andFontSize:14 andLineWidth:DEVICE_WIDTH-100];
+        CGRect rectr;
+        if (IOS7_LATER) {
+            rectr = [info.context boundingRectWithSize:CGSizeMake(DEVICE_WIDTH-100, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14]} context:nil];
+        }
+        else{
+        NSAttributedString * attributeString = [[NSAttributedString alloc]initWithString:info.context attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14]}];
+        rectr = [attributeString boundingRectWithSize:CGSizeMake(DEVICE_WIDTH-100, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+        }
         
-        _background_imageView = [[UIImageView alloc] initWithFrame:CGRectMake(56,37,recSize.width+20,recSize.height+20)];
+        
+        _background_imageView = [[UIImageView alloc] initWithFrame:CGRectMake(56,37,rectr.size.width+20,rectr.size.height+20)];
         _background_imageView.image = [[UIImage imageNamed:@"chatfrom_bg_voice_playing.9.png"] stretchableImageWithLeftCapWidth:18 topCapHeight:26];
         [self.contentView addSubview:_background_imageView];
         
-        _content_label = [[UILabel alloc] initWithFrame:CGRectMake(12,10,recSize.width,recSize.height)];
+        _content_label = [[UILabel alloc] initWithFrame:CGRectMake(12,10,rectr.size.width,rectr.size.height)];
         _content_label.text = info.context;
         _content_label.numberOfLines = 0;
         _content_label.backgroundColor = [UIColor clearColor];

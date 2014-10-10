@@ -123,7 +123,6 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"IndustryNewsCell" owner:self options:nil] objectAtIndex:0];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
     IndustryNewsModel * model = [data_array objectAtIndex:indexPath.row];
     
     [cell setInfoWith:model];
