@@ -932,10 +932,7 @@ static NSString *commentId = 0;
         soursceType = UIImagePickerControllerSourceTypeCamera;
     }
     else if (index == 1){
-//        soursceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        [self chooseMorePhoto];
-        
-        return;
+        soursceType = UIImagePickerControllerSourceTypePhotoLibrary;
     }
     else if (index == 2){
         return;
@@ -944,14 +941,14 @@ static NSString *commentId = 0;
         bgImagePicker = [[UIImagePickerController alloc]init];
         bgImagePicker.sourceType = soursceType;
         bgImagePicker.delegate = self;
-        //bgImagePicker.allowsEditing = YES;
         [self presentViewController:bgImagePicker animated:YES completion:nil];
     }
     else if(buttonMenu.view.tag == ACTIONSHEET_SHARE_TAG){
-        shareImagePicker = [[UIImagePickerController alloc]init];
-        shareImagePicker.sourceType = soursceType;
-        shareImagePicker.delegate = self;
-        [self presentViewController:shareImagePicker animated:YES completion:nil];
+        [self chooseMorePhoto];
+//        shareImagePicker = [[UIImagePickerController alloc]init];
+//        shareImagePicker.sourceType = soursceType;
+//        shareImagePicker.delegate = self;
+//        [self presentViewController:shareImagePicker animated:YES completion:nil];
     }
 }
 
@@ -963,7 +960,6 @@ static NSString *commentId = 0;
     elcPicker.maximumImagesCount = 100; //Set the maximum number of images to select to 100
     elcPicker.maximumImagesCount = 9;
     elcPicker.imagePickerDelegate = self;
-    
     [self presentViewController:elcPicker animated:YES completion:nil];
 }
 
@@ -971,7 +967,6 @@ static NSString *commentId = 0;
 
 - (void)elcImagePickerController:(ELCImagePickerController *)picker didFinishPickingMediaWithInfo:(NSArray *)info
 {
-    NSLog(@"info -------  %@",info);
     NSMutableArray * img_array = [NSMutableArray array];
     
     for (NSDictionary * dic in info)
@@ -1000,7 +995,8 @@ static NSString *commentId = 0;
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
+#pragma mark ====== GETUIImagePickerController
+//- (void)
 #pragma mark ====== UIImagePickerController Delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     UIImage *img = [info objectForKey:UIImagePickerControllerOriginalImage];

@@ -806,8 +806,8 @@
     if ([compatiblePresets containsObject:_mp4Quality])
         
     {
-        _alert = [[UIAlertView alloc] init];
-        [_alert setTitle:@"Waiting.."];
+//        _alert = [[UIAlertView alloc] init];
+//        [_alert setTitle:@"Waiting.."];
         
         UIActivityIndicatorView* activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         activity.frame = CGRectMake(140,
@@ -816,7 +816,7 @@
                                     CGRectGetHeight(_alert.frame));
         [_alert addSubview:activity];
         [activity startAnimating];
-        [_alert show];
+//        [_alert show];
         
         _startDate = [NSDate date];
         
