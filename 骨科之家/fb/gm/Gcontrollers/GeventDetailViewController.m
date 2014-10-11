@@ -470,11 +470,16 @@
         {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             
-            UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"支付成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"GMESCSUCCESS" object:nil];
+            
+            UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"取消成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [al show];
             
             
         }else{
+            UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"取消失败" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [al show];
             
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             
