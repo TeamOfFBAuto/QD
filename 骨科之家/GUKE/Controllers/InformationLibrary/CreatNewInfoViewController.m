@@ -62,6 +62,7 @@
     
     NSString * _videoDuration;//视频持续时间
     NSString *_videoSize;//视频文件大小
+    MBProgressHUD *_ghud;
     
     
 }
@@ -832,6 +833,9 @@
 //        _alert = [[UIAlertView alloc] init];
 //        [_alert setTitle:@"Waiting.."];
         
+        _ghud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        _ghud.labelText = @"正在保存";
+        
         UIActivityIndicatorView* activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         activity.frame = CGRectMake(140,
                                     80,
@@ -847,7 +851,7 @@
                                                                               presetName:_mp4Quality];
         NSDateFormatter* formater = [[NSDateFormatter alloc] init];
         [formater setDateFormat:@"yyyy-MM-dd-HH:mm:ss"];
-        _mp4Path = [NSHomeDirectory() stringByAppendingFormat:@"/Documents/output-%@.mp4", [formater stringFromDate:[NSDate date]]];
+        _mp4Path = [NSHomeDirectory() stringByAppendingFormat:@"/tmp/output-%@.mp4", [formater stringFromDate:[NSDate date]]];
         
         exportSession.outputURL = [NSURL fileURLWithPath: _mp4Path];
         exportSession.shouldOptimizeForNetworkUse = _networkOpt;
@@ -899,14 +903,16 @@
 #pragma mark - 压缩完成
 - (void) convertFinish
 {
-    [_alert dismissWithClickedButtonIndex:0 animated:YES];
+    [_ghud hide:YES];
+//    [_alert dismissWithClickedButtonIndex:0 animated:YES];
     CGFloat duration = [[NSDate date] timeIntervalSinceDate:_startDate];
-    _alert = [[UIAlertView alloc] initWithTitle:@"干的漂亮"
-                                        message:[NSString stringWithFormat:@"压缩成功 消耗%.2f秒 路径 :%@ ", duration,_mp4Path]
-                                       delegate:nil
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles: nil];
+//    _alert = [[UIAlertView alloc] initWithTitle:@"干的漂亮"
+//                                        message:[NSString stringWithFormat:@"压缩成功 消耗%.2f秒 路径 :%@ ", duration,_mp4Path]
+//                                       delegate:nil
+//                              cancelButtonTitle:@"OK"
+//                              otherButtonTitles: nil];
     
+    NSLog(@"%s",__FUNCTION__);
     NSLog(@"压缩文件输出路径 :%@",_mp4Path);
     
     

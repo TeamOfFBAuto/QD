@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
 #import "SendPostsImageScrollView.h"
+#import "CircelProtocle.h"
 @interface ShareImageViewController : UIViewController<UITextViewDelegate,MBProgressHUDDelegate>
 {
     SendPostsImageScrollView * imageScrollView;
 }
+@property(nonatomic,assign)id<FriendCircelDelegate>delegate;
 @property(nonatomic, strong)UIImage *img;
 @property(nonatomic, strong)NSData *imgData;
 

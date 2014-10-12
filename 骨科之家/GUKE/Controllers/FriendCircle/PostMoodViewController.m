@@ -8,6 +8,8 @@
 
 #import "PostMoodViewController.h"
 #import "Interface.h"
+
+
 @interface PostMoodViewController ()
 {
     MBProgressHUD *HUD;
@@ -201,6 +203,9 @@
 {
     
     if (alertView.tag == 401) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(refreshData)]) {
+            [self.delegate refreshData];
+        }
         [self.navigationController popViewControllerAnimated:YES];
     }
     

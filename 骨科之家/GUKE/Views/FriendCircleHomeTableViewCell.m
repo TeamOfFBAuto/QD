@@ -207,6 +207,10 @@ static const NSMutableArray *subjectArry;
     [super prepareForReuse];
     [self.favorite setTitle:nil forState:UIControlStateNormal];
     _ContentView.shareImg.image = nil;
+    _ContentView.tempView.frame = CGRectZero;
+    _ContentView.shareComment.frame = CGRectZero;
+    _ContentView.shareContext.frame = CGRectZero;
+    _ContentView.contact.frame = CGRectZero;
     _ContentView.frame = CGRectZero;
 }
 

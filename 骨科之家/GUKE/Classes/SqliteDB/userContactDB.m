@@ -114,7 +114,7 @@
         [dataBase close];
         return nil;
     }
-    NSString *sqlQue = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE %@ = ? ORDER BY %@ ASC,%@ ASC,%@ DESC,%@ DESC,%@ DESC",USERCONTACT_TABLE,@"cuId",@"contactType",@"groupType",@"isTop",@"topOperateTime",@"lastMsgTime"];
+    NSString *sqlQue = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE %@ = ? ORDER BY %@ ASC,%@ DESC,%@ DESC,%@ DESC",USERCONTACT_TABLE,@"cuId",@"groupType",@"isTop",@"topOperateTime",@"lastMsgTime"];
     FMResultSet *set = [dataBase executeQuery:sqlQue,cuId];
     while([set next]){
         UserContact *model = [[UserContact alloc]init];

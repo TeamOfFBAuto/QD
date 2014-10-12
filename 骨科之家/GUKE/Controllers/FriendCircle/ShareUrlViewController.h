@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
+#import "CircelProtocle.h"
 @interface ShareUrlViewController : UIViewController<UITextViewDelegate,MBProgressHUDDelegate>
-
+@property(nonatomic,assign)id<FriendCircelDelegate>delegate;
 @end

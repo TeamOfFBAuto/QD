@@ -26,8 +26,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self navigetion];
     self.view.backgroundColor = [UIColor whiteColor];
+    if(IOS7_LATER){
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+    [self navigetion];
+ 
     [self layoutView];
 }
 - (void)layoutView{
@@ -35,7 +39,7 @@
     CGFloat height = [SingleInstance customFontHeightFont:content andFontSize:19 andLineWidth:viewSize.width - 10];
     
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
-    UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, viewSize.width, viewSize.height)];
+    UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     
     UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"pruduce_logo@2x"]];
     CGRect frame = CGRectMake((viewSize.width - 80)/2, 10, 80, 80);

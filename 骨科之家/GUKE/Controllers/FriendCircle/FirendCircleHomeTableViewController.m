@@ -8,9 +8,6 @@
 
 #import "FirendCircleHomeTableViewController.h"
 #import "UserLoginViewController.h"
-#import "PostMoodViewController.h"
-#import "ShareImageViewController.h"
-#import "ShareUrlViewController.h"
 #import "TSPopoverController.h"
 #import "TSActionSheet.h"
 
@@ -109,7 +106,7 @@ static NSString *commentId = 0;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     [self setExtraCellLineHidden:self.tableView];
-    [self.tableView headerBeginRefreshing];
+    
 }
 - (void)viewDidLoad
 {
@@ -120,6 +117,7 @@ static NSString *commentId = 0;
     }
     [self navigation];
     [self initTable];
+    [self.tableView headerBeginRefreshing];
     [self keyBoardListener];
 }
 
@@ -612,14 +610,14 @@ static NSString *commentId = 0;
         CGFloat commentHeight = 0.0;
         
         if ([articleModel.goodArray count]>0) {
-            shareHeight = [SingleInstance customHeight:[articleModel.goodArray count] andcount:SINGLE_GOOD_COUNT andsingleHeight:45.0] ;
+            shareHeight = [SingleInstance customHeight:[articleModel.goodArray count] andcount:SINGLE_GOOD_COUNT andsingleHeight:45.0]  + 15;
         }
         // 评论的高度设定
         if ([articleModel.commentArray count]>0) {
             for (contentAndGood *modle in articleModel.commentArray) {
                 commentHeight = commentHeight + [SingleInstance customFontHeightFont:modle.context andFontSize:15 andLineWidth:SHARE_BG_WIGHT];
             }
-            commentHeight = commentHeight + [articleModel.commentArray count] *4 + 0;
+            commentHeight = commentHeight + [articleModel.commentArray count] *4;
         }
         CGFloat height = 0.0f;
         if ([articleModel.photo isEqualToString:@""]||articleModel.photo == nil) {
@@ -646,7 +644,7 @@ static NSString *commentId = 0;
             }
 
         }
-        return height+10;
+        return height + 10;
     }
 }
 
@@ -945,10 +943,6 @@ static NSString *commentId = 0;
     }
     else if(buttonMenu.view.tag == ACTIONSHEET_SHARE_TAG){
         [self chooseMorePhoto];
-//        shareImagePicker = [[UIImagePickerController alloc]init];
-//        shareImagePicker.sourceType = soursceType;
-//        shareImagePicker.delegate = self;
-//        [self presentViewController:shareImagePicker animated:YES completion:nil];
     }
 }
 
@@ -986,6 +980,7 @@ static NSString *commentId = 0;
     [self dismissViewControllerAnimated:YES completion:^{
         ShareImageViewController * shareImage = [[ShareImageViewController alloc]init];
         shareImage.data_array = img_array;
+        shareImage.delegate = self;
         [self.navigationController pushViewController:shareImage animated:YES];
     }];
 }
@@ -1070,7 +1065,12 @@ static NSString *commentId = 0;
     FriendCircleDetailViewController *fdvc = [[FriendCircleDetailViewController alloc] initWithModel:GET_USER_ID];
     [self.navigationController pushViewController:fdvc animated:YES];
 }
-
+// 数据发表后刷新数据的delegate
+- (void)refreshData
+{
+    [self setExtraCellLineHidden:self.tableView];
+    [self.tableView headerBeginRefreshing];
+}
 
 // 点击进入头像的个人空间
 - (void)userIconTap:(id)sender
@@ -1112,6 +1112,7 @@ static NSString *commentId = 0;
     NSString *addNewshare = LOCALIZATION(@"userarticle_newshare");
     [actionSheet addButtonWithTitle:addNewtext icon:@"menuicon_edit" block:^{
         PostMoodViewController *post = [[PostMoodViewController alloc]init];
+        post.delegate = self;
         [self.navigationController pushViewController:post animated:YES];
         
     }];
@@ -1121,6 +1122,7 @@ static NSString *commentId = 0;
     }];
     [actionSheet addButtonWithTitle:addNewshare icon:@"menuicon_link" block:^{
         ShareUrlViewController *shareUrl = [[ShareUrlViewController alloc]init];
+        shareUrl.delegate = self;
         [friendCircleView.navigationController pushViewController:shareUrl animated:YES];
         
     }];

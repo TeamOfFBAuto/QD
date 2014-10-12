@@ -36,6 +36,7 @@
 
 
 #define USER_LOGING_URL        @"login.php"                     // 1、用户登入接口
+#define REGISTER_URL           @"register.php"                  // 2、 用户注册
 #define FRIEND_LIST_URL        @"friendlist.php"                // 36、好友列表
 #define USER_INFO_BYID_URL     @"userinfobyid.php"              // 18、根据用户id查看用户信息
 #define FRIEND_ADD_URL         @"friendadd.php"                 // 39、添加好友

@@ -9,6 +9,7 @@
 #import "UserLoginViewController.h"
 #import "SqliteClass.h"
 #import "SqliteFieldAndTable.h"
+#import "RegisterViewController.h"
 #import "Interface.h"
 #define USERNAME_FIELD_TAG 101
 #define PWD_FIELD_TAG 102
@@ -144,6 +145,7 @@
     rightBtn.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.2f];
     rightBtn.layer.cornerRadius = 4;
     [rightBtn setTitle:@"注册" forState:UIControlStateNormal];
+    rightBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     rightBtn.tag =REGISTER_BTN_TAG;
     
@@ -374,7 +376,8 @@
 #pragma mark ====== button action
 - (void)btnClick:(UIButton *)sender{
     if (sender.tag == REGISTER_BTN_TAG) {
-        NSLog(@"注册用户");
+        RegisterViewController *registerView = [[RegisterViewController alloc]init];
+        [self.navigationController pushViewController:registerView animated:YES];
     }else{
         NSString *alertText = LOCALIZATION(@"login_process");
         [self creatHUD:alertText];

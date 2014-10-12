@@ -73,7 +73,8 @@
         [lanUser setObject:dictionary forKey:@"language"];
     }
 
-    // 聊天页面
+    // 注册远程推送通知
+    [self startRegisterNotification];
    
     /*
      页面跳转的部分 如果是点击推送消息启动的程序，则跳到指定的页面
@@ -98,14 +99,6 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    //注册远程推送通知
-    [application registerForRemoteNotificationTypes:
-     UIRemoteNotificationTypeBadge |
-     UIRemoteNotificationTypeAlert |
-     UIRemoteNotificationTypeSound];
-    
-   
-    
     // 监测网络
     CheckNetWork *check = [[CheckNetWork alloc] init];
     [check checkNetworkChange];
@@ -116,7 +109,23 @@
     //[self installUncaughtExceptionHandler];
     return YES;
 }
-
+// 注册远程推送通知
+- (void)startRegisterNotification{
+    if (IOS8_PREV) {
+        UIUserNotificationSettings *notificationSetting = [UIUserNotificationSettings settingsForTypes: UIRemoteNotificationTypeBadge |UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSetting];
+    }
+    else{
+        //注册远程推送通知
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+         UIRemoteNotificationTypeBadge |
+         UIRemoteNotificationTypeAlert |
+         UIRemoteNotificationTypeSound];
+    }
+    if (IOS8_PREV) {
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
+}
 // 接受（到）远程推送通知（挂起）
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
     NSDictionary *dic = [userInfo objectForKey:@"info"];
@@ -248,6 +257,30 @@
         UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:vc];
         self.window.rootViewController = nv;
     }else if (type == Root_contact){
+          if ([[NSUserDefaults standardUserDefaults] objectForKey:DEVICETOKEN] != nil && ![[[NSUserDefaults standardUserDefaults] objectForKey:DEVICETOKEN] isEqual:[NSNull null]]) {
+        NSDictionary *params = @{@"userId": GET_USER_ID,@"sid":GET_S_ID,@"deviceToken":[[NSUserDefaults standardUserDefaults] objectForKey:DEVICETOKEN]};
+        [AFRequestService responseData:UPLOAD_TOCKEN_URL andparameters:params  andResponseData:^(NSData *responseData) {
+            NSDictionary *dict = (NSDictionary *)responseData;
+            NSUInteger codeNum = [[dict objectForKey:@"code"] integerValue];
+            if (codeNum == CODE_SUCCESS) {
+                return ;
+            }
+            else if (codeNum == CODE_ERROE){
+                SqliteFieldAndTable *sqliteAndtable = [[SqliteFieldAndTable alloc]init];
+                AppDelegate __weak *_Self = self;
+                [sqliteAndtable repeatLogin:^(BOOL flag) {
+                    if (flag) {
+                        [_Self showControlView:Root_home];
+                        
+                    }
+                    else{
+                        [_Self showControlView:Root_login];
+                    }
+                    
+                }];
+            }
+        }];
+    }
         // 后台执行加载数据
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             SqliteFieldAndTable *sqliteAndtable = [[SqliteFieldAndTable alloc]init];
