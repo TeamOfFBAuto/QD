@@ -41,6 +41,7 @@
 		195C2FFB19888ADD0099B45F /* UncaughtExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 195C2FFA19888ADD0099B45F /* UncaughtExceptionHandler.m */; };
 		195D980B19B17151008BAEB0 /* getAppInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 195D980A19B17151008BAEB0 /* getAppInfo.m */; };
 		195D980D19B1B444008BAEB0 /* dabaseVersion.plist in Resources */ = {isa = PBXBuildFile; fileRef = 195D980C19B1B444008BAEB0 /* dabaseVersion.plist */; };
+		1965D1BE19E94785003D5B6C /* CustomProtocle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1965D1BD19E94785003D5B6C /* CustomProtocle.m */; };
 		1971CB91197E4F9500165755 /* SqliteClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 1971CB90197E4F9500165755 /* SqliteClass.m */; };
 		1977B4FF19C8447800D504A7 /* button_bj.png in Resources */ = {isa = PBXBuildFile; fileRef = 1977B4FC19C8447800D504A7 /* button_bj.png */; };
 		1977B50019C8447800D504A7 /* privacy@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1977B4FD19C8447800D504A7 /* privacy@2x.png */; };
@@ -1062,6 +1063,8 @@
 		195D980919B17151008BAEB0 /* getAppInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = getAppInfo.h; sourceTree = "<group>"; };
 		195D980A19B17151008BAEB0 /* getAppInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = getAppInfo.m; sourceTree = "<group>"; };
 		195D980C19B1B444008BAEB0 /* dabaseVersion.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = dabaseVersion.plist; path = Tools/dabaseVersion.plist; sourceTree = "<group>"; };
+		1965D1BD19E94785003D5B6C /* CustomProtocle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomProtocle.m; sourceTree = "<group>"; };
+		1965D1BF19E9482C003D5B6C /* CircelProtocle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircelProtocle.h; sourceTree = "<group>"; };
 		1971CB8F197E4F9500165755 /* SqliteClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqliteClass.h; sourceTree = "<group>"; };
 		1971CB90197E4F9500165755 /* SqliteClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SqliteClass.m; sourceTree = "<group>"; };
 		1977B4FC19C8447800D504A7 /* button_bj.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_bj.png; sourceTree = "<group>"; };
@@ -2449,6 +2452,8 @@
 				19975AFC19762AB400ADF199 /* ShareImageViewController.m */,
 				19975AFE197640AB00ADF199 /* ShareUrlViewController.h */,
 				19975AFF197640AB00ADF199 /* ShareUrlViewController.m */,
+				1965D1BD19E94785003D5B6C /* CustomProtocle.m */,
+				1965D1BF19E9482C003D5B6C /* CircelProtocle.h */,
 			);
 			path = FriendCircle;
 			sourceTree = "<group>";
@@ -5320,6 +5325,7 @@
 				199CFF7D195AA5C900F74F7C /* UserDefaultsCatch.m in Sources */,
 				561A869219DDDDB900CC8674 /* ChooseCaseTypeViewController.m in Sources */,
 				19960D34196A80D6000121AA /* UIImage+UIImageCircle.m in Sources */,
+				1965D1BE19E94785003D5B6C /* CustomProtocle.m in Sources */,
 				199A5B0E1980A53900976D6C /* UserAddedGroupDB.m in Sources */,
 				199196F1195C13560050C393 /* UIBarButtonItem+WEPopover.m in Sources */,
 				19960D36196A80D6000121AA /* UUID.m in Sources */,

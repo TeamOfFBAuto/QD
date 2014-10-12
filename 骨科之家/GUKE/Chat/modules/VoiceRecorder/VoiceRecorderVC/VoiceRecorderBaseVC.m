@@ -60,7 +60,8 @@
  */
 + (NSString*)getCacheDirectory
 {
-    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
+    NSString *tempPath = NSTemporaryDirectory();
+    return tempPath;//[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     return [[paths objectAtIndex:0]stringByAppendingPathComponent:@"Voice"];
 }
