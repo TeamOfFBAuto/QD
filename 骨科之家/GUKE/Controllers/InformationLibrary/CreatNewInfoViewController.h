@@ -15,7 +15,7 @@
 @optional
 - (void)repeatLoadData;
 @end
-@interface CreatNewInfoViewController : UIViewController<VoiceRecorderBaseVCDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface CreatNewInfoViewController : UIViewController<VoiceRecorderBaseVCDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate>
 @property(nonatomic,assign)id<CreatNewInfoViewDelegate>delegate;
 @property (strong, nonatomic)  ChatVoiceRecorderVC *recorderVC;
 @property(nonatomic,strong)InformationDetailModel * info;

@@ -405,10 +405,10 @@
 // 手势事件
 - (void)tapAction
 {
-    __weak typeof(self)wself=self;
-    if (self.delegate && [self.delegate respondsToSelector:@selector(repeatLoadData)]) {
-        [wself.delegate repeatLoadData];
-    }
+//    __weak typeof(self)wself=self;
+//    if (self.delegate && [self.delegate respondsToSelector:@selector(repeatLoadData)]) {
+//        [wself.delegate repeatLoadData];
+//    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 #pragma mark - 提交
@@ -419,20 +419,6 @@
 
     NSDictionary *parameters = @{@"userId":GET_USER_ID,@"sid":GET_S_ID,@"infoId":_info.infoId?_info.infoId:@"0",@"title":[NSString stringWithFormat:@"%@",_titleField.text],@"content":[NSString stringWithFormat:@"%@",_AddContentView.text]};
     
-//    [AFRequestService responseDataWithImage:@"infonew.php" andparameters:parameters andDataArray:_dataArray andfieldType:@"attach1" andfileName:@"attach1.jpg" andResponseData:^(NSData *responseData){
-//        NSDictionary *dict =(NSDictionary *)responseData;
-//        NSString *list = [dict objectForKey:@"code"];
-//        if ([list intValue] == 0) {
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//            // 显示
-//            [alert show];
-//        }else{
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发送失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//            // 显示
-//            [alert show];
-//        }
-//        
-//    }];
     
     NSMutableDictionary * up_dic = [NSMutableDictionary dictionaryWithDictionary:parameters];
     
@@ -448,7 +434,8 @@
         NSDictionary *dict =(NSDictionary *)responseData;
         NSString *list = [dict objectForKey:@"code"];
         if ([list intValue] == 0) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发送成功" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"发送成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            alert.tag = 201;
             // 显示
             [alert show];
         }else{
@@ -458,7 +445,15 @@
         }
     }];
 }
-
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (alertView.tag == 201) {
+        __weak typeof(self)wself=self;
+        if (self.delegate && [self.delegate respondsToSelector:@selector(repeatLoadData)]) {
+            [wself.delegate repeatLoadData];
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
 - (void)setICON
 {
     bgView = [[UIView alloc] init];

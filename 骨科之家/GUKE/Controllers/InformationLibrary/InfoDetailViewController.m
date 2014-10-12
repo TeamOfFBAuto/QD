@@ -15,7 +15,7 @@
 #import "customActionSheet.h"
 #import "SNGroupsViewController.h"
 #import "CreatNewInfoViewController.h"
-@interface InfoDetailViewController ()<UITableViewDataSource, UITableViewDelegate,MBProgressHUDDelegate,InfoFileTableViewCellDelegate>
+@interface InfoDetailViewController ()<UITableViewDataSource, UITableViewDelegate,MBProgressHUDDelegate,InfoFileTableViewCellDelegate,CreatNewInfoViewDelegate>
 {
     MBProgressHUD *HUD;
     
@@ -134,6 +134,7 @@
             
             CreatNewInfoViewController * create = [[CreatNewInfoViewController alloc] init];
             create.info = _detailModel;
+            create.delegate = self;
             [bself.navigationController pushViewController:create animated:YES];
             
         }];
@@ -149,7 +150,9 @@
     [actionSheet showWithTouch:event];
 }
 
-
+- (void)repeatLoadData{
+    [self getArticleList];
+}
 
 
 // 获取"资料正文"数据
