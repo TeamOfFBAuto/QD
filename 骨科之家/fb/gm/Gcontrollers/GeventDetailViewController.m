@@ -306,7 +306,7 @@
         
         
         
-    }else if (sender.tag == 12){//支付费用
+    }else if (sender.tag == 12){
         
         
         
