@@ -169,11 +169,21 @@
     UIView * aView = [[UIView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,0)];
     aView.backgroundColor = [UIColor whiteColor];
     
-    CGSize recSize = [SingleInstance customFontHeight:self.info.title andFontSize:16 andLineWidth:DEVICE_WIDTH-30];
-       // CGRect rectr = [self.info.title boundingRectWithSize:CGSizeMake(DEVICE_WIDTH-30, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16]} context:nil];
+//    CGSize recSize = [SingleInstance customFontHeight:self.info.title andFontSize:16 andLineWidth:DEVICE_WIDTH-30];
+    
+    CGRect rectr;
+    if (IOS7_LATER)
+    {
+        rectr = [self.info.title boundingRectWithSize:CGSizeMake(DEVICE_WIDTH-30, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16]} context:nil];
+    }
+    else{
+        NSAttributedString * attributeString = [[NSAttributedString alloc]initWithString:self.info.title attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16]}];
+        rectr = [attributeString boundingRectWithSize:CGSizeMake(DEVICE_WIDTH-30, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+    }
     
     
-    UILabel * titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15,20,DEVICE_WIDTH-30,recSize.height)];
+    
+    UILabel * titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15,20,DEVICE_WIDTH-30,rectr.size.height)];
     titleLabel.numberOfLines = 0;
     titleLabel.text = _info.title;
     titleLabel.textAlignment = NSTextAlignmentLeft;
@@ -181,7 +191,7 @@
     titleLabel.font = [UIFont systemFontOfSize:16];
     [aView addSubview:titleLabel];
     
-    height += 20 + recSize.height;
+    height += 20 + rectr.size.height;
     
     if (![_info.bigPic isKindOfClass:[NSNull class]])
     {
