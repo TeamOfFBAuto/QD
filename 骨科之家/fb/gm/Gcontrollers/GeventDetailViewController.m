@@ -32,6 +32,7 @@
     GmettingDetailTableViewCell *_tmpCell;
     MBProgressHUD *_hud;
     UIWebView *_webView;
+    UITableView *_tableView;
 }
 @end
 
@@ -236,7 +237,9 @@
     [super didReceiveMemoryWarning];
 }
 
-
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
 
 -(NSInteger )tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 4;
@@ -246,12 +249,16 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat height = 0;
     
-    if (_tmpCell) {
+    if (_tmpCell)
+    {
+        
         height = [_tmpCell loadCustomViewWithIndexPath:indexPath dataModel:self.dataModel];
+        NSLog(@"height1 =====  %f",height);
     }else{
         _tmpCell = [[GmettingDetailTableViewCell alloc]init];
         _tmpCell.delegate = self;
-        [_tmpCell loadCustomViewWithIndexPath:indexPath dataModel:self.dataModel];
+       height =  [_tmpCell loadCustomViewWithIndexPath:indexPath dataModel:self.dataModel];
+        
     }
     
     return height;
@@ -499,10 +506,10 @@
     
     
     
-    UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) style:UITableViewStylePlain];
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    [self.view addSubview:tableView];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) style:UITableViewStylePlain];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    [self.view addSubview:_tableView];
     
     
 }
