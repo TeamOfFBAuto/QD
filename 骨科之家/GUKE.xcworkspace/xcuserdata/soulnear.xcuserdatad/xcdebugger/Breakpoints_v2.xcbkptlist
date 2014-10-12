@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GUKE/Controllers/InformationLibrary/CreatNewInfoViewController.m"
-            timestampString = "434545817.425255"
+            timestampString = "434634578.435211"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1009"
-            endingLineNumber = "1009"
+            startingLineNumber = "1032"
+            endingLineNumber = "1032"
             landmarkName = "-tableViewHeight"
             landmarkType = "5">
          </BreakpointContent>

@@ -143,6 +143,16 @@
     _btnChoose = 0;
     
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleWillShowKeyboard:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleWillHideKeyboard:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+    
 }
 
 // 导航的设置
@@ -332,6 +342,19 @@
     [self.view addGestureRecognizer:tableViewGesture];
     
     return aView;
+}
+
+
+#pragma mark - 键盘通知
+
+- (void)handleWillShowKeyboard:(NSNotification *)notification
+{
+    _tableView.contentSize = CGSizeMake(0,_tableView.contentSize.height+280);
+}
+
+- (void)handleWillHideKeyboard:(NSNotification *)notification
+{
+    _tableView.contentSize = CGSizeMake(0,_tableView.contentSize.height-280);
 }
 
 - (void)commentTableViewTouchInSide{
