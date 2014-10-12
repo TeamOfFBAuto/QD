@@ -16,7 +16,7 @@
 #import "ShareCircleViewController.h"
 #import "SNGroupsViewController.h"
 
-@interface LiuLanBingLiViewController ()
+@interface LiuLanBingLiViewController ()<CreatMedicalViewDelegate>
 
 @end
 
@@ -91,6 +91,7 @@
         
         CreatMedicalViewController * create = [[CreatMedicalViewController alloc] init];
         create.feed = _myFeed;
+        create.delegate = bself;
         [bself.navigationController pushViewController:create animated:YES];
         
     }];
@@ -100,6 +101,12 @@
     actionSheet.cornerRadius = 0;
     
     [actionSheet showWithTouch:event];
+}
+
+#pragma mark - 创建病历代理方法
+-(void)repeatLoadData
+{
+    [self loadBingliDetailData];
 }
 
 #pragma mark - 删除改病历

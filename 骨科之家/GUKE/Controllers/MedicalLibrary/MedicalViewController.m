@@ -13,7 +13,7 @@
 
 
 
-@interface MedicalViewController ()<PullTableViewDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface MedicalViewController ()<PullTableViewDelegate,UITableViewDataSource,UITableViewDelegate,CreatMedicalViewDelegate>
 {
     NSMutableArray * data_array;
     int currentPage;
@@ -140,8 +140,10 @@
 - (void)Click
 {
     CreatMedicalViewController *creat = [[CreatMedicalViewController alloc] init];
+    creat.delegate = self;
     [self.navigationController pushViewController:creat animated:YES];
 }
+
 
 // 手势事件
 - (void)tapAction

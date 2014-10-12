@@ -89,7 +89,7 @@
     [AFRequestService responseData:INDUSTRY_NEWS_DETAIL_URL andparameters:parameters andResponseData:^(id responseData) {
         
         NSDictionary * dict = (NSDictionary *)responseData;
-        NSLog(@"dic -----  %@",dict);
+        NSLog(@"dic -----  %@",[[dict objectForKey:@"dongtai"] objectForKey:@"content"]);
         if ([[dict objectForKey:@"code"] intValue] == 0)
         {
             NSArray * array = [[dict objectForKey:@"dongtai"] objectForKey:@"attachlist"];
@@ -129,7 +129,16 @@
         
         if (model.filename.length > 0 && ![model.filename isKindOfClass:[NSNull class]])
         {
-            CGRect rectr = [model.filename boundingRectWithSize:CGSizeMake(DEVICE_WIDTH-30, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15]} context:nil];
+            CGRect rectr;
+            
+            if (IOS7_LATER)
+            {
+                rectr = [model.filename boundingRectWithSize:CGSizeMake(DEVICE_WIDTH-100, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15]} context:nil];
+            }
+            else{
+                NSAttributedString * attributeString = [[NSAttributedString alloc]initWithString:model.filename attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15]}];
+                rectr = [attributeString boundingRectWithSize:CGSizeMake(DEVICE_WIDTH-100, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+            }
             image_height = rectr.size.height+20;
         }
         
@@ -144,7 +153,17 @@
         if (data_array.count > indexPath.row && [[data_array objectAtIndex:indexPath.row] isKindOfClass:[NSString class]])
         {
             NSString * string = [data_array objectAtIndex:indexPath.row];
-            CGRect rectr = [string boundingRectWithSize:CGSizeMake(DEVICE_WIDTH-30, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15]} context:nil];
+            CGRect rectr;
+            
+            if (IOS7_LATER)
+            {
+                rectr = [string boundingRectWithSize:CGSizeMake(DEVICE_WIDTH-50, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15]} context:nil];
+            }
+            else{
+                NSAttributedString * attributeString = [[NSAttributedString alloc]initWithString:string attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15]}];
+                rectr = [attributeString boundingRectWithSize:CGSizeMake(DEVICE_WIDTH-50, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+            }
+            
             return rectr.size.height+20;
         }else
         {
@@ -171,7 +190,16 @@
         cell.image_name_label.textColor = RGB(127,127,127);
         cell.image_name_label.text = model.filename;
         
-        CGRect rectr = [model.filename boundingRectWithSize:CGSizeMake(DEVICE_WIDTH-30, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15]} context:nil];
+        CGRect rectr;
+        
+        if (IOS7_LATER)
+        {
+            rectr = [model.filename boundingRectWithSize:CGSizeMake(DEVICE_WIDTH-100, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15]} context:nil];
+        }
+        else{
+            NSAttributedString * attributeString = [[NSAttributedString alloc]initWithString:model.filename attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15]}];
+            rectr = [attributeString boundingRectWithSize:CGSizeMake(DEVICE_WIDTH-100, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+        }
         cell.image_name_label.numberOfLines = 0;
         CGRect lableFrame = cell.image_name_label.frame;
         lableFrame.size.height = rectr.size.height;
@@ -184,8 +212,12 @@
         cell.image_name_label.text = @"";
         cell.textLabel.numberOfLines = 0;
         cell.textLabel.textColor = GETColor(127,127,127);
+        if ([[data_array objectAtIndex:indexPath.row] isEqualToString:my_title] && indexPath.row == 0)
+        {
+            cell.textLabel.textColor = [UIColor blackColor];
+        }
+        cell.textLabel.font = [UIFont systemFontOfSize:15];
         cell.textLabel.text = [data_array objectAtIndex:indexPath.row];
-        
     }
     
     return cell;
