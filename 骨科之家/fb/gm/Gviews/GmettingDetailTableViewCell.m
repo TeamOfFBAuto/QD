@@ -289,7 +289,7 @@
             height = CGRectGetMaxY(webView.frame)+20;
         }else{//活动没有结束
             if ([theModel.userExists intValue] == 1) {//已报名
-                for (int i = 0; i<2; i++) {
+                for (int i = 0; i<1; i++) {
                     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
                     [btn setTitle:titleArray[i+1] forState:UIControlStateNormal];
                     btn.tag = 11+i;

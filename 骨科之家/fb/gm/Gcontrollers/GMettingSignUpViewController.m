@@ -299,7 +299,7 @@
             NSLog(@"loadSuccess");
             NSLog(@"%@",dict);
             
-            UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"报名成功,请支付费用" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"提示" message:@"报名成功" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             al.tag = 100;
             [al show];
             
