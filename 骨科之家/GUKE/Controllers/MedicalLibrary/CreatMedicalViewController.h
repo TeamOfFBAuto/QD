@@ -26,6 +26,7 @@
 - (void)repeatLoadData;
 @end
 
+
 @interface CreatMedicalViewController : SNViewController<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate,AVAudioPlayerDelegate,AVAudioSessionDelegate>{
 
 
@@ -40,5 +41,6 @@
 @property(nonatomic,strong)BingLiListFeed * feed;
 
 @property(nonatomic,strong)PlayVoice *player;
+
 
 @end

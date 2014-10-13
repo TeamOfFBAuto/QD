@@ -14,6 +14,8 @@
 @optional
 - (void)repeatLoadData;
 @end
+
+
 @interface LiuLanBingLiViewController : SNViewController<UITableViewDataSource,UITableViewDelegate,InfoFileTableViewCellDelegate>
 {
     
@@ -28,5 +30,6 @@
 
 @property(nonatomic,strong)NSString * theId;
 @property(nonatomic,strong)MPMoviePlayerController *moviePlayer;
+
 
 @end

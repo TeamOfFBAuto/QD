@@ -11,6 +11,7 @@
 #import <UIKit/UIKit.h>
 #import "BingLiListFeed.h"
 
+
 @interface ChooseCaseTypeViewController : SNViewController<UITableViewDataSource,UITableViewDelegate>
 {
     

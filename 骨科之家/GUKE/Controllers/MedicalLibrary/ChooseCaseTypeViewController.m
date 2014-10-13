@@ -7,6 +7,7 @@
 //
 
 #import "ChooseCaseTypeViewController.h"
+#import "MedicalViewController.h"
 
 @interface ChooseCaseTypeViewController ()
 {
@@ -186,6 +187,17 @@
         if ([[dict objectForKey:@"code"]intValue] == 0)
         {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"uploadData" object:nil];
+            
+            for (UIViewController * vc in [self.navigationController viewControllers])
+            {
+                if ([vc isKindOfClass:[MedicalViewController class]])
+                {
+                    [wself.navigationController popToViewController:vc animated:YES];
+                    
+                    return ;
+                }
+            }
+            
             [wself.navigationController popViewControllerAnimated:YES];
         }
     }];

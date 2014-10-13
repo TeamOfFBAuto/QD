@@ -162,12 +162,6 @@
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(uploadData:)
-                                                 name:@"uploadData"
-                                               object:nil];
-    
-    
     
     //视频相关
     _networkOpt = YES;
@@ -180,14 +174,6 @@
     
     
 }
-
--(void)uploadData:(NSNotification *)notification
-{
-    NSLog(@"notification ---  %@",notification.userInfo);
-
-    
-}
-
 
 #pragma mark-显示收回键盘
 
