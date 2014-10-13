@@ -308,7 +308,7 @@ static NSString *commentId = 0;
     subMitBtn.frame = CGRectMake(0, 0, 44, 44);
     [subMitBtn setImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"guke_ic_write_right@2x" ofType:@"png"]] forState:UIControlStateNormal];
     
-//    subMitBtn.imageEdgeInsets = UIEdgeInsetsMake(13.5, 22, 13.5, 1.5);
+    subMitBtn.imageEdgeInsets = UIEdgeInsetsMake(13.5, 22, 13.5, 1.5);
     [subMitBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     subMitBtn.titleLabel.font = [UIFont boldSystemFontOfSize:15];
     [subMitBtn addTarget:self action:@selector(showActionSheet:forEvent:) forControlEvents:UIControlEventTouchUpInside];

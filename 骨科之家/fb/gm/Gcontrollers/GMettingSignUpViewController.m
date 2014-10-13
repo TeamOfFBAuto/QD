@@ -8,11 +8,11 @@
 
 #import "GMettingSignUpViewController.h"
 
-#define FRAME_5S_UP CGRectMake(0, -90, 320, 568-90-64-40)
-#define FRAME_4S_UP CGRectMake(0, -90, 320,480-90-64-40)
+#define FRAME_5S_UP CGRectMake(0, -90, SCREEN_WIDTH, 568-90-64-40)
+#define FRAME_4S_UP CGRectMake(0, -90, SCREEN_WIDTH,480-90-64-40)
 
-#define FRAME_5S_DOWN CGRectMake(0,0,320,568)
-#define FRAME_4S_DOWN CGRectMake(0,0,320,480)
+#define FRAME_5S_DOWN CGRectMake(0,0,SCREEN_WIDTH,SCREEN_HEIGHT)
+#define FRAME_4S_DOWN CGRectMake(0,0,SCREEN_WIDTH,SCREEN_HEIGHT)
 
 @interface GMettingSignUpViewController ()
 {
@@ -23,7 +23,6 @@
 @end
 
 @implementation GMettingSignUpViewController
-
 
 
 -(void)dealloc{
@@ -37,7 +36,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    if(IOS7_LATER){
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
     
     NSLog(@"%s",__FUNCTION__);
     
@@ -321,8 +322,6 @@
     }];
 }
 
-
-
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (alertView.tag == 100) {
         if (buttonIndex == 0) {
@@ -331,11 +330,7 @@
     }
 }
 
-
-
 #pragma textField代理
-
-
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
     if (textField.tag == 15 || textField.tag == 14) {
         if (iPhone5) {
@@ -377,8 +372,6 @@
 
 -(void)allShou{
     
-    
-    NSLog(@"我爱马成华");
     for (UITextField *tf in self.contentLabelArray) {
         [tf resignFirstResponder];
     }
