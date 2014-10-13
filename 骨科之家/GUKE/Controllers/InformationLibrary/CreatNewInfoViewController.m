@@ -213,7 +213,7 @@
     _titleView = [[UIView alloc] init];
     _titleView.frame = CGRectMake(0, 64, SCREEN_WIDTH,100);
     _titleView.backgroundColor = [UIColor whiteColor];
-    _titleView.layer.borderColor = [GETColor(156, 156, 156) CGColor];
+    _titleView.layer.borderColor = [GETColor(192, 190, 190  ) CGColor];
     _titleView.layer.borderWidth = 1.0;
     
     UILabel *titleLabel = [[UILabel alloc] init];
@@ -228,14 +228,14 @@
     _titleField.backgroundColor = [UIColor whiteColor];
     _titleField.font = [UIFont systemFontOfSize:13.5f];
     _titleField.layer.borderWidth = 1;
-    _titleField.layer.borderColor = [GETColor(156, 156, 156) CGColor];
+    _titleField.layer.borderColor = [GETColor(210, 209, 209) CGColor];
     _titleField.layer.cornerRadius = 3;
     _titleField.textColor = GETColor(156, 156, 156);
     _titleField.text = _info.title;
     [_titleView addSubview:_titleField];
     
     UIView *line = [[UIView alloc]initWithFrame:CGRectMake(-2, 50, SCREEN_WIDTH + 4, 1)];
-    line.layer.borderColor = [GETColor(156, 156, 156) CGColor];
+    line.layer.borderColor = [GETColor(210, 209, 209) CGColor];
     line.layer.borderWidth = 1.0;
     [_titleView addSubview:line];
     
@@ -256,7 +256,7 @@
     [_fileView addSubview:label1];
     
     BlockButton *btn = [[BlockButton alloc] init];
-    btn.frame = CGRectMake(235, 5, 30, 30);
+    btn.frame = CGRectMake(SCREEN_WIDTH - 40, 7, 30, 30);
     [btn setBackgroundImage:[UIImage imageNamed:@"task_attach"] forState:UIControlStateNormal];
     btn.block = ^(BlockButton *btn){
         
@@ -286,11 +286,11 @@
     label1.frame = CGRectMake(60, 0, 170, 40);
     label1.textAlignment = NSTextAlignmentLeft;
     label1.text = @"（图片、语音、视频）";
-    label1.textColor = GETColor(156, 156, 156);
+    label1.textColor = GETColor(235, 235, 235);
     [_fileView addSubview:label1];
     
     BlockButton *btn = [[BlockButton alloc] init];
-    btn.frame = CGRectMake(235, 5, 30, 30);
+    btn.frame = CGRectMake(SCREEN_WIDTH - 60, 5, 30, 30);
     [btn setBackgroundImage:[UIImage imageNamed:@"task_attach"] forState:UIControlStateNormal];
     btn.block = ^(BlockButton *btn){
         
@@ -331,7 +331,7 @@
     _AddContentView.text = _info.content;
     
     // 画边框
-    _AddContentView.layer.borderColor = [UIColor grayColor].CGColor;
+    _AddContentView.layer.borderColor = GETColor(192, 190, 190).CGColor;
     _AddContentView.layer.borderWidth =1.0;
     _AddContentView.layer.cornerRadius =5.0;
     

@@ -100,6 +100,9 @@
     _userName_label.text = info.firstname;
     _date_label.text = info.createDate;
     _date_label.layer.cornerRadius = 3;
+    _date_label.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1];
+    _date_label.textAlignment = NSTextAlignmentCenter;
+    _date_label.textColor = [UIColor colorWithRed:151/255.0 green:151/255.0 blue:151/255.0 alpha:1];
     
 }
 + (CGFloat)heightForCell:(ReplyListModel *)info{

@@ -10,22 +10,17 @@
 
 @implementation LiuLanSectionView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
-
 
 -(void)setContentWithFenLei:(NSString *)fenlei Date:(NSString *)aDate UserName:(NSString *)aUserName Sex:(NSString *)aSex
 {
     self.fenlei_label.text = fenlei;
+    self.fenlei_label.textColor = GETColor(33, 139, 172);
     self.date_label.text = aDate;
     self.userName_label.text = aUserName;
+    self.userName_label.textColor = GETColor(33, 139, 172);
+    self.date_label.textColor = GETColor(33, 139, 172);
     self.sex_label.text = aSex;
+    self.sex_label.textColor = GETColor(33, 139, 172);
 }
 
 @end

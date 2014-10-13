@@ -17,7 +17,7 @@
 -(void)setInfoWith:(IndustryNewsModel *)info
 {
     
-    [self.head_imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_BASE_URL,info.smallPic]] placeholderImage:[UIImage imageNamed:@"user_default_ico"]];
+    [self.head_imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",IMAGE_BASE_URL,info.smallPic]] placeholderImage:[UIImage imageNamed:@"defaults_iamge@2x.png"]];
     self.title_label.text = info.title;
     self.content_label.text = info.content;
     self.date_label.text = [SingleInstance handleDate:info.createDate];

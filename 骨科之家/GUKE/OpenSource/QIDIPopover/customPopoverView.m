@@ -24,7 +24,7 @@
     if(self){
         self.backgroundColor = GETColor(244, 244, 244);
         self.baseColor = [UIColor clearColor];
-        self.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+        self.layer.borderColor =[GETColor(200, 199, 199) CGColor];
         self.layer.borderWidth = 1;
         self.isGradient = YES;
     }

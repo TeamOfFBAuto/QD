@@ -159,14 +159,15 @@
         if(!(i == [buttonsMutableArray count])){
         UIView *line = [[UIView alloc]initWithFrame:CGRectMake(-20, imgView.frame.size.height + imgView.frame.origin.y + 10, self.bounds.size.width + 40, 1)];
         line.layer.borderWidth = 1;
-        line.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+        line.layer.borderColor = [GETColor(200, 199, 199) CGColor];
         [bgView addSubview:line];
         }
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(20, 5, bgView.bounds.size.width-20, 20);
+        button.frame = CGRectMake(23, 6, bgView.bounds.size.width-20, 20);
         button.titleLabel.font = [UIFont boldSystemFontOfSize:14];
         button.titleLabel.textAlignment = NSTextAlignmentLeft;
+        button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         button.backgroundColor = [UIColor clearColor];
         button.tag = i++;
         

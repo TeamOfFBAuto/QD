@@ -298,12 +298,12 @@
     }
     
     
-    NSArray * image_array = [NSArray arrayWithObjects:@"guke_ic_addcamera",@"guke_ic_addvoice.png",@"guke_ic_addvideo.png",@"guke_ic_addphoto.png",nil];
+    NSArray * image_array = [NSArray arrayWithObjects:@"guke_ic_addcamera",@"guke_ic_addvoice.png",@"guke_ic_addvideo",@"guke_ic_addphoto",nil];
     
     for (int i = 0;i < 4;i++)
     {
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake((DEVICE_WIDTH-150)+37*i,80,27,28);
+        button.frame = CGRectMake((DEVICE_WIDTH-150)+37*i,80,30,30);
         button.tag = 1000+i;
         [button addTarget:self action:@selector(doButton:) forControlEvents:UIControlEventTouchDown];
         [button addTarget:self action:@selector(doButtonEnd:) forControlEvents:UIControlEventTouchCancel];
