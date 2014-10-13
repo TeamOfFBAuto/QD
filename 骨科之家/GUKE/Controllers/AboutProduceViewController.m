@@ -54,7 +54,7 @@
     regLabel.textColor = [SingleInstance colorFromHexRGB:@"#666666"];
     regLabel.font = [UIFont boldSystemFontOfSize:16];
     
-    CGRect frame2 = CGRectMake(5, frame1.origin.y+frame1.size.height +5, viewSize.width - 10, height);
+    CGRect frame2 = CGRectMake(10, frame1.origin.y+frame1.size.height +5, viewSize.width - 20, height);
     RTLabel *productLable = [[RTLabel alloc]initWithFrame:frame2];
     productLable.text = content;
     productLable.delegate = self;

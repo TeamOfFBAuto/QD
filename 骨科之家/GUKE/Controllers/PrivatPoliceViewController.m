@@ -74,7 +74,7 @@
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
     UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     scrollView.scrollEnabled = YES;
-    CGRect frame = CGRectMake(5, 10, viewSize.width - 10, [SingleInstance customFontHeightFont:content andFontSize:18 andLineWidth:viewSize.width - 10]);
+    CGRect frame = CGRectMake(10, 10, viewSize.width - 20, [SingleInstance customFontHeightFont:content andFontSize:18 andLineWidth:viewSize.width - 10]);
     RTLabel *privateLable = [[RTLabel alloc]initWithFrame:frame];
     privateLable.text = content;
     privateLable.delegate = self;
