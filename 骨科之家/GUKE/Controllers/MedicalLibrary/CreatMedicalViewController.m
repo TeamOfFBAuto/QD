@@ -529,9 +529,11 @@
         [self wavToAmr:_filePath with:_fileName length:length];
     }
 }
--(void)wavToAmr:(NSString *)_filePath  with:(NSString *)_fileName length:(CGFloat)length{
-    [VoiceConverter wavToAmr:_filePath amrSavePath:[VoiceRecorderBaseVC getPathByFileName:[_fileName stringByAppendingString:@"wavToAmr"] ofType:@"amr"]];
-    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:_fileName,@"fid",_filePath,@"fileName",[NSNumber numberWithInt:(int)length],@"length", nil];
+-(void)wavToAmr:(NSString *)_filePath  with:(NSString *)_fileName length:(CGFloat)length
+{
+    NSString * fileUrl = [VoiceRecorderBaseVC getPathByFileName:[_fileName stringByAppendingString:@"wavToAmr"] ofType:@"amr"];
+    [VoiceConverter wavToAmr:_filePath amrSavePath:fileUrl];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:_fileName,@"fid",fileUrl,@"fileName",[NSNumber numberWithInt:(int)length],@"length", nil];
     
     NSMutableData * data = [NSMutableData dataWithContentsOfFile:[VoiceRecorderBaseVC getPathByFileName:[_fileName stringByAppendingString:@"wavToAmr"] ofType:@"amr"]];
     [dic setObject:data forKey:@"fileData"];

@@ -160,6 +160,7 @@
         [self stopVocicePlaybalck];
         _imageVoiceIcon.userInteractionEnabled = YES;
     };
+    
 }
 
 // 开始播放背景（动画）

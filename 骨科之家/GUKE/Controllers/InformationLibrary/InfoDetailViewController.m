@@ -165,6 +165,7 @@
     [AFRequestService responseData:@"info.php" andparameters:parameters andResponseData:^(NSData *responseData) {
         
         NSDictionary *articleDict = (NSDictionary *)responseData;
+        NSLog(@"资料详情页数据 -----  %@",articleDict);
         NSInteger codeNum = [[articleDict objectForKey:@"code"]integerValue];
         if(codeNum == CODE_SUCCESS){
             

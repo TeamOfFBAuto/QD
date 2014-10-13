@@ -144,7 +144,11 @@ static VoicePlayCenter *sharInstance;
     [self.player stop];self.player = nil;
     NSError *error;
     if (!loacal) {
-        self.player = [[[AVAudioPlayer alloc] initWithContentsOfURL:[[[NSURL alloc] initFileURLWithPath:[VoiceRecorderBaseVC getPathByFileName:[FileCache voiceCacheKeyVoiceUrl:self.playerWaitModel.fileId] ofType:@"wav"]] autorelease] error:&error] autorelease];
+        NSString * path = [VoiceRecorderBaseVC getPathByFileName:[FileCache voiceCacheKeyVoiceUrl:self.playerWaitModel.fileId] ofType:@"wav"];
+        self.player = [[[AVAudioPlayer alloc] initWithContentsOfURL:[[[NSURL alloc] initFileURLWithPath:path] autorelease] error:&error] autorelease];
+        NSLog(@"voice ------  %@ ----  %d",path,[[NSFileManager defaultManager] fileExistsAtPath:path]);
+        
+        
     }else{
         NSData *data = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:self.playerWaitModel.fileId ofType:nil]];
         self.player = [[[AVAudioPlayer alloc] initWithData:data error:&error] autorelease];
