@@ -368,15 +368,9 @@
         }];
         
         cell.delegate=self;
-        
-        
-        
-        
-        
+   
     }
 
-
-   
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.fileDic = [_detailModel.attachlist objectAtIndex:indexPath.row];
     return cell;

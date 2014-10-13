@@ -182,7 +182,7 @@
     rightBtn1.frame = CGRectMake(0, 0, 44, 44);
     rightBtn1.backgroundColor = [UIColor clearColor];
     [rightBtn1 setImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"search_ico@2x" ofType:@"png"]] forState:UIControlStateNormal];
-    
+    [rightBtn1 setShowsTouchWhenHighlighted:YES];
     
     [rightBtn1 setImageEdgeInsets:UIEdgeInsetsMake(9.5, 16, 9.5, 3)];
     rightBtn1.tag =SEARCH_BTN_TAG;
@@ -194,6 +194,7 @@
     rightBtn2.frame = CGRectMake(44, 0, 44, 44);
     rightBtn2.tag =ADD_BTN_TAG;
     [rightBtn2 setImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"addfri_ico@2x" ofType:@"png"]] forState:UIControlStateNormal];
+    [rightBtn2 setShowsTouchWhenHighlighted:YES];
     
     [rightBtn2 setImageEdgeInsets:UIEdgeInsetsMake(9.5, 16, 9.5, 3)];
     [rightBtn2 addTarget:self action:@selector(showActionSheet:forEvent:) forControlEvents:UIControlEventTouchUpInside];
@@ -202,6 +203,7 @@
     rightBtn3.frame = CGRectMake(88, 0, 44, 44);
     rightBtn3.tag =SET_BTN_TAG;
     [rightBtn3 setImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"set_ico@2x" ofType:@"png"]] forState:UIControlStateNormal];
+    [rightBtn3 setShowsTouchWhenHighlighted:YES];
     
     [rightBtn3 setImageEdgeInsets:UIEdgeInsetsMake(9.5, 16, 9.5, 3)];
     [rightBtn3 addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -220,53 +222,57 @@
     
     UIImageView *imgView = [[UIImageView alloc]initWithImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"navline_ico@2x" ofType:@"png"]]];
     
-    imgView.frame =CGRectMake(0, 34, 80, 6);
+    imgView.frame =CGRectMake(0, 34, SCREEN_WIDTH/4, 6);
     
     // 讨论区
     UIButton *Cochat = [UIButton buttonWithType:UIButtonTypeCustom];
     Cochat.tag = COCHAT_BTN_TAG;
     Cochat.backgroundColor = [UIColor clearColor];
     Cochat.userInteractionEnabled = NO;
-    Cochat.frame = CGRectMake(0, 0, 80, 40);
+    Cochat.frame = CGRectMake(0, 0, SCREEN_WIDTH/4, 40);
     NSString *CochatText = LOCALIZATION(@"home_chat");
     [Cochat setTitle:CochatText forState:UIControlStateNormal];
     [Cochat setTitleColor:[SingleInstance colorFromHexRGB:@"2d85a0"] forState:UIControlStateNormal];
     [Cochat addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     Cochat.titleLabel.textAlignment = NSTextAlignmentCenter;
     Cochat.titleLabel.font = [UIFont systemFontOfSize:16];
+    [Cochat setShowsTouchWhenHighlighted:YES];
     
     // 诊疗圈
     UIButton *Moments = [UIButton buttonWithType:UIButtonTypeCustom];
     Moments.tag = MOMENTS_BTN_TAG;
     Moments.backgroundColor = [UIColor clearColor];
-    Moments.frame = CGRectMake(80, 0, 80, 40);
+    Moments.frame = CGRectMake(SCREEN_WIDTH/4, 0, SCREEN_WIDTH/4, 40);
     [Moments setTitle:LOCALIZATION(@"friend_circle") forState:UIControlStateNormal];
     [Moments setTitleColor:[UIColor blackColor]forState:UIControlStateNormal];
     [Moments addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     Moments.titleLabel.textAlignment = NSTextAlignmentCenter;
     Moments.titleLabel.font = [UIFont systemFontOfSize:16];
+    [Moments setShowsTouchWhenHighlighted:YES];
     
     // 资料库
     UIButton *information = [UIButton buttonWithType:UIButtonTypeCustom];
     information.tag = INFORMATION_BTN_TAG;
     information.backgroundColor = [UIColor clearColor];
-    information.frame = CGRectMake(160, 0, 80, 40);
+    information.frame = CGRectMake(SCREEN_WIDTH/2, 0, SCREEN_WIDTH/4, 40);
     [information setTitle:LOCALIZATION(@"information") forState:UIControlStateNormal];
     [information setTitleColor:[UIColor blackColor]forState:UIControlStateNormal];
     [information addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     information.titleLabel.textAlignment = NSTextAlignmentCenter;
     information.titleLabel.font = [UIFont systemFontOfSize:16];
+    [information setShowsTouchWhenHighlighted:YES];
     
     // 病历库
     UIButton *medical = [UIButton buttonWithType:UIButtonTypeCustom];
     medical.tag = MEDICAL_BTN_TAG;
     medical.backgroundColor = [UIColor clearColor];
-    medical.frame = CGRectMake(240, 0, 80, 40);
+    medical.frame = CGRectMake(SCREEN_WIDTH/4 * 3, 0, SCREEN_WIDTH/4, 40);
     [medical setTitle:LOCALIZATION(@"medicalText") forState:UIControlStateNormal];
     [medical setTitleColor:[UIColor blackColor]forState:UIControlStateNormal];
     [medical addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
     medical.titleLabel.textAlignment = NSTextAlignmentCenter;
     medical.titleLabel.font = [UIFont systemFontOfSize:16];
+    [medical setShowsTouchWhenHighlighted:YES];
     
     [head_bg addSubview:Cochat];
     [head_bg addSubview:Moments];

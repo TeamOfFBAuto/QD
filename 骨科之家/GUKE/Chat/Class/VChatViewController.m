@@ -750,7 +750,6 @@
 -(void)wavToAmr:(NSString *)_filePath  with:(NSString *)_fileName length:(CGFloat)length{
     [VoiceConverter wavToAmr:_filePath amrSavePath:[VoiceRecorderBaseVC getPathByFileName:[_fileName stringByAppendingString:@"wavToAmr"] ofType:@"amr"]];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:_fileName,@"fid",_filePath,@"fileName",[NSNumber numberWithInt:(int)length],@"length", nil];
-    NSLog(@"%@==%@",_filePath,_fileName);
     [self sureUpload:dic withType:SEND_Type_voice withuuid:[UUID createUUID]];
 }
 
@@ -932,12 +931,13 @@
                 if ([model.attachlist count] && [attachlist count]) {
                     VChatAttachModel *oldattmodel = [model.attachlist firstObject];
                     id newattdic = [attachlist firstObject];
-                    NSString *oldurl = oldattmodel.fileurl;
+                   
                     oldattmodel.attachId = [NSString stringWithFormat:@"%@",[newattdic objectForKey:@"attachId"]];
                     oldattmodel.displayHtml = [newattdic objectForKey:@"displayHtml"];
                     oldattmodel.fileurl = [newattdic objectForKey:@"fileurl"];
                     oldattmodel.filename = [newattdic objectForKey:@"filename"];
                     oldattmodel.voiceLength = [newattdic objectForKey:@"voiceLength"];
+                     NSString *oldurl = oldattmodel.fileurl;
                     [[SDImageCache sharedImageCache] moveImageKey:[NSString stringWithFormat:@"%@%@",GLOBAL_URL_FILEGET,oldurl] forKey:[NSString stringWithFormat:@"%@%@",GLOBAL_URL_FILEGET,oldattmodel.fileurl]];
                     
                 }
