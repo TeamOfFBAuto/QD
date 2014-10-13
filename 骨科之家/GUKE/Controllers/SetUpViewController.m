@@ -64,15 +64,14 @@
     NSString *account = LOCALIZATION(@"setting_account");
     NSString *setting_icon = LOCALIZATION(@"setting_icon");
     NSString *setting_changIfo = LOCALIZATION(@"setting_changIfo");
-   // NSString *setting_changepwd = LOCALIZATION(@"setting_changepwd");
     NSString *setting_notify = LOCALIZATION(@"setting_notify");
     NSString *setting_feedback = LOCALIZATION(@"setting_feedback");
     NSString *setting_checknewversion = LOCALIZATION(@"setting_checknewversion");
-    NSString *versionstr = LOCALIZATION(@"versionstr");
+    NSString *localVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey];
+    NSString *versionstr =[NSString stringWithFormat:@"%@ %@",LOCALIZATION(@"versionstr"),localVersion];
     NSString *setting_switch = LOCALIZATION(@"setting_switch");
     NSString *private_police = LOCALIZATION(@"private_police");
     NSString *about_produce = LOCALIZATION(@"about_produce");
-    
         dataArry = @[account, setting_icon, setting_changIfo, setting_notify , setting_feedback, setting_checknewversion,versionstr,setting_switch,private_police,about_produce];
         imgArray = @[@"set_username",@"set_userphone",@"set_changeinfo",@"set_usermsg",@"set_feedback",@"set_usercheck",@"set_userfile",@"set_switch_account",@"privacy@2x",@"produce@2x"];
     [self creatTable];

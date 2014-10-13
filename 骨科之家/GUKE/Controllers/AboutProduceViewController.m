@@ -45,9 +45,11 @@
     CGRect frame = CGRectMake((viewSize.width - 80)/2, 10, 80, 80);
     imageView.frame = frame;
     
-    CGRect frame1 = CGRectMake((viewSize.width - 90)/2, frame.origin.y+frame.size.height, 90, 22);
+    CGRect frame1 = CGRectMake((viewSize.width - 100)/2, frame.origin.y+frame.size.height, 100, 22);
     UILabel *regLabel = [[UILabel alloc]initWithFrame:frame1];
-    regLabel.text = LOCALIZATION(@"version_num");
+    NSString *localVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString *)kCFBundleVersionKey];
+    NSString *versionstr =[NSString stringWithFormat:@"%@ %@",LOCALIZATION(@"nav_title"),localVersion];
+    regLabel.text = versionstr;
     regLabel.textAlignment = NSTextAlignmentCenter;
     regLabel.textColor = [SingleInstance colorFromHexRGB:@"#666666"];
     regLabel.font = [UIFont boldSystemFontOfSize:16];

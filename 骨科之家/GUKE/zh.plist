@@ -59,7 +59,7 @@
 	<key>login_first</key>
 	<string>初次使用，请注册</string>
 	<key>versionstr</key>
-	<string>当前版本 1.0.0（09/12）</string>
+	<string>当前版本</string>
 	<key>friend_detail_ifo</key>
 	<string>详细资料</string>
 	<key>setting_feedback_success</key>
@@ -349,7 +349,7 @@
 	<key>private_police</key>
 	<string>隐私条款</string>
 	<key>about_produce</key>
-	<string>关于紫光oa</string>
+	<string>关于骨科之家</string>
 	<key>version_num</key>
 	<string>紫光OA 1.0</string>
 	<key>nav_title</key>

@@ -47,7 +47,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    if(IOS7_LATER){
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
     
     [self loadNavigation];
     
@@ -135,7 +137,7 @@
             _calendarView.date = [NSDate date];
             _calendarView.dataSource = dataSource;
             _calendarView.delegate = self;
-            _calendarView.frame = CGRectMake(0, 64, 320, 0);
+            _calendarView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 0);
             _calendarView.allowsMultipleSelection = TRUE;
             [_calendarView showInView:self.view];
             

@@ -126,6 +126,7 @@
         [[UIApplication sharedApplication] registerForRemoteNotifications];
     }
 }
+
 // 接受（到）远程推送通知（挂起）
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
     NSDictionary *dic = [userInfo objectForKey:@"info"];

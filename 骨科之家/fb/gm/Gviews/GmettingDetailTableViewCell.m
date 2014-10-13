@@ -166,7 +166,7 @@
         
     }else if (indexPath.row == 1){//会议时间
         //会议时间
-        UILabel *meettingTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 20, 75, 20)];
+        UILabel *meettingTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 20, 80, 20)];
         meettingTimeLabel.font = [UIFont systemFontOfSize:15];
         meettingTimeLabel.text = @"会议时间：";
         meettingTimeLabel.textColor = RGB(98, 97, 97);
@@ -177,7 +177,7 @@
         cMeettingTimeLabel.text = theModel.eventTime;
         
         //报名截止
-        UILabel *meetingEndTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 43, 75, 20)];
+        UILabel *meetingEndTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 43, 80, 20)];
         meetingEndTimeLabel.text = @"报名截止：";
         meetingEndTimeLabel.font = [UIFont systemFontOfSize:15];
         meetingEndTimeLabel.textColor = RGB(98, 97, 97);
@@ -212,7 +212,7 @@
         [self.contentView addSubview:cAddressLabel];
         
         //会议费用
-        UILabel *feeLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, CGRectGetMaxY(cAddressLabel.frame)+5, 75, 20)];
+        UILabel *feeLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, CGRectGetMaxY(cAddressLabel.frame)+5, 80, 20)];
         feeLabel.textColor = RGB(98, 97, 97);
         feeLabel.font = [UIFont systemFontOfSize:15];
         feeLabel.text = @"会议费用：";
@@ -226,7 +226,7 @@
         
         
         //联系电话
-        UILabel *phoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, CGRectGetMaxY(feeLabel.frame)+5, 75, 20)];
+        UILabel *phoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, CGRectGetMaxY(feeLabel.frame)+5, 80, 20)];
         phoneLabel.font = [UIFont systemFontOfSize:15];
         phoneLabel.textColor = RGB(72, 158, 181);
         phoneLabel.text = @"联系电话：";
@@ -289,7 +289,7 @@
             height = CGRectGetMaxY(webView.frame)+20;
         }else{//活动没有结束
             if ([theModel.userExists intValue] == 1) {//已报名
-                for (int i = 0; i<2; i++) {
+                for (int i = 0; i<1; i++) {
                     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
                     [btn setTitle:titleArray[i+1] forState:UIControlStateNormal];
                     btn.tag = 11+i;
