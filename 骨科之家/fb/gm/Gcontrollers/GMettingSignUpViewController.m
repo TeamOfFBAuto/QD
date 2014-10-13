@@ -8,8 +8,8 @@
 
 #import "GMettingSignUpViewController.h"
 
-#define FRAME_5S_UP CGRectMake(0, -60, 320, 568)
-#define FRAME_4S_UP CGRectMake(0, -60, 320,480)
+#define FRAME_5S_UP CGRectMake(0, -90, 320, 568-90-64-40)
+#define FRAME_4S_UP CGRectMake(0, -90, 320,480-90-64-40)
 
 #define FRAME_5S_DOWN CGRectMake(0,0,320,568)
 #define FRAME_4S_DOWN CGRectMake(0,0,320,480)
