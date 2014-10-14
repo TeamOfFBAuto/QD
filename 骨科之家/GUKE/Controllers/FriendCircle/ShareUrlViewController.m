@@ -49,14 +49,14 @@
     bgNavi.backgroundColor = [UIColor clearColor];
     bgNavi.userInteractionEnabled = YES;
     
-    UIImageView *logoView = [[UIImageView alloc]initWithImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"return_unis_logo@2x" ofType:@"png"]]];
+    UIImageView *logoView = [[UIImageView alloc]initWithImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"guke_top_logo_arrow@2x" ofType:@"png"]]];
     
     logoView.backgroundColor = [UIColor clearColor];
-    logoView.frame = CGRectMake(0, 0, 44, 44);
+    logoView.frame = CGRectMake(0, 4, 36, 36);
     logoView.contentMode = UIViewContentModeScaleAspectFit;
     logoView.userInteractionEnabled = YES;
     
-    UILabel *loginLabel = [[UILabel alloc]initWithFrame:CGRectMake(52, 7, 160, 30)];
+    UILabel *loginLabel = [[UILabel alloc]initWithFrame:CGRectMake(45, 7, 160, 30)];
     loginLabel.text = LOCALIZATION(@"userarticle_newshare");
     loginLabel.textColor = [UIColor whiteColor];
     loginLabel.backgroundColor = [UIColor clearColor];

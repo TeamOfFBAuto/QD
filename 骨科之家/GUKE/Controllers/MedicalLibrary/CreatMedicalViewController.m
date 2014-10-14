@@ -137,8 +137,11 @@
         textView.delegate = self;
         textView.tag = 100+i;
         [textView_array addObject:textView];
+<<<<<<< HEAD
         
 //*******************************************************************
+=======
+>>>>>>> FETCH_HEAD
         if (i == 1)
         {
             textView.editable = NO;
@@ -148,7 +151,11 @@
             UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseGender:)];
             [textView addGestureRecognizer:tap];
         }
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> FETCH_HEAD
     }
     
     if (!_feed) {
@@ -198,7 +205,10 @@
 {
     _mainTableView.contentSize = CGSizeMake(0,_mainTableView.contentSize.height-280);
 }
+<<<<<<< HEAD
 #pragma mark ---------------------------------------------------------------------------------
+=======
+>>>>>>> FETCH_HEAD
 #pragma mark - 选择性别
 -(void)chooseGender:(UITapGestureRecognizer *)sender
 {
@@ -206,7 +216,11 @@
     action.tag = 1014;
     [action showInView:self.view];
 }
+<<<<<<< HEAD
 #pragma mark ---------------------------------------------------------------------------------
+=======
+
+>>>>>>> FETCH_HEAD
 // 导航的设置
 - (void)loadNavigation
 {
@@ -1218,7 +1232,11 @@
     [sheet showInView:background];
     
 }
+<<<<<<< HEAD
 #pragma mark -----------------------------------------------------------------------------
+=======
+
+>>>>>>> FETCH_HEAD
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     
@@ -1262,6 +1280,7 @@
     
 }
 #pragma mark -----------------------------------------------------------------------------
+
 
 
 #pragma mark - 播放视频
