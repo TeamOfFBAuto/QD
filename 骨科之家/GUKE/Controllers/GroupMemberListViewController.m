@@ -576,7 +576,7 @@ static NSInteger const codeDelOk_tag = 123413;
         NSUInteger codeNum = [[dict objectForKey:@"code"] integerValue];
         if (codeNum == CODE_SUCCESS) {
             [UserAddedGroupDB updateGroupInfoByFeild:nil andValue:alertGroupName.text andKey:@"groupName"andGroupId:self.groupModel.groupId];
-            NSString *alertcontext = LOCALIZATION(@"chat_group_membermemo_success");
+            NSString *alertcontext = LOCALIZATION(@"chang_groupname");
             NSString *alertText = LOCALIZATION(@"dialog_prompt");
             NSString *alertOk = LOCALIZATION(@"dialog_ok");
             UIAlertView * alert = [[UIAlertView alloc]initWithTitle:alertText message:alertcontext delegate:self cancelButtonTitle:alertOk otherButtonTitles:nil];
@@ -649,21 +649,16 @@ static NSInteger const codeDelOk_tag = 123413;
             // 跳转到主界面
             AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
             [appDelegate showControlView:Root_contact];
-            [self.navigationController popViewControllerAnimated:YES];
         }
         else if (codeNum == CODE_ERROE){
             SqliteFieldAndTable *sqliteAndtable = [[SqliteFieldAndTable alloc]init];
-            GroupMemberListViewController __weak *_Self = self;
+            //GroupMemberListViewController __weak *_Self = self;
             [sqliteAndtable repeatLogin:^(BOOL flag) {
-                if (flag) {
-                    [_Self delGroup];
+                if (!flag) {
+                    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                    [appDelegate showControlView:Root_login];
                 }
-                else{
-                    UserLoginViewController *login = [[UserLoginViewController alloc]init];
-                    [_Self.navigationController pushViewController:login animated:YES];
-                    login = nil;
-                }
-                
+
             }];
         }
         else if (codeNum == CODE_OTHER){
@@ -677,7 +672,8 @@ static NSInteger const codeDelOk_tag = 123413;
                     //同时删除此用户组内的数据
                     [GroupMember delGroupMemberInfo:self.groupModel.groupId];
                     // 返回父控制器
-                    [self.navigationController popViewControllerAnimated:YES];
+                    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+                    [appDelegate showControlView:Root_contact];
                 }
                 else if (codeNum == CODE_ERROE){
                     SqliteFieldAndTable *sqliteAndtable = [[SqliteFieldAndTable alloc]init];

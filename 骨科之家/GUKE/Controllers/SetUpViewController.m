@@ -59,6 +59,9 @@
     [super viewDidLoad];
     volume = 0.0;
     self.view.backgroundColor = [UIColor whiteColor];
+    if(IOS7_LATER){
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
     [self navigetion];
     // 初始化数据源
     NSString *account = LOCALIZATION(@"setting_account");
@@ -99,7 +102,7 @@
     logoView.userInteractionEnabled = YES;
     
     UILabel *loginLabel = [[UILabel alloc]initWithFrame:CGRectMake(50, 7, 160, 30)];
-    loginLabel.text = LOCALIZATION(@"friend_detail_ifo");
+    loginLabel.text = LOCALIZATION(@"setting_text_title");
     loginLabel.textColor = [UIColor whiteColor];
     loginLabel.backgroundColor = [UIColor clearColor];
     loginLabel.font = [UIFont systemFontOfSize:16];
@@ -122,7 +125,7 @@
 }
 - (void)creatTable
 {
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, viewSize.width, viewSize.height) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64) style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.scrollEnabled = YES;
     _tableView.dataSource = self;

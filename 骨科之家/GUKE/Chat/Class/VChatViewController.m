@@ -168,7 +168,7 @@
     
     UIButton * personBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     personBtn.frame = CGRectMake(0, 10, 23, 23);
-    [personBtn setBackgroundImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"button_bj_peo@2x" ofType:@"png"]] forState:UIControlStateNormal];
+    [personBtn setBackgroundImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"guke_button_bj_peo@2x" ofType:@"png"]] forState:UIControlStateNormal];
     
     if (self.type == VChatType_VC) {
         personBtn.hidden = YES;

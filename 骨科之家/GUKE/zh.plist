@@ -354,5 +354,7 @@
 	<string>紫光OA 1.0</string>
 	<key>nav_title</key>
 	<string>骨科之家</string>
+	<key>chang_groupname</key>
+	<string>修改成功</string>
 </dict>
 </plist>
