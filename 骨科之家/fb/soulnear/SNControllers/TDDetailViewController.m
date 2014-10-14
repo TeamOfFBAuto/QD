@@ -31,6 +31,12 @@
 @synthesize myTableVIEW = _myTableVIEW;
 @synthesize recorderVC = _recorderVC;
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"guke_title_bg@2x" ofType:@"png"]] forBarMetrics:UIBarMetricsDefault];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -219,7 +225,6 @@
     
     return aView;
 }
-
 #pragma mark - 录音方法
 #pragma mark record 开始录音
 #pragma mark ---------record delegate
@@ -266,6 +271,7 @@
 #pragma mark - ToolBarDelegate
 - (BOOL)placeTextViewShouldReturn:(HPGrowingTextView *)textView
 {
+    [textView resignFirstResponder];
     return YES;
 }
 - (void)toolBarPicture
@@ -344,6 +350,9 @@
     picker.delegate = self;
     picker.sourceType = sourceType;
     //[[TabBarView sharedTabBarView] hideTabbar:YES animated:YES];
+    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"navi_bg@2x" ofType:@"png"]] forBarMetrics:UIBarMetricsDefault];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
     [self presentViewController:picker animated:YES completion:^{}];
 }
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
