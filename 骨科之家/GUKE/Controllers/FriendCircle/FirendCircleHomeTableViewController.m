@@ -609,7 +609,8 @@ static NSString *commentId = 0;
         }
         CGFloat shareHeight = 0.0;
         CGFloat commentHeight = 0.0;
-        
+        CGFloat contectHeight = 0.0;
+        double imgHeight = 0.0;
         if ([articleModel.goodArray count]>0) {
             shareHeight = [SingleInstance customHeight:[articleModel.goodArray count] andcount:SINGLE_GOOD_COUNT andsingleHeight:45.0]  + 15;
         }
@@ -621,6 +622,7 @@ static NSString *commentId = 0;
             commentHeight = commentHeight + [articleModel.commentArray count] *4;
         }
         CGFloat height = 0.0f;
+        
         if ([articleModel.photo isEqualToString:@""]||articleModel.photo == nil) {
             
             float imgHeight = 0;
@@ -636,16 +638,18 @@ static NSString *commentId = 0;
             
             height = USER_ICON_WHDTH +[SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250] +[SingleInstance customFontHeightFont:articleModel.shareComment andFontSize:15 andLineWidth:250] +REPORT_TIME_HEIGHT+40 + shareHeight + commentHeight + imgHeight;
         }else{
-            double imgHeight = SHARE_IMAGE_HEIGHT;
+            imgHeight = SHARE_IMAGE_HEIGHT;
             
             if (articleModel.context == nil || articleModel.context.length == 0 || [articleModel.context isEqualToString:@" "]){
                  height = USER_ICON_WHDTH+imgHeight+REPORT_TIME_HEIGHT+40 + shareHeight + commentHeight-16 ;
             }else{
-                    height = USER_ICON_WHDTH +[SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250] +[SingleInstance customFontHeightFont:articleModel.shareComment andFontSize:15 andLineWidth:250] +imgHeight+REPORT_TIME_HEIGHT+40 + shareHeight + commentHeight ;
+                contectHeight = [SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250] +[SingleInstance customFontHeightFont:articleModel.shareComment andFontSize:15 andLineWidth:250];
+                 height = USER_ICON_WHDTH + contectHeight +imgHeight+REPORT_TIME_HEIGHT+40 + shareHeight + commentHeight ;
             }
 
         }
-        return height;
+       
+        return height + 10;
     }
 }
 
