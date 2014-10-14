@@ -286,6 +286,7 @@
     
     placeHolder_shuoming = [[UILabel alloc] initWithFrame:CGRectMake(10,5,200,20)];
     placeHolder_shuoming.text = @"病历说明";
+    placeHolder_shuoming.backgroundColor = [UIColor clearColor];
     placeHolder_shuoming.font = [UIFont systemFontOfSize:15];
     placeHolder_shuoming.textAlignment = NSTextAlignmentLeft;
     placeHolder_shuoming.textColor = [UIColor blackColor];
@@ -549,21 +550,7 @@
     picker.tabBarItem.title = @"zhaopian";
     //[[TabBarView sharedTabBarView] hideTabbar:YES animated:YES];
     [self presentViewController:picker animated:YES completion:^{
-        UIButton * rightBtn = [UIButton buttonWithType:UIButtonTypeCustom   ];
-        rightBtn.frame = CGRectMake(0, (44-28)/2+1, 44, 28);
-        rightBtn.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.2f];
-        rightBtn.layer.cornerRadius = 4;
-        rightBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-        [rightBtn setTitle:@"提交" forState:UIControlStateNormal];
-        [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        
-        [rightBtn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
-        UINavigationBar *navi = [[UINavigationBar alloc]init];
-        navi.backItem = [[UINavigationItem alloc]initWithTitle:@""];
-        
-        picker.navigationBar
-        UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:rightBtn];
-        picker.navigationItem.rightBarButtonItem = rightItem;
+
     }];
 }
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
@@ -851,9 +838,10 @@
         {
             placeHolder_treatment_case = [[UILabel alloc] initWithFrame:CGRectMake(10,5,200,20)];
             placeHolder_treatment_case.text = @"治疗方案";
+            placeHolder_treatment_case.backgroundColor = [UIColor clearColor];
             placeHolder_treatment_case.font = [UIFont systemFontOfSize:15];
             placeHolder_treatment_case.textAlignment = NSTextAlignmentLeft;
-            placeHolder_treatment_case.textColor = [UIColor blackColor];
+            placeHolder_treatment_case.textColor = [UIColor grayColor];
             [textView addSubview:placeHolder_treatment_case];
         }
         

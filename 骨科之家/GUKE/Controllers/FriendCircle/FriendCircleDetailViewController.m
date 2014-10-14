@@ -118,6 +118,12 @@ static NSString *commentId = 0;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"guke_title_bg@2x" ofType:@"png"]] forBarMetrics:UIBarMetricsDefault];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+    [[NSNotificationCenter defaultCenter] postNotificationName:ENTERFORGROUD object:nil userInfo:nil];
+    [self navigation];
     //[self getArticleList];
     [self setExtraCellLineHidden:self.tableView];
 }
@@ -127,7 +133,7 @@ static NSString *commentId = 0;
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    [self navigation];
+    
     [self initTable];
     //    // 监听网络数据是否发生了变化
     //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dataChange:) name:IS_DATACHANG object:nil];

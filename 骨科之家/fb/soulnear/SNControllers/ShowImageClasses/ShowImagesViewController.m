@@ -67,6 +67,7 @@
     title_label = [[UILabel alloc] initWithFrame:CGRectMake(0,0,100,64)];
     title_label.text = [NSString stringWithFormat:@"%d/%d",_currentPage+1,self.allImagesUrlArray.count];
     title_label.font = [UIFont systemFontOfSize:18];
+    title_label.backgroundColor = [UIColor clearColor];
     title_label.textAlignment = NSTextAlignmentCenter;
     title_label.textColor = [UIColor whiteColor];//RGBCOLOR(91,138,59);
     title_label.center = CGPointMake(160,42);
@@ -106,9 +107,9 @@
 {
     [super viewWillAppear:animated];
     
-//    self.navigationController.navigationBarHidden = YES;
-
-    
+////    self.navigationController.navigationBarHidden = YES;
+//
+//    
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     
 }
