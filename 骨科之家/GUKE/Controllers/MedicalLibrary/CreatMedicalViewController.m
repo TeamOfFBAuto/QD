@@ -228,7 +228,7 @@
     rightBtn.frame = CGRectMake(0, (44-28)/2+1, 44, 28);
     rightBtn.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.2f];
     rightBtn.layer.cornerRadius = 4;
-    rightBtn.font = [UIFont systemFontOfSize:14];
+    rightBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [rightBtn setTitle:@"提交" forState:UIControlStateNormal];
     [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
@@ -543,11 +543,28 @@
             return;
         }
     }
-    UIImagePickerController *picker=[[UIImagePickerController alloc] init];
+   __block UIImagePickerController *picker=[[UIImagePickerController alloc] init];
     picker.delegate = self;
     picker.sourceType = sourceType;
+    picker.tabBarItem.title = @"zhaopian";
     //[[TabBarView sharedTabBarView] hideTabbar:YES animated:YES];
-    [self presentViewController:picker animated:YES completion:^{}];
+    [self presentViewController:picker animated:YES completion:^{
+        UIButton * rightBtn = [UIButton buttonWithType:UIButtonTypeCustom   ];
+        rightBtn.frame = CGRectMake(0, (44-28)/2+1, 44, 28);
+        rightBtn.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.2f];
+        rightBtn.layer.cornerRadius = 4;
+        rightBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        [rightBtn setTitle:@"提交" forState:UIControlStateNormal];
+        [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        [rightBtn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
+        UINavigationBar *navi = [[UINavigationBar alloc]init];
+        navi.backItem = [[UINavigationItem alloc]initWithTitle:@""];
+        
+        picker.navigationBar
+        UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithCustomView:rightBtn];
+        picker.navigationItem.rightBarButtonItem = rightItem;
+    }];
 }
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     
@@ -571,7 +588,6 @@
             imageModel.imageName = [NSString stringWithFormat:@"%@.jpg",[UUID createUUID]];
             imageModel.imageData = aData;
             
-//            NSMutableDictionary * dic = [NSMutableDictionary dictionaryWithObjectsAndKeys:[UUID createUUID],@"fid",[NSNumber numberWithFloat:aData.length/1024],@"length",imageModel,@"fileData",@"image",@"type",nil];
             
             [_feed.attach_array addObject:imageModel];
             
