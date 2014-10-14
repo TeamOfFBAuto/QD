@@ -137,6 +137,18 @@
         textView.delegate = self;
         textView.tag = 100+i;
         [textView_array addObject:textView];
+        
+//*******************************************************************
+        if (i == 1)
+        {
+            textView.editable = NO;
+            textView.scrollEnabled = NO;
+            textView.userInteractionEnabled = YES;
+            
+            UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseGender:)];
+            [textView addGestureRecognizer:tap];
+        }
+        
     }
     
     if (!_feed) {
@@ -186,8 +198,15 @@
 {
     _mainTableView.contentSize = CGSizeMake(0,_mainTableView.contentSize.height-280);
 }
-
-
+#pragma mark ---------------------------------------------------------------------------------
+#pragma mark - 选择性别
+-(void)chooseGender:(UITapGestureRecognizer *)sender
+{
+    UIActionSheet * action = [[UIActionSheet alloc] initWithTitle:@"性别" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"男",@"女",nil];
+    action.tag = 1014;
+    [action showInView:self.view];
+}
+#pragma mark ---------------------------------------------------------------------------------
 // 导航的设置
 - (void)loadNavigation
 {
@@ -1199,23 +1218,50 @@
     [sheet showInView:background];
     
 }
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (actionSheet.numberOfButtons - 1 == buttonIndex) {
-        return;
+#pragma mark -----------------------------------------------------------------------------
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if (actionSheet.tag == 1014)
+    {
+        UITextView * textView = (UITextView *)[textView_array objectAtIndex:1];
+        
+        
+        switch (buttonIndex) {
+            case 0:///男
+            {
+                textView.text = @"男";
+            }
+                break;
+            case 1:///女
+            {
+                textView.text = @"女";
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }else
+    {
+        if (actionSheet.numberOfButtons - 1 == buttonIndex)
+        {
+            return;
+        }
+        NSString* title = [actionSheet buttonTitleAtIndex:buttonIndex];
+        if ([title isEqualToString:@"保存图片"]) {
+            UIImageWriteToSavedPhotosAlbum(imgSaveView.image, nil, nil,nil);
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"存储图片成功"
+                                                            message:@"您已将图片存储于照片库中，打开照片程序即可查看。"
+                                                           delegate:self
+                                                  cancelButtonTitle:LOCALIZATION(@"dialog_ok")
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
     }
-    NSString* title = [actionSheet buttonTitleAtIndex:buttonIndex];
-    if ([title isEqualToString:@"保存图片"]) {
-        UIImageWriteToSavedPhotosAlbum(imgSaveView.image, nil, nil,nil);
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"存储图片成功"
-                                                        message:@"您已将图片存储于照片库中，打开照片程序即可查看。"
-                                                       delegate:self
-                                              cancelButtonTitle:LOCALIZATION(@"dialog_ok")
-                                              otherButtonTitles:nil];
-        [alert show];
-    }
+    
 }
-
+#pragma mark -----------------------------------------------------------------------------
 
 
 #pragma mark - 播放视频
