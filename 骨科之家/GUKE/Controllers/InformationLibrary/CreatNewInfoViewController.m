@@ -746,6 +746,10 @@
     shareImagePicker = [[UIImagePickerController alloc]init];
     shareImagePicker.sourceType = soursceType;
     shareImagePicker.delegate = self;
+    
+    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"navi_bg@2x" ofType:@"png"]] forBarMetrics:UIBarMetricsDefault];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
     [self presentViewController:shareImagePicker animated:YES completion:nil];
     
 }

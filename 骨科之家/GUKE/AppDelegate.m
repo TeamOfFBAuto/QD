@@ -197,10 +197,10 @@
         AudioServicesPlaySystemSound(soundID);
     }
     else{
-    AudioServicesDisposeSystemSoundID(soundID);
+        AudioServicesDisposeSystemSoundID(soundID);
     }
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"ison2"]boolValue]) {
-    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
     }
     else{
         AudioServicesDisposeSystemSoundID(kSystemSoundID_Vibrate);

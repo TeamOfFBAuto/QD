@@ -616,7 +616,7 @@ static NSString *commentId = 0;
         // 评论的高度设定
         if ([articleModel.commentArray count]>0) {
             for (contentAndGood *modle in articleModel.commentArray) {
-                commentHeight = commentHeight + [SingleInstance customFontHeightFont:modle.context andFontSize:15 andLineWidth:SHARE_BG_WIGHT];
+                commentHeight = commentHeight + [SingleInstance customFontHeightFont:modle.context andFontSize:15 andLineWidth:SHARE_BG_WIGHT] + 5;
             }
             commentHeight = commentHeight + [articleModel.commentArray count] *4;
         }
@@ -641,11 +641,11 @@ static NSString *commentId = 0;
             if (articleModel.context == nil || articleModel.context.length == 0 || [articleModel.context isEqualToString:@" "]){
                  height = USER_ICON_WHDTH+imgHeight+REPORT_TIME_HEIGHT+40 + shareHeight + commentHeight-16 ;
             }else{
-                height = USER_ICON_WHDTH +[SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250] +[SingleInstance customFontHeightFont:articleModel.shareComment andFontSize:15 andLineWidth:250] +imgHeight+REPORT_TIME_HEIGHT+40 + shareHeight + commentHeight ;
+                    height = USER_ICON_WHDTH +[SingleInstance customFontHeightFont:articleModel.context andFontSize:15 andLineWidth:250] +[SingleInstance customFontHeightFont:articleModel.shareComment andFontSize:15 andLineWidth:250] +imgHeight+REPORT_TIME_HEIGHT+40 + shareHeight + commentHeight ;
             }
 
         }
-        return height + 10;
+        return height;
     }
 }
 
@@ -937,12 +937,20 @@ static NSString *commentId = 0;
         return;
     }
     if (buttonMenu.view.tag == ACTIONSHEET_BG_TAG) {
+        [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"navi_bg@2x" ofType:@"png"]] forBarMetrics:UIBarMetricsDefault];
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
         bgImagePicker = [[UIImagePickerController alloc]init];
         bgImagePicker.sourceType = soursceType;
         bgImagePicker.delegate = self;
-        [self presentViewController:bgImagePicker animated:YES completion:nil];
+        [self presentViewController:bgImagePicker animated:YES completion:^{
+        }
+         ];
     }
     else if(buttonMenu.view.tag == ACTIONSHEET_SHARE_TAG){
+        [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"navi_bg@2x" ofType:@"png"]] forBarMetrics:UIBarMetricsDefault];
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
         [self chooseMorePhoto];
     }
 }

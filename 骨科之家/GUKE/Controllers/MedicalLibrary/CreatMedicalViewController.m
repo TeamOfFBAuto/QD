@@ -549,6 +549,9 @@
     picker.sourceType = sourceType;
     picker.tabBarItem.title = @"zhaopian";
     //[[TabBarView sharedTabBarView] hideTabbar:YES animated:YES];
+    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"navi_bg@2x" ofType:@"png"]] forBarMetrics:UIBarMetricsDefault];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
     [self presentViewController:picker animated:YES completion:^{
 
     }];

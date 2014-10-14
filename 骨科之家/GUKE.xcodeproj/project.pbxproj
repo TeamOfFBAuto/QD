@@ -32,6 +32,8 @@
 		193ED7F3197F61D2000C5009 /* SqliteFieldAndTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 193ED7F2197F61D2000C5009 /* SqliteFieldAndTable.m */; };
 		193ED7F6197F8552000C5009 /* UserInfoDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 193ED7F5197F8552000C5009 /* UserInfoDB.m */; };
 		194EDB7C19D9D3D800A60E32 /* RecordsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 194EDB7B19D9D3D800A60E32 /* RecordsTableViewCell.m */; };
+		19530F5119ECD3150008BE42 /* defaults_iamge@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19530F4F19ECD3150008BE42 /* defaults_iamge@2x.png */; };
+		19530F5219ECD3150008BE42 /* navi_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19530F5019ECD3150008BE42 /* navi_bg@2x.png */; };
 		1954B75919DEE5A00056A971 /* BiaoQianBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1954B75819DEE5A00056A971 /* BiaoQianBottomView.m */; };
 		1954B75C19DEEA360056A971 /* FbRegistCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1954B75B19DEEA360056A971 /* FbRegistCell.m */; };
 		1956AC28196E4A230092A4CA /* speratechbgline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1956AC27196E4A220092A4CA /* speratechbgline@2x.png */; };
@@ -1047,6 +1049,8 @@
 		193ED7F5197F8552000C5009 /* UserInfoDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoDB.m; sourceTree = "<group>"; };
 		194EDB7A19D9D3D800A60E32 /* RecordsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordsTableViewCell.h; sourceTree = "<group>"; };
 		194EDB7B19D9D3D800A60E32 /* RecordsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordsTableViewCell.m; sourceTree = "<group>"; };
+		19530F4F19ECD3150008BE42 /* defaults_iamge@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "defaults_iamge@2x.png"; sourceTree = "<group>"; };
+		19530F5019ECD3150008BE42 /* navi_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navi_bg@2x.png"; sourceTree = "<group>"; };
 		1954B75719DEE5A00056A971 /* BiaoQianBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BiaoQianBottomView.h; sourceTree = "<group>"; };
 		1954B75819DEE5A00056A971 /* BiaoQianBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BiaoQianBottomView.m; sourceTree = "<group>"; };
 		1954B75A19DEEA360056A971 /* FbRegistCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FbRegistCell.h; sourceTree = "<group>"; };
@@ -3935,6 +3939,8 @@
 		3E7BACC019D18F35002E28A1 /* guke_image */ = {
 			isa = PBXGroup;
 			children = (
+				19530F4F19ECD3150008BE42 /* defaults_iamge@2x.png */,
+				19530F5019ECD3150008BE42 /* navi_bg@2x.png */,
 				3E7BACC119D18F35002E28A1 /* guke_add_icon@2x.png */,
 				3E7BACC219D18F35002E28A1 /* guke_allgroup@2x.png */,
 				3E7BACC319D18F35002E28A1 /* guke_amp1@2x.png */,
@@ -4704,6 +4710,7 @@
 				3E7BADF119D18F35002E28A1 /* guke_group_sms@2x.png in Resources */,
 				19960CDF196A80D6000121AA /* chat_btn_bigvoice2@2x.png in Resources */,
 				3E7BADB819D18F35002E28A1 /* guke_button_bg@2x.png in Resources */,
+				19530F5219ECD3150008BE42 /* navi_bg@2x.png in Resources */,
 				199C00AC195AAD1D00F74F7C /* check_off@2x.png in Resources */,
 				19960D20196A80D6000121AA /* blackArrow.png in Resources */,
 				19960CC6196A80D6000121AA /* group_default@2x.png in Resources */,
@@ -5215,6 +5222,7 @@
 				3E7BAE1219D18F35002E28A1 /* guke_ic_share_save@2x.png in Resources */,
 				3EC2E00619B9A2A500B42351 /* amp7_new@2x.png in Resources */,
 				3E7BADE519D18F35002E28A1 /* guke_group_bg@2x.png in Resources */,
+				19530F5119ECD3150008BE42 /* defaults_iamge@2x.png in Resources */,
 				3E7BADA519D18F35002E28A1 /* guke_amp3@2x.png in Resources */,
 				3E7BAE5819D18F35002E28A1 /* guke_task_arrow@2x.png in Resources */,
 				3E7BAE4319D18F35002E28A1 /* guke_search_red_icon@2x.png in Resources */,
